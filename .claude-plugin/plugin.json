@@ -1,0 +1,12 @@
+{
+  "name": "highrise-studio",
+  "version": "0.1.0",
+  "description": "A Claude Code plugin for Highrise Studio.",
+  "author": {
+    "name": "Pocket Worlds",
+    "email": "ryanh@pocketworlds.com"
+  },
+  "commands": "./commands",
+  "agents": "./agents",
+  "skills": "./skills"
+}
