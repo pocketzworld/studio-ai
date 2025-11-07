@@ -1,0 +1,14 @@
+{
+    "name": "studio-ai",
+    "owner": {
+        "name": "Pocket Worlds",
+        "email": "ryanh@pocketworlds.com"
+    },
+    "plugins": [
+        {
+            "name": "highrise-studio",
+            "source": "./highrise-studio",
+            "description": "Development version of the Highrise Studio plugin for Claude Code."
+        }
+    ]
+}
