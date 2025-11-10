@@ -9,7 +9,8 @@
       "Bash(mkdir:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(sleep:*)"
     ],
     "deny": [],
     "ask": [],

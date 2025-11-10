@@ -47,4 +47,6 @@ For more, read the Markdown files in `creator-docs/pages/learn/studio/create/scr
 - Avoid browser or DOM references (`document`, `window`, `addEventListener`, etc.).
 - If you are ever unsure, **read the docs.**
 
+## TODO: instructions (planning, writing, style, code review)
+
 ## TODO: examples

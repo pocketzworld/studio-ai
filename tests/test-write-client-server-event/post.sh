@@ -1,0 +1,1 @@
+cp ./../../highrise-studio/skills/write-highrise-studio-lua/resources/STYLE_GUIDE.md $1
