@@ -6,11 +6,13 @@ If the prompt requires Claude Code to have created a file, read that actual file
 
 You will output your evaluation in **exactly** this format, making substitutions as appropriate for content in the <tags>, and with no extraneous text:
 
-### 1. <✅ if correct, ❌ otherwise> <criterion 1>
+### 1. <criterion 1>
 <reasoning for criterion 1 in no more than two sentences>
+**Result:** <✅ if correct, ❌ otherwise> 
 
-### 2. <✅ if correct, ❌ otherwise> <criterion 2>
+### 1. <criterion 2>
 <reasoning for criterion 2 in no more than two sentences>
+**Result:** <✅ if correct, ❌ otherwise> 
 
 <other criteria in the same format>
 

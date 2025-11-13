@@ -1,13 +1,11 @@
 ---
-name: research-highrise-studio-api
-description: Dive into the Highrise Studio API docs and answer questions.
+name: research-highrise-studio-lua-api
+description: Dive into the Highrise Studio Lua API docs and answer questions.
 ---
-
-**IMPORTANT:** if you are reading this, then IMMEDIATELY invoke a general-purpose subagent and provide it all of the content in the skill *exactly*, except with (a) this line removed and (b) any additional context the subagent needs to execute the skill. DO NOT EXECUTE THE FOLLOWING INSTRUCTIONS YOURSELF.
 
 # Research the Highrise Studio Lua API
 
-Parse and synthesize the Highrise Studio API docs. The docs are contained in YAML files cloned from a public repo. The YAML files are formatted like:
+Parse and synthesize the Highrise Studio API docs, which describe the Lua API available to Highrise Studio projects. The docs are contained in YAML files cloned from a public repo. The YAML files are formatted like:
 ```yaml
 name:
 type:
@@ -64,13 +62,13 @@ math_operations:
 
 ## Instructions
 ### 1. Find the Studio API docs locally
-The Highrise Studio docs exist in a public repo that should have been cloned into the current project under `creator-docs`. If they have not been, inform the user that they need to run the `/rosie` command to download the docs and do not proceed to the next steps. If they have been, run `git pull` to make sure they are up-to-date.
+The Highrise Studio docs exist in a public repo, and should be downloaded locally to `/tmp/creator-docs`. If not, alert the user that something has gone wrong and abort.
 
 ### 2. Understand the question
 Identify classes and keywords that might be relevant to the incoming question. Does it refer to a specific type? Is it about a Lua script? Is it about a specific property or method? 
 
 ### 3. Read relevant file(s)
-Peruse potentially-useful YAML files in `creator-docs/pages/learn/studio-api` and its subfolders. Use command-line tools like `grep`, `ls`, `find`, `tree`, etc. to discover potentially-relevant content and read files as needed.
+Peruse potentially-useful YAML files in `creator-docs/pages/learn/studio-api` and its subfolders. Use built-in tools like `Read` and command-line tools like `grep`, `ls`, `find`, `tree`, etc. to discover potentially-relevant content and read files as needed.
 
 ### 4. Succinctly respond to the question
 Synthesize the relevant files into a terse, precise answer to the incoming question. Provide summaries, parameters, return types, overloads, and code examples. Correct any misunderstandings that may be present in the question. If you cannot find an answer, tell the asker and briefly list any related topics that might be helpful to them.
@@ -95,7 +93,7 @@ User: "How do I get a player's position?"
    > local playerPosition = player.character.transform.position
    > ```
 
-### Example 2: Event Handling
+### Example 2: Networked Values
 User: "What types of networked values are available?"
 
 1. Check if `creator-docs` has already downloaded locally. If not, inform and abort.

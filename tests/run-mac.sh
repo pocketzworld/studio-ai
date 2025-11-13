@@ -13,6 +13,48 @@ echo "" >> "$AGGREGATE_RESULTS_FILE"
 echo "Generated: $(date)" >> "$AGGREGATE_RESULTS_FILE"
 echo "" >> "$AGGREGATE_RESULTS_FILE"
 
+# Track background processes
+TEST_PIDS=()
+
+# Cleanup function to kill claude processes and background processes
+cleanup() {
+    local EXIT_CODE=$?
+    echo "" >&2
+    echo "Cleaning up..." >&2
+    
+    # Kill all background test processes
+    if [ ${#TEST_PIDS[@]} -gt 0 ]; then
+        echo "Killing background test processes..." >&2
+        for PID in "${TEST_PIDS[@]}"; do
+            if kill -0 "$PID" 2>/dev/null; then
+                kill "$PID" 2>/dev/null || true
+            fi
+        done
+        # Wait a bit for graceful shutdown, then force kill
+        sleep 1
+        for PID in "${TEST_PIDS[@]}"; do
+            if kill -0 "$PID" 2>/dev/null; then
+                kill -9 "$PID" 2>/dev/null || true
+            fi
+        done
+    fi
+    
+    # Kill all claude processes
+    echo "Killing all claude processes..." >&2
+    pkill -f claude || true
+    
+    # Clean up result directory if it exists
+    if [ -n "$RESULT_DIR" ] && [ -d "$RESULT_DIR" ]; then
+        rm -rf "$RESULT_DIR" 2>/dev/null || true
+    fi
+    
+    # Exit with the original exit code (or 1 if killed)
+    exit ${EXIT_CODE:-1}
+}
+
+# Set up trap to catch termination signals
+trap cleanup SIGINT SIGTERM EXIT
+
 # Function to process a single test
 process_test() {
     local TEST_DIR="$1"
@@ -72,10 +114,9 @@ process_test() {
     # Create separate temp directory for this test
     local TEMP_DIR="$(mktemp -d)"
     echo "Created temp directory: $TEMP_DIR" >&2
-    
-    cp -r "$SCRIPT_DIR/../highrise-studio/skills/setup-highrise-studio-project/claude-docs" "$TEMP_DIR/.claude"
     cd "$TEMP_DIR"
-    git clone https://github.com/pocketzworld/creator-docs.git > /dev/null 2>&1
+    bash "${SCRIPT_DIR}/../highrise-studio/skills/setup-highrise-studio-project/prep.sh"
+    claude -p "/exit"  # start and end a session to trigger any setup hooks
     
     # Run prep.sh if it exists
     if [ -f "$PREP_SCRIPT" ]; then
@@ -85,17 +126,16 @@ process_test() {
         cd "$TEMP_DIR"
     fi
     
-    echo "Working in $TEMP_DIR" >&2
     local OUTPUT_FILE="${TEMP_DIR}/answer.txt"
     echo "Writing output to $OUTPUT_FILE" >&2
-    local PROMPT="$(cat $PROMPT_FILE)"
+    local CLAUDE_PROMPT="$(cat $PROMPT_FILE)"
     
     # Generate a UUID for the session
     local SESSION_ID="$(uuidgen)"
     
     # Create a temporary file with the prompt text for easier handling
     local PROMPT_TEMP_FILE="$(mktemp)"
-    echo "$PROMPT. Write your final response to this prompt to $OUTPUT_FILE." > "$PROMPT_TEMP_FILE"
+    echo "$CLAUDE_PROMPT. Write your final response to this prompt to $OUTPUT_FILE." > "$PROMPT_TEMP_FILE"
     
     # Run claude in interactive mode in a separate terminal window
     # Wait 2 seconds, then type the prompt and press Enter
@@ -159,8 +199,9 @@ EOF
     
     # Capture evaluation results
     local EVAL_OUTPUT_FILE="$(mktemp)"
+    echo "Evaluating..." >&2
     claude --append-system-prompt "$(cat $SCRIPT_DIR/evaluator-prompt.txt)" --print "# Prompt
-$PROMPT
+$CLAUDE_PROMPT
 
 ---
 
@@ -182,8 +223,7 @@ $CRITERIA" > "$EVAL_OUTPUT_FILE"
     echo "" >> "$RESULT_FILE"
     
     # Clean up temp directory
-    rm -rf "$TEMP_DIR"
-    rm -f "$OUTPUT_FILE" "$EVAL_OUTPUT_FILE"
+    rm -f "$EVAL_OUTPUT_FILE"
     
     echo "Completed test: $TEST_DIR" >&2
     echo "" >&2
@@ -194,7 +234,6 @@ $CRITERIA" > "$EVAL_OUTPUT_FILE"
 # Create result directory for parallel execution
 RESULT_DIR="$(mktemp -d)"
 RESULT_FILES=()
-TEST_PIDS=()
 
 # Launch all tests in parallel
 for TEST_DIR in "$@"; do
@@ -226,7 +265,3 @@ echo "========================================="
 echo "All tests completed. Results aggregated in:"
 echo "$AGGREGATE_RESULTS_FILE"
 echo "========================================="
-
-# Kill all claude processes
-echo "Killing all claude processes..." >&2
-pkill -f claude || true
