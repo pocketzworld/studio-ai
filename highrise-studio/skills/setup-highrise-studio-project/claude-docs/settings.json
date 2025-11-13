@@ -10,7 +10,8 @@
       "Bash(cp:*)",
       "Bash(mv:*)",
       "Bash(grep:*)",
-      "Bash(sleep:*)"
+      "Bash(sleep:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": [],
     "ask": [],

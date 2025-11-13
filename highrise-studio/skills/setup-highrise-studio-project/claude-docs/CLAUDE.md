@@ -1,6 +1,8 @@
 # Highrise Studio Project Development Guide for AI Agents
 
-This is a _Highrise Studio_ project, which defines a _world_ that can be built and uploaded to _Highrise_. You will be asked to assist the user in developing their Highrise world. You have access to the `highrise-studio` plugin, which provides skills and subagents that can help you develop this project's Highrise world. These tools bake in deep knowledge of Highrise Studio and the Highrise API, and protect your context from noise. You have no intrinsic knowledge of Highrise Studio. **USE THE SKILLS IN THE `highrise-studio` PLUGIN WHENEVER POSSIBLE.** If you do not have access to this plugin, you should ask the user to install it.
+This is a _Highrise Studio_ project, which defines a _world_ that can be built and uploaded to _Highrise_. You will be asked to assist the user in developing their Highrise world. 
+
+**READ THE FOLLOWING CAREFULLY: You do not have any intrinsic knowlege of Highrise Studio.** You cannot do anything in Highrise Studio without help. Fortunately, you have access to the `highrise-studio` plugin, which provides skills and subagents that can help you develop this project's Highrise world. These tools bake in deep knowledge of Highrise Studio and the Highrise API. **USE THE SKILLS IN THE `highrise-studio` PLUGIN.** If you do not have access to this plugin, you should ask the user to install it.
 
 ## Key terms
 - *Highrise*: a massively multiplayer online game, in which players can curate outfits for their avatar, socialize, and participate in activities across a universe of in-game worlds.

@@ -1,5 +1,7 @@
 --!Type(...)
 
+-- Not all sections are required for all scripts. Only include sections that are applicable.
+
 --------------------------------
 ------ SERIALIZED FIELDS  ------
 --------------------------------
@@ -7,6 +9,19 @@
 -- SerializeField variables must have a type annotation
 --!SerializeField
 local prefabObject: GameObject = nil
+
+--------------------------------
+------     CONSTANTS      ------
+--------------------------------
+-- Use SCREAMING_SNAKE_CASE for constants
+-- Never use magic numbers; always use a constant
+local MAX_LEVEL = 20
+
+--------------------------------
+------  REQUIRED MODULES  ------
+--------------------------------
+local playerTracker = require("PlayerTracker")
+local monsterLibrary = require("MonsterLibrary")
 
 --------------------------------
 ------     NETWORKING     ------
@@ -19,24 +34,17 @@ local myEvent = Event.new("MyEvent")
 MyPublicEvent = Event.new("MyPublicEvent")
 
 -- Networked values used only in this script should be declared with `local`, use camelCase, and end in `Value`
-local myNetworkedIntValue = IntValue.new("MyNetworkedIntValue")
+local myNetworkedValue = IntValue.new("MyNetworkedValue")
 
 -- Networked values exposed globally should use PascalCase, and end in `Value`
-MyPublicNetworkedIntValue = IntValue.new("MyPublicNetworkedIntValue")
-
---------------------------------
-------  REQUIRED MODULES  ------
---------------------------------
-local playerTracker = require("PlayerTracker")
-local monsterLibrary = require("MonsterLibrary")
+MyPublicNetworkedValue = IntValue.new("MyPublicNetworkedValue")
 
 --------------------------------
 ------    GLOBAL STATE    ------
 --------------------------------
--- Minimize the use of global state; prefer local state to global where possible
--- If state must be accessible, consider using public getters and setters to make it clear how it should be accessed
+-- Minimize the use of global state; prefer local state to global where possible, or consider using public getters and setters on local state
 -- Comment explaining why this needs to be global: "This is exposed globally because..."
--- Always initialize state to a default value
+-- Always initialize state to a default value at the time of declaration
 globalState = {}
 
 --------------------------------
@@ -44,21 +52,6 @@ globalState = {}
 --------------------------------
 -- Always initialize state to a default value at the time of declaration
 local localState = {}
-
---------------------------------
-------  TYPE DEFINITIONS  ------
---------------------------------
--- Exported types should be declared with `export type` and use PascalCase
-export type MyType = {
-    field: string
-}
-
---------------------------------
-------     CONSTANTS      ------
---------------------------------
--- Use SCREAMING_SNAKE_CASE for constants
--- Never use magic numbers; always use a constant
-local MAX_LEVEL = 20
 
 --------------------------------
 ------  LOCAL FUNCTIONS   ------
@@ -98,9 +91,26 @@ function PublicFunction(arg1: Player, arg2: boolean): number
 end
 
 --------------------------------
+------  TYPE DEFINITIONS  ------
+--------------------------------
+-- Exported types should be declared with `export type` and use PascalCase
+export type MyType = {
+    field: string
+}
+
+--------------------------------
 ------   CLASS METHODS    ------
 --------------------------------
+-- Follow this pattern for creating new class definitions
 MyType = {}
+MyType.__index = MyType
+
+-- Constructors should be static `new()` functions that return a new instance of the class
+function MyType.new(): MyType
+    local self = setmetatable({}, MyType)
+    -- initialize the new instance
+    return self
+end
 
 -- Class methods should be declared with `function`, colon syntax, and use PascalCase
 function MyType:Method1()
@@ -110,7 +120,14 @@ end
 --------------------------------
 ------  LIFECYCLE HOOKS   ------
 --------------------------------
--- In client + server or module scripts, use the Client* or Server* lifecycle hooks
+-- In scripts that are only client or server, use the lifecycle hooks with no prefix
+function self:Awake()
+end
+
+function self:Start()
+end
+
+-- In client + server or module scripts, use the Client* or Server* lifecycle hooks instead
 function self:ClientAwake()
 end
 
