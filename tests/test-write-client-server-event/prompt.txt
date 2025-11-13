@@ -1,0 +1,1 @@
+create a client-server script in the top-level project directory where the server side fires an event every second that the client listens to and prints "happy day!" on receiving. don't ask me for any clarifications.

@@ -1,0 +1,1 @@
+create a client-only script in the top-level project directory where, using a timer, the attached gameobject moves in the y-plane by a constant amount every second. don't ask me for any clarifications.

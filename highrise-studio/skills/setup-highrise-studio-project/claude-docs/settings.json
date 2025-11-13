@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(highrise-studio:write-highrise-studio-lua)",
+      "Skill(highrise-studio:research-highrise-studio-lua-api)",
+      "Bash(git pull:*)",
+      "Bash(cd:*)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(grep:*)",
+      "Bash(sleep:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [ "/tmp/creator-docs", "~/.claude/plugins/marketplaces/studio-ai/highrise-studio" ]
+  },
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ./.claude/update-docs.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
