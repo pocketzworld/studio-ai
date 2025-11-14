@@ -1,6 +1,6 @@
 SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-if [ -d ".claude" ] && [ -z "$(find .claude -type f 2>/dev/null)" ]; then
+if [ -d ".claude" ]; then
   rm -rf .claude
 fi
 
