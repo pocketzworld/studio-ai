@@ -62,7 +62,7 @@ math_operations:
 
 ## Instructions
 ### 1. Find the Studio API docs locally
-The Highrise Studio docs exist in a public repo, and should be downloaded locally to `/tmp/creator-docs`. If not, alert the user that something has gone wrong and abort.
+The Highrise Studio docs exist in a public repo, and should be downloaded locally to the `highrise-studio` plugin root under `creator-docs`. If not, alert the user that something has gone wrong and abort.
 
 ### 2. Understand the question
 Identify classes and keywords that might be relevant to the incoming question. Does it refer to a specific type? Is it about a Lua script? Is it about a specific property or method? 

@@ -115,24 +115,7 @@ process_test() {
     local TEMP_DIR="$(mktemp -d)"
     echo "Created temp directory: $TEMP_DIR" >&2
     cd "$TEMP_DIR"
-    bash "${SCRIPT_DIR}/../highrise-studio/skills/setup-highrise-studio-project/prep.sh"
-
-    # Modify settings.json to add additionalDirectories
-    local SETTINGS_FILE="$TEMP_DIR/.claude/settings.json"
-    if [ -f "$SETTINGS_FILE" ]; then
-        # Use awk to add additionalDirectories right after the permissions line
-        awk '
-            {
-                print
-                if (/^  "permissions":/) {
-                    print "  \"additionalDirectories\": [ \"/tmp/creator-docs\", \"~/Documents/Github/studio-ai/highrise-studio\" ],"
-                }
-            }
-        ' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
-        echo "Updated settings.json with additionalDirectories" >&2
-    else
-        echo "Warning: settings.json not found at $SETTINGS_FILE" >&2
-    fi
+    mkdir -p "Packages/com.pz.studio.generated"
 
     claude -p "/exit"  # start and end a session to trigger any setup hooks
     
@@ -153,7 +136,7 @@ process_test() {
     
     # Create a temporary file with the prompt text for easier handling
     local PROMPT_TEMP_FILE="$(mktemp)"
-    echo "$CLAUDE_PROMPT. Write your final response to this prompt to $OUTPUT_FILE." > "$PROMPT_TEMP_FILE"
+    echo "$CLAUDE_PROMPT. Don't ask me for any clarifications. Write your final response to this prompt to $OUTPUT_FILE." > "$PROMPT_TEMP_FILE"
     
     # Run claude in interactive mode in a separate terminal window
     # Wait 2 seconds, then type the prompt and press Enter
@@ -165,7 +148,7 @@ tell application "Terminal"
     tell application "System Events"
         tell process "Terminal"
             set frontmost to true
-            key code 36  -- trust the folder
+            key code 36  -- trust the folder if prompted
             delay 1
             set promptText to (read POSIX file "$PROMPT_TEMP_FILE")
             keystroke promptText

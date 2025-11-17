@@ -3,6 +3,7 @@
     "allow": [
       "Skill(highrise-studio:write-highrise-studio-lua)",
       "Skill(highrise-studio:research-highrise-studio-lua-api)",
+      "Skill(highrise-studio:create-highrise-studio-ui)",
       "Bash(git pull:*)",
       "Bash(cd:*)",
       "Bash(find:*)",
@@ -15,18 +16,9 @@
     ],
     "deny": [],
     "ask": [],
-    "defaultMode": "acceptEdits"
-  },
-  "hooks": {
-    "SessionEnd": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ./.claude/update-docs.sh"
-          }
-        ]
-      }
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "~/Documents/Github/studio-ai/highrise-studio/creator-docs"
     ]
   }
 }

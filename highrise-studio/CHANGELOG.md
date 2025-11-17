@@ -4,7 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.3] - 2025-11-17
+## [0.1.4] - 2025-11-17
+
+### Changed
+- Removed need for `/rosie` command to initialize docs and updating via hooks instead. CLAUDE.md and settings.json should now be updated automatically with new package versions.
+- Moved creator-docs repository to the plugin root (instead of /tmp/creator-docs).
 
 ### Fixed
 - Removed `additionalDirectories` from `settings.json` to fix compatibility with Windows.
