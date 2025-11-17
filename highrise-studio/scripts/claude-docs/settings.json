@@ -18,7 +18,7 @@
     "ask": [],
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
-      "~/.claude/plugins/marketplaces/studio-ai/highrise-studio/creator-docs"
+      "~/.claude/plugins/marketplaces/studio-ai/highrise-studio"
     ]
   }
 }
