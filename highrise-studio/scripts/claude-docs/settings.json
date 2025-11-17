@@ -16,9 +16,6 @@
     ],
     "deny": [],
     "ask": [],
-    "defaultMode": "acceptEdits",
-    "additionalDirectories": [
-      "~/Documents/Github/studio-ai/highrise-studio/creator-docs"
-    ]
+    "defaultMode": "acceptEdits"
   }
 }
