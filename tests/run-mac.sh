@@ -116,6 +116,24 @@ process_test() {
     echo "Created temp directory: $TEMP_DIR" >&2
     cd "$TEMP_DIR"
     bash "${SCRIPT_DIR}/../highrise-studio/skills/setup-highrise-studio-project/prep.sh"
+
+    # Modify settings.json to add additionalDirectories
+    local SETTINGS_FILE="$TEMP_DIR/.claude/settings.json"
+    if [ -f "$SETTINGS_FILE" ]; then
+        # Use awk to add additionalDirectories right after the permissions line
+        awk '
+            {
+                print
+                if (/^  "permissions":/) {
+                    print "  \"additionalDirectories\": [ \"/tmp/creator-docs\", \"~/Documents/Github/studio-ai/highrise-studio\" ],"
+                }
+            }
+        ' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+        echo "Updated settings.json with additionalDirectories" >&2
+    else
+        echo "Warning: settings.json not found at $SETTINGS_FILE" >&2
+    fi
+
     claude -p "/exit"  # start and end a session to trigger any setup hooks
     
     # Run prep.sh if it exists

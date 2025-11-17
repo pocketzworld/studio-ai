@@ -15,8 +15,7 @@
     ],
     "deny": [],
     "ask": [],
-    "defaultMode": "acceptEdits",
-    "additionalDirectories": [ "/tmp/creator-docs", "~/.claude/plugins/marketplaces/studio-ai/highrise-studio" ]
+    "defaultMode": "acceptEdits"
   },
   "hooks": {
     "SessionEnd": [
