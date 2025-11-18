@@ -1,6 +1,6 @@
 --!Type(...)
 
--- Not all sections are required for all scripts. Only include sections that are applicable.
+-- Not all sections are required for all scripts. Only include sections that have something in them. You can remove all of the guidance comments.
 
 --------------------------------
 ------ SERIALIZED FIELDS  ------
@@ -51,7 +51,9 @@ globalState = {}
 ------     LOCAL STATE    ------
 --------------------------------
 -- Always initialize state to a default value at the time of declaration
-local localState = {}
+-- Always annotate the type of local state
+local localState: {number} = {0}
+local localTimer: Timer = nil
 
 --------------------------------
 ------  LOCAL FUNCTIONS   ------
@@ -120,22 +122,31 @@ end
 --------------------------------
 ------  LIFECYCLE HOOKS   ------
 --------------------------------
--- In scripts that are only client or server, use the lifecycle hooks with no prefix
-function self:Awake()
-end
-
+-- In scripts that are only client or server, use the lifecycle hooks with no prefix. For example:
 function self:Start()
 end
 
--- In client + server or module scripts, use the Client* or Server* lifecycle hooks instead
-function self:ClientAwake()
+function self:Update()
+    -- DO NOT use Update for things that occur after a duration; use a Timer instead.
+    -- if you are doing something every frame, scale by Time.deltaTime for smoothness
+    myVar = myVar + CONSTANT * Time.deltaTime
 end
 
+-- In client + server or module scripts, use the Client* or Server* lifecycle hooks instead. For example:
 function self:ClientStart()
 end
 
-function self:ServerAwake()
+function self:ClientUpdate()
+    -- DO NOT use Update for things that occur after a duration; use a Timer instead.
+    -- if you are doing something every frame, scale by Time.deltaTime for smoothness
+    myVar = myVar + CONSTANT * Time.deltaTime
 end
 
 function self:ServerStart()
+end
+
+function self:ServerUpdate()
+    -- DO NOT use Update for things that occur after a duration; use a Timer instead.
+    -- if you are doing something every frame, scale by Time.deltaTime for smoothness
+    myVar = myVar + CONSTANT * Time.deltaTime
 end

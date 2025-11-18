@@ -1,0 +1,496 @@
+/*
+All available USS properties are listed below.
+Do not use any properties besides the ones listed here. Just because it exists in CSS doesn't mean it exists in USS!
+You can remove this comment from your final version.
+[
+  {
+    "property": "align-content",
+    "description": "Alignment of the whole area of children on the cross axis if they span over multiple lines in this container.",
+    "syntax": "flex-start | flex-end | center | stretch"
+  },
+  {
+    "property": "align-items",
+    "description": "Alignment of children on the cross axis of this container.",
+    "syntax": "auto | flex-start | flex-end | center | stretch"
+  },
+  {
+    "property": "align-self",
+    "description": "Similar to align-items, but only for this specific element.",
+    "syntax": "auto | flex-start | flex-end | center | stretch"
+  },
+  {
+    "property": "all",
+    "description": "Allows resetting all properties with the initial keyword. Does not apply to custom USS properties."
+  },
+  {
+    "property": "background-color",
+    "description": "Background color to paint in the element's box.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "background-image",
+    "description": "Background image to paint in the element's box.",
+    "syntax": "<resource> | <url> | none"
+  },
+  {
+    "property": "background-position",
+    "description": "Background image position value."
+  },
+  {
+    "property": "background-position-x",
+    "description": "Background image x position value."
+  },
+  {
+    "property": "background-position-y",
+    "description": "Background image y position value."
+  },
+  {
+    "property": "background-repeat",
+    "description": "Background image repeat value."
+  },
+  {
+    "property": "background-size",
+    "description": "Background image size value. Transitions are fully supported only when using size in pixelsThe smallest unit in a computer image. Pixel size depends on your screen resolution. Pixel lighting is calculated at every screen pixel. More infoSee in Glossary or percentages, such as pixel-to-pixel or percentage-to-percentage transitions."
+  },
+  {
+    "property": "border-bottom-color",
+    "description": "Color of the element's bottom border.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "border-bottom-left-radius",
+    "description": "The radius of the bottom-left corner when a rounded rectangle is drawn in the element's box.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-bottom-right-radius",
+    "description": "The radius of the bottom-right corner when a rounded rectangle is drawn in the element's box.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-bottom-width",
+    "description": "Space reserved for the bottom edge of the border during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-color",
+    "description": "Shorthand for border-top-color, border-right-color, border-bottom-color, border-left-color",
+    "syntax": "<color>{1,4}"
+  },
+  {
+    "property": "border-left-color",
+    "description": "Color of the element's left border.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "border-left-width",
+    "description": "Space reserved for the left edge of the border during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-radius",
+    "description": "Shorthand for border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius",
+    "syntax": "<length>{1,4}"
+  },
+  {
+    "property": "border-right-color",
+    "description": "Color of the element's right border.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "border-right-width",
+    "description": "Space reserved for the right edge of the border during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-top-color",
+    "description": "Color of the element's top border.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "border-top-left-radius",
+    "description": "The radius of the top-left corner when a rounded rectangle is drawn in the element's box.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-top-right-radius",
+    "description": "The radius of the top-right corner when a rounded rectangle is drawn in the element's box.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-top-width",
+    "description": "Space reserved for the top edge of the border during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "border-width",
+    "description": "Shorthand for border-top-width, border-right-width, border-bottom-width, border-left-width",
+    "syntax": "<length>{1,4}"
+  },
+  {
+    "property": "bottom",
+    "description": "Bottom distance from the element's box during layout.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "color",
+    "description": "Color to use when drawing the text of an element.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "cursor",
+    "description": "Mouse cursor to display when the mouse pointer is over an element."
+  },
+  {
+    "property": "display",
+    "description": "Defines how an element is displayed in the layout.",
+    "syntax": "flex | none"
+  },
+  {
+    "property": "filter",
+    "description": "Filter effects to apply to the element."
+  },
+  {
+    "property": "flex",
+    "description": "Shorthand for flex-grow, flex-shrink, flex-basis",
+    "syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]"
+  },
+  {
+    "property": "flex-basis",
+    "description": "Initial main size of a flex item, on the main flex axis. The final layout might be smaller or larger, according to the flex shrinking and growing determined by the other flex properties.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "flex-direction",
+    "description": "Direction of the main axis to layout children in a container.",
+    "syntax": "row | row-reverse | column | column-reverse"
+  },
+  {
+    "property": "flex-grow",
+    "description": "Specifies how the item will grow relative to the rest of the flexible items inside the same container.",
+    "syntax": "<number>"
+  },
+  {
+    "property": "flex-shrink",
+    "description": "Specifies how the item will shrink relative to the rest of the flexible items inside the same container.",
+    "syntax": "<number>"
+  },
+  {
+    "property": "flex-wrap",
+    "description": "Placement of children over multiple lines if not enough space is available in this container.",
+    "syntax": "nowrap | wrap | wrap-reverse"
+  },
+  {
+    "property": "font-size",
+    "description": "Font size to draw the element's text, specified in point size.",
+    "syntax": "<number>"
+  },
+  {
+    "property": "height",
+    "description": "Fixed height of an element for the layout.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "justify-content",
+    "description": "Justification of children on the main axis of this container.",
+    "syntax": "flex-start | flex-end | center | space-between | space-around"
+  },
+  {
+    "property": "left",
+    "description": "Left distance from the element's box during layout.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "letter-spacing",
+    "description": "Increases or decreases the space between characters.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "margin",
+    "description": "Shorthand for margin-top, margin-right, margin-bottom, margin-left",
+    "syntax": "[<length> | auto]{1,4}"
+  },
+  {
+    "property": "margin-bottom",
+    "description": "Space reserved for the bottom edge of the margin during the layout phase.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "margin-left",
+    "description": "Space reserved for the left edge of the margin during the layout phase.",
+    "syntax": "<length> | auto;"
+  },
+  {
+    "property": "margin-right",
+    "description": "Space reserved for the right edge of the margin during the layout phase.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "margin-top",
+    "description": "Space reserved for the top edge of the margin during the layout phase.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "max-height",
+    "description": "Maximum height for an element, when it is flexible or measures its own size.",
+    "syntax": "<length> | none"
+  },
+  {
+    "property": "max-width",
+    "description": "Maximum width for an element, when it is flexible or measures its own size.",
+    "syntax": "<length> | none"
+  },
+  {
+    "property": "min-height",
+    "description": "Minimum height for an element, when it is flexible or measures its own size.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "min-width",
+    "description": "Minimum width for an element, when it is flexible or measures its own size.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "opacity",
+    "description": "Specifies the transparency of an element and of its children.",
+    "syntax": "<number>"
+  },
+  {
+    "property": "overflow",
+    "description": "How a container behaves if its content overflows its own box.",
+    "syntax": "hidden | visible"
+  },
+  {
+    "property": "padding",
+    "description": "Shorthand for padding-top, padding-right, padding-bottom, padding-left",
+    "syntax": "<length>{1,4}"
+  },
+  {
+    "property": "padding-bottom",
+    "description": "Space reserved for the bottom edge of the padding during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "padding-left",
+    "description": "Space reserved for the left edge of the padding during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "padding-right",
+    "description": "Space reserved for the right edge of the padding during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "padding-top",
+    "description": "Space reserved for the top edge of the padding during the layout phase.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "position",
+    "description": "element's positioning in its parent container.",
+    "syntax": "absolute | relative"
+  },
+  {
+    "property": "right",
+    "description": "Right distance from the element's box during layout.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "rotate",
+    "description": "A rotation transformation."
+  },
+  {
+    "property": "scale",
+    "description": "A scaling transformation."
+  },
+  {
+    "property": "text-overflow",
+    "description": "The element's text overflow mode.",
+    "syntax": "clip | ellipsis"
+  },
+  {
+    "property": "text-shadow",
+    "description": "Drop shadow of the text.",
+    "syntax": "<x-offset> <y-offset> <blur-radius> <color>;"
+  },
+  {
+    "property": "top",
+    "description": "Top distance from the element's box during layout.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "transform-origin",
+    "description": "The transformation origin is the point around which a transformation is applied."
+  },
+  {
+    "property": "transition",
+    "description": "Shorthand for transition-delay, transition-duration, transition-property, transition-timing-function"
+  },
+  {
+    "property": "transition-delay",
+    "description": "Duration to wait before starting a property\u2019s transition effect when its value changes."
+  },
+  {
+    "property": "transition-duration",
+    "description": "Time a transition animation should take to complete."
+  },
+  {
+    "property": "transition-property",
+    "description": "Properties to which a transition effect should be applied."
+  },
+  {
+    "property": "transition-timing-function",
+    "description": "Determines how intermediate values are calculated for properties modified by a transition effect."
+  },
+  {
+    "property": "translate",
+    "description": "A translate transformation."
+  },
+  {
+    "property": "-unity-background-image-tint-color",
+    "description": "Tinting color for the element's backgroundImage.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "-unity-background-scale-mode",
+    "description": "Background image scaling in the element's box.",
+    "syntax": "stretch-to-fill | scale-and-crop | scale-to-fit"
+  },
+  {
+    "property": "-unity-editor-text-rendering-mode",
+    "description": "TextElement editor rendering mode."
+  },
+  {
+    "property": "-unity-font",
+    "description": "Font to draw the element's text, defined as a Font object.",
+    "syntax": "<resource> | <url>"
+  },
+  {
+    "property": "-unity-font-definition",
+    "description": "Font to draw the element's text, defined as a FontDefinition structure. It takes precedence over -unity-font.",
+    "syntax": "<resource> | <url>"
+  },
+  {
+    "property": "-unity-font-style",
+    "description": "Font style and weight (normal, bold, italic) to draw the element's text.",
+    "syntax": "normal | italic | bold | bold-and-italic"
+  },
+  {
+    "property": "-unity-overflow-clip-box",
+    "description": "Specifies which box the element content is clipped against.",
+    "syntax": "padding-box | content-box"
+  },
+  {
+    "property": "-unity-paragraph-spacing",
+    "description": "Increases or decreases the space between paragraphs.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "-unity-slice-bottom",
+    "description": "Size of the 9-slice\u2019s bottom edge when painting an element's background image.",
+    "syntax": "<integer>"
+  },
+  {
+    "property": "-unity-slice-left",
+    "description": "Size of the 9-slice\u2019s left edge when painting an element's background image.",
+    "syntax": "<integer>"
+  },
+  {
+    "property": "-unity-slice-right",
+    "description": "Size of the 9-slice\u2019s right edge when painting an element's background image.",
+    "syntax": "<integer>"
+  },
+  {
+    "property": "-unity-slice-scale",
+    "description": "Scale applied to an element's slices.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "-unity-slice-top",
+    "description": "Size of the 9-slice\u2019s top edge when painting an element's background image.",
+    "syntax": "<integer>"
+  },
+  {
+    "property": "-unity-slice-type",
+    "description": "Specifies the type of sclicing.",
+    "syntax": "sliced | tiled"
+  },
+  {
+    "property": "-unity-text-align",
+    "description": "Horizontal and vertical text alignment in the element's box.",
+    "syntax": "upper-left | middle-left | lower-left | upper-center | middle-center | lower-center | upper-right | middle-right | lower-right"
+  },
+  {
+    "property": "-unity-text-auto-size",
+    "description": "Overrides any explicit font-size to scale text within the defined minimum and maximum bounds, recalculating as needed to fit its container.",
+    "syntax": "none | best-fit <min-font-size> <max-font-size>"
+  },
+  {
+    "property": "-unity-text-generator",
+    "description": "Switches between Unity\u2019s standard and advanced text generator",
+    "syntax": "standard | advanced"
+  },
+  {
+    "property": "-unity-text-outline",
+    "description": "Outline width and color of the text.",
+    "syntax": "<length> | <color>"
+  },
+  {
+    "property": "-unity-text-outline-color",
+    "description": "Outline color of the text.",
+    "syntax": "<color>"
+  },
+  {
+    "property": "-unity-text-outline-width",
+    "description": "Outline width of the text.",
+    "syntax": "<length>"
+  },
+  {
+    "property": "-unity-text-overflow-position",
+    "description": "The element's text overflow position.",
+    "syntax": "start | middle | end"
+  },
+  {
+    "property": "visibility",
+    "description": "Specifies whether or not an element is visible.",
+    "syntax": "visible | hidden"
+  },
+  {
+    "property": "white-space",
+    "description": "Word wrap over multiple lines if not enough space is available to draw the text of an element.",
+    "syntax": "normal | nowrap | pre | pre-wrap"
+  },
+  {
+    "property": "width",
+    "description": "Fixed width of an element for the layout.",
+    "syntax": "<length> | auto"
+  },
+  {
+    "property": "word-spacing",
+    "description": "Increases or decreases the space between words.",
+    "syntax": "<length>"
+  }
+]
+*/
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;  /* use only px, %, or pt units, NOT rem, em, vh, vw, or calc() */
+  width: 100%;
+  height: 100%;
+}
+
+.leaderboard-container {
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.leaderboard-title {
+  font-size: 16px;
+  -unity-font-definition: var(--font-black);
+  color: white;
+}
