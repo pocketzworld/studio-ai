@@ -1,1 +1,0 @@
-1. The written output says something.

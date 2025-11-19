@@ -1,1 +1,0 @@
-cp -r ./project/* $1/

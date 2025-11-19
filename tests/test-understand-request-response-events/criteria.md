@@ -1,0 +1,13 @@
+1. A Markdown file was created in the `.claude/events` directory.
+2. The Markdown file follows the template at `./resources/SCENARIO.md`.
+3. Both `HappyDayRequest` and `HappyDayResponse` events are covered in the Markdown file (in any order).
+4. The Markdown file indicates that `HappyDayRequest` is created in `Module.lua` and is not a local event.
+5. The Markdown file indicates that `HappyDayRequest` is fired in `DayGreeter.lua`'s `Start()` (or `self:Start()`) function.
+6. The Markdown file entry for `HappyDayRequest` indicates that `DayGreeter.lua`'s `Start()` (or `self:Start()`) function is not local, is a lifecycle hook, is called on the client, fires one second after the client starts, is a `FireServer()` call, and passes a string including the player's name as an argument.
+7. The Markdown file indicates that `HappyDayRequest` is connected to in `Module.lua`'s `ServerStart()` (or `self:ServerStart()`) function.
+8. The Markdown file entry for `HappyDayRequest`indicates that `Module.lua`'s `ServerStart()` (or `self:ServerStart()`) function is called on the server; connects immediately because it has no conditions; that it depends on a string argument; and that the callback saves the string payload to a local variable, waits one second, fires a `HappyDayResponse` event to the client that called the request, waits one second, and then fires a `HappyDayResponse` event to all clients.
+9. The Markdown file indicates that `HappyDayResponse` is created in `Module.lua` and is not a local event.
+10. The Markdown file indicates that `HappyDayResponse` is fired in `Module.lua`, in the callback to the `HappyDayRequest:Connect()` call, after a one-second delay, to the client that called the request, and with the last saved string payload as an argument.
+11. The Markdown file also indicates that `HappyDayResponse` is fired another time in the callback to the `HappyDayRequest:Connect()` call, after a two-second delay (in other words, an additional one-second delay), to all clients, and with the last saved string payload as an argument.
+12. The Markdown file indicates that `HappyDayRepsonse` is connected to in `DayGreeter.lua`'s `Start()` (or `self:Start()`) function.
+13. The Markdown file entry for `HappyDayResponse` indicates that `DayGreeter.lua`'s `Start()` (or `self:Start()`) function is called on the client; connects immediately because it has no conditions; that it depends on a string argument; and that the callback prints a string that includes the payload.

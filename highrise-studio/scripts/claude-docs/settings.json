@@ -13,5 +13,8 @@
     "additionalDirectories": [
       "~/.claude/plugins/marketplaces/studio-ai/highrise-studio"
     ]
-  }
+  },
+  "companyAnnouncements": [
+    "This project is using Highrise Studio AI, version 0.1.4. If your plugin is a higher version, /exit and start a new session to update."
+  ]
 }
