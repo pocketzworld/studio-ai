@@ -1,0 +1,1 @@
+cp -r ./../../highrise-studio/skills/understand-networked-events/resources $1

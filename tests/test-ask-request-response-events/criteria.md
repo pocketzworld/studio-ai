@@ -1,6 +1,6 @@
 1. A Markdown file was created in the `.claude/events` directory.
 2. The Markdown file follows the template at `./resources/SCENARIO.md`.
-3. Both `HappyDayRequest` and `HappyDayResponse` events are covered in the Markdown file (in any order).
+3. The Markdown file has sections for both `HappyDayRequest` and `HappyDayResponse` events (in any order).
 4. The Markdown file indicates that `HappyDayRequest` is created in `Module.lua` and is not a local event.
 5. The Markdown file indicates that `HappyDayRequest` is fired in `DayGreeter.lua`'s `Start()` (or `self:Start()`) function.
 6. The Markdown file entry for `HappyDayRequest` indicates that `DayGreeter.lua`'s `Start()` (or `self:Start()`) function is not local, is a lifecycle hook, is called on the client, fires one second after the client starts, is a `FireServer()` call, and passes a string including the player's name as an argument.
@@ -11,3 +11,7 @@
 11. The Markdown file also indicates that `HappyDayResponse` is fired another time in the callback to the `HappyDayRequest:Connect()` call, after a two-second delay (in other words, an additional one-second delay), to all clients, and with the last saved string payload as an argument.
 12. The Markdown file indicates that `HappyDayRepsonse` is connected to in `DayGreeter.lua`'s `Start()` (or `self:Start()`) function.
 13. The Markdown file entry for `HappyDayResponse` indicates that `DayGreeter.lua`'s `Start()` (or `self:Start()`) function is called on the client; connects immediately because it has no conditions; that it depends on a string argument; and that the callback prints a string that includes the payload.
+14. The Markdown file includes a sequence diagram section that shows a client connecting to `HappyDayResponse`, waiting one second, then firing a `HappyDayRequest` event to the server.
+15. The Markdown file's sequence diagram shows the server hearing the `HappyDayRequest` event, waiting one second, firing a `HappyDayResponse` to the client, waiting one second, and then firing a `HappyDayResponse` to all clients.
+16. The Markdown file's sequence diagram shows the client hearing the two `HappyDayResponse` events and printing upon receiving each.
+17. The Markdown file includes a race condition section that notes that if two clients join at the same time, both will receive the same name from the server instead of their own names.

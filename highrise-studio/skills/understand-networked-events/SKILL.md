@@ -1,6 +1,6 @@
 ---
-name: understand-events
-description: Respond to questions or tasks about this project's networked events.
+name: understand-networked-events
+description: Figure out how events are being used in the project. You can't answer questions about them without this skill.
 ---
 
 # Understand networked events

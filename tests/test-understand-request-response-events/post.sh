@@ -1,1 +1,0 @@
-cp -r ./../../highrise-studio/skills/understand-events/resources $1

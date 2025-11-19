@@ -26,14 +26,13 @@
 ### `MyResponse`
 ... <!-- repeat the above sections for each event -->
 
-## Sequence diagrams
-<!-- Add one sequence diagram for each potential sequence of event fires and connections. -->
-### Situation 1
-<!-- Describe the situation that the sequence diagram is representing. For example, "A single client connects along with the server." -->
+## Sequence diagram <!-- Show what would be the most common or intended sequence of events for this scenario. -->
+In this diagram, ... <!-- Describe the situation that the sequence diagram is representing. For example, "...a single client connects at the same time as the server." -->
 ```mermaid
 sequenceDiagram
     participant Client1
     participant Server
+    %% use par to indicate that multiple groups of interactions (separated by "and") are happening in parallel
     par serverStart
         Server->>Server: Start
         Server->>Server: Connect to MyRequest
@@ -51,10 +50,7 @@ sequenceDiagram
     Client1->>Client1: print("C1")
 ```
 
-### Situation 2
-<!-- Describe another situation that the next sequence diagram will represent. For example, "A second client joins shortly after the first client." -->
-...
-
-### Situation 3 <!-- Add as many of these sections as needed to cover any potential sequences of event fires and connections.>
-...
-<!-- EOF. Do not add any other sections. -->
+## Race conditions
+ <!-- Describe any potential race conditions that may occur in the current implementation and lead to unexpected behavior. -->
+1. If two clients join at the same time, both will receive the same name from the server instead of their own names.
+2. ...

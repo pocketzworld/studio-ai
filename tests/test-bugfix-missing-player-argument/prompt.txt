@@ -1,0 +1,1 @@
+the scripts in this project are supposed to announce the connection of a client to all clients. i'm getting an error in line 7 of ConnectionAnnouncer.lua, saying that the payload is not a string. why? please fix the error.

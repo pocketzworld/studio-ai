@@ -268,3 +268,6 @@ echo "========================================="
 echo "All tests completed. Results aggregated in:"
 echo "$AGGREGATE_RESULTS_FILE"
 echo "========================================="
+
+mv "$AGGREGATE_RESULTS_FILE" "$AGGREGATE_RESULTS_FILE".md
+open "$AGGREGATE_RESULTS_FILE".md
