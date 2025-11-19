@@ -15,6 +15,9 @@ if [ -d "Packages/com.pz.studio.generated" ]; then
   mkdir -p .claude
   # copy the contents of the claude-docs directory from the plugin root to the current working directory as .claude, overwriting any existing files
   cp -r "${PLUGIN_ROOT}/scripts/claude-docs"/* .claude/
+  # create a version.txt file in the .claude folder with the plugin version
+  PLUGIN_VERSION=$(cat "${PLUGIN_ROOT}/.claude-plugin/plugin.json" | jq -r '.version')
+  echo "$PLUGIN_VERSION" > .claude/version.txt
   # copy over the creator-docs directory from the plugin root to the current working directory to avoid permissions issues
   rm -rf .claude/creator-docs
   cp -r "${PLUGIN_ROOT}/creator-docs" .claude/
