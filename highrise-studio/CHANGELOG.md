@@ -4,6 +4,16 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-11-20
+
+### Added
+- Skill for writing Highrise Studio UI components.
+- Skill for understanding and documenting networked events.
+- Warning and instructions if project CLAUDE.md is out of date with the plugin version.
+
+### Changed
+- Moved creator-docs repository to the project's .claude folder to fix read permissions issues.
+
 ## [0.1.4] - 2025-11-17
 
 ### Changed
