@@ -118,6 +118,8 @@ process_test() {
     mkdir -p "Packages/com.pz.studio.generated"
 
     claude -p "/exit"  # start and end a session to trigger any setup hooks
+    # Run the tests in a sandbox to avoid permission requests
+    echo '{"sandbox": {"enabled": true, "autoAllowBashIfSandboxed": true}}' > .claude/settings.local.json
     
     # Run prep.sh if it exists
     if [ -f "$PREP_SCRIPT" ]; then
@@ -266,3 +268,6 @@ echo "========================================="
 echo "All tests completed. Results aggregated in:"
 echo "$AGGREGATE_RESULTS_FILE"
 echo "========================================="
+
+mv "$AGGREGATE_RESULTS_FILE" "$AGGREGATE_RESULTS_FILE".md
+open "$AGGREGATE_RESULTS_FILE".md

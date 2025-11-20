@@ -1,0 +1,1 @@
+create a script in the top-level project directory. when a gameobject has this script, its scale should increase in all axes every frame. this scale should be synchronized to the server so all clients see the same scale using a networked value.

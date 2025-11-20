@@ -4,21 +4,16 @@
       "Skill(highrise-studio:write-highrise-studio-lua)",
       "Skill(highrise-studio:research-highrise-studio-lua-api)",
       "Skill(highrise-studio:create-highrise-studio-ui)",
-      "Bash(git pull:*)",
-      "Bash(cd:*)",
-      "Bash(find:*)",
-      "Bash(mkdir:*)",
-      "Bash(cp:*)",
-      "Bash(mv:*)",
-      "Bash(grep:*)",
-      "Bash(sleep:*)",
-      "mcp__ide__getDiagnostics"
+      "Skill(highrise-studio:understand-networked-events)",
+      "mcp__ide__getDiagnostics",
+      "Write"
     ],
     "deny": [],
     "ask": [],
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
-      "~/.claude/plugins/marketplaces/studio-ai/highrise-studio"
+      "./.claude",
+      "~/.claude/plugins/marketplaces/studio-ai/highrise-studio/skills"
     ]
   }
 }

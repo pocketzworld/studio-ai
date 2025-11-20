@@ -4,4 +4,4 @@
 3. In `self:ServerUpdate()`, the networked value is updated using `NAME.value = ...`, not directly assigning to `NAME = ...`.
 3. In `self.ClientAwake()` or `self.ClientStart()`, an event is connected using `NAME.Changed:Connect()`.
 4. The callback to the `Connect()` call updates the scale of the gameobject by setting `self.transform.localScale` or `self.gameObject.transform.localScale` using the value passed as an argument to the callback.
-5. The script follows the entirety of the style guide at `./resources/STYLE_GUIDE.lua`.
+5. The script follows the entirety of the style guide at `./resources/STYLE_GUIDE.lua`, except for any guidance comments that were copied over from the template.
