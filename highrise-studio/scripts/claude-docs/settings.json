@@ -12,7 +12,6 @@
     "ask": [],
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
-      "~/Documents/Github/studio-ai/highrise-studio/skills",
       "./.claude",
       "~/.claude/plugins/marketplaces/studio-ai/highrise-studio/skills"
     ]
