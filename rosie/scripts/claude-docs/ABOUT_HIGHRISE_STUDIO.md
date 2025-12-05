@@ -2,7 +2,7 @@
 
 This is a _Highrise Studio_ project, which defines a _world_ that can be built and uploaded to _Highrise_. You will be asked to assist the user in developing their Highrise world. 
 
-**READ THE FOLLOWING CAREFULLY: USE THE SKILLS IN THE `highrise-studio` PLUGIN.** You do not have any intrinsic knowlege of Highrise Studio. You cannot do anything in Highrise Studio without help. You cannot understand its code, its archiecture, or its API. Fortunately, you have access to the `highrise-studio` plugin, which provides skills that will help you develop this project's Highrise world. These tools have deep knowledge of Highrise Studio and the Highrise API. **YOUR PLAN FOR SOLVING THE USER'S REQUEST SHOULD USE AT LEAST ONE SKILL FROM THE `highrise-studio` PLUGIN.**
+**READ THE FOLLOWING CAREFULLY: USE THE SKILLS IN THE `rosie` PLUGIN.** You do not have any intrinsic knowlege of Highrise Studio. You cannot do anything in Highrise Studio without help. You cannot understand its code, its archiecture, or its API. Fortunately, you have access to the `rosie` plugin, which provides skills that will help you develop this project's Highrise world. These tools have deep knowledge of Highrise Studio and the Highrise API. **YOUR PLAN FOR SOLVING THE USER'S REQUEST SHOULD USE AT LEAST ONE SKILL FROM THE `rosie` PLUGIN, AND MAY INCLUDE MULTIPLE SKILLS.**
 
 ## Key terms
 - *Highrise*: a massively multiplayer online game, in which players can curate outfits for their avatar, socialize, and participate in activities across a universe of in-game worlds.
@@ -63,6 +63,28 @@ Each game object in Highrise Studio will be created on both the client-side and 
 - `--!Type(Client)` scripts only exist on the client-side version of the object. No version of the script will run on the server.
 - `--!Type(Server)` scripts only exist on the server-side version of the object. No version of the script will run on the client.
 - `--!Type(ClientAndServer)` scripts exist both on the client-side and server-side versions of the object. Each version executes its own lifecycle functions and maintains its own, separate state. The client- and server-side scripts can communicate via networked events declared at the top-level of the script.
-- `--!Type(Module)` scripts are similar to `ClientAndServer` scripts, except (a) there can only be one of each in a scene and (b) they can be accessed from any script using `require("MODULE_NAME")`. Like `ClientAndServer` scripts, the client-side and server-side versions maintain separate state.
+- `--!Type(Module)` scripts are similar to `ClientAndServer` scripts, except (a) there can only be one of each in a scene and (b) they can be accessed from any script using `require("MODULE_NAME")`. Like `ClientAndServer` scripts, the client-side and server-side versions maintain separate state. The module script must be attached to some Game Object in the scene to be used. Unlike some other Lua flavors, Highrise Studio modules do not need to return anything; their global fields will be accessible from the table returned by `require()`. For example:
+
+    ```lua
+    --!Type(Module)
+    --MyModule.lua
+
+    MyVar = 0
+
+    function self:ServerUpdate()
+        MyVar = MyVar + Time.deltaTime
+    end
+    ```
+
+    ```lua
+    --!Type(Server)
+    --MyComponent.lua
+
+    local myModule = require("MyModule")
+
+    function self:Update()
+        print(myModule.MyVar)
+    end
+    ```
 
 For more, read the Markdown files in `creator-docs/pages/learn/studio/create/scripting/script-types`.

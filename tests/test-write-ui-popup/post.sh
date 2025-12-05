@@ -1,1 +1,1 @@
-cp -r ./../../highrise-studio/skills/create-highrise-studio-ui/resources $1
+cp -r ./../../rosie/skills/create-highrise-studio-ui/resources $1

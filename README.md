@@ -1,11 +1,11 @@
-# highrise-studio
+# rosie
 
 A plugin that makes Claude Code a Highrise Studio wizard.
 
 ## Development philosophy
 When you want to change Claude Code's behavior, there are three places you could edit:
 ### Memory
-Each Highrise Studio project is initialized with the same `CLAUDE.md` file, defined in `skills/setup-highrise-studio-project/claude-docs/`. This file is copied into your project when you run the `/rosie` command. Any time Claude Code is started in that project, its `CLAUDE.md` file will be read into context and define Claude Code's behavior. 
+Each Highrise Studio project is initialized with the same `CLAUDE.md` file, defined in `scripts/claude-docs/`. These files are copied into your project when you run Claude Code with the rosie plugin enabled. Any time Claude Code is started in that project, its `CLAUDE.md` file will be read into context and define Claude Code's behavior. 
 - **Do:** add context about Highrise, Highrise Studio, Worlds, and the structure of Highrise Studio projects
 - **Don't:** describe how to do specific tasks; use a Skill or Command instead
 

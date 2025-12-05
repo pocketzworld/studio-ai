@@ -13,6 +13,12 @@ git -C "${PLUGIN_ROOT}/creator-docs" pull
 # Only copy to .claude if we're in a Highrise Studio project
 if [ -d "Packages/com.pz.studio.generated" ]; then
   mkdir -p .claude
+  # if there is no CLAUDE.md file in .claude, create it
+  if [ ! -f .claude/CLAUDE.md ]; then
+    touch .claude/CLAUDE.md
+    echo "# About this Highrise Studio project" > .claude/CLAUDE.md
+    echo "**Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start.**" >> .claude/CLAUDE.md
+  fi
   # copy the contents of the claude-docs directory from the plugin root to the current working directory as .claude, overwriting any existing files
   cp -r "${PLUGIN_ROOT}/scripts/claude-docs"/* .claude/
   # create a version.txt file in the .claude folder with the plugin version
