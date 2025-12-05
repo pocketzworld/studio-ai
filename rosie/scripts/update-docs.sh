@@ -18,7 +18,7 @@ if [ -d "Packages/com.pz.studio.generated" ]; then
     rm -f .claude/CLAUDE.md
   fi
   # if there is no CLAUDE.md file in .claude, create it
-  if [ ! -f .claude/CLAUDE.md ] || [ "$(cat .claude/version.txt)" < "0.3.0" ]; then
+  if [ ! -f .claude/CLAUDE.md ]; then
     touch .claude/CLAUDE.md
     echo "# About this Highrise Studio project" > .claude/CLAUDE.md
     echo "**Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start.**" >> .claude/CLAUDE.md
