@@ -13,8 +13,12 @@ git -C "${PLUGIN_ROOT}/creator-docs" pull
 # Only copy to .claude if we're in a Highrise Studio project
 if [ -d "Packages/com.pz.studio.generated" ]; then
   mkdir -p .claude
+  # if there is a version.txt file that contains anything less than 0.3.0, delete .claude/CLAUDE.md if it exists
+  if [ -f .claude/version.txt ] && [ "$(cat .claude/version.txt)" < "0.3.0" ]; then
+    rm -f .claude/CLAUDE.md
+  fi
   # if there is no CLAUDE.md file in .claude, create it
-  if [ ! -f .claude/CLAUDE.md ]; then
+  if [ ! -f .claude/CLAUDE.md ] || [ "$(cat .claude/version.txt)" < "0.3.0" ]; then
     touch .claude/CLAUDE.md
     echo "# About this Highrise Studio project" > .claude/CLAUDE.md
     echo "**Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start.**" >> .claude/CLAUDE.md
