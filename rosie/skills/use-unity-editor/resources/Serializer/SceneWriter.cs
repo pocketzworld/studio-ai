@@ -19,7 +19,7 @@ namespace Rosie
         private static bool running = false;
         private static readonly Dictionary<UnityEngine.Object, string> objectToId = new();
         private static readonly Dictionary<string, UnityEngine.Object> idToObject = new();
-        private static bool shouldSerializeNextFrame = false;
+        private static int shouldSerializeInNFrames = -1;
         private static float nextReadEditTime = -1f;
         private static bool initialized = false;
 
@@ -42,7 +42,7 @@ namespace Rosie
             running = EditorPrefs.GetBool(RUNNING_PREF_KEY, true);
             if (running)
             {
-                shouldSerializeNextFrame = true;
+                shouldSerializeInNFrames = 2;
             }
             
             EditorSceneManager.sceneSaved += MarkShouldSerialize;
@@ -62,7 +62,7 @@ namespace Rosie
             EditorPrefs.SetBool(RUNNING_PREF_KEY, newRunning);
             if (newRunning)
             {
-                shouldSerializeNextFrame = true;
+                shouldSerializeInNFrames = 2;
             }
             
             Menu.SetChecked("Highrise/Studio/Serialize to JSON", newRunning);
@@ -79,10 +79,13 @@ namespace Rosie
         private static void OnUpdate()
         {
             if (!running) return;
-            if (shouldSerializeNextFrame)
+            if (shouldSerializeInNFrames > 0)
             {
-                shouldSerializeNextFrame = false;
-                SerializeScene(EditorSceneManager.GetActiveScene());
+                shouldSerializeInNFrames--;
+                if (shouldSerializeInNFrames == 0)
+                {
+                    SerializeScene(EditorSceneManager.GetActiveScene());
+                }
             }
             if (nextReadEditTime > 0f && Time.realtimeSinceStartup >= nextReadEditTime)
             {
@@ -231,17 +234,17 @@ namespace Rosie
                     Undo.AddComponent((GameObject)gameObject, componentType);
                 }
             }
-            SerializeScene(EditorSceneManager.GetActiveScene());
+            shouldSerializeInNFrames = 2;
         }
 
         private static void MarkShouldSerialize(UnityEngine.SceneManagement.Scene scene)
         {
-            shouldSerializeNextFrame = true;
+            shouldSerializeInNFrames = 2;
         }
 
         private static void MarkShouldSerialize(UnityEngine.SceneManagement.Scene scene, OpenSceneMode mode)
         {
-            shouldSerializeNextFrame = true;
+            shouldSerializeInNFrames = 2;
         }
 
         private static void SerializeScene(UnityEngine.SceneManagement.Scene scene)

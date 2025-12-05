@@ -14,7 +14,7 @@ git -C "${PLUGIN_ROOT}/creator-docs" pull
 if [ -d "Packages/com.pz.studio.generated" ]; then
   mkdir -p .claude
   # if there is a version.txt file that contains anything less than 0.3.0, delete .claude/CLAUDE.md if it exists
-  if [ -f .claude/version.txt ] && [ "$(cat .claude/version.txt)" < "0.3.0" ]; then
+  if [ -f .claude/version.txt ] && [[ "$(cat .claude/version.txt)" < "0.3.0" ]]; then
     rm -f .claude/CLAUDE.md
   fi
   # if there is no CLAUDE.md file in .claude, create it
