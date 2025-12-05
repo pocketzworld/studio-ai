@@ -6,9 +6,9 @@
     },
     "plugins": [
         {
-            "name": "highrise-studio",
-            "source": "./highrise-studio",
-            "description": "Development version of the Highrise Studio plugin for Claude Code."
+            "name": "rosie",
+            "source": "./rosie",
+            "description": "Turns Claude Code into a Highrise Studio wizard."
         }
     ]
 }

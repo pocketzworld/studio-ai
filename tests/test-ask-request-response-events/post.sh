@@ -1,1 +1,1 @@
-cp -r ./../../highrise-studio/skills/understand-networked-events/resources $1
+cp -r ./../../rosie/skills/understand-networked-events/resources $1

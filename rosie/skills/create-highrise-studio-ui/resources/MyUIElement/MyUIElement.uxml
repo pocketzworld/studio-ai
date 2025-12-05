@@ -11,7 +11,7 @@
   <!-- Contents of the UI go here. The root must always be a hr:UILuaView element. -->
   <hr:UILuaView class="leaderboard">
     <!-- The name you set is how you will reference the element in your UI Lua script. Use camelCase with an underscore prefix. -->
-    <!-- Standard elements (e.g., "Button", "Label", "Image") do not use the "hr:" prefix. -->
+    <!-- Outside of "Label", use the Highrise Studio UI element names (e.g., "hr:UIImage", "hr:UIButton", etc.) where available. Check the API docs for the full list. -->
     <Label name="_leaderboardTitle" text="Leaderboard" class="leaderboard-title"/>
     <!-- Element types that start with "UI" must use the "hr:" prefix. -->
     <!-- USS class names should be in kebab-case. -->

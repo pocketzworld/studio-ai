@@ -20,6 +20,7 @@ local MAX_LEVEL = 20
 --------------------------------
 ------  REQUIRED MODULES  ------
 --------------------------------
+-- Module imports don't pull their fields into the global namespace. You would get a field from PlayerTracker via `playerTracker.FIELD_NAME`.
 local playerTracker = require("PlayerTracker")
 local monsterLibrary = require("MonsterLibrary")
 
