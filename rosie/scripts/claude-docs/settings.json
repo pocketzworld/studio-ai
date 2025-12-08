@@ -16,5 +16,8 @@
       "./.claude",
       "~/.claude/plugins/marketplaces/studio-ai/rosie/skills"
     ]
+  },
+  "env": {
+    "ROSIE_FEEDBACK_WEBHOOK": "https://hooks.slack.com/services/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"
   }
 }
