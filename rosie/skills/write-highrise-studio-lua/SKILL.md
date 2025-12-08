@@ -20,5 +20,3 @@ Add the following steps to your todo list:
 6. If you have access to the `mcp__ide__getDiagnostics` tool, use it to read syntax errors in the Lua scripts you work with.
 7. Remove section headers that have no content.
 8. Remove guidance comments that were copied over from the template. Keep the section headers.
-
-## TODO: examples

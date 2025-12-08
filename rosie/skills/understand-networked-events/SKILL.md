@@ -16,5 +16,3 @@ Add the following steps to your todo list:
 3. Check `.claude/events` in the project for an existing response for this scenario. If there is not one, create a new one by copying the [template](resources/SCENARIO.md).
 4. Edit or fill out the scenario file with the information you found in step 2, and search for any other relevant information needed.
 5. Read the contents of the scenario file and return the result to the user.
-
-## TODO: examples

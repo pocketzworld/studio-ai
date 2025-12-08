@@ -36,5 +36,3 @@ Add the following steps to your todo list:
     - Ensure that all class names specified in the UXML file are defined in the USS file.
 7. If requested, add the UI component to the scene using the `use-unity-editor` skill.
     - A UI component is added by attaching the Lua script component to a GameObject in the scene, like any other component. The UXML and USS will be pulled in automatically at runtime.
-
-## TODO: examples
