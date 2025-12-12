@@ -24,7 +24,7 @@ local LeaderboardTitleClass = "leaderboard-title"
 --------------------------------
 -- Each named element in the UXML file must be bound here if you want to interact with it in your script
 -- Bindings must be annotated with the element type and initialized to nil
--- Match the UXML name exactly
+-- Match the UXML name exactly, including the underscore prefix
 
 --!Bind
 local _leaderboardTitle: Label = nil

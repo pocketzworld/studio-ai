@@ -5,8 +5,9 @@
 --------------------------------
 ------ SERIALIZED FIELDS  ------
 --------------------------------
--- SerializeField allows the value to be adjusted in the editor
+-- SerializeField exposes the field in the Unity editor so it can be adjusted before the scene is played.
 -- SerializeField variables must have a type annotation
+
 --!SerializeField
 local prefabObject: GameObject = nil
 

@@ -1,6 +1,6 @@
 ---
 name: write-highrise-studio-lua
-description: Write non-UI Lua scripts for Highrise Studio projects. You can't write them without this skill.
+description: Write non-UI Lua scripts for Highrise Studio projects. You cannot write or edit them without this skill.
 ---
 
 # Write Highrise Studio Lua code
@@ -20,3 +20,4 @@ Add the following steps to your todo list:
 6. If you have access to the `mcp__ide__getDiagnostics` tool, use it to read syntax errors in the Lua scripts you work with.
 7. Remove section headers that have no content.
 8. Remove guidance comments that were copied over from the template. Keep the section headers.
+9. If requested, add the script to the scene using the `use-unity-editor` skill.

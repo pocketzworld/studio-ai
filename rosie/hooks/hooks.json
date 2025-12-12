@@ -6,6 +6,10 @@
           {
             "type": "command",
             "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-version.sh ${CLAUDE_PLUGIN_ROOT}"
+          },
+          {
+            "type": "command",
+            "command": "rm -f /tmp/rosie_skill_usage.log"
           }
         ]
       }
@@ -16,6 +20,32 @@
           {
             "type": "command",
             "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/update-docs.sh ${CLAUDE_PLUGIN_ROOT}"
+          },
+          {
+            "type": "command",
+            "command": "rm -f /tmp/rosie_skill_usage.log"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|Update|Create|Read|Grep|Search",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-skill-used.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.skill' >> /tmp/rosie_skill_usage.log"
           }
         ]
       }

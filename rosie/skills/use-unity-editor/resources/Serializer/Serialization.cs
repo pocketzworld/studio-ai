@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using UnityEditor;
 
 namespace Rosie
 {
@@ -21,7 +22,8 @@ namespace Rosie
                 { "name", go.name },
                 { "activeSelf", go.activeSelf },
                 { "tag", go.tag },
-                { "parentGameObject", go.transform.parent != null ? SceneWriter.GetId(go.transform.parent.gameObject) : null }
+                { "parentGameObject", go.transform.parent != null ? SceneWriter.GetId(go.transform.parent.gameObject) : null },
+                { "prefabPath", PrefabUtility.IsPartOfPrefabInstance(go) ? AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go)) : null }
             };
             components = go.GetComponents<Component>().Select(c => new SerializedComponent(c)).ToArray();
             children = go.transform.Cast<Transform>().Select(child => new SerializedGameObject(child.gameObject)).ToArray();
@@ -34,7 +36,8 @@ namespace Rosie
                 { "name", "SceneRoot" },
                 { "activeSelf", true },
                 { "tag", "Untagged" },
-                { "parentGameObject", null }
+                { "parentGameObject", null },
+                { "prefabPath", null }
             };
             components = new SerializedComponent[0];
             children = serializedObjects;
@@ -58,8 +61,13 @@ namespace Rosie
             referenceId = SceneWriter.GetId(component);
             var scriptType = component.GetType();
             componentType = scriptType.FullName;
+            properties = GetPropertyList(scriptType, component).Select(f => f()).Where(p => p != null && p.type != null).ToDictionary(p => p.propertyName, p => p);
+        }
+
+        public static List<Func<SerializedProperty>> GetPropertyList(Type scriptType, Component component)
+        {
             var propertyList = new List<Func<SerializedProperty>>();
-            
+
             var fields = scriptType.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
                 .Where(f => fieldInclusionRules.All(rule => rule(component, f)));
             foreach (var field in fields)
@@ -72,7 +80,7 @@ namespace Rosie
             {
                 propertyList.Add(() => new SerializedProperty(property.Name, property.PropertyType, property.GetValue(component)));
             }
-            properties = propertyList.Select(f => f()).Where(p => p != null && p.type != null).ToDictionary(p => p.propertyName, p => p);
+            return propertyList;
         }
 
         public override string ToString()
@@ -85,7 +93,7 @@ namespace Rosie
         private static readonly List<Func<Component, System.Reflection.FieldInfo, bool>> fieldInclusionRules = new() {
             (c, f) => f.IsPublic || f.GetCustomAttributes(typeof(SerializeField), true).Length > 0,
             (c, f) => f.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0,
-            (c, f) => c.GetType().Namespace?.StartsWith("Highrise.Lua.Generated") != true || !f.Name.StartsWith("_") || (f.FieldType.Name == "LuaScript" && f.Name == "_script"),
+            (c, f) => c?.GetType().Namespace?.StartsWith("Highrise.Lua.Generated") != true || !f.Name.StartsWith("_") || (f.FieldType.Name == "LuaScript" && f.Name == "_script") || f.Name == "_uiOutput",
             (c, f) => ValueSerializer.IsSupportedType(f.FieldType),
         };
 
@@ -94,8 +102,8 @@ namespace Rosie
             (c, p) => p.CanRead && p.CanWrite,
             (c, p) => p.GetCustomAttributes(typeof(SerializeField), true).Length > 0 ||
                     p.GetCustomAttributes(typeof(SerializeReference), true).Length > 0 ||
-                    c.GetType().Namespace?.StartsWith("UnityEngine") == true ||
-                    c.GetType().Namespace?.StartsWith("TMPro") == true,
+                    c?.GetType().Namespace?.StartsWith("UnityEngine") == true ||
+                    c?.GetType().Namespace?.StartsWith("TMPro") == true,
             (c, p) => p.GetCustomAttributes(typeof(HideInInspector), true).Length == 0,
             (c, p) => p.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0,
             (c, p) => ValueSerializer.IsSupportedType(p.PropertyType),
@@ -112,15 +120,15 @@ namespace Rosie
         public SerializedProperty(string name, Type type, object value)
         {
             this.propertyName = name;
-            this.type = type != null ? ValueSerializer.GetFriendlyTypeName(type) : null;
-            try {
+            this.type = type != null ? (type.IsEnum ? type.FullName + " (" + string.Join(", ", Enum.GetValues(type).Cast<object>().Select(v => v.ToString())) + ")" : ValueSerializer.GetFriendlyTypeName(type)) : null;
+            try
+            {
                 this.value = ValueSerializer.ToSerializable(value);
             }
-            catch (NotImplementedException e)
+            catch (NotImplementedException)
             {
                 // No appropriate parser was found, signal that the property should not be serialized.
                 this.type = null;
-                Debug.LogWarning($"No appropriate parser was found for property {name}: {e.Message}");
             }
         }
     }

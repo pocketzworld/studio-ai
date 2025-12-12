@@ -9,6 +9,7 @@
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
   <!-- Contents of the UI go here. The root must always be a hr:UILuaView element. -->
+  <!-- If you don't set picking-mode="Ignore" on an element, it will block taps on the scene behind it. -->
   <hr:UILuaView class="leaderboard">
     <!-- The name you set is how you will reference the element in your UI Lua script. Use camelCase with an underscore prefix. -->
     <!-- Outside of "Label", use the Highrise Studio UI element names (e.g., "hr:UIImage", "hr:UIButton", etc.) where available. Check the API docs for the full list. -->

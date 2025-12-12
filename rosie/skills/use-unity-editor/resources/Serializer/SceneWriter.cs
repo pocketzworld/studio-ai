@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEditorInternal;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +31,7 @@ namespace Rosie
                 EditorSceneManager.sceneSaved -= MarkShouldSerialize;
                 EditorSceneManager.sceneOpened -= MarkShouldSerialize;
                 EditorApplication.update -= OnUpdate;
+                EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             }
 
             if (!System.IO.Directory.Exists(WRITE_DIRECTORY))
@@ -48,6 +48,7 @@ namespace Rosie
             EditorSceneManager.sceneSaved += MarkShouldSerialize;
             EditorSceneManager.sceneOpened += MarkShouldSerialize;
             EditorApplication.update += OnUpdate;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
             
             initialized = true;
         }
@@ -101,139 +102,13 @@ namespace Rosie
                 return;
 
             var editData = System.IO.File.ReadAllText(filePath);
-            var edits = JsonConvert.DeserializeObject<List<SceneEdit>>(editData);
+            var edits = JsonConvert.DeserializeObject<List<ObjectEditor.ObjectEdit>>(editData);
             System.IO.File.Delete(filePath);
             foreach (var edit in edits)
             {
-                if (edit.editType == "delete")
-                {
-                    if (!idToObject.TryGetValue(edit.referenceIdToDelete, out var obj))
-                    {
-                        Debug.LogError("Could not find object to delete: " + edit.referenceIdToDelete);
-                        continue;
-                    }
-                    Undo.DestroyObjectImmediate(obj);
-                }
-                else if (edit.editType == "setProperty")
-                {
-                    if (!idToObject.TryGetValue(edit.referenceIdOfObjectWithPropertyToSet, out var obj))
-                    {
-                        Debug.LogError("Could not find object to edit: " + edit.referenceIdOfObjectWithPropertyToSet);
-                        continue;
-                    }
-                    Undo.RecordObject(obj, "Set Property " + edit.nameOfPropertyToSet);
-
-                    // Special case for game object properties that cannot be set as fields or properties
-                    if (obj is GameObject gameObject)
-                    {
-                        if (edit.nameOfPropertyToSet == "activeSelf")
-                        {
-                            gameObject.SetActive((bool)edit.newPropertyValue);
-                            continue;
-                        }
-                        else if (edit.nameOfPropertyToSet == "tag")
-                        {
-                            if (!InternalEditorUtility.tags.Contains((string)edit.newPropertyValue))
-                            {
-                                InternalEditorUtility.AddTag((string)edit.newPropertyValue);
-                            }
-                            gameObject.tag = (string)edit.newPropertyValue;
-                            continue;
-                        }
-                        else if (edit.nameOfPropertyToSet == "parentGameObject")
-                        {
-                            if (edit.newPropertyValue == null || (string)edit.newPropertyValue == "SceneRoot")
-                            {
-                                gameObject.transform.SetParent(null);
-                            }
-                            else
-                            {
-                                if (!idToObject.TryGetValue((string)edit.newPropertyValue, out var newParent))
-                                {
-                                    Debug.LogError("Could not find parent object: " + edit.newPropertyValue);
-                                    continue;
-                                }
-                                gameObject.transform.SetParent(((GameObject)newParent).transform);
-                            }
-                            continue;
-                        }
-                    }
-                    var field = obj.GetType().GetField(edit.nameOfPropertyToSet, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) ??
-                                obj.GetType().GetField(edit.nameOfPropertyToSet, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                    var property = obj.GetType().GetProperty(edit.nameOfPropertyToSet, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) ??
-                                obj.GetType().GetProperty(edit.nameOfPropertyToSet, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                    var propertyType = property?.PropertyType ?? field?.FieldType ?? null;
-                    if (propertyType != null)
-                    {
-                        try {
-                            var newValue = ValueSerializer.FromSerializable(edit.newPropertyValue, propertyType);
-                            if (property != null)
-                            {
-                                property.SetValue(obj, newValue);
-                            }
-                            else if (field != null)
-                            {
-                                field.SetValue(obj, newValue);
-                            }
-                        }
-                        catch (NotImplementedException e)
-                        {
-                            Debug.LogError("Could not set property or field: " + edit.nameOfPropertyToSet +": " + e.Message);
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError("Could not find property or field to edit: " + edit.nameOfPropertyToSet);
-                    }
-                }
-                else if (edit.editType == "createGameObject")
-                {
-                    var gameObject = new GameObject(edit.nameOfGameObjectToCreate);
-                    if (edit.referenceIdOfParentGameObject != null && edit.referenceIdOfParentGameObject != "SceneRoot")
-                    {
-                        if (!idToObject.TryGetValue(edit.referenceIdOfParentGameObject, out var parentObj))
-                        {
-                            Debug.LogError("Could not find parent object to create game object: " + edit.referenceIdOfParentGameObject);
-                            continue;
-                        }
-                        gameObject.transform.SetParent(((GameObject)parentObj).transform);
-                    }
-                    Undo.RegisterCreatedObjectUndo(gameObject, "Create Game Object");
-                }
-                else if (edit.editType == "addComponent")
-                {
-                    if (!idToObject.TryGetValue(edit.referenceIdOfGameObjectToAddComponent, out var gameObject))
-                    {
-                        Debug.LogError("Could not find game object to add component: " + edit.referenceIdOfGameObjectToAddComponent);
-                        continue;
-                    }
-                    Type componentType = ((Type.GetType(edit.componentTypeToAdd) ?? Type.GetType("UnityEngine." + edit.componentTypeToAdd + ", UnityEngine.CoreModule")) ?? AppDomain.CurrentDomain.GetAssemblies()
-                        .SelectMany(assembly => {
-                            try
-                            {
-                                return assembly.GetTypes();
-                            }
-                            catch (ReflectionTypeLoadException ex)
-                            {
-                                // Return only successfully loaded types, filtering out null entries
-                                return ex.Types.Where(t => t != null);
-                            }
-                        })
-                        .FirstOrDefault(type => (type.Name == edit.componentTypeToAdd || type.FullName == edit.componentTypeToAdd) && type.IsSubclassOf(typeof(Component))));
-                    if (componentType == null)
-                    {
-                        Debug.LogError("Could not find component type: " + edit.componentTypeToAdd);
-                        continue;
-                    }
-                    Component existingComponent = ((GameObject)gameObject).GetComponent(componentType);
-                    if (existingComponent != null)
-                    {
-                        Debug.LogError("Game object already has component: " + edit.componentTypeToAdd);
-                        continue;
-                    }
-                    Undo.AddComponent((GameObject)gameObject, componentType);
-                }
+                ObjectEditor.ReadEdit(edit);
             }
+            PrefabHydrator.EndEdits();
             shouldSerializeInNFrames = 2;
         }
 
@@ -247,6 +122,14 @@ namespace Rosie
             shouldSerializeInNFrames = 2;
         }
 
+        private static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.EnteredEditMode)
+            {
+                shouldSerializeInNFrames = 2;
+            }
+        }
+
         private static void SerializeScene(UnityEngine.SceneManagement.Scene scene)
         {
             string filePath = System.IO.Path.Combine(WRITE_DIRECTORY, "active_scene.json");
@@ -258,9 +141,23 @@ namespace Rosie
             nextReadEditTime = Time.realtimeSinceStartup + 0.5f;
 
             // write all of the addable component types to a file
-            var allComponentTypes = GetAllAddableComponentTypes().Select(t => t.FullName).ToList();
+            var allComponentTypes = GetAllAddableComponentTypes();
             var allComponentTypesFilePath = System.IO.Path.Combine(WRITE_DIRECTORY, "all_component_types.json");
             System.IO.File.WriteAllText(allComponentTypesFilePath, JsonConvert.SerializeObject(allComponentTypes, Formatting.Indented));
+
+            // write all of the prefabs in the Assets directory to their own files
+            string[] prefabPaths = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets" }).Select(AssetDatabase.GUIDToAssetPath).ToArray();
+            foreach (var prefabPath in prefabPaths)
+            {
+                var serializedPrefab = PrefabHydrator.SerializePrefab(prefabPath);
+                var serializedPrefabPath = System.IO.Path.Combine(WRITE_DIRECTORY, prefabPath + ".json");
+                var serializedPrefabDirectory = System.IO.Path.GetDirectoryName(serializedPrefabPath);
+                if (!System.IO.Directory.Exists(serializedPrefabDirectory))
+                {
+                    System.IO.Directory.CreateDirectory(serializedPrefabDirectory);
+                }
+                System.IO.File.WriteAllText(serializedPrefabPath, serializedPrefab.ToString());
+            }
         }
 
         public static string GetId(UnityEngine.Object obj)
@@ -268,8 +165,7 @@ namespace Rosie
             if (!objectToId.TryGetValue(obj, out var id))
             {
                 id = System.Guid.NewGuid().ToString();
-                objectToId[obj] = id;
-                idToObject[id] = obj;
+                AssignId(obj, id);
             }
             return id;
         }
@@ -278,74 +174,77 @@ namespace Rosie
         {
             if (idToObject.TryGetValue(id, out var obj))
             {
+                if (PrefabHydrator.TryGet(id, out var prefabObj))
+                {
+                    return prefabObj;
+                }
                 return obj;
             }
             throw new System.Exception("Object with id " + id + " not found");
         }
 
-        /// <summary>
-        /// Gets all component types that can be added to GameObjects in the editor.
-        /// This includes both built-in Unity components (like BoxCollider) and user-created types (like Highrise.Client.Anchor).
-        /// </summary>
-        /// <returns>A list of all addable component types, sorted by full name.</returns>
-        public static List<Type> GetAllAddableComponentTypes()
+        public static void AssignId(UnityEngine.Object obj, string id)
         {
-            var componentTypes = new List<Type>();
+            if (objectToId.ContainsKey(obj))
+            {
+                throw new System.Exception("Object already has an id: " + obj.name);
+            }
+            if (idToObject.ContainsKey(id))
+            {
+                throw new System.Exception("Id already exists: " + id);
+            }
+            objectToId[obj] = id;
+            idToObject[id] = obj;
+        }
+
+        [Serializable]
+        private class AddableComponentType
+        {
+            [Serializable]
+            public class AddableComponentTypeProperty
+            {
+                public string propertyName;
+                public string type;
+            }
+            public string fullName;
+            public Dictionary<string, AddableComponentTypeProperty> properties;
+
+            public AddableComponentType(Type type)
+            {
+                fullName = type.FullName;
+                properties = SerializedComponent.GetPropertyList(type, null).Select(p => p()).ToDictionary(p => p.propertyName, p => new AddableComponentTypeProperty {
+                    propertyName = p.propertyName,
+                    type = p.type,
+                });
+            }
+        }
+
+        private static List<AddableComponentType> GetAllAddableComponentTypes()
+        {
+            var componentTypes = new List<AddableComponentType>();
             
             // Use Unity's TypeCache API for efficient type discovery
             var types = TypeCache.GetTypesDerivedFrom<Component>();
             
             foreach (var type in types)
             {
-                // Filter out types that can't be added:
-                // - Abstract classes can't be instantiated
-                // - Generic types need type parameters
-                // - Interfaces can't be instantiated
-                if (type.IsAbstract || type.IsGenericType || type.IsInterface)
+                if (type.IsAbstract || type.IsGenericType || type.IsInterface || !type.IsSubclassOf(typeof(MonoBehaviour)) || type.FullName.StartsWith("TMPro.") || type.FullName.StartsWith("UnityEngine.InputSystem.") || type.FullName.StartsWith("Spine.Unity."))
                     continue;
                 
-                // Check if the type has a public parameterless constructor
-                // (MonoBehaviour doesn't need one, Unity handles it specially)
-                if (type.IsSubclassOf(typeof(MonoBehaviour)))
-                {
-                    componentTypes.Add(type);
+                try
+                {  
+                    componentTypes.Add(new AddableComponentType(type));
                 }
-                else
+                catch (Exception)
                 {
-                    // For non-MonoBehaviour components, check for a public constructor
-                    var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
-                    if (constructors.Any(c => c.GetParameters().Length == 0))
-                    {
-                        componentTypes.Add(type);
-                    }
+                    continue;
                 }
             }
             
             // Sort by full name for easier browsing
-            componentTypes.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.Ordinal));
+            componentTypes.Sort((a, b) => string.Compare(a.fullName, b.fullName, StringComparison.Ordinal));
             
             return componentTypes;
-        }
-
-        private class SceneEdit
-        {
-            public string editType;
-
-            // delete
-            public string referenceIdToDelete;
-
-            // setProperty
-            public string referenceIdOfObjectWithPropertyToSet;
-            public string nameOfPropertyToSet;
-            public object newPropertyValue;
-
-            // createGameObject
-            public string referenceIdOfParentGameObject;
-            public string nameOfGameObjectToCreate;
-
-            // addComponent
-            public string referenceIdOfGameObjectToAddComponent;
-            public string componentTypeToAdd;
         }
     }
 }

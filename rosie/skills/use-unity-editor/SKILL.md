@@ -1,11 +1,11 @@
 ---
 name: use-unity-editor
-description: Read and edit scenes as you would in the Unity editor. You can't do anything in the Unity editor without this skill.
+description: Read and edit scenes and prefabs as you would in the Unity editor. You can't do anything in the Unity editor without this skill.
 ---
 
 # Use Highrise Studio's Unity Editor
 
-Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes. This guide covers how you can read and edit scenes as a user would in the Unity editor.
+Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes and prefabs. This guide covers how you can read and edit scenes and prefabs as a user would in the Unity editor.
 
 ## Important information
 
@@ -22,6 +22,7 @@ The JSON file contains the scene's entire Game Object hierarchy. There will be a
     "activeSelf": "whether the Game Object is enabled.",
     "tag": "the Game Object's tag.",
     "parentGameObject": "the GUID of the parent Game Object, or null if this is a root Game Object.",
+    "prefabPath": "the path to the prefab that this Game Object is an instance of, or null if this is not an instance of a prefab."
   },
   "components": [
     {
@@ -30,7 +31,7 @@ The JSON file contains the scene's entire Game Object hierarchy. There will be a
       "componentProperties": {
         "PROPERTY_NAME (e.g., position)": {
           "propertyName": "the name of the property (e.g., position, rotation, scale, etc.), matching the PROPERTY_NAME key.",
-          "type": "the type of the property (e.g., UnityEngine.Vector3, String, etc.)",
+          "type": "the type of the property (e.g., UnityEngine.Vector3, String, etc. If the type is an enum, the full name of the enum will be used, followed by a list of the possible values in parentheses.)",
           "value": "the value of the property."
         }
       }
@@ -64,33 +65,60 @@ Here are some important property value formats:
 }
 ```
 
-### Editing the scene
+### Reading the prefabs
 
-**Do not modify the active_scene.json file directly; this will not do anything.** Instead, you will submit a queue of changes to be applied to the scene in a file you will create called `Temp/Highrise/Serializer/edit.json`. The file consists of an array of objects. Each object is required to have an `editType` key, which will determine how to interpret the change and what other keys to expect in the object. The following are the possible edit types:
+Highrise Studio serializes all prefabs in the Assets directory to JSON files for easier understanding. You can find the JSON files in `Temp/Highrise/Serializer/`, under the name of the prefab file (e.g., `Assets/Prefabs/MyPrefab.prefab.json`). Each JSON file is structured the same as the active scene file, and the prefabs can be edited using the same editing instructions as the scene.
+
+### Editing the scene or a prefab
+
+**Do not modify the active_scene.json or .prefab.json file directly; this will not do anything.** Instead, you will submit a queue of changes to be applied to the scene in a file you will create called `Temp/Highrise/Serializer/edit.json`. The file consists of an array of objects. Each object is required to have an `editType` key, which will determine how to interpret the change and what other keys to expect in the object. The following are the possible edit types:
 - `delete`: Remove a GameObject or Component from the scene. Requires the following key:
   - `referenceIdToDelete`: The GUID of the GameObject or Component to delete.
 - `createGameObject`: Add a new GameObject to the scene. Requires the following keys:
   - `referenceIdOfParentGameObject`: The GUID of the parent Game Object to create the new Game Object under.
   - `nameOfGameObjectToCreate`: The name of the new Game Object.
+  - `referenceIdOfGameObjectToCreate`: A GUID that *you* generate that will be assigned to the new Game Object.
+  - `prefabPathForGameObjectToCreate`: The (optional) path to a prefab. If provided, the new Game Object will be instantiated from the prefab. If not provided, an empty Game Object will be created.
 - `addComponent`: Add a new Component to a Game Object. Requires the following keys:
   - `referenceIdOfGameObjectToAddComponent`: The GUID of the Game Object to add the new Component to.
-  - `componentTypeToAdd`: The type of the Component to add (e.g., UnityEngine.Transform). The full list of available component types is available in `Temp/Highrise/Serializer/all_component_types.json`. **You do not know this list in advance; you will need to read the file to find it.**
+  - `componentTypeToAdd`: The type of the Component to add (e.g., UnityEngine.Transform), chosen from the list of available component types in `Temp/Highrise/Serializer/all_component_types.json`.
+  - `referenceIdOfComponentToAdd`: A GUID that *you* generate that will be assigned to the new Component.
 - `setProperty`: Set the value of a property on a GameObject or Component. Requires the following keys:
   - `referenceIdOfObjectWithPropertyToSet`: The GUID of the GameObject or Component to set the property on.
   - `nameOfPropertyToSet`: The name of the property to set (e.g., position, tag, etc.). **This should already exist in the JSON file; do not invent a new property.**
   - `newPropertyValue`: The value of the property to set.
+- `saveObjectAsPrefab`: Save a Game Object as a prefab file for future use. Requires the following keys:
+  - `referenceIdOfObjectToSaveAsPrefab`: The GUID of the GameObject to save as a prefab.
+  - `pathToSavePrefabAs`: The path to save the prefab as. This should be a relative path from the project root and should not already exist.
 
 You can enqueue multiple edits in a single file, but create the file and write all edits to it in a single transaction. The edits will be applied in the order they are enqueued.
 
-If you want to create a Game Object or Component and then set properties on it, do this in two separate edits, since you will not know the reference ID of the new object until it is created. Specifically:
-1. Write the `createGameObject` or `addComponent` edit.
-2. Ask the user to interact with their editor so that it serializes the edited scene.
-3. Read the JSON file to get the reference ID of the new object.
-4. Write the `setProperty` edit for the new object.
+#### Adding components to Game Objects
+
+When you want to add a component to a Game Object, you will need to know the full name of the type of the component you want to add. You can find the list of available component types in `Temp/Highrise/Serializer/all_component_types.json`. **You do not know this list in advance; you will need to read the file to find it.** `all_component_types.json` is structured as follows:
+```json
+[
+  {
+    "fullName": "the full name of the component type (e.g., UnityEngine.Transform)",
+    "properties": {
+      "PROPERTY_NAME (e.g., position)": {
+        "propertyName": "the name of the property (e.g., position, rotation, scale, etc.), matching the PROPERTY_NAME key.",
+        "type": "the type of the property (e.g., UnityEngine.Vector3, String, etc. If the type is an enum, the full name of the enum will be used, followed by a list of the possible values in parentheses.)"
+      }
+    }
+  }
+]
+```
+
+If you want to create a Game Object or Component and then set properties on it, you can do this using multiple edits in a single `edit.json` file. After the `createGameObject` or `addComponent` edit, you can add the `setProperty` edit for the new object using the reference ID you generated for `referenceIdOfGameObjectToCreate` or `referenceIdOfComponentToAdd`.
 
 #### Adding Lua script components to Game Objects
 
 When you have a built-in or project-specific Lua script that you want to add to a Game Object, you will create a component as normal following the steps above. The only point to keep in mind is that the `componentTypeToAdd` key will be the name of the script with the prefix `Highrise.Lua.Generated` (e.g., `Highrise.Lua.Generated.MyScript`). Properties on these components will generally be prefixed with `m_` (e.g., `m_MyProperty`).
+
+#### Adding UI components and making them visible
+
+UI components are added by attaching a Lua script component to a Game Object in the scene, like any other component. The UXML and USS will be pulled in automatically at runtime. To make a UI component visible, you must also set the `_uiOutput` property on the component to either "World" (rendering the UI within the world space), "AboveChat" (rendering the UI above the chat), or "Hud" (above everything, like a heads-up display).
 
 ## Instructions
 
