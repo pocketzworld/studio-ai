@@ -72,13 +72,13 @@ namespace Rosie
                 .Where(f => fieldInclusionRules.All(rule => rule(component, f)));
             foreach (var field in fields)
             {
-                propertyList.Add(() => new SerializedProperty(field.Name, field.FieldType, field.GetValue(component)));
+                propertyList.Add(() => new SerializedProperty(field.Name, field.FieldType, component != null ? field.GetValue(component) : null));
             }
             var props = scriptType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
                     .Where(p => propertyInclusionRules.All(rule => rule(component, p)));
             foreach (var property in props)
             {
-                propertyList.Add(() => new SerializedProperty(property.Name, property.PropertyType, property.GetValue(component)));
+                propertyList.Add(() => new SerializedProperty(property.Name, property.PropertyType, component != null ? property.GetValue(component) : null));
             }
             return propertyList;
         }
