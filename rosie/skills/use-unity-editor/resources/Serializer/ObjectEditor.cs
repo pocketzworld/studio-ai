@@ -160,6 +160,11 @@ namespace Rosie
                     }
                 })
                 .FirstOrDefault(type => (type.Name == componentTypeToAdd || type.FullName == componentTypeToAdd) && type.IsSubclassOf(typeof(Component))));
+            if (componentType == null)
+            {
+                Debug.LogError("Could not find component type: " + componentTypeToAdd);
+                return;
+            }
             SceneWriter.AssignId(Undo.AddComponent((GameObject)gameObject, componentType), referenceIdOfComponentToAdd);
         }
 

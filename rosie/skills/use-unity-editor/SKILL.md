@@ -116,6 +116,8 @@ If you want to create a Game Object or Component and then set properties on it, 
 
 When you have a built-in or project-specific Lua script that you want to add to a Game Object, you will create a component as normal following the steps above. The only point to keep in mind is that the `componentTypeToAdd` key will be the name of the script with the prefix `Highrise.Lua.Generated` (e.g., `Highrise.Lua.Generated.MyScript`). Properties on these components will generally be prefixed with `m_` (e.g., `m_MyProperty`).
 
+If you just created the Lua script, **do not attempt to add it to a Game Object yet,** as the generated code will not exist yet. Ask the user to switch over to the Unity editor first so that the code can be compiled; then, the component can be added to the Game Object.
+
 #### Adding UI components and making them visible
 
 UI components are added by attaching a Lua script component to a Game Object in the scene, like any other component. The UXML and USS will be pulled in automatically at runtime. To make a UI component visible, you must also set the `_uiOutput` property on the component to either "World" (rendering the UI within the world space), "AboveChat" (rendering the UI above the chat), or "Hud" (above everything, like a heads-up display).

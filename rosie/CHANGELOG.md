@@ -4,6 +4,12 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.4] - 2025-12-15
+
+### Fixed
+- `use-unity-editor` skill: fixed a bug where component properties and fields could not be serialized.
+- `use-unity-editor` skill: updated instructions to warn Claude not to attach uncompiled Lua scripts to Game Objects.
+
 ## [0.4.3] - 2025-12-15
 
 ### Changed
