@@ -1,0 +1,1 @@
+create a UI component in the project called "Popup" that shows a piece of text. the text should alternate every second from one value to another. the two values should be settable via the studio editor.

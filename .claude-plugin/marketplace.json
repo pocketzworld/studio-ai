@@ -1,0 +1,14 @@
+{
+    "name": "studio-ai",
+    "owner": {
+        "name": "Pocket Worlds",
+        "email": "github-bot@pocketworlds.com"
+    },
+    "plugins": [
+        {
+            "name": "rosie",
+            "source": "./rosie",
+            "description": "Turns Claude Code into a Highrise Studio wizard."
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-version.sh ${CLAUDE_PLUGIN_ROOT}"
+          },
+          {
+            "type": "command",
+            "command": "SESSION_ID=$(jq -r '.session_id') && rm -f /tmp/rosie_skill_usage_${SESSION_ID}.log"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/update-docs.sh ${CLAUDE_PLUGIN_ROOT}"
+          },
+          {
+            "type": "command",
+            "command": "SESSION_ID=$(jq -r '.session_id') && rm -f /tmp/rosie_skill_usage_${SESSION_ID}.log"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|Update|Create|Read|Grep|Search",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-skill-used.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat) && SESSION_ID=$(echo \"$INPUT\" | jq -r '.session_id') && echo \"$INPUT\" | jq -r '.tool_input.skill' >> /tmp/rosie_skill_usage_${SESSION_ID}.log"
+          }
+        ]
+      }
+    ]
+  }
+}

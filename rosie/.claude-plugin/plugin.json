@@ -1,0 +1,12 @@
+{
+  "name": "rosie",
+  "version": "0.4.3",
+  "description": "A Claude Code plugin for Highrise Studio.",
+  "author": {
+    "name": "Pocket Worlds",
+    "email": "github-bot@pocketworlds.com"
+  },
+  "homepage": "https://github.com/pocketzworld/studio-ai/blob/main/README.md",
+  "repository": "https://github.com/pocketzworld/studio-ai",
+  "license": "MIT"
+}

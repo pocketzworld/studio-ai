@@ -1,0 +1,2 @@
+1. The agent finds the race condition in the `AnnounceRequest:Connect()` callback in `Module.lua`, where the `lastReceivedPayload` variable is set to the payload of whichever event fired more recently.
+2. The agent fixes the race condition by editing the `AnnounceRequest:Connect()` callback in `Module.lua` to pass a callback-scoped local variable (or the payload argument itself) to the `AnnounceResponse:FireClient()` call.

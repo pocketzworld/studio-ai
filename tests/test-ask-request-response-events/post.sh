@@ -1,0 +1,1 @@
+cp -r ./../../rosie/skills/understand-networked-events/resources $1

@@ -1,0 +1,1 @@
+when I have two clients join around the same time, both of their ConnectionAnnouncers print the same message. they're supposed to print a message with their client's own name. why? please fix
