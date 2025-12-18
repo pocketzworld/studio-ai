@@ -4,6 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.5] - 2025-12-18
+
+### Fixed
+- `use-unity-editor` skill: updated instructions to include a step to add the Serializer folder to the project's .gitignore file so that the symlinks are not committed to the repository.
+
 ## [0.4.4] - 2025-12-16
 
 ### Fixed
