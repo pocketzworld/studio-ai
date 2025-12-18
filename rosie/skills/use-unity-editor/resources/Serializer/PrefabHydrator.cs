@@ -22,6 +22,10 @@ namespace Rosie
             public UnityEngine.Object FindInPrefab(GameObject prefabRoot)
             {
                 var gameObject = prefabRoot;
+                if (hierarchyPathIndices.Count == 0)
+                {
+                    return gameObject;
+                }
                 for (var i = 0; i < hierarchyPathIndices.Count - 1; i++)
                 {
                     gameObject = gameObject.transform.GetChild(hierarchyPathIndices[i]).gameObject;

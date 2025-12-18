@@ -162,6 +162,11 @@ namespace Rosie
 
         public static string GetId(UnityEngine.Object obj)
         {
+            // if the object is a prefab asset reference, instead return the path of the asset with a special prefix
+            if (obj is GameObject gameObject && PrefabUtility.IsPartOfPrefabAsset(gameObject))
+            {
+                return "prefab:" + AssetDatabase.GetAssetPath(gameObject);
+            }
             if (!objectToId.TryGetValue(obj, out var id))
             {
                 id = System.Guid.NewGuid().ToString();
@@ -172,6 +177,10 @@ namespace Rosie
 
         public static UnityEngine.Object GetObject(string id)
         {
+            if (id.StartsWith("prefab:"))
+            {
+                return AssetDatabase.LoadAssetAtPath<GameObject>(id.Substring(7));
+            }
             if (idToObject.TryGetValue(id, out var obj))
             {
                 if (PrefabHydrator.TryGet(id, out var prefabObj))

@@ -4,6 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.6] - 2025-12-18
+
+### Fixed
+- `use-unity-editor` skill: fixed a bug where prefab asset references could not be serialized or edited.
+
 ## [0.4.5] - 2025-12-18
 
 ### Fixed
