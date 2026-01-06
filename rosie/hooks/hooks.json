@@ -9,7 +9,7 @@
           },
           {
             "type": "command",
-            "command": "SESSION_ID=$(jq -r '.session_id') && rm -f /tmp/rosie_skill_usage_${SESSION_ID}.log"
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/cleanup-skill-log.sh"
           }
         ]
       }
@@ -23,7 +23,7 @@
           },
           {
             "type": "command",
-            "command": "SESSION_ID=$(jq -r '.session_id') && rm -f /tmp/rosie_skill_usage_${SESSION_ID}.log"
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/cleanup-skill-log.sh"
           }
         ]
       }
@@ -45,7 +45,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "INPUT=$(cat) && SESSION_ID=$(echo \"$INPUT\" | jq -r '.session_id') && echo \"$INPUT\" | jq -r '.tool_input.skill' >> /tmp/rosie_skill_usage_${SESSION_ID}.log"
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/log-skill-usage.sh"
           }
         ]
       }
