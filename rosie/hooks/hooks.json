@@ -6,10 +6,6 @@
           {
             "type": "command",
             "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-version.sh ${CLAUDE_PLUGIN_ROOT}"
-          },
-          {
-            "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/cleanup-skill-log.sh"
           }
         ]
       }
@@ -20,10 +16,6 @@
           {
             "type": "command",
             "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/update-docs.sh ${CLAUDE_PLUGIN_ROOT}"
-          },
-          {
-            "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/cleanup-skill-log.sh"
           }
         ]
       }

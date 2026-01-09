@@ -4,6 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.8] - 2026-01-09
+
+### Changed
+- Skill use logs are no longer cleared before and after sessions so that they can persist across session resumes.
+
 ## [0.4.7] - 2026-01-06
 
 ### Fixed
