@@ -125,10 +125,9 @@ UI components are added by attaching a Lua script component to a Game Object in 
 ## Instructions
 
 Add the following steps to your todo list:
-1. Check that `Temp/Highrise/Serializer/active_scene.json` exists. If it does not, follow these steps:
-   a. Check whether the user has the required editor scripts in their project. Look in `Assets/Scripts/Editor` for the `Serializer` folder. If it does not exist or is empty, ask the user for permission to symlink that folder from this plugin's `resources/Serializer` folder.
-   b. Ensure that the `Assets/Scripts/Editor/Serializer/` folder is in the project's `.gitignore` file, if one exists, so that the symlinks are not committed to the repository.
-   c. If the user has the required editor scripts, ask them to turn on JSON serialization in the Unity toolbar, under Highrise > Studio.
+1. Check that `Temp/Highrise/Serializer/active_scene.json` exists and was modified within the past hour (use `find Temp/Highrise/Serializer/active_scene.json -mmin -60` to verify). If it does not exist or is stale, follow these steps:
+   a. Run `bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer-symlink.sh ${CLAUDE_PLUGIN_ROOT}` to ensure the Serializer scripts are symlinked.
+   b. Ask the user to turn on JSON serialization in the Unity toolbar, under Highrise > Studio.
 2. Use your tools (`jq`, `grep`, etc.) to read the relevant parts of the JSON file. For example, to list the names of the root Game Objects in the scene, you can use the following command: `jq -r '.SceneRoot.children[].properties.name' Temp/Highrise/Serializer/active_scene.json`. Do not make any changes to the JSON file.
 3. If needed, create the `Temp/Highrise/Serializer/edit.json` file and write the edits to it.
 4. Inform the user that edits have been submitted and will be applied when they interact with their editor.
