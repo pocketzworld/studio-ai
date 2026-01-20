@@ -6,6 +6,10 @@
           {
             "type": "command",
             "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-version.sh ${CLAUDE_PLUGIN_ROOT}"
+          },
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer-symlink.sh ${CLAUDE_PLUGIN_ROOT}"
           }
         ]
       }
