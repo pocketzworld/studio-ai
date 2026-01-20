@@ -4,6 +4,21 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.10] - 2026-01-20
+
+### Added
+- New capabilities for the `use-unity-editor` skill:
+  - Focusing the Unity editor
+  - Toggling play mode
+  - Capturing a screenshot of the Unity editor
+  - Triggering a Lua rebuild
+  - Reading the Unity console
+- CLAUDE.md files for working on the plugin.
+
+### Changed
+- Serializer scripts are now added via copy instead of symlink.
+- Scene now automatically saves after consuming edits via `use-unity-editor`.
+
 ## [0.4.9] - 2026-01-20
 
 ### Changed
