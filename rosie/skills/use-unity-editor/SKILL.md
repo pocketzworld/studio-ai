@@ -1,6 +1,6 @@
 ---
 name: use-unity-editor
-description: Interact with the Unity editor, including: reading and editing scenes and prefabs; focusing the Unity editor window; and starting play mode. You can't do anything in the Unity editor without this skill.
+description: "Interact with the Unity editor, including: reading and editing scenes and prefabs; focusing the Unity editor window; reading the Unity console; and starting play mode. You can't do anything in the Unity editor without this skill."
 ---
 
 # Use Highrise Studio's Unity Editor

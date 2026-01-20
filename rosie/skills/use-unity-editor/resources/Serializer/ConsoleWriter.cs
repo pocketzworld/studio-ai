@@ -38,7 +38,6 @@ namespace Rosie
         {
             if (initialized)
             {
-                Application.logMessageReceived -= OnLogMessageReceived;
                 Application.logMessageReceivedThreaded -= OnLogMessageReceivedThreaded;
                 EditorApplication.update -= OnUpdate;
                 EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
@@ -51,7 +50,8 @@ namespace Rosie
 
             running = EditorPrefs.GetBool(RUNNING_PREF_KEY, true);
 
-            Application.logMessageReceived += OnLogMessageReceived;
+            // Only subscribe to logMessageReceivedThreaded - it captures all logs from any thread
+            // Don't also subscribe to logMessageReceived as that would cause duplicates
             Application.logMessageReceivedThreaded += OnLogMessageReceivedThreaded;
             EditorApplication.update += OnUpdate;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
@@ -98,12 +98,6 @@ namespace Rosie
                 isDirty = false;
                 lastWriteTime = Time.realtimeSinceStartup;
             }
-        }
-
-        private static void OnLogMessageReceived(string condition, string stackTrace, LogType type)
-        {
-            if (!running) return;
-            AddEntry(condition, stackTrace, type);
         }
 
         private static void OnLogMessageReceivedThreaded(string condition, string stackTrace, LogType type)
