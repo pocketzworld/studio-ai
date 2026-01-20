@@ -5,7 +5,14 @@
 
 case "$(uname -s)" in
     Darwin)
-        osascript -e 'tell application "Unity" to activate'
+        osascript -e '
+            tell application "System Events"
+                set unityProcesses to every process whose name contains "Unity" and name does not contain "Hub"
+                if (count of unityProcesses) > 0 then
+                    set frontmost of item 1 of unityProcesses to true
+                end if
+            end tell
+        '
         ;;
     MINGW*|MSYS*|CYGWIN*|Windows_NT)
         powershell.exe -Command "
