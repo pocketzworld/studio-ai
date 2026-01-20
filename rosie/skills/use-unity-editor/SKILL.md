@@ -198,8 +198,6 @@ Use this to check for errors, warnings, or debug output when troubleshooting iss
 jq '[.[] | select(.logType == "Error" or .logType == "Exception")] | .[-5:]' Temp/Highrise/Serializer/console.json
 ```
 
-This works on both Windows and macOS.
-
 ### Capturing a screenshot
 To capture a screenshot of the Unity Game view, focus the window and then create a `.screenshot` file in the project root:
 ```bash
@@ -216,7 +214,7 @@ This is useful for visually inspecting the current state of the game, debugging 
 
 Add the following steps to your todo list:
 1. Check that `Temp/Highrise/Serializer/active_scene.json` exists and was modified within the past hour (use `find Temp/Highrise/Serializer/active_scene.json -mmin -60` to verify). If it does not exist or is stale, follow these steps:
-   a. Run `bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer-symlink.sh ${CLAUDE_PLUGIN_ROOT}` to ensure the Serializer scripts are symlinked.
+   a. Run `bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer.sh ${CLAUDE_PLUGIN_ROOT}` to ensure the Serializer scripts are symlinked.
    b. Ask the user to turn on JSON serialization in the Unity toolbar, under Highrise > Studio.
 2. Use your tools (`jq`, `grep`, etc.) to read the relevant parts of the JSON file. For example, to list the names of the root Game Objects in the scene, you can use the following command: `jq -r '.SceneRoot.children[].properties.name' Temp/Highrise/Serializer/active_scene.json`. Do not make any changes to the JSON file.
 3. If needed, create the `Temp/Highrise/Serializer/edit.json` file and write the edits to it.

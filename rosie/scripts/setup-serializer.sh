@@ -8,22 +8,18 @@ SERIALIZER_DEST="Assets/Editor/Serializer"
 
 # Only proceed if the source directory exists and we're in a Unity project
 if [ -d "$SERIALIZER_SOURCE" ] && [ -d "Assets" ]; then
-    # Ensure the parent directory exists
-    mkdir -p "Assets/Editor"
-
+    # If it's a symlink, remove it first
     if [ -L "$SERIALIZER_DEST" ]; then
-        # It's a symlink - check if it points to the right place
-        CURRENT_TARGET=$(readlink "$SERIALIZER_DEST")
-        if [ "$CURRENT_TARGET" != "$SERIALIZER_SOURCE" ]; then
-            # Points somewhere else - update it
-            rm "$SERIALIZER_DEST"
-            ln -s "$SERIALIZER_SOURCE" "$SERIALIZER_DEST"
-        fi
-    elif [ ! -e "$SERIALIZER_DEST" ]; then
-        # Doesn't exist - create the symlink
-        ln -s "$SERIALIZER_SOURCE" "$SERIALIZER_DEST"
+        rm "$SERIALIZER_DEST"
     fi
-    # If it exists and is a real directory, leave it alone
+    
+    mkdir -p "$SERIALIZER_DEST"
+
+    # Clear all files in destination except .meta files
+    find "$SERIALIZER_DEST" -type f ! -name "*.meta" -delete
+
+    # Copy all files from source to destination
+    cp -f "$SERIALIZER_SOURCE"/*.cs "$SERIALIZER_DEST/" 2>/dev/null || true
 
     # Add to .gitignore if not already present
     GITIGNORE_ENTRY="Assets/Editor/Serializer/"
