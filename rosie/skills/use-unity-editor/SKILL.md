@@ -1,6 +1,6 @@
 ---
 name: use-unity-editor
-description: Read and edit scenes and prefabs as you would in the Unity editor. You can't do anything in the Unity editor without this skill.
+description: Read and edit scenes and prefabs as you would in the Unity editor. You can also focus the Unity editor window to trigger it to process changes.
 ---
 
 # Use Highrise Studio's Unity Editor
@@ -122,6 +122,15 @@ If you just created the Lua script, **do not attempt to add it to a Game Object 
 
 UI components are added by attaching a Lua script component to a Game Object in the scene, like any other component. The UXML and USS will be pulled in automatically at runtime. To make a UI component visible, you must also set the `_uiOutput` property on the component to either "World" (rendering the UI within the world space), "AboveChat" (rendering the UI above the chat), or "Hud" (above everything, like a heads-up display).
 
+### Focusing the Unity editor
+
+To bring the Unity editor window to the foreground, run:
+```bash
+bash ${CLAUDE_PLUGIN_ROOT}/skills/use-unity-editor/resources/focus-unity-editor.sh
+```
+
+This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor. The script works on both macOS and Windows.
+
 ## Instructions
 
 Add the following steps to your todo list:
@@ -130,4 +139,4 @@ Add the following steps to your todo list:
    b. Ask the user to turn on JSON serialization in the Unity toolbar, under Highrise > Studio.
 2. Use your tools (`jq`, `grep`, etc.) to read the relevant parts of the JSON file. For example, to list the names of the root Game Objects in the scene, you can use the following command: `jq -r '.SceneRoot.children[].properties.name' Temp/Highrise/Serializer/active_scene.json`. Do not make any changes to the JSON file.
 3. If needed, create the `Temp/Highrise/Serializer/edit.json` file and write the edits to it.
-4. Inform the user that edits have been submitted and will be applied when they interact with their editor.
+4. After creating the edit.json file, focus the Unity editor (see "Focusing the Unity editor" above) to trigger it to process the pending changes.
