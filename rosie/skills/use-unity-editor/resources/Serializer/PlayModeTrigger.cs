@@ -7,8 +7,9 @@ using System.Diagnostics;
 namespace Rosie
 {
     /// <summary>
-    /// Monitors for a .play trigger file in the project root.
-    /// When detected, toggles play mode (start if stopped, stop if playing).
+    /// Monitors for trigger files in the project root:
+    /// - .play: Toggles play mode (start if stopped, stop if playing)
+    /// - .focus: Brings Unity editor window to foreground
     /// Works on both Windows and macOS.
     ///
     /// This file is automatically symlinked to Assets/Editor/Serializer/
@@ -28,19 +29,21 @@ namespace Rosie
 #endif
 
         private static double _lastCheckTime;
-        private static double _lastSuccessfulTriggerTime;
-        private static readonly string TriggerPath;
+        private static double _lastSuccessfulPlayTriggerTime;
+        private static readonly string PlayTriggerPath;
+        private static readonly string FocusTriggerPath;
         private const double CHECK_INTERVAL = 1.0; // Check every 1 second
-        private const double COOLDOWN_AFTER_TRIGGER = 10.0; // 10 second cooldown between successful triggers
+        private const double COOLDOWN_AFTER_PLAY_TRIGGER = 10.0; // 10 second cooldown between successful play triggers
 
         static PlayModeTrigger()
         {
             var projectRoot = Directory.GetParent(Application.dataPath).FullName;
-            TriggerPath = Path.Combine(projectRoot, ".play");
-            EditorApplication.update += CheckTrigger;
+            PlayTriggerPath = Path.Combine(projectRoot, ".play");
+            FocusTriggerPath = Path.Combine(projectRoot, ".focus");
+            EditorApplication.update += CheckTriggers;
         }
 
-        static void CheckTrigger()
+        static void CheckTriggers()
         {
             // Rate limit checks
             if (EditorApplication.timeSinceStartup - _lastCheckTime < CHECK_INTERVAL)
@@ -48,14 +51,29 @@ namespace Rosie
 
             _lastCheckTime = EditorApplication.timeSinceStartup;
 
-            // Check if .play file exists
-            if (!File.Exists(TriggerPath))
+            // Check for .focus file first (no cooldown needed)
+            if (File.Exists(FocusTriggerPath))
+            {
+                try
+                {
+                    File.Delete(FocusTriggerPath);
+                    UnityEngine.Debug.Log("[PlayModeTrigger] Focusing Unity window");
+                    FocusUnityWindow();
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[PlayModeTrigger] Failed to process .focus file: " + e.Message);
+                }
+            }
+
+            // Check for .play file
+            if (!File.Exists(PlayTriggerPath))
                 return;
 
             // Delete the file immediately
             try
             {
-                File.Delete(TriggerPath);
+                File.Delete(PlayTriggerPath);
             }
             catch (Exception e)
             {
@@ -63,14 +81,14 @@ namespace Rosie
                 return;
             }
 
-            // Enforce cooldown between successful triggers
-            if (EditorApplication.timeSinceStartup - _lastSuccessfulTriggerTime < COOLDOWN_AFTER_TRIGGER)
+            // Enforce cooldown between successful play triggers
+            if (EditorApplication.timeSinceStartup - _lastSuccessfulPlayTriggerTime < COOLDOWN_AFTER_PLAY_TRIGGER)
             {
                 UnityEngine.Debug.Log("[PlayModeTrigger] Ignoring .play file - cooldown active");
                 return;
             }
 
-            _lastSuccessfulTriggerTime = EditorApplication.timeSinceStartup;
+            _lastSuccessfulPlayTriggerTime = EditorApplication.timeSinceStartup;
 
             // Toggle play mode
             if (EditorApplication.isPlaying)
@@ -166,12 +184,19 @@ namespace Rosie
         {
             try
             {
-                // Use AppleScript to activate Unity
+                // Use System Events to focus Unity (more reliable than "tell application")
+                var script = @"tell application ""System Events""
+set unityProcesses to every process whose name contains ""Unity"" and name does not contain ""Hub""
+if (count of unityProcesses) > 0 then
+set frontmost of item 1 of unityProcesses to true
+end if
+end tell";
+
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = "/usr/bin/osascript",
-                    Arguments = "-e 'tell application \"Unity\" to activate'",
                     UseShellExecute = false,
+                    RedirectStandardInput = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     CreateNoWindow = true
@@ -179,7 +204,12 @@ namespace Rosie
 
                 using (var process = Process.Start(startInfo))
                 {
-                    process?.WaitForExit(1000); // Wait max 1 second
+                    if (process != null)
+                    {
+                        process.StandardInput.Write(script);
+                        process.StandardInput.Close();
+                        process.WaitForExit(1000); // Wait max 1 second
+                    }
                 }
             }
             catch (Exception e)

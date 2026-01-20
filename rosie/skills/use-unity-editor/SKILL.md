@@ -124,12 +124,12 @@ UI components are added by attaching a Lua script component to a Game Object in 
 
 ### Focusing the Unity editor
 
-To bring the Unity editor window to the foreground, run:
+To bring the Unity editor window to the foreground, create a `.focus` file in the project root:
 ```bash
-bash ${CLAUDE_PLUGIN_ROOT}/skills/use-unity-editor/resources/focus-unity-editor.sh
+touch .focus
 ```
 
-This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor. The script works on both macOS and Windows.
+This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor. The Serializer scripts include a trigger that monitors for this file and focuses the Unity window when detected. The `.focus` file is automatically deleted after being processed. This works on both macOS and Windows.
 
 ### Toggling play mode
 
