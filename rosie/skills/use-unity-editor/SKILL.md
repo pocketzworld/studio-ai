@@ -1,11 +1,11 @@
 ---
 name: use-unity-editor
-description: Read and edit scenes and prefabs as you would in the Unity editor. You can also focus the Unity editor window to trigger it to process changes.
+description: Interact with the Unity editor, including: reading and editing scenes and prefabs; focusing the Unity editor window; and starting play mode. You can't do anything in the Unity editor without this skill.
 ---
 
 # Use Highrise Studio's Unity Editor
 
-Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes and prefabs. This guide covers how you can read and edit scenes and prefabs as a user would in the Unity editor.
+Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes and prefabs. This guide covers how you can read and edit scenes and prefabs as a user would in the Unity editor, and how to start and stop play mode to test your changes.
 
 ## Important information
 
@@ -130,6 +130,23 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/use-unity-editor/resources/focus-unity-editor.
 ```
 
 This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor. The script works on both macOS and Windows.
+
+### Toggling play mode
+
+You can toggle Unity's play mode by creating a `.play` file in the project root directory. The Serializer scripts include a `PlayModeTrigger` that monitors for this file:
+
+- When the `.play` file is detected, Unity will start play mode if it's not running, or stop play mode if it is currently running.
+- Before starting play mode, Lua scripts are automatically rebuilt (via `Highrise/Lua/Rebuild All`).
+- The `.play` file is automatically deleted after being processed.
+- There is a 10-second cooldown between triggers to prevent accidental rapid toggling.
+- The Unity window will be brought to the foreground when play mode starts.
+
+To toggle play mode:
+```bash
+touch .play
+```
+
+This works on both Windows and macOS.
 
 ## Instructions
 
