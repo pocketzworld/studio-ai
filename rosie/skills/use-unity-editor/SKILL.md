@@ -1,6 +1,6 @@
 ---
 name: use-unity-editor
-description: "Interact with the Unity editor, including: reading and editing scenes and prefabs; focusing the Unity editor window; reading the Unity console; and starting play mode. You can't do anything in the Unity editor without this skill."
+description: "Interact with the Unity editor, including: reading and editing scenes and prefabs; focusing the Unity editor window; reading the Unity console; screenshotting the editor; and starting play mode. You can't do anything in the Unity editor without this skill."
 ---
 
 # Use Highrise Studio's Unity Editor
@@ -133,7 +133,7 @@ This is useful when you need Unity to process pending changes (such as after wri
 
 ### Toggling play mode
 
-You can toggle Unity's play mode by creating a `.play` file in the project root directory. The Serializer scripts include a `PlayModeTrigger` that monitors for this file:
+You can toggle Unity's play mode by creating a `.play` file in the project root directory. The Serializer scripts include a `EditorTriggers` that monitors for this file:
 
 - When the `.play` file is detected, Unity will start play mode if it's not running, or stop play mode if it is currently running.
 - Before starting play mode, Lua scripts are automatically rebuilt (via `Highrise/Lua/Rebuild All`).
@@ -145,6 +145,37 @@ To toggle play mode:
 ```bash
 touch .play
 ```
+
+After starting play mode, you should:
+1. Sleep for 15 seconds to allow Unity to import assets and enter play mode.
+2. Read `Console.log` to observe the running session output.
+3. Retry up to 3 times (15s intervals) if the console hasn't updated yet.
+
+Note: Play mode (via `.play`) automatically triggers a Lua rebuild before starting, so you don't need to manually rebuild if you're about to enter play mode.
+
+### Triggering a Lua rebuild
+
+Highrise Studio uses Lua scripts for game logic, which must be compiled into C# code before Unity can execute them. When you create or modify Lua scripts, Unity needs to rebuild them to generate the corresponding C# classes. Until this rebuild happens, any new scripts or changes won't be available in the editor (e.g., you won't be able to add a new Lua component to a Game Object).
+
+To trigger a Lua rebuild, create a `.rebuild` file in the project root:
+```bash
+touch .rebuild
+```
+
+When the `.rebuild` file is detected:
+- The Unity window will be brought to the foreground
+- Lua scripts are rebuilt via `Highrise/Lua/Rebuild All`
+- The `.rebuild` file is automatically deleted after being processed
+
+You should trigger a Lua rebuild when:
+- You've created a new Lua script and need to add it as a component to a Game Object
+- You've modified Lua script properties (fields) and need the changes reflected in the editor
+- You're seeing errors about missing Lua-generated types
+
+After triggering a Lua rebuild, you should:
+1. Wait ~5-10 seconds for compilation.
+2. Check `Packages/com.pz.studio.generated/Runtime/Highrise.Lua.Generated/` for the generated wrapper.
+3. If the generated wrapper is not found, check the console for errors before retrying.
 
 ### Reading the Unity console
 
@@ -169,7 +200,19 @@ jq '[.[] | select(.logType == "Error" or .logType == "Exception")] | .[-5:]' Tem
 
 This works on both Windows and macOS.
 
-## Instructions
+### Capturing a screenshot
+To capture a screenshot of the Unity Game view, focus the window and then create a `.screenshot` file in the project root:
+```bash
+touch .screenshot
+```
+
+When the `.screenshot` file is detected:
+- A screenshot of the Game view is captured and saved to `Temp/Highrise/Serializer/screenshot.png`
+- The `.screenshot` file is automatically deleted after being processed
+
+This is useful for visually inspecting the current state of the game, debugging UI layouts, or verifying that changes appear correctly. The screenshot captures whatever is currently visible in the Game view, so ensure the Game view is showing what you want to capture.
+
+## Instructions for reading and editing
 
 Add the following steps to your todo list:
 1. Check that `Temp/Highrise/Serializer/active_scene.json` exists and was modified within the past hour (use `find Temp/Highrise/Serializer/active_scene.json -mmin -60` to verify). If it does not exist or is stale, follow these steps:
@@ -178,3 +221,7 @@ Add the following steps to your todo list:
 2. Use your tools (`jq`, `grep`, etc.) to read the relevant parts of the JSON file. For example, to list the names of the root Game Objects in the scene, you can use the following command: `jq -r '.SceneRoot.children[].properties.name' Temp/Highrise/Serializer/active_scene.json`. Do not make any changes to the JSON file.
 3. If needed, create the `Temp/Highrise/Serializer/edit.json` file and write the edits to it.
 4. After creating the edit.json file, focus the Unity editor (see "Focusing the Unity editor" above) to trigger it to process the pending changes.
+5. Check your work by doing some or all of the following, as needed:
+    a. Check that the desired updates are reflected in `active_scene.json`.
+    b. Capture a screenshot of the Unity editor to verify the changes (see "Capturing a screenshot" above).
+    c. Enter play mode to test the changes (see "Toggling play mode" above).

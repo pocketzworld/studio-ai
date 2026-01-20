@@ -10,12 +10,14 @@ namespace Rosie
     /// Monitors for trigger files in the project root:
     /// - .play: Toggles play mode (start if stopped, stop if playing)
     /// - .focus: Brings Unity editor window to foreground
+    /// - .rebuild: Triggers a Lua rebuild
+    /// - .screenshot: Captures a screenshot of the Game view
     /// Works on both Windows and macOS.
     ///
     /// This file is automatically symlinked to Assets/Editor/Serializer/
     /// </summary>
     [InitializeOnLoad]
-    public static class PlayModeTrigger
+    public static class EditorTriggers
     {
 #if UNITY_EDITOR_WIN
         // Windows API for focusing windows
@@ -32,14 +34,20 @@ namespace Rosie
         private static double _lastSuccessfulPlayTriggerTime;
         private static readonly string PlayTriggerPath;
         private static readonly string FocusTriggerPath;
+        private static readonly string RebuildTriggerPath;
+        private static readonly string ScreenshotTriggerPath;
+        private static readonly string ScreenshotOutputPath;
         private const double CHECK_INTERVAL = 1.0; // Check every 1 second
         private const double COOLDOWN_AFTER_PLAY_TRIGGER = 10.0; // 10 second cooldown between successful play triggers
 
-        static PlayModeTrigger()
+        static EditorTriggers()
         {
             var projectRoot = Directory.GetParent(Application.dataPath).FullName;
             PlayTriggerPath = Path.Combine(projectRoot, ".play");
             FocusTriggerPath = Path.Combine(projectRoot, ".focus");
+            RebuildTriggerPath = Path.Combine(projectRoot, ".rebuild");
+            ScreenshotTriggerPath = Path.Combine(projectRoot, ".screenshot");
+            ScreenshotOutputPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "screenshot.png");
             EditorApplication.update += CheckTriggers;
         }
 
@@ -57,51 +65,75 @@ namespace Rosie
                 try
                 {
                     File.Delete(FocusTriggerPath);
-                    UnityEngine.Debug.Log("[PlayModeTrigger] Focusing Unity window");
                     FocusUnityWindow();
                 }
                 catch (Exception e)
                 {
-                    UnityEngine.Debug.LogWarning("[PlayModeTrigger] Failed to process .focus file: " + e.Message);
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to process .focus file: " + e.Message);
+                }
+            }
+
+            // Check for .rebuild file
+            if (File.Exists(RebuildTriggerPath))
+            {
+                try
+                {
+                    File.Delete(RebuildTriggerPath);
+                    FocusUnityWindow();
+                    TriggerLuaRebuild();
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to process .rebuild file: " + e.Message);
+                }
+            }
+
+            // Check for .screenshot file
+            if (File.Exists(ScreenshotTriggerPath))
+            {
+                try
+                {
+                    File.Delete(ScreenshotTriggerPath);
+                    FocusUnityWindow();
+                    ScreenCapture.CaptureScreenshot(ScreenshotOutputPath);
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to capture screenshot: " + e.Message);
                 }
             }
 
             // Check for .play file
-            if (!File.Exists(PlayTriggerPath))
-                return;
+            if (File.Exists(PlayTriggerPath))
+            {
+                // Delete the file immediately
+                try
+                {
+                    File.Delete(PlayTriggerPath);
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to delete .play file: " + e.Message);
+                    return;
+                }
 
-            // Delete the file immediately
-            try
-            {
-                File.Delete(PlayTriggerPath);
-            }
-            catch (Exception e)
-            {
-                UnityEngine.Debug.LogWarning("[PlayModeTrigger] Failed to delete .play file: " + e.Message);
-                return;
-            }
+                // Enforce cooldown between successful play triggers
+                if (EditorApplication.timeSinceStartup - _lastSuccessfulPlayTriggerTime < COOLDOWN_AFTER_PLAY_TRIGGER)
+                    return;
 
-            // Enforce cooldown between successful play triggers
-            if (EditorApplication.timeSinceStartup - _lastSuccessfulPlayTriggerTime < COOLDOWN_AFTER_PLAY_TRIGGER)
-            {
-                UnityEngine.Debug.Log("[PlayModeTrigger] Ignoring .play file - cooldown active");
-                return;
-            }
+                _lastSuccessfulPlayTriggerTime = EditorApplication.timeSinceStartup;
 
-            _lastSuccessfulPlayTriggerTime = EditorApplication.timeSinceStartup;
-
-            // Toggle play mode
-            if (EditorApplication.isPlaying)
-            {
-                UnityEngine.Debug.Log("[PlayModeTrigger] Stopping play mode");
-                EditorApplication.isPlaying = false;
-            }
-            else
-            {
-                UnityEngine.Debug.Log("[PlayModeTrigger] Rebuilding Lua and starting play mode");
-                TriggerLuaRebuild();
-                FocusUnityWindow();
-                EditorApplication.isPlaying = true;
+                // Toggle play mode
+                if (EditorApplication.isPlaying)
+                {
+                    EditorApplication.isPlaying = false;
+                }
+                else
+                {
+                    FocusUnityWindow();
+                    TriggerLuaRebuild();
+                    EditorApplication.isPlaying = true;
+                }
             }
         }
 
@@ -112,18 +144,14 @@ namespace Rosie
                 // Try to invoke the Highrise Lua rebuild menu item
                 bool success = EditorApplication.ExecuteMenuItem("Highrise/Lua/Rebuild All");
                 if (success)
-                {
-                    UnityEngine.Debug.Log("[PlayModeTrigger] Lua rebuild triggered via menu");
                     return;
-                }
 
                 // Fallback: trigger asset refresh which should recompile Lua
-                UnityEngine.Debug.Log("[PlayModeTrigger] Menu item not found, triggering asset refresh...");
                 AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.LogWarning("[PlayModeTrigger] Failed to trigger Lua rebuild: " + e.Message);
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to trigger Lua rebuild: " + e.Message);
                 // Fallback to asset refresh
                 AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
             }
@@ -150,12 +178,10 @@ namespace Rosie
 #elif UNITY_EDITOR_OSX
                 FocusWindowMac();
 #endif
-
-                UnityEngine.Debug.Log("[PlayModeTrigger] Focused Unity window");
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.LogWarning("[PlayModeTrigger] Failed to focus window: " + e.Message);
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to focus window: " + e.Message);
             }
         }
 
@@ -174,7 +200,7 @@ namespace Rosie
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.LogWarning("[PlayModeTrigger] Windows focus failed: " + e.Message);
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Windows focus failed: " + e.Message);
             }
         }
 #endif
@@ -214,7 +240,7 @@ end tell";
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.LogWarning("[PlayModeTrigger] Mac focus failed: " + e.Message);
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Mac focus failed: " + e.Message);
             }
         }
 #endif
