@@ -146,6 +146,27 @@ To toggle play mode:
 touch .play
 ```
 
+### Reading the Unity console
+
+Highrise Studio captures Unity console output to a JSON file for debugging and error tracking. You can find the console log at `Temp/Highrise/Serializer/console.json`. The file contains the most recent 500 log entries and is updated every 0.5 seconds when new messages are logged.
+
+The JSON file is structured as an array of log entries:
+```json
+[
+  {
+    "message": "the log message text",
+    "stackTrace": "the stack trace if available (often empty for simple logs)",
+    "logType": "Log | Warning | Error | Assert | Exception",
+    "timestamp": "2024-01-15 14:30:45.123"
+  }
+]
+```
+
+Use this to check for errors, warnings, or debug output when troubleshooting issues. For example, to see the most recent errors:
+```bash
+jq '[.[] | select(.logType == "Error" or .logType == "Exception")] | .[-5:]' Temp/Highrise/Serializer/console.json
+```
+
 This works on both Windows and macOS.
 
 ## Instructions
