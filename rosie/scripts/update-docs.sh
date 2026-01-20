@@ -28,7 +28,11 @@ if [ -d "Packages/com.pz.studio.generated" ]; then
   # create a version.txt file in the .claude folder with the plugin version
   PLUGIN_VERSION=$(cat "${PLUGIN_ROOT}/.claude-plugin/plugin.json" | jq -r '.version')
   echo "$PLUGIN_VERSION" > .claude/version.txt
-  # copy over the creator-docs directory from the plugin root to the current working directory to avoid permissions issues
-  rm -rf .claude/creator-docs
-  cp -r "${PLUGIN_ROOT}/creator-docs" .claude/
+  # copy over the creator-docs directory only if it's changed
+  CURRENT_HASH=$(git -C "${PLUGIN_ROOT}/creator-docs" rev-parse HEAD)
+  DEPLOYED_HASH=$(git -C ".claude/creator-docs" rev-parse HEAD 2>/dev/null || echo "")
+  if [ "$CURRENT_HASH" != "$DEPLOYED_HASH" ]; then
+    rm -rf .claude/creator-docs
+    cp -r "${PLUGIN_ROOT}/creator-docs" .claude/
+  fi
 fi

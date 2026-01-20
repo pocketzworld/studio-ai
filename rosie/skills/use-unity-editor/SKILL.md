@@ -124,12 +124,19 @@ UI components are added by attaching a Lua script component to a Game Object in 
 
 ### Focusing the Unity editor
 
-To bring the Unity editor window to the foreground, create a `.focus` file in the project root:
+To bring the Unity editor window to the foreground:
+
+**On macOS**, create a `.focus` file in the project root:
 ```bash
 touch .focus
 ```
 
-This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor. The Serializer scripts include a trigger that monitors for this file and focuses the Unity window when detected. The `.focus` file is automatically deleted after being processed. This works on both macOS and Windows.
+**On Windows**, run the PowerShell script from the plugin resources:
+```powershell
+powershell -ExecutionPolicy Bypass -File "${CLAUDE_PLUGIN_ROOT}/skills/use-unity-editor/resources/focus-unity.ps1"
+```
+
+This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor. On macOS, the Serializer scripts include a trigger that monitors for the `.focus` file and focuses the Unity window when detected. On Windows, the PowerShell script directly brings the Unity window to the foreground (Windows doesn't allow background processes to bring windows to the foreground, so the `.focus` file trigger won't work).
 
 ### Toggling play mode
 
@@ -139,7 +146,7 @@ You can toggle Unity's play mode by creating a `.play` file in the project root 
 - Before starting play mode, Lua scripts are automatically rebuilt (via `Highrise/Lua/Rebuild All`).
 - The `.play` file is automatically deleted after being processed.
 - There is a 10-second cooldown between triggers to prevent accidental rapid toggling.
-- The Unity window will be brought to the foreground when play mode starts.
+- On macOS, the Unity window will be brought to the foreground when play mode starts. On Windows, you should focus the window manually first (see "Focusing the Unity editor" above).
 
 To toggle play mode:
 ```bash
@@ -163,7 +170,7 @@ touch .rebuild
 ```
 
 When the `.rebuild` file is detected:
-- The Unity window will be brought to the foreground
+- On macOS, the Unity window will be brought to the foreground. On Windows, you should focus the window manually first (see "Focusing the Unity editor" above).
 - Lua scripts are rebuilt via `Highrise/Lua/Rebuild All`
 - The `.rebuild` file is automatically deleted after being processed
 
@@ -199,12 +206,13 @@ jq '[.[] | select(.logType == "Error" or .logType == "Exception")] | .[-5:]' Tem
 ```
 
 ### Capturing a screenshot
-To capture a screenshot of the Unity Game view, focus the window and then create a `.screenshot` file in the project root:
+To capture a screenshot of the Unity Game view, focus the window (see "Focusing the Unity editor" above) and then create a `.screenshot` file in the project root:
 ```bash
 touch .screenshot
 ```
 
 When the `.screenshot` file is detected:
+- On macOS, the Unity window will be brought to the foreground automatically. On Windows, you must focus the window manually first.
 - A screenshot of the Game view is captured and saved to `Temp/Highrise/Serializer/screenshot.png`
 - The `.screenshot` file is automatically deleted after being processed
 

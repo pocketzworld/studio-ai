@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 - Serializer scripts are now added via copy instead of symlink.
 - Scene now automatically saves after consuming edits via `use-unity-editor`.
+- Updated the `update-docs.sh` script to only copy over the creator-docs directory if it's changed.
 
 ## [0.4.9] - 2026-01-20
 

@@ -19,16 +19,6 @@ namespace Rosie
     [InitializeOnLoad]
     public static class EditorTriggers
     {
-#if UNITY_EDITOR_WIN
-        // Windows API for focusing windows
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-        private const int SW_RESTORE = 9;
-#endif
 
         private static double _lastCheckTime;
         private static double _lastSuccessfulPlayTriggerTime;
@@ -188,20 +178,8 @@ namespace Rosie
 #if UNITY_EDITOR_WIN
         static void FocusWindowWindows()
         {
-            try
-            {
-                Process currentProcess = Process.GetCurrentProcess();
-                IntPtr hWnd = currentProcess.MainWindowHandle;
-                if (hWnd != IntPtr.Zero)
-                {
-                    ShowWindow(hWnd, SW_RESTORE);
-                    SetForegroundWindow(hWnd);
-                }
-            }
-            catch (Exception e)
-            {
-                UnityEngine.Debug.LogWarning("[EditorTriggers] Windows focus failed: " + e.Message);
-            }
+            // No-op on Windows - use the external PowerShell script focus-unity.ps1 instead
+            // Windows doesn't allow background processes to bring windows to the foreground
         }
 #endif
 
