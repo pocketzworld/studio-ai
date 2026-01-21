@@ -5,7 +5,13 @@ description: "Interact with the Unity editor, including: reading and editing sce
 
 # Use Highrise Studio's Unity Editor
 
-Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes and prefabs. This guide covers how you can read and edit scenes and prefabs as a user would in the Unity editor, and how to start and stop play mode to test your changes.
+Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes and prefabs. This guide covers:
+- How you can read and edit scenes and prefabs as a user would in the Unity editor
+- How to focus the Unity editor window to trigger pending changes
+- How to trigger a Lua rebuild to generate wrapper code for new Lua scripts
+- How to read the Unity console to check for errors and warnings
+- How to start and stop play mode to test your changes
+- How to capture a screenshot of the Unity editor's Game view to visually inspect the current state of the game
 
 ## Important information
 
