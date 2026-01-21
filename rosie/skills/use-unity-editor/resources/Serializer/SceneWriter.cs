@@ -109,6 +109,7 @@ namespace Rosie
                 ObjectEditor.ReadEdit(edit);
             }
             PrefabHydrator.EndEdits();
+            EditorSceneManager.SaveOpenScenes();
             shouldSerializeInNFrames = 2;
         }
 

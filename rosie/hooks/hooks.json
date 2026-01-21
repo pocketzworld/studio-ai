@@ -9,7 +9,7 @@
           },
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer-symlink.sh ${CLAUDE_PLUGIN_ROOT}"
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer.sh ${CLAUDE_PLUGIN_ROOT}"
           }
         ]
       }

@@ -1,11 +1,17 @@
 ---
 name: use-unity-editor
-description: Read and edit scenes and prefabs as you would in the Unity editor. You can't do anything in the Unity editor without this skill.
+description: "Interact with the Unity editor, including: reading and editing scenes and prefabs; focusing the Unity editor window; reading the Unity console; screenshotting the editor; and starting play mode. You can't do anything in the Unity editor without this skill."
 ---
 
 # Use Highrise Studio's Unity Editor
 
-Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes and prefabs. This guide covers how you can read and edit scenes and prefabs as a user would in the Unity editor.
+Highrise Studio is built on Unity, and uses a variant of the Unity editor to edit scenes and prefabs. This guide covers:
+- How you can read and edit scenes and prefabs as a user would in the Unity editor
+- How to focus the Unity editor window to trigger pending changes
+- How to trigger a Lua rebuild to generate wrapper code for new Lua scripts
+- How to read the Unity console to check for errors and warnings
+- How to start and stop play mode to test your changes
+- How to capture a screenshot of the Unity editor's Game view to visually inspect the current state of the game
 
 ## Important information
 
@@ -122,12 +128,112 @@ If you just created the Lua script, **do not attempt to add it to a Game Object 
 
 UI components are added by attaching a Lua script component to a Game Object in the scene, like any other component. The UXML and USS will be pulled in automatically at runtime. To make a UI component visible, you must also set the `_uiOutput` property on the component to either "World" (rendering the UI within the world space), "AboveChat" (rendering the UI above the chat), or "Hud" (above everything, like a heads-up display).
 
-## Instructions
+### Focusing the Unity editor
+
+To bring the Unity editor window to the foreground:
+
+**On macOS**, create a `.focus` file in the project root:
+```bash
+touch .focus
+```
+
+**On Windows**, run the PowerShell script from the plugin resources:
+```powershell
+powershell -ExecutionPolicy Bypass -File "${CLAUDE_PLUGIN_ROOT}/skills/use-unity-editor/resources/focus-unity.ps1"
+```
+
+This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor. On macOS, the Serializer scripts include a trigger that monitors for the `.focus` file and focuses the Unity window when detected. On Windows, the PowerShell script directly brings the Unity window to the foreground (Windows doesn't allow background processes to bring windows to the foreground, so the `.focus` file trigger won't work).
+
+### Toggling play mode
+
+You can toggle Unity's play mode by creating a `.play` file in the project root directory. The Serializer scripts include a `EditorTriggers` that monitors for this file:
+
+- When the `.play` file is detected, Unity will start play mode if it's not running, or stop play mode if it is currently running.
+- Before starting play mode, Lua scripts are automatically rebuilt (via `Highrise/Lua/Rebuild All`).
+- The `.play` file is automatically deleted after being processed.
+- There is a 10-second cooldown between triggers to prevent accidental rapid toggling.
+- On macOS, the Unity window will be brought to the foreground when play mode starts. On Windows, you should focus the window manually first (see "Focusing the Unity editor" above).
+
+To toggle play mode:
+```bash
+touch .play
+```
+
+After starting play mode, you should:
+1. Sleep for 15 seconds to allow Unity to import assets and enter play mode.
+2. Read `Console.log` to observe the running session output.
+3. Retry up to 3 times (15s intervals) if the console hasn't updated yet.
+
+Note: Play mode (via `.play`) automatically triggers a Lua rebuild before starting, so you don't need to manually rebuild if you're about to enter play mode.
+
+### Triggering a Lua rebuild
+
+Highrise Studio uses Lua scripts for game logic, which must be compiled into C# code before Unity can execute them. When you create or modify Lua scripts, Unity needs to rebuild them to generate the corresponding C# classes. Until this rebuild happens, any new scripts or changes won't be available in the editor (e.g., you won't be able to add a new Lua component to a Game Object).
+
+To trigger a Lua rebuild, create a `.rebuild` file in the project root:
+```bash
+touch .rebuild
+```
+
+When the `.rebuild` file is detected:
+- On macOS, the Unity window will be brought to the foreground. On Windows, you should focus the window manually first (see "Focusing the Unity editor" above).
+- Lua scripts are rebuilt via `Highrise/Lua/Rebuild All`
+- The `.rebuild` file is automatically deleted after being processed
+
+You should trigger a Lua rebuild when:
+- You've created a new Lua script and need to add it as a component to a Game Object
+- You've modified Lua script properties (fields) and need the changes reflected in the editor
+- You're seeing errors about missing Lua-generated types
+
+After triggering a Lua rebuild, you should:
+1. Wait ~5-10 seconds for compilation.
+2. Check `Packages/com.pz.studio.generated/Runtime/Highrise.Lua.Generated/` for the generated wrapper.
+3. If the generated wrapper is not found, check the console for errors before retrying.
+
+### Reading the Unity console
+
+Highrise Studio captures Unity console output to a JSON file for debugging and error tracking. You can find the console log at `Temp/Highrise/Serializer/console.json`. The file contains the most recent 500 log entries and is updated every 0.5 seconds when new messages are logged.
+
+The JSON file is structured as an array of log entries:
+```json
+[
+  {
+    "message": "the log message text",
+    "stackTrace": "the stack trace if available (often empty for simple logs)",
+    "logType": "Log | Warning | Error | Assert | Exception",
+    "timestamp": "2024-01-15 14:30:45.123"
+  }
+]
+```
+
+Use this to check for errors, warnings, or debug output when troubleshooting issues. For example, to see the most recent errors:
+```bash
+jq '[.[] | select(.logType == "Error" or .logType == "Exception")] | .[-5:]' Temp/Highrise/Serializer/console.json
+```
+
+### Capturing a screenshot
+To capture a screenshot of the Unity Game view, focus the window (see "Focusing the Unity editor" above) and then create a `.screenshot` file in the project root:
+```bash
+touch .screenshot
+```
+
+When the `.screenshot` file is detected:
+- On macOS, the Unity window will be brought to the foreground automatically. On Windows, you must focus the window manually first.
+- A screenshot of the Game view is captured and saved to `Temp/Highrise/Serializer/screenshot.png`
+- The `.screenshot` file is automatically deleted after being processed
+
+This is useful for visually inspecting the current state of the game, debugging UI layouts, or verifying that changes appear correctly. The screenshot captures whatever is currently visible in the Game view, so ensure the Game view is showing what you want to capture.
+
+## Instructions for reading and editing
 
 Add the following steps to your todo list:
 1. Check that `Temp/Highrise/Serializer/active_scene.json` exists and was modified within the past hour (use `find Temp/Highrise/Serializer/active_scene.json -mmin -60` to verify). If it does not exist or is stale, follow these steps:
-   a. Run `bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer-symlink.sh ${CLAUDE_PLUGIN_ROOT}` to ensure the Serializer scripts are symlinked.
+   a. Run `bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer.sh ${CLAUDE_PLUGIN_ROOT}` to ensure the Serializer scripts are symlinked.
    b. Ask the user to turn on JSON serialization in the Unity toolbar, under Highrise > Studio.
 2. Use your tools (`jq`, `grep`, etc.) to read the relevant parts of the JSON file. For example, to list the names of the root Game Objects in the scene, you can use the following command: `jq -r '.SceneRoot.children[].properties.name' Temp/Highrise/Serializer/active_scene.json`. Do not make any changes to the JSON file.
 3. If needed, create the `Temp/Highrise/Serializer/edit.json` file and write the edits to it.
-4. Inform the user that edits have been submitted and will be applied when they interact with their editor.
+4. After creating the edit.json file, focus the Unity editor (see "Focusing the Unity editor" above) to trigger it to process the pending changes.
+5. Check your work by doing some or all of the following, as needed:
+    a. Check that the desired updates are reflected in `active_scene.json`.
+    b. Capture a screenshot of the Unity editor to verify the changes (see "Capturing a screenshot" above).
+    c. Enter play mode to test the changes (see "Toggling play mode" above).
