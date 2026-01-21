@@ -80,8 +80,8 @@ while IFS= read -r file_path; do
             # Format skills for display
             skill_list=$(echo "$skills" | tr '|' '\n' | sed 's/^/  - /' | tr '\n' ',' | sed 's/,$//' | tr ',' '\n')
             
-            echo "BLOCKED: Cannot $OPERATION $pattern files without first using one of these skills:"
-            echo "$skill_list"
+            echo "BLOCKED: Cannot $OPERATION $pattern files without first using one of these skills:" >&2
+            echo "$skill_list" >&2
             exit 2
         fi
     done

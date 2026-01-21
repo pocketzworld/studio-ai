@@ -4,6 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.11] - 2026-01-21
+
+### Changed
+- The `check-skill-used.sh` script now outputs error messages to stderr instead of stdout.
+
 ## [0.4.10] - 2026-01-20
 
 ### Added
