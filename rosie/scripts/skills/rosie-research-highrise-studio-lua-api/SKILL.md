@@ -1,6 +1,8 @@
 ---
-name: research-highrise-studio-lua-api
+name: rosie-research-highrise-studio-lua-api
 description: Dive into the Highrise Studio Lua API docs and answer questions.
+context: fork
+agent: Explore
 ---
 
 # Research the Highrise Studio Lua API

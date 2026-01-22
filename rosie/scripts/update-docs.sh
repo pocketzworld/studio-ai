@@ -35,4 +35,8 @@ if [ -d "Packages/com.pz.studio.generated" ]; then
     rm -rf .claude/creator-docs
     cp -r "${PLUGIN_ROOT}/creator-docs" .claude/
   fi
+  # copy the skills directory, deleting only rosie-* skills
+  rm -rf .claude/skills/rosie-*
+  mkdir -p .claude/skills
+  cp -r "${PLUGIN_ROOT}/scripts/skills"/* .claude/skills/
 fi

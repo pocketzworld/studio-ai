@@ -3,7 +3,7 @@
 # Accept a plugin root directory as an argument
 PLUGIN_ROOT="$1"
 
-SERIALIZER_SOURCE="${PLUGIN_ROOT}/skills/use-unity-editor/resources/Serializer"
+SERIALIZER_SOURCE="${PLUGIN_ROOT}/scripts/Serializer"
 SERIALIZER_DEST="Assets/Editor/Serializer"
 
 # Only proceed if the source directory exists and we're in a Unity project

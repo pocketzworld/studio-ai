@@ -4,6 +4,19 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.12] - 2026-01-22
+
+### Fixed
+
+- Lua VM logs are now captured to `console.json`.
+
+### Changed
+
+- Moved the `write-highrise-studio-lua`, `create-highrise-studio-ui`, and `use-unity-editor` skills into CLAUDE.md so they are always available.
+- Removed skill usage checks, since the necessary knowledge is now incorporated into CLAUDE.md.
+- Moved the remaining skills out of the plugin itself and into a directory that is copied into `.claude`, since plugin skills do not have `context: fork` enabled.
+- `research-highrise-studio-lua-api` and `understand-networked-events` skills now use `context: fork` to execute them in a subagent.
+
 ## [0.4.11] - 2026-01-21
 
 ### Changed

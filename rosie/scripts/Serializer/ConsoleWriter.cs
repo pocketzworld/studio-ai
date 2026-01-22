@@ -41,6 +41,7 @@ namespace Rosie
                 Application.logMessageReceivedThreaded -= OnLogMessageReceivedThreaded;
                 EditorApplication.update -= OnUpdate;
                 EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+                Highrise.ConsoleExtensions.OnRuntimeLogMessage -= OnRuntimeLogMessage;
             }
 
             if (!System.IO.Directory.Exists(WRITE_DIRECTORY))
@@ -55,6 +56,7 @@ namespace Rosie
             Application.logMessageReceivedThreaded += OnLogMessageReceivedThreaded;
             EditorApplication.update += OnUpdate;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+            Highrise.ConsoleExtensions.OnRuntimeLogMessage += OnRuntimeLogMessage;
 
             initialized = true;
 
@@ -62,6 +64,12 @@ namespace Rosie
             {
                 WriteConsoleFile();
             }
+        }
+
+        private static void OnRuntimeLogMessage(string message, string timestamp)
+        {
+            if (string.IsNullOrEmpty(message)) return;
+            AddEntry($"[{timestamp}] {message.TrimEnd('\n')}", string.Empty, LogType.Log);
         }
 
         private static void OnPlayModeStateChanged(PlayModeStateChange state)

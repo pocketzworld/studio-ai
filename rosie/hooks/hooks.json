@@ -23,28 +23,6 @@
           }
         ]
       }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Write|Edit|Update|Create|Read|Grep|Search",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-skill-used.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Skill",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/log-skill-usage.sh"
-          }
-        ]
-      }
     ]
   }
 }
