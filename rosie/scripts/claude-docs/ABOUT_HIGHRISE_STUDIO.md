@@ -157,7 +157,10 @@ The JSON file contains the scene's entire Game Object hierarchy. There will be a
     "activeSelf": "whether the Game Object is enabled.",
     "tag": "the Game Object's tag.",
     "parentGameObject": "the GUID of the parent Game Object, or null if this is a root Game Object.",
-    "prefabPath": "the path to the prefab that this Game Object is an instance of, or null if this is not an instance of a prefab."
+    "prefabPath": "the path to the prefab that this Game Object is an instance of, or null if this is not an instance of a prefab.",
+    "isStatic": "whether the Game Object is static for lightmapping and navigation purposes.",
+    "layer": "the layer index of the Game Object. When editing, you can set this OR layerName.",
+    "layerName": "the string name of the layer the Game Object is on, as it appears in the hierarchy. Will also include a list of all available layer names in parentheses. When editing, you can set this OR layer, and do not include the list of options."
   },
   "components": [
     {
@@ -227,6 +230,11 @@ Highrise Studio serializes all prefabs in the Assets directory to JSON files for
   - `pathToSavePrefabAs`: The path to save the prefab as. This should be a relative path from the project root and should not already exist.
 
 You can enqueue multiple edits in a single file, but create the file and write all edits to it in a single transaction. The edits will be applied in the order they are enqueued.
+
+After you have enqueued your edits, you should:
+1. Focus the Unity editor window (see "Focusing the Unity editor" below)
+2. Read the console for any errors or warnings (see "Reading the Unity console" below)
+3. Confirm the changes have been applied by reading the scene or prefab (see instructions above)
 
 #### Adding components to Game Objects
 
@@ -353,10 +361,35 @@ When the `.screenshot` file is detected, a screenshot of the Game view is captur
 
 This is useful for visually inspecting the current state of the game, debugging UI layouts, or verifying that changes appear correctly. The screenshot captures whatever is currently visible in the Game view, so ensure the Game view is showing what you want to capture.
 
+### Rebaking lightmaps and NavMesh
+To rebake the scene's lightmaps and NavMesh, focus the window (see "Focusing the Unity editor" above) and then create a `.rebake` file in the project root:
+```bash
+touch .focus (or run the PowerShell script above)
+touch .rebake
+```
+
+This trigger performs two operations:
+1. **Lightmap bake** - Runs asynchronously, so the editor remains responsive. If a bake is already in progress, it will be cancelled before starting the new one.
+2. **NavMesh bake** - Runs synchronously and completes immediately.
+
+You should trigger a rebake when:
+- You've moved, added, or removed static geometry in the scene
+- You've changed lighting settings (light intensity, color, shadows, etc.)
+- You've modified materials that affect light bouncing (albedo, emission, etc.)
+- You've changed the scene's ambient lighting or skybox
+- You've modified walkable surfaces or obstacles that affect AI navigation
+- You've changed NavMesh agent settings or area costs
+- The user explicitly requests a lightmap or NavMesh update
+
+Before rebaking, make sure any assets that should be baked have "isStatic" set to true.
+
 # How you should behave
 
-Your goal is to **iterate independently until the user's request is satisfied.** To do this, you will need to follow _all_ of these steps:
+Your goal is to operate as independently as possible to solve a user's request and confirm that it is actually working. To do this, you will need to follow _all_ of these steps:
 1. **Understand how to address the user's request.** Look at documentation, read existing code, and ask the user for necessary information so that you feel prepared to solve the request.
 2. **Execute a solution to the user's request.** This may involve writing code and editing the scene or prefabs.
 3. **Test the solution.** This may involve reading the console, reading the scene contents, starting play mode, taking screenshots of the game, etc. Do whatever you can to figure out if your solution is working.
 4. **If the solution is not working, iterate again.** Go back to step 1 and repeat.
+
+Important notes:
+- You should not ask the user for permission to test the solution; you should just do it.

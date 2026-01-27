@@ -21,6 +21,9 @@ namespace Rosie
             objectProperties = new Dictionary<string, object> {
                 { "name", go.name },
                 { "activeSelf", go.activeSelf },
+                { "isStatic", go.isStatic },
+                { "layer", go.layer },
+                { "layerName", LayerMask.LayerToName(go.layer) + " (" + string.Join(", ", Enumerable.Range(0, 32).Select(LayerMask.LayerToName).Where(n => !string.IsNullOrEmpty(n))) + ")" },
                 { "tag", go.tag },
                 { "parentGameObject", go.transform.parent != null ? SceneWriter.GetId(go.transform.parent.gameObject) : null },
                 { "prefabPath", PrefabUtility.IsPartOfPrefabInstance(go) ? AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go)) : null }
@@ -69,13 +72,13 @@ namespace Rosie
             var propertyList = new List<Func<SerializedProperty>>();
 
             var fields = scriptType.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                .Where(f => fieldInclusionRules.All(rule => rule(component, f)));
+                .Where(f => fieldInclusionRules.All(rule => rule(scriptType, component, f)));
             foreach (var field in fields)
             {
                 propertyList.Add(() => new SerializedProperty(field.Name, field.FieldType, component != null ? field.GetValue(component) : null));
             }
             var props = scriptType.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-                    .Where(p => propertyInclusionRules.All(rule => rule(component, p)));
+                    .Where(p => propertyInclusionRules.All(rule => rule(scriptType, component, p)));
             foreach (var property in props)
             {
                 propertyList.Add(() => new SerializedProperty(property.Name, property.PropertyType, component != null ? property.GetValue(component) : null));
@@ -90,23 +93,29 @@ namespace Rosie
 
 
         // All of these must be satisfied for a field to be serialized.
-        private static readonly List<Func<Component, System.Reflection.FieldInfo, bool>> fieldInclusionRules = new() {
-            (c, f) => f.IsPublic || f.GetCustomAttributes(typeof(SerializeField), true).Length > 0,
-            (c, f) => f.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0,
-            (c, f) => c?.GetType().Namespace?.StartsWith("Highrise.Lua.Generated") != true || !f.Name.StartsWith("_") || (f.FieldType.Name == "LuaScript" && f.Name == "_script") || f.Name == "_uiOutput",
-            (c, f) => ValueSerializer.IsSupportedType(f.FieldType),
+        private static readonly List<Func<Type, Component, System.Reflection.FieldInfo, bool>> fieldInclusionRules = new() {
+            (t, c, f) => f.IsPublic || f.GetCustomAttributes(typeof(SerializeField), true).Length > 0,
+            (t, c, f) => f.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0,
+            (t, c, f) => t.Namespace?.StartsWith("Highrise.Lua.Generated") != true || !f.Name.StartsWith("_") || (f.FieldType.Name == "LuaScript" && f.Name == "_script") || f.Name == "_uiOutput",
+            (t, c, f) => ValueSerializer.IsSupportedType(f.FieldType),
         };
 
         // All of these must be satisfied for a property to be serialized.
-        private static readonly List<Func<Component, System.Reflection.PropertyInfo, bool>> propertyInclusionRules = new() {
-            (c, p) => p.CanRead && p.CanWrite,
-            (c, p) => p.GetCustomAttributes(typeof(SerializeField), true).Length > 0 ||
+        private static readonly List<Func<Type, Component, System.Reflection.PropertyInfo, bool>> propertyInclusionRules = new() {
+            (t, c, p) => p.CanRead && p.CanWrite,
+            (t, c, p) => p.GetCustomAttributes(typeof(SerializeField), true).Length > 0 ||
                     p.GetCustomAttributes(typeof(SerializeReference), true).Length > 0 ||
-                    c?.GetType().Namespace?.StartsWith("UnityEngine") == true ||
-                    c?.GetType().Namespace?.StartsWith("TMPro") == true,
-            (c, p) => p.GetCustomAttributes(typeof(HideInInspector), true).Length == 0,
-            (c, p) => p.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0,
-            (c, p) => ValueSerializer.IsSupportedType(p.PropertyType),
+                    t.Namespace?.StartsWith("UnityEngine") == true ||
+                    t.Namespace?.StartsWith("TMPro") == true,
+            (t, c, p) => p.GetCustomAttributes(typeof(HideInInspector), true).Length == 0,
+            (t, c, p) => p.GetCustomAttributes(typeof(ObsoleteAttribute), true).Length == 0,
+            (t, c, p) => ValueSerializer.IsSupportedType(p.PropertyType),
+            // Exclude material/materials properties on Renderers - they create instances in edit mode.
+            // Use sharedMaterial/sharedMaterials instead.
+            (t, c, p) => !(typeof(Renderer).IsAssignableFrom(t) && (p.Name == "material" || p.Name == "materials")),
+            // Exclude mesh property on MeshFilter - it creates instances in edit mode.
+            // Use sharedMesh instead.
+            (t, c, p) => !(t == typeof(MeshFilter) && p.Name == "mesh"),
         };
     }
 
@@ -215,11 +224,11 @@ namespace Rosie
             new GameObjectParser(),
             new ComponentParser(),
             new LuaScriptParser(),
+            new MaterialParser(),
+            new MeshParser(),
         };
 
         private static readonly List<Type> unsupportedTypes = new() {
-            typeof(Material),
-            typeof(Mesh),
             typeof(UnityEngine.AI.NavMeshData),
         };
 
@@ -438,6 +447,46 @@ namespace Rosie
                 runsOn = ((Highrise.Lua.LuaScript)value).RunsOnClientAndServer ? "ClientAndServer" : ((Highrise.Lua.LuaScript)value).RunsOnClient ? "Client" : ((Highrise.Lua.LuaScript)value).RunsOnServer ? "Server" : "None",
             };
             public object FromSerializable(object serializable) => throw new NotImplementedException();
+        }
+
+        private class MaterialParser : IValueParser
+        {
+            public Type ParsedType => typeof(Material);
+            public object ToSerializable(object value) => AssetDatabase.GetAssetPath((Material)value);
+            public object FromSerializable(object serializable) => AssetDatabase.LoadAssetAtPath<Material>((string)serializable);
+        }
+
+        private class MeshParser : IValueParser
+        {
+            private static readonly Dictionary<string, string> builtinMeshNames = new() {
+                { "Cube", "Cube.fbx" },
+                { "Sphere", "New-Sphere.fbx" },
+                { "Capsule", "New-Capsule.fbx" },
+                { "Cylinder", "New-Cylinder.fbx" },
+                { "Plane", "New-Plane.fbx" },
+                { "Quad", "Quad.fbx" },
+            };
+            public Type ParsedType => typeof(Mesh);
+            public object ToSerializable(object value)
+            {
+                var mesh = (Mesh)value;
+                var path = AssetDatabase.GetAssetPath(mesh);
+                // Built-in primitives are in "Library/unity default resources"
+                if (path == "Library/unity default resources")
+                    return mesh.name;
+                return path;
+            }
+            public object FromSerializable(object serializable)
+            {
+                var path = (string)serializable;
+                var mesh = AssetDatabase.LoadAssetAtPath<Mesh>(path);
+                if (mesh != null)
+                    return mesh;
+                // Try loading as a built-in primitive
+                if (builtinMeshNames.TryGetValue(path, out var resourceName))
+                    return Resources.GetBuiltinResource<Mesh>(resourceName);
+                return Resources.GetBuiltinResource<Mesh>(path);
+            }
         }
     }
 }

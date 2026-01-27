@@ -13,6 +13,7 @@ namespace Rosie
     /// - .focus: Brings Unity editor window to foreground
     /// - .rebuild: Triggers a Lua rebuild
     /// - .screenshot: Captures a screenshot of the Game view
+    /// - .rebake: Rebakes lightmaps and NavMesh for the scene
     /// Works on both Windows and macOS.
     ///
     /// This file is automatically symlinked to Assets/Editor/Serializer/
@@ -29,6 +30,7 @@ namespace Rosie
         private static readonly string RebuildTriggerPath;
         private static readonly string ScreenshotTriggerPath;
         private static readonly string ScreenshotOutputPath;
+        private static readonly string RebakeTriggerPath;
         private const double CHECK_INTERVAL = 1.0; // Check every 1 second
         private const double COOLDOWN_AFTER_PLAY_TRIGGER = 10.0; // 10 second cooldown between successful play triggers
 
@@ -41,6 +43,7 @@ namespace Rosie
             RebuildTriggerPath = Path.Combine(projectRoot, ".rebuild");
             ScreenshotTriggerPath = Path.Combine(projectRoot, ".screenshot");
             ScreenshotOutputPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "screenshot.png");
+            RebakeTriggerPath = Path.Combine(projectRoot, ".rebake");
             EditorApplication.update += CheckTriggers;
         }
 
@@ -93,6 +96,21 @@ namespace Rosie
                 catch (Exception e)
                 {
                     UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to capture screenshot: " + e.Message);
+                }
+            }
+
+            // Check for .rebake file
+            if (File.Exists(RebakeTriggerPath))
+            {
+                try
+                {
+                    File.Delete(RebakeTriggerPath);
+                    FocusUnityWindow();
+                    TriggerSceneBake();
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to trigger scene bake: " + e.Message);
                 }
             }
 
@@ -163,6 +181,67 @@ namespace Rosie
                 UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to trigger Lua rebuild: " + e.Message);
                 // Fallback to asset refresh
                 AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+            }
+        }
+
+        static void TriggerSceneBake()
+        {
+            // Bake lightmaps
+            try
+            {
+                // Cancel any existing bake first
+                if (Lightmapping.isRunning)
+                {
+                    Lightmapping.Cancel();
+                }
+
+                // Clear existing baked data
+                Lightmapping.Clear();
+
+                // Start async bake to avoid blocking the editor
+                Lightmapping.BakeAsync();
+                UnityEngine.Debug.Log("[EditorTriggers] Lightmap bake started");
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to start lightmap bake: " + e.Message);
+            }
+
+            // Bake NavMesh - try NavMeshSurface components first (modern), then fall back to legacy
+            try
+            {
+                int surfaceCount = 0;
+                // Find all NavMeshSurface components in the scene and bake them
+                // NavMeshSurface is in Unity.AI.Navigation namespace (AI Navigation package)
+                var surfaceType = Type.GetType("Unity.AI.Navigation.NavMeshSurface, Unity.AI.Navigation");
+                if (surfaceType != null)
+                {
+                    var surfaces = UnityEngine.Object.FindObjectsByType(surfaceType, FindObjectsSortMode.None);
+                    var buildMethod = surfaceType.GetMethod("BuildNavMesh", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                    if (buildMethod != null)
+                    {
+                        foreach (var surface in surfaces)
+                        {
+                            buildMethod.Invoke(surface, null);
+                            surfaceCount++;
+                        }
+                    }
+                }
+
+                if (surfaceCount > 0)
+                {
+                    UnityEngine.Debug.Log($"[EditorTriggers] NavMesh bake completed ({surfaceCount} surface(s))");
+                }
+                else
+                {
+                    // Fall back to legacy NavMesh baking
+                    UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+                    UnityEngine.Debug.Log("[EditorTriggers] NavMesh bake completed (legacy)");
+                }
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to bake NavMesh: " + e.Message);
             }
         }
 

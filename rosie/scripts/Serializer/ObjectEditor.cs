@@ -74,6 +74,15 @@ namespace Rosie
                     case "activeSelf":
                         gameObject.SetActive((bool)newPropertyValue);
                         return;
+                    case "isStatic":
+                        gameObject.isStatic = (bool)newPropertyValue;
+                        return;
+                    case "layer":
+                        gameObject.layer = Convert.ToInt32(newPropertyValue);
+                        return;
+                    case "layerName":
+                        gameObject.layer = LayerMask.NameToLayer((string)newPropertyValue);
+                        return;
                     case "tag":
                         if (!InternalEditorUtility.tags.Contains((string)newPropertyValue))
                             InternalEditorUtility.AddTag((string)newPropertyValue);

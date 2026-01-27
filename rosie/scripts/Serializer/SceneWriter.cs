@@ -238,7 +238,7 @@ namespace Rosie
             
             foreach (var type in types)
             {
-                if (type.IsAbstract || type.IsGenericType || type.IsInterface || !type.IsSubclassOf(typeof(MonoBehaviour)) || type.FullName.StartsWith("TMPro.") || type.FullName.StartsWith("UnityEngine.InputSystem.") || type.FullName.StartsWith("Spine.Unity."))
+                if (type.IsAbstract || type.IsGenericType || type.IsInterface || type.FullName.StartsWith("TMPro.") || type.FullName.StartsWith("UnityEngine.InputSystem.") || type.FullName.StartsWith("Spine.Unity."))
                     continue;
                 
                 try
