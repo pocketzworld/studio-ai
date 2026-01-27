@@ -4,6 +4,19 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.13] - Unreleased
+
+### Added
+
+- Command to stop play mode.
+- update-docs.sh script now adds .claude folder to .gitignore, except for CLAUDE.md.
+- `active_scene.json` instructions now specify not to try using the `Read` tool directly.
+
+### Changed
+
+- Command to toggle play mode now always starts play mode (stops first if already playing).
+- All logs from Lua scripts are now logged as "LuaRuntime" in `console.json`, and agent instructions have been updated to include "LuaRuntime" in their queries.
+
 ## [0.4.12] - 2026-01-22
 
 ### Fixed

@@ -146,7 +146,7 @@ Highrise Studio is built on Unity, and uses a variant of the Unity editor to edi
 
 ### Reading the scene
 
-Highrise Studio serializes the active scene to a JSON file for easier understanding. You can find the JSON file at `Temp/Highrise/Serializer/active_scene.json`. The JSON file should be up-to-date with the scene's current state.
+Highrise Studio serializes the active scene to a JSON file for easier understanding. You can find the JSON file at `Temp/Highrise/Serializer/active_scene.json`. It's going to be too big to read directly, so you will need to use tools like `jq` to read it. The JSON file should be up-to-date with the scene's current state.
 
 The JSON file contains the scene's entire Game Object hierarchy. There will be a single top-level object called "SceneRoot", whose children are the root Game Objects in the scene. The JSON file is structured as follows:
 ```json
@@ -275,11 +275,9 @@ powershell -ExecutionPolicy Bypass -File "${CLAUDE_PLUGIN_ROOT}/scripts/focus-un
 
 This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor.
 
-### Toggling play mode
+### Starting play mode
 
-To toggle Unity's play mode:
-
-To toggle play mode:
+To start Unity's play mode:
 ```bash
 touch .focus (or run the PowerShell script above)
 touch .play
@@ -287,10 +285,22 @@ touch .play
 
 After starting play mode, you should:
 1. Sleep for 15 seconds to allow Unity to import assets and enter play mode.
-2. Read `Console.log` to observe the running session output.
+2. Read `console.json` to observe the running session output.
 3. Retry up to 3 times (15s intervals) if the console hasn't updated yet.
 
-Note: Play mode (via `.play`) automatically triggers a Lua rebuild before starting, so you don't need to manually rebuild if you're about to enter play mode.
+Notes:
+- Play mode (via `.play`) automatically triggers a Lua rebuild before starting, so you don't need to manually rebuild if you're about to enter play mode.
+- If play mode is already running, the existing play mode will be stopped before starting the new one.
+
+### Stopping play mode
+
+To stop Unity's play mode:
+```bash
+touch .focus (or run the PowerShell script above)
+touch .stop
+```
+
+This is useful when you need to stop play mode to save resources or when you want to ensure the user's attention is directed to the editor. Note that if play mode is not running, the `.stop` file will be silently ignored.
 
 ### Triggering a Lua rebuild
 
@@ -321,7 +331,7 @@ The JSON file is structured as an array of log entries:
   {
     "message": "the log message text",
     "stackTrace": "the stack trace if available (often empty for simple logs)",
-    "logType": "Log | Warning | Error | Assert | Exception",
+    "logType": "Log | Warning | Error | Assert | Exception | LuaRuntime",  // Logs from Unity use one of the Unity log types; all logs from Lua scripts, whether an error or not, are logged as "LuaRuntime". You should always include "LuaRuntime" in your queries.
     "timestamp": "2024-01-15 14:30:45.123"
   }
 ]
@@ -329,7 +339,7 @@ The JSON file is structured as an array of log entries:
 
 Use this to check for errors, warnings, or debug output when troubleshooting issues. For example, to see the most recent errors:
 ```bash
-jq '[.[] | select(.logType == "Error" or .logType == "Exception")] | .[-5:]' Temp/Highrise/Serializer/console.json
+jq '[.[] | select(.logType == "Error" or .logType == "Exception" or .logType == "LuaRuntime")] | .[-5:]' Temp/Highrise/Serializer/console.json
 ```
 
 ### Capturing a screenshot

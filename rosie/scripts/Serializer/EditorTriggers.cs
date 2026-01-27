@@ -8,7 +8,8 @@ namespace Rosie
 {
     /// <summary>
     /// Monitors for trigger files in the project root:
-    /// - .play: Toggles play mode (start if stopped, stop if playing)
+    /// - .play: Starts play mode (stops first if already playing)
+    /// - .stop: Stops play mode (silently ignored if not playing)
     /// - .focus: Brings Unity editor window to foreground
     /// - .rebuild: Triggers a Lua rebuild
     /// - .screenshot: Captures a screenshot of the Game view
@@ -23,6 +24,7 @@ namespace Rosie
         private static double _lastCheckTime;
         private static double _lastSuccessfulPlayTriggerTime;
         private static readonly string PlayTriggerPath;
+        private static readonly string StopTriggerPath;
         private static readonly string FocusTriggerPath;
         private static readonly string RebuildTriggerPath;
         private static readonly string ScreenshotTriggerPath;
@@ -34,6 +36,7 @@ namespace Rosie
         {
             var projectRoot = Directory.GetParent(Application.dataPath).FullName;
             PlayTriggerPath = Path.Combine(projectRoot, ".play");
+            StopTriggerPath = Path.Combine(projectRoot, ".stop");
             FocusTriggerPath = Path.Combine(projectRoot, ".focus");
             RebuildTriggerPath = Path.Combine(projectRoot, ".rebuild");
             ScreenshotTriggerPath = Path.Combine(projectRoot, ".screenshot");
@@ -93,6 +96,24 @@ namespace Rosie
                 }
             }
 
+            // Check for .stop file
+            if (File.Exists(StopTriggerPath))
+            {
+                try
+                {
+                    File.Delete(StopTriggerPath);
+                    if (EditorApplication.isPlaying)
+                    {
+                        EditorApplication.isPlaying = false;
+                    }
+                    // Silently consumed if not playing
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to process .stop file: " + e.Message);
+                }
+            }
+
             // Check for .play file
             if (File.Exists(PlayTriggerPath))
             {
@@ -113,17 +134,15 @@ namespace Rosie
 
                 _lastSuccessfulPlayTriggerTime = EditorApplication.timeSinceStartup;
 
-                // Toggle play mode
+                // Always start play mode (stop first if already playing)
                 if (EditorApplication.isPlaying)
                 {
                     EditorApplication.isPlaying = false;
                 }
-                else
-                {
-                    FocusUnityWindow();
-                    TriggerLuaRebuild();
-                    EditorApplication.isPlaying = true;
-                }
+                FocusUnityWindow();
+                TriggerLuaRebuild();
+                // Defer play mode start to next frame to ensure stop completes
+                EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
             }
         }
 
