@@ -69,7 +69,7 @@ namespace Rosie
         private static void OnRuntimeLogMessage(string message, string timestamp)
         {
             if (string.IsNullOrEmpty(message)) return;
-            AddEntry($"[{timestamp}] {message.TrimEnd('\n')}", string.Empty, LogType.Log);
+            AddEntry($"[{timestamp}] {message.TrimEnd('\n')}", string.Empty, "LuaRuntime");
         }
 
         private static void OnPlayModeStateChanged(PlayModeStateChange state)
@@ -111,16 +111,16 @@ namespace Rosie
         private static void OnLogMessageReceivedThreaded(string condition, string stackTrace, LogType type)
         {
             if (!running) return;
-            AddEntry(condition, stackTrace, type);
+            AddEntry(condition, stackTrace, type.ToString());
         }
 
-        private static void AddEntry(string condition, string stackTrace, LogType type)
+        private static void AddEntry(string condition, string stackTrace, string logType)
         {
             var entry = new ConsoleEntry
             {
                 message = condition,
                 stackTrace = stackTrace,
-                logType = type.ToString(),
+                logType = logType,
                 timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")
             };
 

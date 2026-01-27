@@ -4,6 +4,25 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.13] - Unreleased
+
+### Added
+
+- Command to stop play mode.
+- update-docs.sh script now adds .claude folder to .gitignore, except for CLAUDE.md.
+- `active_scene.json` instructions now specify not to try using the `Read` tool directly.
+- `isStatic` and `layer`/`layerName` properties are now serialized to `active_scene.json` and editable.
+- Extra instructions to check the console and scene after enqueuing edits.
+- Command to rebake lightmaps and NavMesh for the scene.
+- Mesh and Material properties are now serializable.
+
+### Changed
+
+- Command to toggle play mode now always starts play mode (stops first if already playing).
+- All logs from Lua scripts are now logged as "LuaRuntime" in `console.json`, and agent instructions have been updated to include "LuaRuntime" in their queries.d
+- Non-MonoBehaviour components are now serialized to `active_scene.json` and editable.
+- Field and Property inclusion rules can now correctly read types when the value is null (e.g., when generating the list of all components and their properties).
+
 ## [0.4.12] - 2026-01-22
 
 ### Fixed

@@ -146,7 +146,7 @@ Highrise Studio is built on Unity, and uses a variant of the Unity editor to edi
 
 ### Reading the scene
 
-Highrise Studio serializes the active scene to a JSON file for easier understanding. You can find the JSON file at `Temp/Highrise/Serializer/active_scene.json`. The JSON file should be up-to-date with the scene's current state.
+Highrise Studio serializes the active scene to a JSON file for easier understanding. You can find the JSON file at `Temp/Highrise/Serializer/active_scene.json`. It's going to be too big to read directly, so you will need to use tools like `jq` to read it. The JSON file should be up-to-date with the scene's current state.
 
 The JSON file contains the scene's entire Game Object hierarchy. There will be a single top-level object called "SceneRoot", whose children are the root Game Objects in the scene. The JSON file is structured as follows:
 ```json
@@ -157,7 +157,10 @@ The JSON file contains the scene's entire Game Object hierarchy. There will be a
     "activeSelf": "whether the Game Object is enabled.",
     "tag": "the Game Object's tag.",
     "parentGameObject": "the GUID of the parent Game Object, or null if this is a root Game Object.",
-    "prefabPath": "the path to the prefab that this Game Object is an instance of, or null if this is not an instance of a prefab."
+    "prefabPath": "the path to the prefab that this Game Object is an instance of, or null if this is not an instance of a prefab.",
+    "isStatic": "whether the Game Object is static for lightmapping and navigation purposes.",
+    "layer": "the layer index of the Game Object. When editing, you can set this OR layerName.",
+    "layerName": "the string name of the layer the Game Object is on, as it appears in the hierarchy. Will also include a list of all available layer names in parentheses. When editing, you can set this OR layer, and do not include the list of options."
   },
   "components": [
     {
@@ -228,6 +231,11 @@ Highrise Studio serializes all prefabs in the Assets directory to JSON files for
 
 You can enqueue multiple edits in a single file, but create the file and write all edits to it in a single transaction. The edits will be applied in the order they are enqueued.
 
+After you have enqueued your edits, you should:
+1. Focus the Unity editor window (see "Focusing the Unity editor" below)
+2. Read the console for any errors or warnings (see "Reading the Unity console" below)
+3. Confirm the changes have been applied by reading the scene or prefab (see instructions above)
+
 #### Adding components to Game Objects
 
 When you want to add a component to a Game Object, you will need to know the full name of the type of the component you want to add. You can find the list of available component types in `Temp/Highrise/Serializer/all_component_types.json`. **You do not know this list in advance; you will need to read the file to find it.** `all_component_types.json` is structured as follows:
@@ -275,11 +283,9 @@ powershell -ExecutionPolicy Bypass -File "${CLAUDE_PLUGIN_ROOT}/scripts/focus-un
 
 This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor.
 
-### Toggling play mode
+### Starting play mode
 
-To toggle Unity's play mode:
-
-To toggle play mode:
+To start Unity's play mode:
 ```bash
 touch .focus (or run the PowerShell script above)
 touch .play
@@ -287,10 +293,22 @@ touch .play
 
 After starting play mode, you should:
 1. Sleep for 15 seconds to allow Unity to import assets and enter play mode.
-2. Read `Console.log` to observe the running session output.
+2. Read `console.json` to observe the running session output.
 3. Retry up to 3 times (15s intervals) if the console hasn't updated yet.
 
-Note: Play mode (via `.play`) automatically triggers a Lua rebuild before starting, so you don't need to manually rebuild if you're about to enter play mode.
+Notes:
+- Play mode (via `.play`) automatically triggers a Lua rebuild before starting, so you don't need to manually rebuild if you're about to enter play mode.
+- If play mode is already running, the existing play mode will be stopped before starting the new one.
+
+### Stopping play mode
+
+To stop Unity's play mode:
+```bash
+touch .focus (or run the PowerShell script above)
+touch .stop
+```
+
+This is useful when you need to stop play mode to save resources or when you want to ensure the user's attention is directed to the editor. Note that if play mode is not running, the `.stop` file will be silently ignored.
 
 ### Triggering a Lua rebuild
 
@@ -321,7 +339,7 @@ The JSON file is structured as an array of log entries:
   {
     "message": "the log message text",
     "stackTrace": "the stack trace if available (often empty for simple logs)",
-    "logType": "Log | Warning | Error | Assert | Exception",
+    "logType": "Log | Warning | Error | Assert | Exception | LuaRuntime",  // Logs from Unity use one of the Unity log types; all logs from Lua scripts, whether an error or not, are logged as "LuaRuntime". You should always include "LuaRuntime" in your queries.
     "timestamp": "2024-01-15 14:30:45.123"
   }
 ]
@@ -329,7 +347,7 @@ The JSON file is structured as an array of log entries:
 
 Use this to check for errors, warnings, or debug output when troubleshooting issues. For example, to see the most recent errors:
 ```bash
-jq '[.[] | select(.logType == "Error" or .logType == "Exception")] | .[-5:]' Temp/Highrise/Serializer/console.json
+jq '[.[] | select(.logType == "Error" or .logType == "Exception" or .logType == "LuaRuntime")] | .[-5:]' Temp/Highrise/Serializer/console.json
 ```
 
 ### Capturing a screenshot
@@ -343,10 +361,35 @@ When the `.screenshot` file is detected, a screenshot of the Game view is captur
 
 This is useful for visually inspecting the current state of the game, debugging UI layouts, or verifying that changes appear correctly. The screenshot captures whatever is currently visible in the Game view, so ensure the Game view is showing what you want to capture.
 
+### Rebaking lightmaps and NavMesh
+To rebake the scene's lightmaps and NavMesh, focus the window (see "Focusing the Unity editor" above) and then create a `.rebake` file in the project root:
+```bash
+touch .focus (or run the PowerShell script above)
+touch .rebake
+```
+
+This trigger performs two operations:
+1. **Lightmap bake** - Runs asynchronously, so the editor remains responsive. If a bake is already in progress, it will be cancelled before starting the new one.
+2. **NavMesh bake** - Runs synchronously and completes immediately.
+
+You should trigger a rebake when:
+- You've moved, added, or removed static geometry in the scene
+- You've changed lighting settings (light intensity, color, shadows, etc.)
+- You've modified materials that affect light bouncing (albedo, emission, etc.)
+- You've changed the scene's ambient lighting or skybox
+- You've modified walkable surfaces or obstacles that affect AI navigation
+- You've changed NavMesh agent settings or area costs
+- The user explicitly requests a lightmap or NavMesh update
+
+Before rebaking, make sure any assets that should be baked have "isStatic" set to true.
+
 # How you should behave
 
-Your goal is to **iterate independently until the user's request is satisfied.** To do this, you will need to follow _all_ of these steps:
+Your goal is to operate as independently as possible to solve a user's request and confirm that it is actually working. To do this, you will need to follow _all_ of these steps:
 1. **Understand how to address the user's request.** Look at documentation, read existing code, and ask the user for necessary information so that you feel prepared to solve the request.
 2. **Execute a solution to the user's request.** This may involve writing code and editing the scene or prefabs.
 3. **Test the solution.** This may involve reading the console, reading the scene contents, starting play mode, taking screenshots of the game, etc. Do whatever you can to figure out if your solution is working.
 4. **If the solution is not working, iterate again.** Go back to step 1 and repeat.
+
+Important notes:
+- You should not ask the user for permission to test the solution; you should just do it.

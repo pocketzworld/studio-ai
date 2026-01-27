@@ -39,4 +39,15 @@ if [ -d "Packages/com.pz.studio.generated" ]; then
   rm -rf .claude/skills/rosie-*
   mkdir -p .claude/skills
   cp -r "${PLUGIN_ROOT}/scripts/skills"/* .claude/skills/
+
+  # Update .gitignore to exclude .claude/* except CLAUDE.md
+  if [ -f .gitignore ]; then
+    # Check if the gitignore rules are already present
+    if ! grep -q "^\.claude/\*$" .gitignore; then
+      echo "" >> .gitignore
+      echo "# Claude Code plugin files (auto-generated)" >> .gitignore
+      echo ".claude/*" >> .gitignore
+      echo "!.claude/CLAUDE.md" >> .gitignore
+    fi
+  fi
 fi
