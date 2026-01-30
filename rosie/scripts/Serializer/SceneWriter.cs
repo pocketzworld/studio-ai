@@ -163,6 +163,11 @@ namespace Rosie
 
         public static string GetId(UnityEngine.Object obj)
         {
+            // Handle Unity's "fake null" - unassigned or destroyed objects
+            if (obj == null)
+            {
+                return null;
+            }
             // if the object is a prefab asset reference, instead return the path of the asset with a special prefix
             if (obj is GameObject gameObject && PrefabUtility.IsPartOfPrefabAsset(gameObject))
             {

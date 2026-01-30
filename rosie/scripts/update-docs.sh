@@ -3,12 +3,32 @@
 # Accept a plugin root directory as an argument
 PLUGIN_ROOT="$1"
 
-# Clone and update the creator-docs repo at plugin root
+# Check if creator-docs needs updating by comparing local HEAD to remote via GitHub API
+# The API is lightweight and less likely to be throttled than git fetch
+SHOULD_UPDATE=false
+
 if [ ! -d "${PLUGIN_ROOT}/creator-docs" ]; then
-  git clone https://github.com/pocketzworld/creator-docs.git "${PLUGIN_ROOT}/creator-docs"
+  SHOULD_UPDATE=true
+else
+  LOCAL_SHA=$(git -C "${PLUGIN_ROOT}/creator-docs" rev-parse HEAD 2>/dev/null || echo "")
+  # GitHub API: get latest commit SHA on main branch (single small request)
+  REMOTE_SHA=$(curl -sf --max-time 5 \
+    "https://api.github.com/repos/pocketzworld/creator-docs/commits/main" \
+    | grep -m1 '"sha"' | cut -d'"' -f4)
+
+  if [ -n "$REMOTE_SHA" ] && [ "$LOCAL_SHA" != "$REMOTE_SHA" ]; then
+    SHOULD_UPDATE=true
+  fi
 fi
 
-git -C "${PLUGIN_ROOT}/creator-docs" pull
+# Clone or pull only if there are actual changes
+if [ "$SHOULD_UPDATE" = true ]; then
+  if [ ! -d "${PLUGIN_ROOT}/creator-docs" ]; then
+    git clone https://github.com/pocketzworld/creator-docs.git "${PLUGIN_ROOT}/creator-docs"
+  else
+    git -C "${PLUGIN_ROOT}/creator-docs" pull
+  fi
+fi
 
 # Only copy to .claude if we're in a Highrise Studio project
 if [ -d "Packages/com.pz.studio.generated" ]; then
@@ -29,7 +49,7 @@ if [ -d "Packages/com.pz.studio.generated" ]; then
   PLUGIN_VERSION=$(cat "${PLUGIN_ROOT}/.claude-plugin/plugin.json" | jq -r '.version')
   echo "$PLUGIN_VERSION" > .claude/version.txt
   # copy over the creator-docs directory only if it's changed
-  CURRENT_HASH=$(git -C "${PLUGIN_ROOT}/creator-docs" rev-parse HEAD)
+  CURRENT_HASH=$(git -C "${PLUGIN_ROOT}/creator-docs" rev-parse HEAD 2>/dev/null || echo "")
   DEPLOYED_HASH=$(git -C ".claude/creator-docs" rev-parse HEAD 2>/dev/null || echo "")
   if [ "$CURRENT_HASH" != "$DEPLOYED_HASH" ]; then
     rm -rf .claude/creator-docs

@@ -4,6 +4,26 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.14] - 2026-01-30
+
+### Added
+
+- New skill: `rosie-find-existing-lua-solutions`, which looks for solutions in reference files.
+- New skill: `rosie-check-example-scenes`, which looks for solutions in reference scene serializations.
+
+### Fixed
+
+- Triggering `.play` during play mode now correctly waits for any existing play mode to fully stop before starting a new one.
+- Check for null Unity objects in `SceneWriter.GetId()` to suppress errors for destroyed or unassigned objects.
+- Physics materials on colliders are no longer re-instantiated at every serialization.
+
+### Changed
+
+- update-docs.sh will only update the creator-docs repository if it has changed to avoid throttling.
+- Testing instructions now discourage pointless screenshotting.
+- Scene reading instructions now discourage using stale reference IDs.
+
+
 ## [0.4.13] - 2026-01-27
 
 ### Added
