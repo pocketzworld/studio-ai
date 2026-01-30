@@ -282,8 +282,8 @@ touch .focus
 ```
 
 **On Windows**, run the PowerShell script from the plugin resources:
-```powershell
-powershell -ExecutionPolicy Bypass -File "${CLAUDE_PLUGIN_ROOT}/scripts/focus-unity.ps1"
+```bash
+powershell -ExecutionPolicy Bypass -File ".claude/focus-unity.ps1"
 ```
 
 This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor.

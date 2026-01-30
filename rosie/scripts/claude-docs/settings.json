@@ -4,6 +4,7 @@
       "Skill(rosie-research-highrise-studio-lua-api)",
       "Skill(rosie-understand-networked-events)",
       "mcp__ide__getDiagnostics",
+      "Bash(powershell:*)",
       "Write"
     ],
     "deny": [],
