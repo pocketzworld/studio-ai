@@ -2,7 +2,7 @@
 
 This is a _Highrise Studio_ project, which defines a _world_ that can be built and uploaded to _Highrise_. You will be asked to assist the user in developing their Highrise world. 
 
-You do not have any intrinsic knowlege of Highrise Studio. You cannot do anything in Highrise Studio without help. You cannot understand its code, its archiecture, or its API. Fortunately, you have this document and the `rosie` plugin, which provides skills that will help you develop this project's Highrise world. These tools have deep knowledge of Highrise Studio and the Highrise API.
+Your pre-training data does not give you any intrinsic knowledge of Highrise Studio. Fortunately, you have this document and skills like `rosie-research-highrise-studio-lua-api`, `rosie-find-existing-lua-solutions`, and `rosie-check-example-scenes` that will help you develop this project's Highrise world. Always prefer retrieval-based reasoning over pre-training-based reasoning on Highrise Studio tasks.
 
 ## Key terms
 - *Highrise*: a massively multiplayer online game, in which players can curate outfits for their avatar, socialize, and participate in activities across a universe of in-game worlds.
@@ -32,7 +32,7 @@ Like Unity, Highrise Studio represents objects as collections of components. Com
 3. Built-in Lua component scripts
 4. User-written Lua component scripts
 
-The core Unity components, exported Highrise internals, and built-in Lua component scripts are, collectively, the Highrise Studio API, and can be read using the `research-highrise-studio-lua-api` skill. The user-written Lua component scripts exist in this project.
+The core Unity components, exported Highrise internals, and built-in Lua component scripts are, collectively, the Highrise Studio API, and can be read using the `rosie-research-highrise-studio-lua-api` skill. The user-written Lua component scripts exist in this project.
 
 The core Unity components and exported Highrise internals are implemented in C#, but you will not have access to this source. Their members are exposed via the Lua API. **You will not be writing C#.**
 
@@ -97,12 +97,13 @@ To write Highrise Studio Lua code, follow these steps, using your TODO list to t
 1. Search for and read any relevant scripts in the project, if needed.
 2. If starting a new script, copy the code from the style guide (`.claude/LUA_STYLE_GUIDE.lua`) as a starting template. **Do not create a new script from scratch, as the style will be wrong.**
 3. Use the `rosie-research-highrise-studio-lua-api` skill to understand the Highrise Studio API.
-4. Write the code, following these imperatives:
+4. Use the `rosie-find-existing-lua-solutions` skill to find relevant coding patterns and examples that will help you solve the problem.
+5. Write the code, following these imperatives:
     - Do **not** use Unity C#, MonoBehaviour, or Roblox APIs unless specified in the Highrise Studio API docs. **There is no such thing as `task`.**
     - Avoid browser or DOM references (`document`, `window`, `addEventListener`, etc.).
-5. If you have access to the `mcp__ide__getDiagnostics` tool, use it to read syntax errors in the Lua scripts you work with.
-6. Remove section headers that have no content.
-7. Remove guidance comments that were copied over from the template. Keep the section headers.
+6. If you have access to the `mcp__ide__getDiagnostics` tool, use it to read syntax errors in the Lua scripts you work with.
+7. Remove section headers that have no content.
+8. Remove guidance comments that were copied over from the template. Keep the section headers.
 
 ## Creating Highrise Studio UI components
 
@@ -124,6 +125,7 @@ Add the following steps to your todo list:
     - When you are done, remove guidance comments that were copied over from the template.
 5. Write the Lua script, starting from the template.
     - Rely on the `rosie-research-highrise-studio-lua-api` skill to understand the Highrise Studio API.
+    - Use the `rosie-find-existing-lua-solutions` skill to find relevant coding patterns and examples that will help you solve the problem.
     - Do **not** use Unity C#, MonoBehaviour, or Roblox APIs unless specified in the Highrise Studio API docs. **There is no such thing as `task`.**
     - Avoid browser or DOM references (`document`, `window`, `addEventListener`, etc.).
     - If you are ever unsure about how to do something, **read the docs.**
@@ -141,17 +143,18 @@ Highrise Studio is built on Unity, and uses a variant of the Unity editor to edi
 - How to read the Unity console to check for errors and warnings
 - How to start and stop play mode to test your changes
 - How to capture a screenshot of the Unity editor's Game view to visually inspect the current state of the game
+- How to rebake lightmaps and NavMesh for the scene after editing static objects
 
 ## Reading and editing scenes and prefabs
 
 ### Reading the scene
 
-Highrise Studio serializes the active scene to a JSON file for easier understanding. You can find the JSON file at `Temp/Highrise/Serializer/active_scene.json`. It's going to be too big to read directly, so you will need to use tools like `jq` to read it. The JSON file should be up-to-date with the scene's current state.
+Highrise Studio serializes the active scene to a JSON file for easier understanding. You can find the JSON file at `Temp/Highrise/Serializer/active_scene.json`. It's going to be too big to read directly, so you will need to use tools like `jq` to read it. Don't use grep or any other tools that search for text in the file; you will need to read the file as JSON. The JSON file should be up-to-date with the scene's current state.
 
 The JSON file contains the scene's entire Game Object hierarchy. There will be a single top-level object called "SceneRoot", whose children are the root Game Objects in the scene. The JSON file is structured as follows:
 ```json
 {
-  "referenceId": "a GUID that uniquely identifies this Game Object within the scene. Not persistent across editor reloads.",
+  "referenceId": "a GUID that uniquely identifies this Game Object within the scene. Not persistent across editor reloads.If you plan to use this ID to reference the Game Object in an edit, read it just before making the edit, since it otherwise might change before you can use it.",
   "objectProperties": {
     "name": "the name of the game object, as it appears in the hierarchy.",
     "activeSelf": "whether the Game Object is enabled.",
@@ -228,6 +231,8 @@ Highrise Studio serializes all prefabs in the Assets directory to JSON files for
 - `saveObjectAsPrefab`: Save a Game Object as a prefab file for future use. Requires the following keys:
   - `referenceIdOfObjectToSaveAsPrefab`: The GUID of the GameObject to save as a prefab.
   - `pathToSavePrefabAs`: The path to save the prefab as. This should be a relative path from the project root and should not already exist.
+
+**IMPORTANT: To understand what edits to make, you should use the `rosie-check-example-scenes` skill to peruse high-quality reference scenes for relevant patterns and examples.**
 
 You can enqueue multiple edits in a single file, but create the file and write all edits to it in a single transaction. The edits will be applied in the order they are enqueued.
 
@@ -373,23 +378,15 @@ This trigger performs two operations:
 2. **NavMesh bake** - Runs synchronously and completes immediately.
 
 You should trigger a rebake when:
-- You've moved, added, or removed static geometry in the scene
+- You've moved, added, or removed static objects in the scene
 - You've changed lighting settings (light intensity, color, shadows, etc.)
 - You've modified materials that affect light bouncing (albedo, emission, etc.)
-- You've changed the scene's ambient lighting or skybox
-- You've modified walkable surfaces or obstacles that affect AI navigation
-- You've changed NavMesh agent settings or area costs
 - The user explicitly requests a lightmap or NavMesh update
-
-Before rebaking, make sure any assets that should be baked have "isStatic" set to true.
 
 # How you should behave
 
 Your goal is to operate as independently as possible to solve a user's request and confirm that it is actually working. To do this, you will need to follow _all_ of these steps:
-1. **Understand how to address the user's request.** Look at documentation, read existing code, and ask the user for necessary information so that you feel prepared to solve the request.
+1. **Gather the information needed to solve the user's request.** Look at documentation, read existing code, and ask the user for necessary information so that you feel prepared to solve the request.
 2. **Execute a solution to the user's request.** This may involve writing code and editing the scene or prefabs.
-3. **Test the solution.** This may involve reading the console, reading the scene contents, starting play mode, taking screenshots of the game, etc. Do whatever you can to figure out if your solution is working.
+3. **Test the solution.** This may involve reading the console, reading the scene contents, starting play mode, taking screenshots of the game, etc. Do whatever you can to figure out if your solution is working. Note that, since you cannot interact with the game itself, you cannot test changes that require user input without help; either find a way to test the change without user input (e.g., set the changes to fire when the world starts), or ask the user for help. You can (and should) test changes that only require a visual assessment of the scene, or are triggered when play mode is started.
 4. **If the solution is not working, iterate again.** Go back to step 1 and repeat.
-
-Important notes:
-- You should not ask the user for permission to test the solution; you should just do it.

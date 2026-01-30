@@ -33,6 +33,7 @@ namespace Rosie
         private static readonly string RebakeTriggerPath;
         private const double CHECK_INTERVAL = 1.0; // Check every 1 second
         private const double COOLDOWN_AFTER_PLAY_TRIGGER = 10.0; // 10 second cooldown between successful play triggers
+        private const string RESTART_PLAY_PREF_KEY = "EditorTriggers_RestartPlay";
 
         static EditorTriggers()
         {
@@ -45,6 +46,19 @@ namespace Rosie
             ScreenshotOutputPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "screenshot.png");
             RebakeTriggerPath = Path.Combine(projectRoot, ".rebake");
             EditorApplication.update += CheckTriggers;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        static void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            // When play mode has fully stopped, check if we need to restart it
+            if (state == PlayModeStateChange.EnteredEditMode && EditorPrefs.GetBool(RESTART_PLAY_PREF_KEY, false))
+            {
+                EditorPrefs.DeleteKey(RESTART_PLAY_PREF_KEY);
+                FocusUnityWindow();
+                TriggerLuaRebuild();
+                EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
+            }
         }
 
         static void CheckTriggers()
@@ -155,12 +169,16 @@ namespace Rosie
                 // Always start play mode (stop first if already playing)
                 if (EditorApplication.isPlaying)
                 {
+                    // Set flag to restart play mode after it fully stops (survives domain reload)
+                    EditorPrefs.SetBool(RESTART_PLAY_PREF_KEY, true);
                     EditorApplication.isPlaying = false;
                 }
-                FocusUnityWindow();
-                TriggerLuaRebuild();
-                // Defer play mode start to next frame to ensure stop completes
-                EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
+                else
+                {
+                    FocusUnityWindow();
+                    TriggerLuaRebuild();
+                    EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
+                }
             }
         }
 

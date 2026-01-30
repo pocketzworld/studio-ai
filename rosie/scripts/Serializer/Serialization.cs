@@ -116,6 +116,9 @@ namespace Rosie
             // Exclude mesh property on MeshFilter - it creates instances in edit mode.
             // Use sharedMesh instead.
             (t, c, p) => !(t == typeof(MeshFilter) && p.Name == "mesh"),
+            // Exclude material property on Colliders - it creates instances in edit mode.
+            // Use sharedMaterial instead.
+            (t, c, p) => !(typeof(Collider).IsAssignableFrom(t) && p.Name == "material"),
         };
     }
 
@@ -201,7 +204,18 @@ namespace Rosie
             var parser = GetParser(vType);
             if (parser != null)
             {
-                return parser.FromSerializable(serializable);
+                var result = parser.FromSerializable(serializable);
+                // If we expected a Component type but got a GameObject, try to find the component on it
+                if (result is GameObject gameObject && typeof(Component).IsAssignableFrom(vType))
+                {
+                    var component = gameObject.GetComponent(vType);
+                    if (component != null)
+                    {
+                        return component;
+                    }
+                    throw new InvalidOperationException($"GameObject '{gameObject.name}' does not have a component of type {GetFriendlyTypeName(vType)}");
+                }
+                return result;
             }
             throw new NotImplementedException($"No appropriate parser was found for type {GetFriendlyTypeName(vType)}");
         }
