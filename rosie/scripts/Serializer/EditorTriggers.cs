@@ -56,6 +56,7 @@ namespace Rosie
             {
                 EditorPrefs.DeleteKey(RESTART_PLAY_PREF_KEY);
                 FocusUnityWindow();
+                FocusPlayModeWindow();
                 TriggerLuaRebuild();
                 EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
             }
@@ -176,6 +177,7 @@ namespace Rosie
                 else
                 {
                     FocusUnityWindow();
+                    FocusPlayModeWindow();
                     TriggerLuaRebuild();
                     EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
                 }
@@ -267,18 +269,7 @@ namespace Rosie
         {
             try
             {
-                // Focus the Game view specifically for play mode (cross-platform Unity API)
-                var gameViewType = Type.GetType("UnityEditor.GameView,UnityEditor");
-                if (gameViewType != null)
-                {
-                    var gameView = EditorWindow.GetWindow(gameViewType, false, "Game", true);
-                    if (gameView != null)
-                    {
-                        gameView.Focus();
-                    }
-                }
-
-                // Platform-specific window activation
+                // Platform-specific window activation to bring Unity to foreground
 #if UNITY_EDITOR_WIN
                 FocusWindowWindows();
 #elif UNITY_EDITOR_OSX
@@ -288,6 +279,28 @@ namespace Rosie
             catch (Exception e)
             {
                 UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to focus window: " + e.Message);
+            }
+        }
+
+        static void FocusPlayModeWindow()
+        {
+            // Prefer Simulator window if one is already open
+            var simulatorType = Type.GetType("UnityEditor.DeviceSimulation.SimulatorWindow,UnityEditor.DeviceSimulatorModule");
+            if (simulatorType != null)
+            {
+                var existingSimulators = Resources.FindObjectsOfTypeAll(simulatorType);
+                if (existingSimulators.Length > 0)
+                {
+                    (existingSimulators[0] as EditorWindow)?.Focus();
+                    return;
+                }
+            }
+
+            // Fall back to Game view
+            var gameViewType = Type.GetType("UnityEditor.GameView,UnityEditor");
+            if (gameViewType != null)
+            {
+                EditorWindow.GetWindow(gameViewType, false, "Game", true)?.Focus();
             }
         }
 
