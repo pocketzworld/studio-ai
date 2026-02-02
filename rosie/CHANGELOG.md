@@ -4,6 +4,13 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.15] - 2026-02-02
+
+### Fixed
+
+- When Rosie focuses the Unity editor, it will no longer change the open window.
+- Triggering `.play` switches focus to a Simulator, if it exists, or otherwise to the Game view.
+
 ## [0.4.14] - 2026-01-30
 
 ### Added
