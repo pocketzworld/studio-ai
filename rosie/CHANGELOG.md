@@ -4,6 +4,22 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-02-05
+
+### Added
+
+- `example-scenes` now includs prefab serializations and scripts that the scenes rely on.
+- Added two new scenes to `example-scenes` and an `INDEX.md` file to describe what they contain.
+
+### Fixed
+
+- Rosie no longer serializes the scene when entering or exiting play mode.
+
+### Changed
+
+- Merged the two skills from version 0.4.15 with the `rosie-research-highrise-studio-lua-api` skill into the single `rosie-research-highrise-studio-docs` skill.
+- Removed legacy NavMeshBuilder references from `EditorTriggers.cs` to suppress warnings.
+
 ## [0.4.15] - 2026-02-02
 
 ### Fixed

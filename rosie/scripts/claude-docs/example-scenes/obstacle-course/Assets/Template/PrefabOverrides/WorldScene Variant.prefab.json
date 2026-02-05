@@ -1,0 +1,606 @@
+{
+  "referenceId": "681d619f-ecb5-4b31-925c-efc847907296",
+  "objectProperties": {
+    "name": "WorldScene Variant",
+    "activeSelf": true,
+    "isStatic": false,
+    "layer": 0,
+    "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
+    "tag": "Untagged",
+    "parentGameObject": null,
+    "prefabPath": "Packages/com.pz.studio/Runtime/World/WorldScene.prefab"
+  },
+  "components": [
+    {
+      "componentType": "UnityEngine.Transform",
+      "referenceId": "c04d6484-64bc-4ea6-863b-142b23d8b438",
+      "properties": {
+        "position": {
+          "propertyName": "position",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "localPosition": {
+          "propertyName": "localPosition",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "eulerAngles": {
+          "propertyName": "eulerAngles",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "localEulerAngles": {
+          "propertyName": "localEulerAngles",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "right": {
+          "propertyName": "right",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "up": {
+          "propertyName": "up",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        "forward": {
+          "propertyName": "forward",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "rotation": {
+          "propertyName": "rotation",
+          "type": "UnityEngine.Quaternion",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          }
+        },
+        "localRotation": {
+          "propertyName": "localRotation",
+          "type": "UnityEngine.Quaternion",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          }
+        },
+        "localScale": {
+          "propertyName": "localScale",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          }
+        },
+        "parent": {
+          "propertyName": "parent",
+          "type": "UnityEngine.Transform",
+          "value": null
+        },
+        "hasChanged": {
+          "propertyName": "hasChanged",
+          "type": "System.Boolean",
+          "value": true
+        },
+        "hierarchyCapacity": {
+          "propertyName": "hierarchyCapacity",
+          "type": "System.Int32",
+          "value": 1
+        },
+        "tag": {
+          "propertyName": "tag",
+          "type": "System.String",
+          "value": "Untagged"
+        },
+        "name": {
+          "propertyName": "name",
+          "type": "System.String",
+          "value": "WorldScene Variant"
+        },
+        "hideFlags": {
+          "propertyName": "hideFlags",
+          "type": "UnityEngine.HideFlags (None, HideInHierarchy, HideInInspector, DontSaveInEditor, NotEditable, DontSaveInBuild, DontUnloadUnusedAsset, DontSave, HideAndDontSave)",
+          "value": "None"
+        }
+      }
+    },
+    {
+      "componentType": "Highrise.Client.ScenePrefab",
+      "referenceId": "3bfb281a-9ce1-4338-83b0-df5f9257e937",
+      "properties": {}
+    },
+    {
+      "componentType": "Highrise.Lua.Generated.PlayerCharacterController",
+      "referenceId": "f3d38329-1583-4c69-9daa-81af5240168a",
+      "properties": {
+        "m_movementIndicator": {
+          "propertyName": "m_movementIndicator",
+          "type": "UnityEngine.GameObject",
+          "value": "prefab:Packages/com.pz.studio/Assets/Game/Prefabs/Indicators/MoveIndicator.prefab"
+        },
+        "m_longPressSound": {
+          "propertyName": "m_longPressSound",
+          "type": "Highrise.AudioShader",
+          "value": {
+            "clips": [
+              {
+                "length": 0.05514739,
+                "samples": 2432,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "Pop",
+                "hideFlags": 8
+              }
+            ],
+            "volume": 0.754,
+            "randomVolume": 0.0,
+            "pitch": 1.0,
+            "randomPitch": 0.0,
+            "hapticFeedback": 4,
+            "IsMuted": false,
+            "SpatialRange": 1.0,
+            "name": "LongPress",
+            "hideFlags": 0
+          }
+        },
+        "m_footstepWalkSound": {
+          "propertyName": "m_footstepWalkSound",
+          "type": "Highrise.AudioShader",
+          "value": {
+            "clips": [
+              {
+                "length": 0.5355102,
+                "samples": 23616,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk1",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk2",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.509387732,
+                "samples": 22464,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk3",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.515192747,
+                "samples": 22720,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk4",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.515192747,
+                "samples": 22720,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk5",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.509387732,
+                "samples": 22464,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk6",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk7",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk8",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.509387732,
+                "samples": 22464,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk9",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk10",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.515192747,
+                "samples": 22720,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk11",
+                "hideFlags": 8
+              }
+            ],
+            "volume": 0.12,
+            "randomVolume": 0.05,
+            "pitch": 1.0,
+            "randomPitch": 0.2,
+            "hapticFeedback": 0,
+            "IsMuted": false,
+            "SpatialRange": 0.0,
+            "name": "walking",
+            "hideFlags": 0
+          }
+        },
+        "m_footstepRunSound": {
+          "propertyName": "m_footstepRunSound",
+          "type": "Highrise.AudioShader",
+          "value": {
+            "clips": [
+              {
+                "length": 0.5355102,
+                "samples": 23616,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk1",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.5355102,
+                "samples": 23616,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk1",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk2",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.509387732,
+                "samples": 22464,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk3",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.515192747,
+                "samples": 22720,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk4",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.515192747,
+                "samples": 22720,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk5",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.509387732,
+                "samples": 22464,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk6",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk7",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk8",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.509387732,
+                "samples": 22464,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk9",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.512290239,
+                "samples": 22592,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk10",
+                "hideFlags": 8
+              },
+              {
+                "length": 0.515192747,
+                "samples": 22720,
+                "channels": 1,
+                "frequency": 44100,
+                "isReadyToPlay": false,
+                "loadType": 0,
+                "preloadAudioData": false,
+                "ambisonic": false,
+                "loadInBackground": false,
+                "loadState": 0,
+                "name": "rug_walk11",
+                "hideFlags": 8
+              }
+            ],
+            "volume": 0.12,
+            "randomVolume": 0.05,
+            "pitch": 1.0,
+            "randomPitch": 0.2,
+            "hapticFeedback": 0,
+            "IsMuted": false,
+            "SpatialRange": 0.0,
+            "name": "running",
+            "hideFlags": 0
+          }
+        },
+        "_script": {
+          "propertyName": "_script",
+          "type": "Highrise.Lua.LuaScript",
+          "value": {
+            "scriptName": "PlayerCharacterController",
+            "path": "Packages/com.pz.studio/Runtime/Lua/PlayerCharacterController.lua",
+            "runsOn": "ClientAndServer"
+          }
+        },
+        "_uiOutput": {
+          "propertyName": "_uiOutput",
+          "type": "Highrise.Client.UIOutputType (None, World, AboveChat, Hud)",
+          "value": "None"
+        }
+      }
+    },
+    {
+      "componentType": "Highrise.Lua.Generated.PlayerCharacterSpawner",
+      "referenceId": "ef605126-178f-4e3e-84bf-9f121588f323",
+      "properties": {
+        "m_characterPrefab": {
+          "propertyName": "m_characterPrefab",
+          "type": "UnityEngine.GameObject",
+          "value": "prefab:Assets/Template/PrefabOverrides/PlayerCharacter Variant.prefab"
+        },
+        "_script": {
+          "propertyName": "_script",
+          "type": "Highrise.Lua.LuaScript",
+          "value": {
+            "scriptName": "PlayerCharacterSpawner",
+            "path": "Packages/com.pz.studio/Runtime/Lua/PlayerCharacterSpawner.lua",
+            "runsOn": "ClientAndServer"
+          }
+        },
+        "_uiOutput": {
+          "propertyName": "_uiOutput",
+          "type": "Highrise.Client.UIOutputType (None, World, AboveChat, Hud)",
+          "value": "None"
+        }
+      }
+    },
+    {
+      "componentType": "Highrise.Lua.Generated.PetCharacterController",
+      "referenceId": "f3855761-c636-4015-afbe-bd1b96f10ffc",
+      "properties": {
+        "_script": {
+          "propertyName": "_script",
+          "type": "Highrise.Lua.LuaScript",
+          "value": {
+            "scriptName": "PetCharacterController",
+            "path": "Packages/com.pz.studio/Runtime/Lua/PetCharacterController.lua",
+            "runsOn": "ClientAndServer"
+          }
+        },
+        "_uiOutput": {
+          "propertyName": "_uiOutput",
+          "type": "Highrise.Client.UIOutputType (None, World, AboveChat, Hud)",
+          "value": "None"
+        }
+      }
+    }
+  ],
+  "children": []
+}

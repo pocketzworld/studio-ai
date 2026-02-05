@@ -1,0 +1,872 @@
+{
+  "referenceId": "46293771-665a-494e-9184-811d42dfac27",
+  "objectProperties": {
+    "name": "Stationary Death Trigger",
+    "activeSelf": true,
+    "isStatic": false,
+    "layer": 7,
+    "layerName": "CharacterTrigger (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
+    "tag": "Untagged",
+    "parentGameObject": null,
+    "prefabPath": null
+  },
+  "components": [
+    {
+      "componentType": "UnityEngine.Transform",
+      "referenceId": "ba564175-cef8-46c0-a8d8-8193e3dcd774",
+      "properties": {
+        "position": {
+          "propertyName": "position",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "localPosition": {
+          "propertyName": "localPosition",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "eulerAngles": {
+          "propertyName": "eulerAngles",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "localEulerAngles": {
+          "propertyName": "localEulerAngles",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "right": {
+          "propertyName": "right",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        "up": {
+          "propertyName": "up",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        "forward": {
+          "propertyName": "forward",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "rotation": {
+          "propertyName": "rotation",
+          "type": "UnityEngine.Quaternion",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          }
+        },
+        "localRotation": {
+          "propertyName": "localRotation",
+          "type": "UnityEngine.Quaternion",
+          "value": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          }
+        },
+        "localScale": {
+          "propertyName": "localScale",
+          "type": "UnityEngine.Vector3",
+          "value": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          }
+        },
+        "parent": {
+          "propertyName": "parent",
+          "type": "UnityEngine.Transform",
+          "value": null
+        },
+        "hasChanged": {
+          "propertyName": "hasChanged",
+          "type": "System.Boolean",
+          "value": true
+        },
+        "hierarchyCapacity": {
+          "propertyName": "hierarchyCapacity",
+          "type": "System.Int32",
+          "value": 3
+        },
+        "tag": {
+          "propertyName": "tag",
+          "type": "System.String",
+          "value": "Untagged"
+        },
+        "name": {
+          "propertyName": "name",
+          "type": "System.String",
+          "value": "Stationary Death Trigger"
+        },
+        "hideFlags": {
+          "propertyName": "hideFlags",
+          "type": "UnityEngine.HideFlags (None, HideInHierarchy, HideInInspector, DontSaveInEditor, NotEditable, DontSaveInBuild, DontUnloadUnusedAsset, DontSave, HideAndDontSave)",
+          "value": "None"
+        }
+      }
+    },
+    {
+      "componentType": "Unity.AI.Navigation.NavMeshModifier",
+      "referenceId": "79cf4442-a8b4-4785-8232-108f78317b43",
+      "properties": {
+        "m_OverrideArea": {
+          "propertyName": "m_OverrideArea",
+          "type": "System.Boolean",
+          "value": false
+        },
+        "m_Area": {
+          "propertyName": "m_Area",
+          "type": "System.Int32",
+          "value": 0
+        },
+        "m_OverrideGenerateLinks": {
+          "propertyName": "m_OverrideGenerateLinks",
+          "type": "System.Boolean",
+          "value": false
+        },
+        "m_GenerateLinks": {
+          "propertyName": "m_GenerateLinks",
+          "type": "System.Boolean",
+          "value": false
+        },
+        "m_IgnoreFromBuild": {
+          "propertyName": "m_IgnoreFromBuild",
+          "type": "System.Boolean",
+          "value": true
+        },
+        "m_ApplyToChildren": {
+          "propertyName": "m_ApplyToChildren",
+          "type": "System.Boolean",
+          "value": true
+        },
+        "m_AffectedAgents": {
+          "propertyName": "m_AffectedAgents",
+          "type": "List<System.Int32>",
+          "value": [
+            -1
+          ]
+        }
+      }
+    }
+  ],
+  "children": [
+    {
+      "referenceId": "d95bf241-f910-4610-a41d-abaa0f6f4d08",
+      "objectProperties": {
+        "name": "DeathTrigger",
+        "activeSelf": true,
+        "isStatic": false,
+        "layer": 7,
+        "layerName": "CharacterTrigger (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
+        "tag": "Untagged",
+        "parentGameObject": "46293771-665a-494e-9184-811d42dfac27",
+        "prefabPath": null
+      },
+      "components": [
+        {
+          "componentType": "UnityEngine.Transform",
+          "referenceId": "106fd467-1c9f-4a91-90d7-944cea58abfe",
+          "properties": {
+            "position": {
+              "propertyName": "position",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            "localPosition": {
+              "propertyName": "localPosition",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            "eulerAngles": {
+              "propertyName": "eulerAngles",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            "localEulerAngles": {
+              "propertyName": "localEulerAngles",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            "right": {
+              "propertyName": "right",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+              }
+            },
+            "up": {
+              "propertyName": "up",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              }
+            },
+            "forward": {
+              "propertyName": "forward",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              }
+            },
+            "rotation": {
+              "propertyName": "rotation",
+              "type": "UnityEngine.Quaternion",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+              }
+            },
+            "localRotation": {
+              "propertyName": "localRotation",
+              "type": "UnityEngine.Quaternion",
+              "value": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+              }
+            },
+            "localScale": {
+              "propertyName": "localScale",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            "parent": {
+              "propertyName": "parent",
+              "type": "UnityEngine.Transform",
+              "value": "ba564175-cef8-46c0-a8d8-8193e3dcd774"
+            },
+            "hasChanged": {
+              "propertyName": "hasChanged",
+              "type": "System.Boolean",
+              "value": true
+            },
+            "hierarchyCapacity": {
+              "propertyName": "hierarchyCapacity",
+              "type": "System.Int32",
+              "value": 3
+            },
+            "tag": {
+              "propertyName": "tag",
+              "type": "System.String",
+              "value": "Untagged"
+            },
+            "name": {
+              "propertyName": "name",
+              "type": "System.String",
+              "value": "DeathTrigger"
+            },
+            "hideFlags": {
+              "propertyName": "hideFlags",
+              "type": "UnityEngine.HideFlags (None, HideInHierarchy, HideInInspector, DontSaveInEditor, NotEditable, DontSaveInBuild, DontUnloadUnusedAsset, DontSave, HideAndDontSave)",
+              "value": "None"
+            }
+          }
+        },
+        {
+          "componentType": "UnityEngine.BoxCollider",
+          "referenceId": "0a37ff09-d42f-44ef-9d43-1c9c17f7ae81",
+          "properties": {
+            "center": {
+              "propertyName": "center",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 0.0
+              }
+            },
+            "size": {
+              "propertyName": "size",
+              "type": "UnityEngine.Vector3",
+              "value": {
+                "x": 0.25,
+                "y": 1.0,
+                "z": 1.0
+              }
+            },
+            "enabled": {
+              "propertyName": "enabled",
+              "type": "System.Boolean",
+              "value": true
+            },
+            "isTrigger": {
+              "propertyName": "isTrigger",
+              "type": "System.Boolean",
+              "value": true
+            },
+            "contactOffset": {
+              "propertyName": "contactOffset",
+              "type": "System.Single",
+              "value": 0.01
+            },
+            "hasModifiableContacts": {
+              "propertyName": "hasModifiableContacts",
+              "type": "System.Boolean",
+              "value": false
+            },
+            "providesContacts": {
+              "propertyName": "providesContacts",
+              "type": "System.Boolean",
+              "value": false
+            },
+            "layerOverridePriority": {
+              "propertyName": "layerOverridePriority",
+              "type": "System.Int32",
+              "value": 0
+            },
+            "excludeLayers": {
+              "propertyName": "excludeLayers",
+              "type": "UnityEngine.LayerMask",
+              "value": {
+                "value": 0
+              }
+            },
+            "includeLayers": {
+              "propertyName": "includeLayers",
+              "type": "UnityEngine.LayerMask",
+              "value": {
+                "value": 0
+              }
+            },
+            "sharedMaterial": {
+              "propertyName": "sharedMaterial",
+              "type": "UnityEngine.PhysicsMaterial",
+              "value": null
+            },
+            "tag": {
+              "propertyName": "tag",
+              "type": "System.String",
+              "value": "Untagged"
+            },
+            "name": {
+              "propertyName": "name",
+              "type": "System.String",
+              "value": "DeathTrigger"
+            },
+            "hideFlags": {
+              "propertyName": "hideFlags",
+              "type": "UnityEngine.HideFlags (None, HideInHierarchy, HideInInspector, DontSaveInEditor, NotEditable, DontSaveInBuild, DontUnloadUnusedAsset, DontSave, HideAndDontSave)",
+              "value": "None"
+            }
+          }
+        },
+        {
+          "componentType": "Highrise.Lua.Generated.DeathTriggerScript",
+          "referenceId": "cadb5a81-2f97-4d17-817f-745e7dcaccfc",
+          "properties": {
+            "m_trapSound": {
+              "propertyName": "m_trapSound",
+              "type": "Highrise.AudioShader",
+              "value": {
+                "clips": [
+                  {
+                    "length": 1.11301589,
+                    "samples": 49084,
+                    "channels": 2,
+                    "frequency": 44100,
+                    "isReadyToPlay": false,
+                    "loadType": 0,
+                    "preloadAudioData": false,
+                    "ambisonic": false,
+                    "loadInBackground": false,
+                    "loadState": 0,
+                    "name": "Trap",
+                    "hideFlags": 8
+                  }
+                ],
+                "volume": 1.0,
+                "randomVolume": 0.0,
+                "pitch": 1.0,
+                "randomPitch": 0.0,
+                "hapticFeedback": 0,
+                "IsMuted": false,
+                "SpatialRange": 1.0,
+                "name": "Trap",
+                "hideFlags": 0
+              }
+            },
+            "m_Moving": {
+              "propertyName": "m_Moving",
+              "type": "System.Boolean",
+              "value": false
+            },
+            "m_Duration": {
+              "propertyName": "m_Duration",
+              "type": "System.Double",
+              "value": 0.0
+            },
+            "m_pointB": {
+              "propertyName": "m_pointB",
+              "type": "UnityEngine.Transform",
+              "value": null
+            },
+            "_script": {
+              "propertyName": "_script",
+              "type": "Highrise.Lua.LuaScript",
+              "value": {
+                "scriptName": "DeathTriggerScript",
+                "path": "Assets/Template/Scripts/Traps/DeathTriggerScript.lua",
+                "runsOn": "ClientAndServer"
+              }
+            },
+            "_uiOutput": {
+              "propertyName": "_uiOutput",
+              "type": "Highrise.Client.UIOutputType (None, World, AboveChat, Hud)",
+              "value": "None"
+            }
+          }
+        }
+      ],
+      "children": [
+        {
+          "referenceId": "f675f53c-3020-4551-ae8a-1eb80ef72526",
+          "objectProperties": {
+            "name": "Cube",
+            "activeSelf": true,
+            "isStatic": false,
+            "layer": 7,
+            "layerName": "CharacterTrigger (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
+            "tag": "Untagged",
+            "parentGameObject": "d95bf241-f910-4610-a41d-abaa0f6f4d08",
+            "prefabPath": null
+          },
+          "components": [
+            {
+              "componentType": "UnityEngine.Transform",
+              "referenceId": "a3606ab9-12a6-484c-bc56-f2806f6d4e14",
+              "properties": {
+                "position": {
+                  "propertyName": "position",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 0.0,
+                    "y": 0.5,
+                    "z": 0.0
+                  }
+                },
+                "localPosition": {
+                  "propertyName": "localPosition",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 0.0,
+                    "y": 0.5,
+                    "z": 0.0
+                  }
+                },
+                "eulerAngles": {
+                  "propertyName": "eulerAngles",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  }
+                },
+                "localEulerAngles": {
+                  "propertyName": "localEulerAngles",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  }
+                },
+                "right": {
+                  "propertyName": "right",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  }
+                },
+                "up": {
+                  "propertyName": "up",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 0.0,
+                    "y": 1.0,
+                    "z": 0.0
+                  }
+                },
+                "forward": {
+                  "propertyName": "forward",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 1.0
+                  }
+                },
+                "rotation": {
+                  "propertyName": "rotation",
+                  "type": "UnityEngine.Quaternion",
+                  "value": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                  }
+                },
+                "localRotation": {
+                  "propertyName": "localRotation",
+                  "type": "UnityEngine.Quaternion",
+                  "value": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                  }
+                },
+                "localScale": {
+                  "propertyName": "localScale",
+                  "type": "UnityEngine.Vector3",
+                  "value": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                  }
+                },
+                "parent": {
+                  "propertyName": "parent",
+                  "type": "UnityEngine.Transform",
+                  "value": "106fd467-1c9f-4a91-90d7-944cea58abfe"
+                },
+                "hasChanged": {
+                  "propertyName": "hasChanged",
+                  "type": "System.Boolean",
+                  "value": true
+                },
+                "hierarchyCapacity": {
+                  "propertyName": "hierarchyCapacity",
+                  "type": "System.Int32",
+                  "value": 3
+                },
+                "tag": {
+                  "propertyName": "tag",
+                  "type": "System.String",
+                  "value": "Untagged"
+                },
+                "name": {
+                  "propertyName": "name",
+                  "type": "System.String",
+                  "value": "Cube"
+                },
+                "hideFlags": {
+                  "propertyName": "hideFlags",
+                  "type": "UnityEngine.HideFlags (None, HideInHierarchy, HideInInspector, DontSaveInEditor, NotEditable, DontSaveInBuild, DontUnloadUnusedAsset, DontSave, HideAndDontSave)",
+                  "value": "None"
+                }
+              }
+            },
+            {
+              "componentType": "UnityEngine.MeshFilter",
+              "referenceId": "479d9834-bb1b-4a15-b2da-732895679e65",
+              "properties": {
+                "sharedMesh": {
+                  "propertyName": "sharedMesh",
+                  "type": "UnityEngine.Mesh",
+                  "value": "Cube"
+                },
+                "tag": {
+                  "propertyName": "tag",
+                  "type": "System.String",
+                  "value": "Untagged"
+                },
+                "name": {
+                  "propertyName": "name",
+                  "type": "System.String",
+                  "value": "Cube"
+                },
+                "hideFlags": {
+                  "propertyName": "hideFlags",
+                  "type": "UnityEngine.HideFlags (None, HideInHierarchy, HideInInspector, DontSaveInEditor, NotEditable, DontSaveInBuild, DontUnloadUnusedAsset, DontSave, HideAndDontSave)",
+                  "value": "None"
+                }
+              }
+            },
+            {
+              "componentType": "UnityEngine.MeshRenderer",
+              "referenceId": "e32c670a-de10-45ff-87a6-1dc7af13b505",
+              "properties": {
+                "additionalVertexStreams": {
+                  "propertyName": "additionalVertexStreams",
+                  "type": "UnityEngine.Mesh",
+                  "value": null
+                },
+                "enlightenVertexStream": {
+                  "propertyName": "enlightenVertexStream",
+                  "type": "UnityEngine.Mesh",
+                  "value": null
+                },
+                "scaleInLightmap": {
+                  "propertyName": "scaleInLightmap",
+                  "type": "System.Single",
+                  "value": 1.0
+                },
+                "receiveGI": {
+                  "propertyName": "receiveGI",
+                  "type": "UnityEngine.ReceiveGI (Lightmaps, LightProbes)",
+                  "value": "Lightmaps"
+                },
+                "stitchLightmapSeams": {
+                  "propertyName": "stitchLightmapSeams",
+                  "type": "System.Boolean",
+                  "value": true
+                },
+                "bounds": {
+                  "propertyName": "bounds",
+                  "type": "UnityEngine.Bounds",
+                  "value": {
+                    "center": {
+                      "x": 0.0,
+                      "y": 0.5,
+                      "z": 0.0
+                    },
+                    "size": {
+                      "x": 1.0,
+                      "y": 1.0,
+                      "z": 1.0
+                    }
+                  }
+                },
+                "localBounds": {
+                  "propertyName": "localBounds",
+                  "type": "UnityEngine.Bounds",
+                  "value": {
+                    "center": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0
+                    },
+                    "size": {
+                      "x": 1.0,
+                      "y": 1.0,
+                      "z": 1.0
+                    }
+                  }
+                },
+                "enabled": {
+                  "propertyName": "enabled",
+                  "type": "System.Boolean",
+                  "value": true
+                },
+                "shadowCastingMode": {
+                  "propertyName": "shadowCastingMode",
+                  "type": "UnityEngine.Rendering.ShadowCastingMode (Off, On, TwoSided, ShadowsOnly)",
+                  "value": "On"
+                },
+                "receiveShadows": {
+                  "propertyName": "receiveShadows",
+                  "type": "System.Boolean",
+                  "value": true
+                },
+                "forceRenderingOff": {
+                  "propertyName": "forceRenderingOff",
+                  "type": "System.Boolean",
+                  "value": false
+                },
+                "staticShadowCaster": {
+                  "propertyName": "staticShadowCaster",
+                  "type": "System.Boolean",
+                  "value": false
+                },
+                "motionVectorGenerationMode": {
+                  "propertyName": "motionVectorGenerationMode",
+                  "type": "UnityEngine.MotionVectorGenerationMode (Camera, Object, ForceNoMotion)",
+                  "value": "Object"
+                },
+                "lightProbeUsage": {
+                  "propertyName": "lightProbeUsage",
+                  "type": "UnityEngine.Rendering.LightProbeUsage (Off, BlendProbes, UseProxyVolume, CustomProvided)",
+                  "value": "BlendProbes"
+                },
+                "reflectionProbeUsage": {
+                  "propertyName": "reflectionProbeUsage",
+                  "type": "UnityEngine.Rendering.ReflectionProbeUsage (Off, BlendProbes, BlendProbesAndSkybox, Simple)",
+                  "value": "BlendProbes"
+                },
+                "renderingLayerMask": {
+                  "propertyName": "renderingLayerMask",
+                  "type": "System.UInt32",
+                  "value": 1
+                },
+                "rendererPriority": {
+                  "propertyName": "rendererPriority",
+                  "type": "System.Int32",
+                  "value": 0
+                },
+                "rayTracingMode": {
+                  "propertyName": "rayTracingMode",
+                  "type": "UnityEngine.Experimental.Rendering.RayTracingMode (Off, Static, DynamicTransform, DynamicGeometry)",
+                  "value": "DynamicTransform"
+                },
+                "rayTracingAccelerationStructureBuildFlags": {
+                  "propertyName": "rayTracingAccelerationStructureBuildFlags",
+                  "type": "UnityEngine.Rendering.RayTracingAccelerationStructureBuildFlags (None, PreferFastTrace, PreferFastBuild, MinimizeMemory)",
+                  "value": "PreferFastTrace"
+                },
+                "rayTracingAccelerationStructureBuildFlagsOverride": {
+                  "propertyName": "rayTracingAccelerationStructureBuildFlagsOverride",
+                  "type": "System.Boolean",
+                  "value": false
+                },
+                "sortingLayerName": {
+                  "propertyName": "sortingLayerName",
+                  "type": "System.String",
+                  "value": "Default"
+                },
+                "sortingLayerID": {
+                  "propertyName": "sortingLayerID",
+                  "type": "System.Int32",
+                  "value": 0
+                },
+                "sortingOrder": {
+                  "propertyName": "sortingOrder",
+                  "type": "System.Int32",
+                  "value": 0
+                },
+                "allowOcclusionWhenDynamic": {
+                  "propertyName": "allowOcclusionWhenDynamic",
+                  "type": "System.Boolean",
+                  "value": true
+                },
+                "lightProbeProxyVolumeOverride": {
+                  "propertyName": "lightProbeProxyVolumeOverride",
+                  "type": "UnityEngine.GameObject",
+                  "value": null
+                },
+                "probeAnchor": {
+                  "propertyName": "probeAnchor",
+                  "type": "UnityEngine.Transform",
+                  "value": null
+                },
+                "lightmapIndex": {
+                  "propertyName": "lightmapIndex",
+                  "type": "System.Int32",
+                  "value": -1
+                },
+                "realtimeLightmapIndex": {
+                  "propertyName": "realtimeLightmapIndex",
+                  "type": "System.Int32",
+                  "value": -1
+                },
+                "lightmapScaleOffset": {
+                  "propertyName": "lightmapScaleOffset",
+                  "type": "UnityEngine.Vector4",
+                  "value": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0,
+                    "w": 0.0
+                  }
+                },
+                "realtimeLightmapScaleOffset": {
+                  "propertyName": "realtimeLightmapScaleOffset",
+                  "type": "UnityEngine.Vector4",
+                  "value": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0,
+                    "w": 0.0
+                  }
+                },
+                "sharedMaterial": {
+                  "propertyName": "sharedMaterial",
+                  "type": "UnityEngine.Material",
+                  "value": "Assets/Template/Art/Materials/BarrierMat.mat"
+                },
+                "sharedMaterials": {
+                  "propertyName": "sharedMaterials",
+                  "type": "UnityEngine.Material[]",
+                  "value": [
+                    "Assets/Template/Art/Materials/BarrierMat.mat"
+                  ]
+                },
+                "tag": {
+                  "propertyName": "tag",
+                  "type": "System.String",
+                  "value": "Untagged"
+                },
+                "name": {
+                  "propertyName": "name",
+                  "type": "System.String",
+                  "value": "Cube"
+                },
+                "hideFlags": {
+                  "propertyName": "hideFlags",
+                  "type": "UnityEngine.HideFlags (None, HideInHierarchy, HideInInspector, DontSaveInEditor, NotEditable, DontSaveInBuild, DontUnloadUnusedAsset, DontSave, HideAndDontSave)",
+                  "value": "None"
+                }
+              }
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

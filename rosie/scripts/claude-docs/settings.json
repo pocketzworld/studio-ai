@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Skill(rosie-research-highrise-studio-lua-api)",
+      "Skill(rosie-research-highrise-studio-docs)",
       "Skill(rosie-understand-networked-events)",
       "mcp__ide__getDiagnostics",
       "Bash(powershell:*)",

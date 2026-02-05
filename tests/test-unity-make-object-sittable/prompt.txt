@@ -1,0 +1,1 @@
+write an edit.json that will make my character sit on the cube when it's tapped on

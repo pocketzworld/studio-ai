@@ -47,7 +47,7 @@ local function validateAndRemovePlayers()
     end
 end
 
-local function createPlayerData(playerId: string, player: Player): PlayerInfo
+local function createPlayerData(playerId: string, player: Player | nil): PlayerInfo
     return {
         UserId = playerId,
         Player = player,
@@ -107,7 +107,7 @@ function RemovePlayer(playerId: string, playerData: PlayerInfo)
     playerDataList[playerId] = nil
 end
 
-function GetPlayerDataById(playerId: string): PlayerInfo
+function GetPlayerDataById(playerId: string): PlayerInfo | nil
     if not playerId then
         print("ERROR: No player ID provided to GetPlayerDataById")
         return nil
@@ -184,7 +184,7 @@ function RegisterCharacterModel(playerId: string, model: CharacterModel)
     _info.Model = model
 end
 
-function GetCharacterModelForPlayerId(id: string): CharacterModel
+function GetCharacterModelForPlayerId(id: string): CharacterModel | nil
     if not id or id == "" then return nil end
     local _playerInfo = GetPlayerDataById(id)
     if _playerInfo then

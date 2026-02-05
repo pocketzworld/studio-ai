@@ -252,12 +252,6 @@ namespace Rosie
                 {
                     UnityEngine.Debug.Log($"[EditorTriggers] NavMesh bake completed ({surfaceCount} surface(s))");
                 }
-                else
-                {
-                    // Fall back to legacy NavMesh baking
-                    UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
-                    UnityEngine.Debug.Log("[EditorTriggers] NavMesh bake completed (legacy)");
-                }
             }
             catch (Exception e)
             {

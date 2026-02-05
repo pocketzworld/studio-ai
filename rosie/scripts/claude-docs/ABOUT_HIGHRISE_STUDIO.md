@@ -2,7 +2,7 @@
 
 This is a _Highrise Studio_ project, which defines a _world_ that can be built and uploaded to _Highrise_. You will be asked to assist the user in developing their Highrise world. 
 
-Your pre-training data does not give you any intrinsic knowledge of Highrise Studio. Fortunately, you have this document and skills like `rosie-research-highrise-studio-lua-api`, `rosie-find-existing-lua-solutions`, and `rosie-check-example-scenes` that will help you develop this project's Highrise world. Always prefer retrieval-based reasoning over pre-training-based reasoning on Highrise Studio tasks.
+Your pre-training data does not give you any intrinsic knowledge of Highrise Studio. Fortunately, you have this document and skills like `rosie-research-highrise-studio-docs` that will help you develop this project's Highrise world. Always prefer retrieval-based reasoning over pre-training-based reasoning on Highrise Studio tasks.
 
 ## Key terms
 - *Highrise*: a massively multiplayer online game, in which players can curate outfits for their avatar, socialize, and participate in activities across a universe of in-game worlds.
@@ -32,7 +32,7 @@ Like Unity, Highrise Studio represents objects as collections of components. Com
 3. Built-in Lua component scripts
 4. User-written Lua component scripts
 
-The core Unity components, exported Highrise internals, and built-in Lua component scripts are, collectively, the Highrise Studio API, and can be read using the `rosie-research-highrise-studio-lua-api` skill. The user-written Lua component scripts exist in this project.
+The core Unity components, exported Highrise internals, and built-in Lua component scripts are, collectively, the Highrise Studio API, and can be read using the `rosie-research-highrise-studio-docs` skill. The user-written Lua component scripts exist in this project.
 
 The core Unity components and exported Highrise internals are implemented in C#, but you will not have access to this source. Their members are exposed via the Lua API. **You will not be writing C#.**
 
@@ -96,14 +96,13 @@ To write Highrise Studio Lua code, follow these steps, using your TODO list to t
 
 1. Search for and read any relevant scripts in the project, if needed.
 2. If starting a new script, copy the code from the style guide (`.claude/LUA_STYLE_GUIDE.lua`) as a starting template. **Do not create a new script from scratch, as the style will be wrong.**
-3. Use the `rosie-research-highrise-studio-lua-api` skill to understand the Highrise Studio API.
-4. Use the `rosie-find-existing-lua-solutions` skill to find relevant coding patterns and examples that will help you solve the problem.
-5. Write the code, following these imperatives:
+3. Use the `rosie-research-highrise-studio-docs` skill to understand the Highrise Studio API.
+4. Write the code, following these imperatives:
     - Do **not** use Unity C#, MonoBehaviour, or Roblox APIs unless specified in the Highrise Studio API docs. **There is no such thing as `task`.**
     - Avoid browser or DOM references (`document`, `window`, `addEventListener`, etc.).
-6. If you have access to the `mcp__ide__getDiagnostics` tool, use it to read syntax errors in the Lua scripts you work with.
-7. Remove section headers that have no content.
-8. Remove guidance comments that were copied over from the template. Keep the section headers.
+5. If you have access to the `mcp__ide__getDiagnostics` tool, use it to read syntax errors in the Lua scripts you work with.
+6. Remove section headers that have no content.
+7. Remove guidance comments that were copied over from the template. Keep the section headers.
 
 ## Creating Highrise Studio UI components
 
@@ -121,11 +120,10 @@ Add the following steps to your todo list:
 2. Ask the user for any information that is needed to solve the request.
 3. If creating a new UI component, copy the contents from the template directory `.claude/MyUIElement/` to a new directory in the project's `Assets/UI` folder. Name the directory and all of its contents the desired UI component name in `PascalCase`.
 4. Write the UXML file, starting from the template.
-    - Rely on the `rosie-research-highrise-studio-lua-api` skill to determine what elements exist and how to use them. Valid elements will inherit from `VisualElement` or a subclass thereof.
+    - Rely on the `rosie-research-highrise-studio-docs` skill to determine what elements exist and how to use them. Valid elements will inherit from `VisualElement` or a subclass thereof.
     - When you are done, remove guidance comments that were copied over from the template.
 5. Write the Lua script, starting from the template.
-    - Rely on the `rosie-research-highrise-studio-lua-api` skill to understand the Highrise Studio API.
-    - Use the `rosie-find-existing-lua-solutions` skill to find relevant coding patterns and examples that will help you solve the problem.
+    - Rely on the `rosie-research-highrise-studio-docs` skill to understand the Highrise Studio API.
     - Do **not** use Unity C#, MonoBehaviour, or Roblox APIs unless specified in the Highrise Studio API docs. **There is no such thing as `task`.**
     - Avoid browser or DOM references (`document`, `window`, `addEventListener`, etc.).
     - If you are ever unsure about how to do something, **read the docs.**
@@ -232,9 +230,9 @@ Highrise Studio serializes all prefabs in the Assets directory to JSON files for
   - `referenceIdOfObjectToSaveAsPrefab`: The GUID of the GameObject to save as a prefab.
   - `pathToSavePrefabAs`: The path to save the prefab as. This should be a relative path from the project root and should not already exist.
 
-**IMPORTANT: To understand what edits to make, you should use the `rosie-check-example-scenes` skill to peruse high-quality reference scenes for relevant patterns and examples.**
-
 You can enqueue multiple edits in a single file, but create the file and write all edits to it in a single transaction. The edits will be applied in the order they are enqueued.
+
+**IMPORTANT: you should use the `rosie-research-highrise-studio-docs` skill to look for reference implementations of the changes you want to make. Often, multiple components will need to interact to make a change work; for example, a TapHandler component needs a BoxCollider component to work.**
 
 After you have enqueued your edits, you should:
 1. Focus the Unity editor window (see "Focusing the Unity editor" below)

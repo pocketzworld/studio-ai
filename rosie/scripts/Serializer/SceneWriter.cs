@@ -31,7 +31,6 @@ namespace Rosie
                 EditorSceneManager.sceneSaved -= MarkShouldSerialize;
                 EditorSceneManager.sceneOpened -= MarkShouldSerialize;
                 EditorApplication.update -= OnUpdate;
-                EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             }
 
             if (!System.IO.Directory.Exists(WRITE_DIRECTORY))
@@ -48,7 +47,6 @@ namespace Rosie
             EditorSceneManager.sceneSaved += MarkShouldSerialize;
             EditorSceneManager.sceneOpened += MarkShouldSerialize;
             EditorApplication.update += OnUpdate;
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
             
             initialized = true;
         }
@@ -123,16 +121,12 @@ namespace Rosie
             shouldSerializeInNFrames = 2;
         }
 
-        private static void OnPlayModeStateChanged(PlayModeStateChange state)
-        {
-            if (state == PlayModeStateChange.EnteredEditMode)
-            {
-                shouldSerializeInNFrames = 2;
-            }
-        }
-
         private static void SerializeScene(UnityEngine.SceneManagement.Scene scene)
         {
+            // If the scene is changing because we entered play mode, don't serialize it
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
+                return;
+
             string filePath = System.IO.Path.Combine(WRITE_DIRECTORY, "active_scene.json");
             System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(filePath));
             if (System.IO.File.Exists(filePath))

@@ -11,10 +11,7 @@ rosie/
 ├── scripts/                      # Hook scripts
 │   └── claude-docs/              # Docs synced to user projects. Also contains the ABOUT_HIGHRISE_STUDIO.md file, which you can use to understand Highrise Studio
 ├── skills/                       # Claude Code skills
-│   ├── write-highrise-studio-lua/
-│   ├── create-highrise-studio-ui/
-│   ├── use-unity-editor/
-│   ├── research-highrise-studio-lua-api/
+│   ├── research-highrise-studio-docs/
 │   └── understand-networked-events/
 └── tests/                        # Test harness and scenarios
 ```
@@ -23,10 +20,7 @@ rosie/
 
 | Skill | Purpose |
 |-------|---------|
-| `write-highrise-studio-lua` | Write non-UI Lua scripts |
-| `create-highrise-studio-ui` | Create UI components (UXML, USS, Lua) |
-| `use-unity-editor` | Read/edit scenes and prefabs via JSON serialization |
-| `research-highrise-studio-lua-api` | Query Highrise Studio API docs |
+| `research-highrise-studio-docs` | Query Highrise Studio API docs and example scenes |
 | `understand-networked-events` | Debug networked event flows |
 
 Each skill has a `SKILL.md` file with instructions and a `resources/` folder with templates and guides.
@@ -35,10 +29,8 @@ Each skill has a `SKILL.md` file with instructions and a `resources/` folder wit
 
 Defined in `hooks/hooks.json`:
 
-- **SessionStart**: Version check, Serializer symlink setup
+- **SessionStart**: Version check, Serializer copy setup
 - **SessionEnd**: Sync docs to user projects
-- **PreToolUse** (Write/Edit/Read/Grep/Search): Block file operations until required skills are invoked
-- **PostToolUse** (Skill): Log skill usage to temp file
 
 ## Development
 

@@ -1,1 +1,0 @@
-cp -r ./../../rosie/skills/write-highrise-studio-lua/resources $1

@@ -10,7 +10,7 @@
   "components": [],
   "children": [
     {
-      "referenceId": "6d3a76a9-5675-4126-aaee-1d2b2b6170e1",
+      "referenceId": "927556e8-8165-4e49-87f0-0d82bf381b4a",
       "objectProperties": {
         "name": "NavMesh",
         "activeSelf": true,
@@ -24,7 +24,7 @@
       "components": [
         {
           "componentType": "UnityEngine.Transform",
-          "referenceId": "722c2eb3-1d04-4e9e-b48c-8be34dc1f3fe",
+          "referenceId": "8110b0df-0ef5-44d2-8384-3aa21a8d12ff",
           "properties": {
             "position": {
               "propertyName": "position",
@@ -152,7 +152,7 @@
         },
         {
           "componentType": "Unity.AI.Navigation.NavMeshSurface",
-          "referenceId": "3149e1ba-7939-4a25-86d6-55bca69f790c",
+          "referenceId": "a38c82cb-b967-4fcb-81c2-c8f959692e48",
           "properties": {
             "m_AgentTypeID": {
               "propertyName": "m_AgentTypeID",
@@ -250,7 +250,7 @@
       "children": []
     },
     {
-      "referenceId": "5eda36b9-3959-4df5-b0a8-65dc9cf8746e",
+      "referenceId": "b856613f-2e13-4721-84d2-85bcd828b9a8",
       "objectProperties": {
         "name": "Root",
         "activeSelf": true,
@@ -264,7 +264,7 @@
       "components": [
         {
           "componentType": "UnityEngine.Transform",
-          "referenceId": "1ebffbfc-ea28-4e43-8af5-6f450bd8c65d",
+          "referenceId": "decde7d5-1bca-4361-ba00-eef57f300648",
           "properties": {
             "position": {
               "propertyName": "position",
@@ -393,7 +393,7 @@
       ],
       "children": [
         {
-          "referenceId": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+          "referenceId": "cb84a6af-cdee-42d0-a851-362b19721e1c",
           "objectProperties": {
             "name": "Layout",
             "activeSelf": true,
@@ -401,13 +401,13 @@
             "layer": 0,
             "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
             "tag": "Untagged",
-            "parentGameObject": "5eda36b9-3959-4df5-b0a8-65dc9cf8746e",
+            "parentGameObject": "b856613f-2e13-4721-84d2-85bcd828b9a8",
             "prefabPath": null
           },
           "components": [
             {
               "componentType": "UnityEngine.Transform",
-              "referenceId": "09fb688e-52d2-4225-89bf-390b4abf6730",
+              "referenceId": "c5703ace-8e6b-469f-b5ec-8913e3b05f35",
               "properties": {
                 "position": {
                   "propertyName": "position",
@@ -504,7 +504,7 @@
                 "parent": {
                   "propertyName": "parent",
                   "type": "UnityEngine.Transform",
-                  "value": "1ebffbfc-ea28-4e43-8af5-6f450bd8c65d"
+                  "value": "decde7d5-1bca-4361-ba00-eef57f300648"
                 },
                 "hasChanged": {
                   "propertyName": "hasChanged",
@@ -536,7 +536,7 @@
           ],
           "children": [
             {
-              "referenceId": "87bc4e66-85e4-40a6-92e1-6e0e750199b7",
+              "referenceId": "e0286c19-8770-4761-988a-5c0637e1dbd7",
               "objectProperties": {
                 "name": "Floor",
                 "activeSelf": true,
@@ -544,13 +544,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "9a8d963f-6188-4d14-b692-852982837a64",
+                  "referenceId": "a125157b-0651-4cb0-89c8-7cb665656515",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -647,7 +647,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -678,7 +678,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "2e437dcd-747c-44c7-9826-4e48d9301ae5",
+                  "referenceId": "4a189e5a-1e38-4ac7-8856-712e70343f1e",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -704,7 +704,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "7f87559a-fd15-44ef-9bed-f9590797cb86",
+                  "referenceId": "62871c0d-9649-4b3b-bf8a-2433d805e252",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -919,7 +919,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "620c4afd-27db-4196-acad-4687180f0a28",
+                  "referenceId": "7b1bd96a-a5c8-43cc-85b4-22af9bbfb7f4",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -1009,7 +1009,7 @@
               "children": []
             },
             {
-              "referenceId": "95b9274a-762d-4fa0-a026-130a3b6b1238",
+              "referenceId": "b324c097-c49c-40bb-af7f-8ab992efed1b",
               "objectProperties": {
                 "name": "Floor (5)",
                 "activeSelf": true,
@@ -1017,13 +1017,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "51cc5d41-1e60-4244-adfd-06333315be02",
+                  "referenceId": "341745cf-3fcd-44d0-b2b3-350ad380671c",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -1120,7 +1120,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -1151,7 +1151,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "64dbc274-d292-4ee8-9ba3-e668f4008a53",
+                  "referenceId": "443eb190-e444-4518-9a10-6b1c34f3ff47",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -1177,7 +1177,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "4c4f4369-23bb-464b-9db4-fa30393c2b02",
+                  "referenceId": "7b432d85-b1d9-4fb1-98fd-2daa611e2941",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -1392,7 +1392,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "7bd539c3-a571-480e-bcd1-3730ebc090cd",
+                  "referenceId": "bcc48797-1010-494c-a333-b2e421676665",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -1482,7 +1482,7 @@
               "children": []
             },
             {
-              "referenceId": "deb01ff7-34a6-4998-81eb-ee338222838f",
+              "referenceId": "aa5c0077-bd4f-4aca-aafc-e74e1ca97edd",
               "objectProperties": {
                 "name": "Floor (10)",
                 "activeSelf": true,
@@ -1490,13 +1490,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "860ed503-9cad-4e9d-94c0-e47480648659",
+                  "referenceId": "61b76794-6f76-4a3b-b7cb-a7b679217438",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -1593,7 +1593,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -1624,7 +1624,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "2a26c4db-ade8-430e-9978-719b0d149c88",
+                  "referenceId": "8eaa81ca-da91-4b78-9e0b-6bdd6608d72b",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -1650,7 +1650,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "4c6223ae-2bb9-4e0f-bbe6-01c01a696f54",
+                  "referenceId": "474c4637-ab3e-43c0-b282-d8394e235a46",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -1865,7 +1865,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "736f331b-a71b-42a9-b178-ce2340d04cdd",
+                  "referenceId": "f871ac46-54fd-4cae-8c08-bc8690b05178",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -1955,7 +1955,7 @@
               "children": []
             },
             {
-              "referenceId": "ea730b41-057b-4267-a49d-370f4ae66950",
+              "referenceId": "b390d17a-40a8-41f5-8852-d934c3d01f18",
               "objectProperties": {
                 "name": "Floor (15)",
                 "activeSelf": true,
@@ -1963,13 +1963,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "92b5b55b-5071-4abc-9241-acc129e78715",
+                  "referenceId": "7111f42f-2811-44b1-8e3d-e2c5c8d793ea",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -2066,7 +2066,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -2097,7 +2097,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "6558a2cc-f311-4f8a-a297-b9a64e118185",
+                  "referenceId": "eddc0ac0-5536-4d39-9cdf-ca9ff0e0fd1e",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -2123,7 +2123,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "90291196-4f96-4b8c-8a3a-d501a2344c16",
+                  "referenceId": "f875bda1-8b90-497b-8b77-b33833a6c9d4",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -2338,7 +2338,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "f234ef9e-ed76-4fd9-9f8f-1d8ffe295cd1",
+                  "referenceId": "90b52c6e-020f-4417-9e6b-004d3b9582ee",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -2428,7 +2428,7 @@
               "children": []
             },
             {
-              "referenceId": "eaec399e-7dd3-4529-b2a1-8d1b478e37bb",
+              "referenceId": "2d49bd4a-ad24-4449-b6ca-67d95f1e6bf8",
               "objectProperties": {
                 "name": "Floor (20)",
                 "activeSelf": true,
@@ -2436,13 +2436,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "84dc4eda-b66c-46f5-9bb7-e31692c95beb",
+                  "referenceId": "4bfd96f9-93ab-4b63-b2c0-63ed557aaeb0",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -2539,7 +2539,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -2570,7 +2570,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "2e59855e-5b38-4028-bc0c-408a62b59109",
+                  "referenceId": "6f224f4a-19d3-4c4d-ad37-588234046d9a",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -2596,7 +2596,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "e45bcfef-fca2-4da5-8732-abc9c898c428",
+                  "referenceId": "e24b6ebc-bedd-485f-8f8b-ee4c5496e7e7",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -2811,7 +2811,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "59d8af01-b8e7-47a5-b552-1703c634ccba",
+                  "referenceId": "ac35a475-c7c6-42c7-8c2a-3541eabd6371",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -2901,7 +2901,7 @@
               "children": []
             },
             {
-              "referenceId": "7c78f619-101f-4e8e-a4dc-aea132a643d4",
+              "referenceId": "df031ca3-2e38-44cc-bba6-81fa0ee2a77e",
               "objectProperties": {
                 "name": "Floor (1)",
                 "activeSelf": true,
@@ -2909,13 +2909,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "c8439d80-6c10-47c4-90ee-1a145484f98b",
+                  "referenceId": "714838d6-398f-4f2b-b445-27b9324d10ea",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -3012,7 +3012,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -3043,7 +3043,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "f192a993-ad1e-4075-8f64-b983949acc3d",
+                  "referenceId": "2480d118-27c2-4cb5-be45-b024eeb931aa",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -3069,7 +3069,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "22afae7b-adbc-4e62-84cf-cbea8391f61d",
+                  "referenceId": "4d6ce6d8-5ee4-4a8f-860f-bea5a28aa108",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -3284,7 +3284,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "45c19322-d65e-4e14-8182-fa7729a30917",
+                  "referenceId": "ea3ebc59-3b54-4824-ad70-f26a4e502492",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -3374,7 +3374,7 @@
               "children": []
             },
             {
-              "referenceId": "f4e2b728-26aa-40e4-be26-2827b0c54c81",
+              "referenceId": "1efa9d79-89f7-4f2f-89b8-86968c202af5",
               "objectProperties": {
                 "name": "Floor (6)",
                 "activeSelf": true,
@@ -3382,13 +3382,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "91c0e64c-fa4f-424c-996a-7be6296c511a",
+                  "referenceId": "f58aab21-6f51-4106-b9b6-76389141dd18",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -3485,7 +3485,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -3516,7 +3516,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "6d9cf7df-6d75-4e93-82ff-bd332f9d10ac",
+                  "referenceId": "db812edd-27c6-40a1-a034-72660b1f2d23",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -3542,7 +3542,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "403ce682-85a0-4eed-993d-5a8f8664de15",
+                  "referenceId": "1951ed15-278c-442d-873a-5080023ba2da",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -3757,7 +3757,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "7e44c210-a47b-4bb5-a346-9b18a2c32736",
+                  "referenceId": "130301ea-58f8-4bc0-879b-8e2b1c1de5b0",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -3847,7 +3847,7 @@
               "children": []
             },
             {
-              "referenceId": "81710386-cd8c-4fed-8e71-309aef62ad6a",
+              "referenceId": "b2982125-1b1e-4f61-b711-c9742157eb58",
               "objectProperties": {
                 "name": "Floor (11)",
                 "activeSelf": true,
@@ -3855,13 +3855,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "b67c5e15-eaae-42c5-9098-68b44d05c87e",
+                  "referenceId": "87d54f45-bedf-437f-bdaf-cbd7c1e007ba",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -3958,7 +3958,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -3989,7 +3989,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "6f7f34df-9a55-4111-a526-e944b56cc015",
+                  "referenceId": "f604b2b4-846f-4e60-b897-81c7dd1e1190",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -4015,7 +4015,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "47c7fdb9-32e7-4246-bfd7-cb3e8089e765",
+                  "referenceId": "2b09c404-3179-4401-b800-7b18999a5926",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -4230,7 +4230,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "2f5dfd81-4bff-4c77-961c-2e995943b52d",
+                  "referenceId": "b6354cd6-d956-4704-93f8-d772e3a8f17c",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -4320,7 +4320,7 @@
               "children": []
             },
             {
-              "referenceId": "db713976-2057-48dc-a3e5-17c321bf4834",
+              "referenceId": "d576a350-83ce-4a09-ad5d-767f99ea63c3",
               "objectProperties": {
                 "name": "Floor (16)",
                 "activeSelf": true,
@@ -4328,13 +4328,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "7d1c00be-25f3-408b-a19c-cd62915d3908",
+                  "referenceId": "156bb4f7-9de7-427e-92d9-41bf02dd8d0c",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -4431,7 +4431,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -4462,7 +4462,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "e8234c64-26ce-479f-a7fa-15092a4e9862",
+                  "referenceId": "b7002cbd-869e-40ce-91b6-4289828b8806",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -4488,7 +4488,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "014c7447-4476-452e-96e2-307683692b6f",
+                  "referenceId": "9d82de7f-74b1-4b22-afab-eff763bccade",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -4703,7 +4703,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "07df1fbf-35ef-47ce-88b0-a5e92ab94fbe",
+                  "referenceId": "3993df95-bfc8-4cc8-b6ff-c0ad2e815cb9",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -4793,7 +4793,7 @@
               "children": []
             },
             {
-              "referenceId": "ec0a8af0-635b-42ae-83e1-1b974fa3812a",
+              "referenceId": "d4b52ed1-2fcf-4524-b382-377aff5b739b",
               "objectProperties": {
                 "name": "Floor (21)",
                 "activeSelf": true,
@@ -4801,13 +4801,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "3c235f1f-e8fb-45a6-873a-949f29132ce8",
+                  "referenceId": "f5862311-4582-409a-b22a-4ce540d5ee0f",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -4904,7 +4904,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -4935,7 +4935,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "110d4510-c793-48c7-a122-b9f6ecf6cc45",
+                  "referenceId": "32692560-37a9-48ba-a0ad-573f3ca7cfdd",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -4961,7 +4961,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "d08724ee-f5bf-4315-8972-24b13090b5c5",
+                  "referenceId": "a20d93cb-e4f4-4039-988a-66a311989a44",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -5176,7 +5176,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "42511a4a-5039-488b-9d51-97e8e45826bf",
+                  "referenceId": "88bdb0a0-df50-4809-800b-b9034bfb02d3",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -5266,7 +5266,7 @@
               "children": []
             },
             {
-              "referenceId": "66d74a77-83c0-4b92-8fb6-e83e33297325",
+              "referenceId": "7f007c8a-1dce-42f5-a624-9e94768e9c27",
               "objectProperties": {
                 "name": "Floor (2)",
                 "activeSelf": true,
@@ -5274,13 +5274,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "8fae78b4-706d-412d-8115-98123ee15e47",
+                  "referenceId": "32b99efa-c78e-460b-92cd-df4c873ee66e",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -5377,7 +5377,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -5408,7 +5408,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "392dd34c-37aa-43f1-9e95-24deaf141112",
+                  "referenceId": "26ede017-9d67-44e3-8054-74a6efd888bb",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -5434,7 +5434,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "0f9c2941-2dec-4c48-a4b0-55951af3e05f",
+                  "referenceId": "f2e69d4a-bab9-407f-a6da-32f39c4d3a1f",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -5649,7 +5649,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "67afb624-358a-47cb-9370-d1d03aa2c144",
+                  "referenceId": "5e04d211-37d4-47b6-a9b4-ee8558b247e1",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -5739,7 +5739,7 @@
               "children": []
             },
             {
-              "referenceId": "d9d2c133-32d0-4aa5-8187-f052aafa5138",
+              "referenceId": "ded355c3-2151-4667-88e7-19711d8f3f33",
               "objectProperties": {
                 "name": "Floor (7)",
                 "activeSelf": true,
@@ -5747,13 +5747,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "657e125f-c90a-4aa3-85f3-feacd18a1884",
+                  "referenceId": "71ccdc25-be4a-4767-8771-4ec456a74945",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -5850,7 +5850,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -5881,7 +5881,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "066418a6-fd29-47e7-9144-04d1f2f6e5a7",
+                  "referenceId": "41e1ceb4-13c8-4b26-a2a7-34139811e224",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -5907,7 +5907,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "a15d816f-6fb4-493e-8d2c-014ee0e8889f",
+                  "referenceId": "e075c57f-d7d0-45b8-bc06-20634576e0c9",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -6122,7 +6122,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "b888b8cf-f4b8-439f-93d0-c468cca975d1",
+                  "referenceId": "9e3bb94e-3e73-4f69-8167-8b32f9d97452",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -6212,7 +6212,7 @@
               "children": []
             },
             {
-              "referenceId": "6f5823b7-480d-4c3c-8f90-e8c6b2f675e1",
+              "referenceId": "e63864de-920b-498c-8157-0c2b71bdd94c",
               "objectProperties": {
                 "name": "Floor (12)",
                 "activeSelf": true,
@@ -6220,13 +6220,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "901e9635-e498-4ea4-9188-a09c6aacc40a",
+                  "referenceId": "c8011061-8612-4fb5-ad07-5693ee271f1a",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -6323,7 +6323,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -6354,7 +6354,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "3ea4dba8-f2af-47f7-b9f3-3aedd8e56de5",
+                  "referenceId": "544024c4-363f-45a7-be90-c8eb406bc255",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -6380,7 +6380,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "7e7dc3b2-6a70-4786-9201-9e95f7668eae",
+                  "referenceId": "59a201be-41c3-4fbb-8a36-662259598adf",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -6595,7 +6595,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "e3e7cb6b-5a3e-42c1-b4dd-8b6cd1e4c7e4",
+                  "referenceId": "239be857-9d55-48c0-bd79-4fe218bc2865",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -6685,7 +6685,7 @@
               "children": []
             },
             {
-              "referenceId": "55f3dfd8-7926-4041-8d10-60d2baa52a3d",
+              "referenceId": "1dc9c940-2d95-4c23-94b3-49920bd24675",
               "objectProperties": {
                 "name": "Floor (17)",
                 "activeSelf": true,
@@ -6693,13 +6693,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "efd027e8-56b6-4007-a27c-04a403106c34",
+                  "referenceId": "f90ff54f-c722-4254-b3aa-574f5176204f",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -6796,7 +6796,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -6827,7 +6827,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "393f5b00-45b5-4e0d-a5b5-fa11e5c11cd5",
+                  "referenceId": "37438516-930d-459c-8386-56956bf618c6",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -6853,7 +6853,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "62a58704-d5f0-4ef8-ac47-0c36702fbee4",
+                  "referenceId": "6bec1648-07ff-4f38-b279-05b2204b5980",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -7068,7 +7068,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "49c0d2da-089c-413d-9dab-7a9a26beb3a7",
+                  "referenceId": "75f43754-846b-4a69-9595-bd21641b813e",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -7158,7 +7158,7 @@
               "children": []
             },
             {
-              "referenceId": "24a4979a-9e1f-4211-824f-2acc937e87d7",
+              "referenceId": "af3a3f9c-7ce9-4952-b407-866d66e754f1",
               "objectProperties": {
                 "name": "Floor (22)",
                 "activeSelf": true,
@@ -7166,13 +7166,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "a5152196-394a-40b8-b19f-a4b2b8618a9a",
+                  "referenceId": "905902fc-d560-4aad-8d1e-7e0d073c9bcd",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -7269,7 +7269,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -7300,7 +7300,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "be61dd35-c440-40bc-aaf3-e8a3b2d326d4",
+                  "referenceId": "5691386f-fe88-4fd1-9eee-a2de1d06471a",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -7326,7 +7326,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "6f218ed8-7945-42d6-9a22-105e6b7127c5",
+                  "referenceId": "2b1891e6-e7fc-44fa-afde-56e6d090168f",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -7541,7 +7541,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "2da77bd6-6a11-4a34-b7eb-c0ecde1eb1fd",
+                  "referenceId": "2fa7217b-3b16-4d74-97c5-c3063cb6ebf1",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -7631,7 +7631,7 @@
               "children": []
             },
             {
-              "referenceId": "0bf69fcf-c548-4b0c-8cba-fe177cf22a39",
+              "referenceId": "d006a412-9024-47de-93e2-80097c6be335",
               "objectProperties": {
                 "name": "Floor (3)",
                 "activeSelf": true,
@@ -7639,13 +7639,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "f11ac57d-d87a-49e1-9e52-81b9c773bde2",
+                  "referenceId": "aad287e2-8e11-4b5d-8884-9459fcda6b89",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -7742,7 +7742,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -7773,7 +7773,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "96b69c81-7100-43cf-b728-cfe460529819",
+                  "referenceId": "4f54ec45-6980-4d19-b1ad-8d1a38222640",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -7799,7 +7799,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "8ad302a4-75b0-42bb-887a-80f77dd06f10",
+                  "referenceId": "64a01785-2f6e-4550-8b4f-fac24478f9f2",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -8014,7 +8014,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "679da16a-a3bf-47af-b201-8157dd5df4c5",
+                  "referenceId": "f3bc9d3c-dd76-4474-8087-50e58cc404f4",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -8104,7 +8104,7 @@
               "children": []
             },
             {
-              "referenceId": "a7b7b0d7-1b3b-4436-ab58-f07760c68261",
+              "referenceId": "a0a83713-207f-4650-ab54-e4c86049d7ca",
               "objectProperties": {
                 "name": "Floor (8)",
                 "activeSelf": true,
@@ -8112,13 +8112,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "4a584d11-b096-4cbe-a711-575c7497e111",
+                  "referenceId": "71b1e3e4-d791-4950-9875-cf9759b6dcd5",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -8215,7 +8215,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -8246,7 +8246,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "4142e364-0a69-4e90-b17b-0d99813fe362",
+                  "referenceId": "cce3bd93-3a13-41e9-97e4-1cf2dbc66202",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -8272,7 +8272,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "069467dc-94c1-4d65-95b4-dbc2465aaa16",
+                  "referenceId": "f02594aa-2f7c-4799-b523-fa786b81ee80",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -8487,7 +8487,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "27209dbb-e0b6-4e8a-b157-ee6fc7aedae2",
+                  "referenceId": "86ee856c-67cc-4ba2-adc7-9bc0baf6e6e7",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -8577,7 +8577,7 @@
               "children": []
             },
             {
-              "referenceId": "332c246b-69ea-4e5d-906b-a1468a1cebed",
+              "referenceId": "1fa801bd-1762-431d-b0a9-b4b6cf7cdf52",
               "objectProperties": {
                 "name": "Floor (13)",
                 "activeSelf": true,
@@ -8585,13 +8585,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "d59373b9-0773-474b-ad3a-81ac3faa0c58",
+                  "referenceId": "c0ced1b2-e1ff-404f-acac-6f27e78a1ddc",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -8688,7 +8688,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -8719,7 +8719,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "8f0253c5-ed58-4f67-85e8-fbba37374fcd",
+                  "referenceId": "11771676-fa49-4aed-8c87-7be74ec8d536",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -8745,7 +8745,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "8b3053fa-285a-481d-930a-906c5fe460f7",
+                  "referenceId": "3bccc002-a472-460f-930d-dd64755df308",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -8960,7 +8960,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "a069a698-0211-4136-9210-8422baea18c1",
+                  "referenceId": "ff4f52f8-31f0-4c52-b659-26906c98f23f",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -9050,7 +9050,7 @@
               "children": []
             },
             {
-              "referenceId": "c0af2cd2-8eb6-452d-beb8-1be4f04e7737",
+              "referenceId": "b507996f-abcf-490f-8f37-317fac129255",
               "objectProperties": {
                 "name": "Floor (18)",
                 "activeSelf": true,
@@ -9058,13 +9058,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "127af776-9dfd-45f0-a8c5-2ced1659ae15",
+                  "referenceId": "bba4341d-843b-4bcd-bc97-7e1c5f309e9e",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -9161,7 +9161,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -9192,7 +9192,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "5ff11681-f12f-44c8-a780-85b70ac5dd2a",
+                  "referenceId": "e0994154-2ca8-4ad0-b6c6-f68d93b50e95",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -9218,7 +9218,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "ddc730f1-e95d-45d3-bdf8-9ae3ef3a04a2",
+                  "referenceId": "743f8787-8c90-4978-853a-edb0b6a963ad",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -9433,7 +9433,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "a33ea905-78ac-488c-8ca9-742d1ed3d9be",
+                  "referenceId": "31586ee7-7b5a-4e2b-aecc-4965ae3da2f1",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -9523,7 +9523,7 @@
               "children": []
             },
             {
-              "referenceId": "92ef328a-58ea-4b18-a17e-13db35102a42",
+              "referenceId": "0b44a4d7-99a9-4ed0-9148-255cbb05f2d8",
               "objectProperties": {
                 "name": "Floor (23)",
                 "activeSelf": true,
@@ -9531,13 +9531,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "a1001e53-791a-484a-95a8-603cdad8b805",
+                  "referenceId": "7a08dcaf-d789-42c6-8141-463b845dc811",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -9634,7 +9634,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -9665,7 +9665,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "61c4e5c9-bd84-4a24-b327-c3d0d768839d",
+                  "referenceId": "d67d8c10-fdf8-4353-9124-b0c17ef18801",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -9691,7 +9691,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "8c9d0d32-6d2b-4bf8-a121-fc8980731a27",
+                  "referenceId": "eed91faa-36d4-4725-b22f-0fd68b3dd8a2",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -9906,7 +9906,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "6b337320-73d8-43d4-96b2-dc5d2539eece",
+                  "referenceId": "b87ebc0e-0c23-43bf-8903-048065eca943",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -9996,7 +9996,7 @@
               "children": []
             },
             {
-              "referenceId": "cd1ac84d-2b75-406e-a088-ce69619d21e5",
+              "referenceId": "869c6486-6c3f-4c51-ad66-f6c57402637b",
               "objectProperties": {
                 "name": "Floor (4)",
                 "activeSelf": true,
@@ -10004,13 +10004,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "afba4704-5c11-44a2-8e4c-905fb7a4847c",
+                  "referenceId": "5c2378ae-5a01-4979-8f02-955b2cc3ebaf",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -10107,7 +10107,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -10138,7 +10138,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "4db5a930-d5a2-404d-917b-a95d3b18bb00",
+                  "referenceId": "c64771cf-b135-41e8-a045-21b8890803cc",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -10164,7 +10164,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "c782ca39-3fb9-47fe-86f9-b003ae8f3631",
+                  "referenceId": "4ea83ffe-ea24-4f3c-833f-85c7ec0972ec",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -10379,7 +10379,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "c1a35bd1-b155-4dfc-a148-aea38eff9eb5",
+                  "referenceId": "f907a385-6821-45c5-b9b8-329eb858c7aa",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -10469,7 +10469,7 @@
               "children": []
             },
             {
-              "referenceId": "a81491b0-53ef-43e8-8d77-6344f3980c8b",
+              "referenceId": "52dee844-e26d-4e62-8a8b-7d4c5fa1d055",
               "objectProperties": {
                 "name": "Floor (9)",
                 "activeSelf": true,
@@ -10477,13 +10477,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "1443d1f9-ffd3-4dea-96fc-4c74fdd5312a",
+                  "referenceId": "d4f15b79-3452-44e9-85c4-f68e0aef6037",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -10580,7 +10580,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -10611,7 +10611,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "fe26eeca-61aa-480c-9019-c0bbf643c5a7",
+                  "referenceId": "1c8e15ab-0ae9-4b12-b2bd-057059e35bf4",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -10637,7 +10637,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "d483b8a8-3ba6-4d25-8aab-92a3f06677b5",
+                  "referenceId": "642c9dcb-665f-425b-b7e0-b948caf45fa0",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -10852,7 +10852,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "5e7899c8-9bea-488e-949a-78008966b3da",
+                  "referenceId": "080fa64d-aa85-405d-bf8c-c19c37fe44fe",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -10942,7 +10942,7 @@
               "children": []
             },
             {
-              "referenceId": "4c2ef348-a5ba-4c27-90c9-5d9ece91c195",
+              "referenceId": "fd6e8a62-1681-4cba-b718-70c89b4778b4",
               "objectProperties": {
                 "name": "Floor (14)",
                 "activeSelf": true,
@@ -10950,13 +10950,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "4cbac6bc-7287-45c8-a0e6-ce17266328d9",
+                  "referenceId": "466e7818-b0fb-4e70-a9fa-f7dc41df1e39",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -11053,7 +11053,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -11084,7 +11084,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "ac41f48a-8e57-4a35-8d57-9bdf56dbd1d8",
+                  "referenceId": "7b3fac12-1724-489a-a837-0b3d0d8b07d7",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -11110,7 +11110,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "002afec0-81b2-4cc6-81f4-2b90966027bb",
+                  "referenceId": "1715edec-e0f0-4071-93e7-8a7d5a9d31eb",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -11325,7 +11325,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "016c8250-0bd8-4f6d-957d-4af71829bd1e",
+                  "referenceId": "0e06cd4f-e71b-49bf-874e-4c88d752a544",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -11415,7 +11415,7 @@
               "children": []
             },
             {
-              "referenceId": "9d2c2c01-f54e-44fc-8518-2b4329bb5613",
+              "referenceId": "feb5a2e0-5ba9-4ca9-b623-d12573616fae",
               "objectProperties": {
                 "name": "Floor (19)",
                 "activeSelf": true,
@@ -11423,13 +11423,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "e9cc280d-a22f-4960-98d6-098b597d8c0b",
+                  "referenceId": "6800e697-0109-4c7a-bbc8-8aba4ab95e2e",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -11526,7 +11526,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -11557,7 +11557,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "a3bc5076-00f8-47ab-9080-1eddd26c3bad",
+                  "referenceId": "bb11e50a-e0b4-4dd1-aa0d-c6950de118c1",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -11583,7 +11583,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "03a421c7-966a-408f-9ee8-6fc2c7189277",
+                  "referenceId": "693bb541-a3d0-4e02-82c0-98807f39b02f",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -11798,7 +11798,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "13070170-66c2-42a9-9e5d-18c54b89a3aa",
+                  "referenceId": "8b96f758-0a53-49de-9d2c-a6f0d7711ba3",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -11888,7 +11888,7 @@
               "children": []
             },
             {
-              "referenceId": "5618869e-a264-41f3-affb-56ff33905232",
+              "referenceId": "df655035-c148-4d51-bbca-131bf87d826b",
               "objectProperties": {
                 "name": "Floor (24)",
                 "activeSelf": true,
@@ -11896,13 +11896,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Floor.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "3e04a84a-1215-4e9f-87c1-ddb0d1a379b2",
+                  "referenceId": "6ed099b1-9f5a-4942-bd3a-4b944623e843",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -11999,7 +11999,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -12030,7 +12030,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "daaaa21d-2196-4e4f-90c7-74218027cf41",
+                  "referenceId": "591721d6-3ccc-4566-a183-79c3171aafff",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -12056,7 +12056,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "18b34bdb-1395-45ac-a9e6-602d526158f4",
+                  "referenceId": "6b097624-ef7c-460e-806d-35a186f1e0df",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -12271,7 +12271,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "0ebdac44-9f91-4229-b9ca-64ff2ceb63f6",
+                  "referenceId": "c941df3e-3671-4d04-9d3b-b3c6c8144f16",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -12361,7 +12361,7 @@
               "children": []
             },
             {
-              "referenceId": "7adde89a-f6ef-4c60-872b-588d5140a14a",
+              "referenceId": "8a0b4cb6-6152-465f-bd51-5427e11f3f13",
               "objectProperties": {
                 "name": "Wall2",
                 "activeSelf": true,
@@ -12369,13 +12369,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall2.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "bcc529af-55bd-4e03-8358-5432cf81dbda",
+                  "referenceId": "180de61c-2468-4f14-b068-43c91a9259be",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -12472,7 +12472,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -12503,7 +12503,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "1f0cff1f-6f15-4efa-b12f-e4d4a28dbcc6",
+                  "referenceId": "e8d33bf7-d59b-40ad-b0ea-fafeee3b77c8",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -12529,7 +12529,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "b7a620d9-54df-4820-aa1d-2c45e1d237d0",
+                  "referenceId": "79cde25f-6e95-415f-9a2c-71dbb5588db5",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -12746,7 +12746,7 @@
               "children": []
             },
             {
-              "referenceId": "3f75ce06-f285-4b81-8961-7b4362b25606",
+              "referenceId": "ab9723a1-3343-4cf4-bdeb-a18d4868f21f",
               "objectProperties": {
                 "name": "Wall2 (1)",
                 "activeSelf": true,
@@ -12754,13 +12754,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall2.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "05e8522b-8733-4b76-b1d0-0f1e8975993f",
+                  "referenceId": "edb6c448-ef3f-4571-81f8-f15de2474706",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -12857,7 +12857,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -12888,7 +12888,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "bb2ac68b-2fbb-43f1-a7dd-443e93e42de6",
+                  "referenceId": "38540ce1-c91b-48ec-b7e5-6232a0b0c85b",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -12914,7 +12914,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "6d43ba32-c8d8-4020-9a23-d03a0020b4c2",
+                  "referenceId": "08d33854-b749-4478-9d24-c59f164adfca",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -13131,7 +13131,7 @@
               "children": []
             },
             {
-              "referenceId": "9dfb8a67-6786-41ff-a385-50906aebbb90",
+              "referenceId": "726c06e9-e7e3-4076-b22b-973e40f26251",
               "objectProperties": {
                 "name": "Wall2 (2)",
                 "activeSelf": true,
@@ -13139,13 +13139,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall2.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "5a8488a6-5b0f-4316-82dd-66330d15c7c2",
+                  "referenceId": "3e559ea4-4f02-4adc-9efa-2bf263e24010",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -13242,7 +13242,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -13273,7 +13273,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "27e59e85-61d7-4658-bf91-0aa0db989539",
+                  "referenceId": "e32e94e9-b104-4dbc-8019-d7037edc1c51",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -13299,7 +13299,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "48b5177e-4b29-4e41-9158-fe8d8924ab69",
+                  "referenceId": "fe3d5b4a-2673-4dd5-b060-cfd0558f242e",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -13516,7 +13516,7 @@
               "children": []
             },
             {
-              "referenceId": "084d0729-7332-4683-ac98-4b076412f9a6",
+              "referenceId": "6b484071-750f-4905-9c84-daa8d7725f42",
               "objectProperties": {
                 "name": "Wall2 (3)",
                 "activeSelf": true,
@@ -13524,13 +13524,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall2.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "275ad9db-edad-4e35-be8f-b8b870639581",
+                  "referenceId": "5116eb2f-2db0-4389-94cc-3ccb2dd2424e",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -13627,7 +13627,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -13658,7 +13658,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "02a6f982-fdd9-40f4-b15a-4c217b7b0b63",
+                  "referenceId": "617d5780-2606-49b9-8f4d-78b5715d0d80",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -13684,7 +13684,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "5c9e5b6f-e00c-43b9-b7d3-6c7e176d9927",
+                  "referenceId": "6bc2f831-9aa1-4a58-85ff-d7d86f41efa7",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -13901,7 +13901,7 @@
               "children": []
             },
             {
-              "referenceId": "57671eb1-f4db-4f34-a989-ad66b4f7046f",
+              "referenceId": "777a2b9c-1e9b-4245-ae17-c91a24584b24",
               "objectProperties": {
                 "name": "Wall2 (4)",
                 "activeSelf": true,
@@ -13909,13 +13909,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall2.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "85685dfb-7e4f-45f6-b477-f3ea7a7bdc7b",
+                  "referenceId": "1629b331-bb79-448f-987c-653d3848e50a",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -14012,7 +14012,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -14043,7 +14043,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "71e808d9-b734-4170-b6ee-06f8f9439ed1",
+                  "referenceId": "db09cee4-a1ac-4b05-8566-a83151c610ca",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -14069,7 +14069,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "f3c3bfb3-a7f6-46cd-9174-8aa963870853",
+                  "referenceId": "e89351fb-02a6-47f4-a4d3-a9fb123e124a",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -14286,7 +14286,7 @@
               "children": []
             },
             {
-              "referenceId": "8c628123-36e3-4df6-9fd5-73c4c3e342b6",
+              "referenceId": "cc4cb927-e5b1-4cb0-bb1d-98ea01ab680c",
               "objectProperties": {
                 "name": "Wall1",
                 "activeSelf": true,
@@ -14294,13 +14294,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall1.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "832fb44e-c0d2-43d9-977b-8918f9466a82",
+                  "referenceId": "3b6fea41-60c9-4ae1-8ce8-3f32edd710fe",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -14397,7 +14397,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -14428,7 +14428,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "9162f16c-1b74-4cb6-8ec2-b8526d12ca0f",
+                  "referenceId": "2adef5e3-22b6-4a10-aa93-bc050febe0fe",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -14454,7 +14454,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "42cc9647-968c-4a56-8fe8-01254344bf73",
+                  "referenceId": "aabd779f-a0df-44a6-bdd5-1761b5e4ed7a",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -14671,7 +14671,7 @@
               "children": []
             },
             {
-              "referenceId": "f2c4ca27-1024-415d-bdc0-f62f08639a8d",
+              "referenceId": "1059bedd-6437-4b98-81d5-d2f10bd3a57b",
               "objectProperties": {
                 "name": "Wall1 (1)",
                 "activeSelf": true,
@@ -14679,13 +14679,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall1.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "5b9aa5a0-aee4-4fa1-892b-08894748086a",
+                  "referenceId": "90327179-936f-4391-9fca-90b261a67492",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -14782,7 +14782,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -14813,7 +14813,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "21e8ee7f-3d58-4c59-9b33-63db7bd7173c",
+                  "referenceId": "39cbd3ba-b18f-4090-b16c-9ac88ebb1e7b",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -14839,7 +14839,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "c2ca69ff-e0ad-4152-aa40-5796040614ab",
+                  "referenceId": "a138de86-80f5-4f4d-8051-68df1697ae9e",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -15056,7 +15056,7 @@
               "children": []
             },
             {
-              "referenceId": "232f06c6-f6b1-404c-b8d8-d409b3442c81",
+              "referenceId": "1bcd6b6e-a010-4587-a11c-25e456c89836",
               "objectProperties": {
                 "name": "Wall1 (2)",
                 "activeSelf": true,
@@ -15064,13 +15064,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall1.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "750375d2-9d55-48f8-840d-320cd1167b81",
+                  "referenceId": "eda39627-21a9-48bc-8cdd-602bdb971cab",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -15167,7 +15167,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -15198,7 +15198,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "332f18ef-9f47-4a51-a1ea-b070bc4ecc2e",
+                  "referenceId": "df0b0b69-6d7e-45f8-a85f-1288b5c9f4d9",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -15224,7 +15224,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "7df5ff61-a327-4f32-8f36-223be570e51e",
+                  "referenceId": "6065aeea-754a-48fe-9fa3-717033b541e2",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -15441,7 +15441,7 @@
               "children": []
             },
             {
-              "referenceId": "5a0dce1b-dd1c-4bee-94b4-4abb182359d3",
+              "referenceId": "decf8f8a-906d-4261-acb7-afcbe4fe8d24",
               "objectProperties": {
                 "name": "Wall1 (3)",
                 "activeSelf": true,
@@ -15449,13 +15449,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall1.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "d7fdc6b4-3c22-47d0-8502-5fcd4fd33cd1",
+                  "referenceId": "c54022b9-de24-45c3-8f1d-e996da24959c",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -15552,7 +15552,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -15583,7 +15583,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "cf5f0371-207e-46b8-aed2-ffb6ffc47a4f",
+                  "referenceId": "b9963068-9e4f-4a60-a322-18a6bd3049f1",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -15609,7 +15609,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "b6fd9227-0de0-48d7-8f1b-d0afb012c878",
+                  "referenceId": "1bf4b1ff-9aec-4345-b871-89dd5afd02df",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -15826,7 +15826,7 @@
               "children": []
             },
             {
-              "referenceId": "42e9557a-940a-4799-8779-f55720bd9cf9",
+              "referenceId": "97161e6b-1b2d-4826-958c-d8b0f51017d0",
               "objectProperties": {
                 "name": "Wall1 (4)",
                 "activeSelf": true,
@@ -15834,13 +15834,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Wall1.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "0b4e8de0-65bc-4001-8531-c82eb25ecca2",
+                  "referenceId": "a4ba7d1c-f74c-4f9d-832d-1f020c162743",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -15937,7 +15937,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -15968,7 +15968,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "9768fda4-e113-4b3c-9cd6-b6886e766dd6",
+                  "referenceId": "ef5b29d4-3dd1-4462-b110-c29f4ac5911e",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -15994,7 +15994,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "cea56a97-caf0-49b2-8699-c7ca87c8fb50",
+                  "referenceId": "33b05a77-3944-48a9-8d88-01f4bd755dca",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -16211,7 +16211,7 @@
               "children": []
             },
             {
-              "referenceId": "41e90a69-aecc-4777-a293-72049af33d22",
+              "referenceId": "1b65d182-9b0f-4340-8da8-8e401c3ccd46",
               "objectProperties": {
                 "name": "Platform",
                 "activeSelf": true,
@@ -16219,13 +16219,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Platform.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "1431544b-05a2-4a95-b201-ab684c468197",
+                  "referenceId": "e3ad055e-da8a-4b77-b10c-1246dd7c42e2",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -16322,7 +16322,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -16353,7 +16353,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "4de605ca-1d35-44f4-ac38-88d1c10de37e",
+                  "referenceId": "d91b955d-52d2-4d48-976a-7c4c94fff224",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -16379,7 +16379,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "12e25e35-22a8-4bb1-a556-e4e43aa1121c",
+                  "referenceId": "bd62590b-1820-4651-85ef-9556d3e92ada",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -16594,7 +16594,7 @@
                 },
                 {
                   "componentType": "UnityEngine.BoxCollider",
-                  "referenceId": "d135db87-bc7a-4004-8b4b-fe0b2ffb61b0",
+                  "referenceId": "5ade6697-ca8a-4e62-844c-1568a9e198c4",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -16684,7 +16684,7 @@
               "children": []
             },
             {
-              "referenceId": "d2e8f861-b669-45ba-96d5-0950dab9692a",
+              "referenceId": "806a0ef0-9898-4c0f-9ebd-35fb7f3a7036",
               "objectProperties": {
                 "name": "Bed",
                 "activeSelf": true,
@@ -16692,13 +16692,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Bed.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "c75c788b-10eb-4cd9-920b-88644e0cfd4a",
+                  "referenceId": "2bfd580b-03a9-4a31-89b8-e8c83d62e9d5",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -16795,7 +16795,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -16826,7 +16826,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "40f1aeef-550e-40a5-8a4e-7de96b546bce",
+                  "referenceId": "c169c1c3-ecec-46de-81e4-4f56e2f7f3a5",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -16852,7 +16852,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "cd269f72-f3b9-41e3-be98-441f03110366",
+                  "referenceId": "0b2f852d-9d69-453b-8bde-8d1ce0ddf5a6",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -17067,7 +17067,7 @@
                 },
                 {
                   "componentType": "UnityEngine.AI.NavMeshObstacle",
-                  "referenceId": "c79ebc8b-da7c-45aa-8a14-f608aa09955a",
+                  "referenceId": "1765616a-d007-4bb3-8712-48db89048891",
                   "properties": {
                     "height": {
                       "propertyName": "height",
@@ -17157,7 +17157,7 @@
               "children": []
             },
             {
-              "referenceId": "af0db4c8-9b6a-4350-a0b0-ab3e62aa3f2c",
+              "referenceId": "651c4a10-1792-474e-812a-ffa697b5f575",
               "objectProperties": {
                 "name": "Pillow",
                 "activeSelf": true,
@@ -17165,13 +17165,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Pillow.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "1e410b50-4694-41f8-8f94-9d874e4804c1",
+                  "referenceId": "43434aeb-22fd-4774-bbec-7c2018577780",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -17268,7 +17268,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -17299,7 +17299,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "2b281f0b-17b2-4543-831d-df2dec552e8f",
+                  "referenceId": "99284a1a-c0ab-416e-8b50-9ae6981fd519",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -17325,7 +17325,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "82648bea-da6a-47b1-9daa-d031304c0ead",
+                  "referenceId": "7898e189-edc5-436d-9d79-cf7746fcd27b",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -17542,7 +17542,7 @@
               "children": []
             },
             {
-              "referenceId": "f1011104-a5dd-4142-bf92-1edf51c4446e",
+              "referenceId": "dbf56a37-7479-482e-8c19-da5013c66a36",
               "objectProperties": {
                 "name": "Pillow (1)",
                 "activeSelf": true,
@@ -17550,13 +17550,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Pillow.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "c8d02341-d05e-4aa0-b631-858979da2d39",
+                  "referenceId": "2d3141d4-c115-4eb6-ba85-8f386b03e82d",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -17653,7 +17653,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -17684,7 +17684,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "f31630e4-41c6-4edd-aaed-3d280d8355ce",
+                  "referenceId": "7fdc8724-9636-4ef8-b4d6-121771cc7bca",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -17710,7 +17710,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "9eb86650-e101-4114-b45e-d656c5fe8938",
+                  "referenceId": "3780e4f7-9ae2-4604-97c1-ad88804ff7de",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -17927,7 +17927,7 @@
               "children": []
             },
             {
-              "referenceId": "b1a01ad8-e56c-42a9-a663-edb8e4fd1957",
+              "referenceId": "fae5fc83-9cbf-4b0d-832f-3dedf6a529b4",
               "objectProperties": {
                 "name": "Steps",
                 "activeSelf": true,
@@ -17935,13 +17935,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Steps.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "186b6a2d-5da1-4532-ae7d-e24c156b0e1f",
+                  "referenceId": "45698efa-5b3f-4563-9121-9216e922ed0e",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -18038,7 +18038,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -18069,7 +18069,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "524c5f9a-ad07-4d18-a045-c9f18843e37c",
+                  "referenceId": "3f05a6e8-2e26-42f6-bed4-9421ccb61ae3",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -18095,7 +18095,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "5864dd5d-cdb1-42ad-b67e-d47dc3fffd72",
+                  "referenceId": "a7e99762-1ef1-4637-ae65-b9efea357bf2",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -18310,7 +18310,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshCollider",
-                  "referenceId": "27bec512-02d7-423d-9b58-485f0715b519",
+                  "referenceId": "fb2fb291-5d17-4157-8d84-aa47fcd554f7",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -18397,7 +18397,7 @@
               "children": []
             },
             {
-              "referenceId": "78d77682-877f-44d7-b334-63a7dfa31075",
+              "referenceId": "c6d66a9a-fdb8-42ed-80da-70d80f3e276e",
               "objectProperties": {
                 "name": "Door",
                 "activeSelf": true,
@@ -18405,13 +18405,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Door.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "911143c9-7dcd-4f19-be25-a227f8a3a15b",
+                  "referenceId": "d59dc898-2cec-4ff1-9da1-22da4f582f93",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -18508,7 +18508,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -18539,7 +18539,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "4efba623-543f-47b1-90f2-bc9023a4e5e0",
+                  "referenceId": "3bf67814-51f4-40bf-899e-13d5ccf5ada5",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -18565,7 +18565,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "c53bc9a4-4f48-45e2-ad63-c0a352b29c7e",
+                  "referenceId": "33d75e74-f27e-425c-b48b-daa222a7e36b",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -18783,7 +18783,7 @@
               "children": []
             },
             {
-              "referenceId": "a3d6d20b-3083-4f2a-95e3-1272e0131fad",
+              "referenceId": "c97769c4-de05-4ddb-a6ab-c4a36dde1ed9",
               "objectProperties": {
                 "name": "AC",
                 "activeSelf": true,
@@ -18791,13 +18791,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/AC.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "11b9d8a9-f9dc-479a-9734-72453dc91e4d",
+                  "referenceId": "8bf97d98-e41b-4413-b397-ab5eab8b29b6",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -18894,7 +18894,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -18925,7 +18925,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "657d1ee4-0a2d-4836-b4f3-194ab2e28161",
+                  "referenceId": "bb2ba882-02df-4d10-822f-3b5e12a0c315",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -18951,7 +18951,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "ca75d7aa-8621-4541-887b-ba2a8aacb11e",
+                  "referenceId": "32ce03b9-ed30-401c-b35c-38320585ad08",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -19168,7 +19168,7 @@
               "children": []
             },
             {
-              "referenceId": "7b9e628d-6cb8-491e-a42f-0597620dbd61",
+              "referenceId": "a52a6090-2204-4bde-b39a-dcaaa10d4689",
               "objectProperties": {
                 "name": "Shelf",
                 "activeSelf": true,
@@ -19176,13 +19176,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Shelf.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "6f9610f2-d20a-43db-be95-d68a7001efd1",
+                  "referenceId": "cb36ad40-b3db-41e7-b172-58e204d8a9fb",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -19279,7 +19279,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -19310,7 +19310,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "71f08d35-e2f9-42cc-89ec-0003a56f9927",
+                  "referenceId": "31d32aaa-e3d0-4379-960d-20b57852b6a3",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -19336,7 +19336,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "3d4e3deb-c6a9-44e4-b430-7df59b663fbf",
+                  "referenceId": "8464b23a-fed7-49f3-85d8-f5ae0440c1a4",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -19551,7 +19551,7 @@
                 },
                 {
                   "componentType": "UnityEngine.AI.NavMeshObstacle",
-                  "referenceId": "f21eb5be-1b6f-44c0-a37f-70f600523d87",
+                  "referenceId": "da6f3604-38af-4911-a2d1-11adedd939e1",
                   "properties": {
                     "height": {
                       "propertyName": "height",
@@ -19641,7 +19641,7 @@
               "children": []
             },
             {
-              "referenceId": "c5fb5e34-e072-4813-9911-564e15d44398",
+              "referenceId": "cbd61a60-866d-4262-8a1a-bec1187d777f",
               "objectProperties": {
                 "name": "TV",
                 "activeSelf": true,
@@ -19649,13 +19649,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/TV.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "b0b81e91-f694-42ba-b030-c848261cae1e",
+                  "referenceId": "4f40e06b-e3e6-4c86-b1b7-12e1ac6ddfca",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -19752,7 +19752,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -19783,7 +19783,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "1ae2d10b-dc60-4c73-8405-0f584e5e7e0c",
+                  "referenceId": "bc1cba00-883d-48c2-9671-dd1647f33dc7",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -19809,7 +19809,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "71719110-c2bb-4c8c-9b34-9c15134ebc24",
+                  "referenceId": "59b569d1-f829-479c-8d97-9baae2cc133e",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -20026,7 +20026,7 @@
               "children": []
             },
             {
-              "referenceId": "d9c322f0-ccd3-47c0-a7ef-a74f56fd074b",
+              "referenceId": "e44f2d08-f6fb-4da5-a809-e541a17b6fbd",
               "objectProperties": {
                 "name": "Rug",
                 "activeSelf": true,
@@ -20034,13 +20034,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Rug.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "7c369359-c8e9-4c3d-9f78-6dc6be745b6f",
+                  "referenceId": "c3ff58e5-361a-4319-b051-84ae91cfa613",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -20137,7 +20137,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -20168,7 +20168,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "e1dbd170-46b8-4c82-85ea-4ccd2258bacd",
+                  "referenceId": "af7540a1-155a-4704-8009-82d096a471ac",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -20194,7 +20194,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "f554c437-c2ae-4bd4-9eb3-09b2ccf59874",
+                  "referenceId": "88e7fb3a-6881-4fff-a98d-4fa4b1e21702",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -20411,7 +20411,7 @@
               "children": []
             },
             {
-              "referenceId": "2e876a01-dfb7-46b9-8b35-c43cb9fa3495",
+              "referenceId": "06e13678-c132-4384-be67-2db11c067c8c",
               "objectProperties": {
                 "name": "Table",
                 "activeSelf": true,
@@ -20419,13 +20419,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Table.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "9310d77c-cf9b-4b7e-88a4-f84d21efb0df",
+                  "referenceId": "df56eb34-98d8-4c90-b39d-9d4d6d233eaf",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -20522,7 +20522,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -20553,7 +20553,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "0226e3db-85bb-40c5-9434-61a201a933a5",
+                  "referenceId": "bf011954-c645-41e5-a105-60c0283dd792",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -20579,7 +20579,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "2ae0f6dc-081c-4e9f-936c-fb7ddc880c05",
+                  "referenceId": "9a845cf8-d615-4f09-8fea-2e1e94c7ec77",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -20794,7 +20794,7 @@
                 },
                 {
                   "componentType": "UnityEngine.AI.NavMeshObstacle",
-                  "referenceId": "029744a8-851e-437f-831f-84d3476a1f01",
+                  "referenceId": "a82d1c9a-7f39-47de-877f-92e5c9776584",
                   "properties": {
                     "height": {
                       "propertyName": "height",
@@ -20884,7 +20884,7 @@
               "children": []
             },
             {
-              "referenceId": "64caf9e1-5121-444e-9010-1b1d848d137d",
+              "referenceId": "85937cb9-278e-47ac-8cc4-6c6985ccdb26",
               "objectProperties": {
                 "name": "Couch",
                 "activeSelf": true,
@@ -20892,13 +20892,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Couch.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "858018be-7f47-4197-b388-bf7d458ebf82",
+                  "referenceId": "c5f1bc81-f555-4311-b103-50ed11aa9966",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -20995,7 +20995,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -21026,7 +21026,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "fdf95981-dc01-463e-893e-7ba06370abbe",
+                  "referenceId": "1c4c018b-8324-492a-9eb9-79c2e4ab6858",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -21052,7 +21052,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "11cc93ee-abf3-44f4-b759-c8fb710d1d12",
+                  "referenceId": "8e648f3b-cee3-4488-bb1a-8f2b773a9230",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -21267,7 +21267,7 @@
                 },
                 {
                   "componentType": "UnityEngine.AI.NavMeshObstacle",
-                  "referenceId": "5771ed69-ff36-4661-aeed-6e667c419778",
+                  "referenceId": "e3023e0c-5916-497f-8f17-e4f50975f2a7",
                   "properties": {
                     "height": {
                       "propertyName": "height",
@@ -21356,7 +21356,7 @@
               ],
               "children": [
                 {
-                  "referenceId": "c8130e37-9d2e-45a9-89de-58f19fa5d05d",
+                  "referenceId": "fff38712-0ee2-478c-b3e7-c69dbfdcbfef",
                   "objectProperties": {
                     "name": "Anchor1",
                     "activeSelf": true,
@@ -21364,13 +21364,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "64caf9e1-5121-444e-9010-1b1d848d137d",
+                    "parentGameObject": "85937cb9-278e-47ac-8cc4-6c6985ccdb26",
                     "prefabPath": null
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "e5127816-205d-463d-b957-f55a332dd136",
+                      "referenceId": "1df21252-da61-42f3-9218-a921dcbafb38",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -21467,7 +21467,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "858018be-7f47-4197-b388-bf7d458ebf82"
+                          "value": "c5f1bc81-f555-4311-b103-50ed11aa9966"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -21498,7 +21498,7 @@
                     },
                     {
                       "componentType": "Highrise.Client.Anchor",
-                      "referenceId": "95ca07fc-2346-4aec-9748-57c2b10e45b2",
+                      "referenceId": "7350c196-6c83-4c9f-96c6-1302ca7d75f1",
                       "properties": {
                         "_anchorType": {
                           "propertyName": "_anchorType",
@@ -21523,7 +21523,7 @@
                         "_enterFrom": {
                           "propertyName": "_enterFrom",
                           "type": "UnityEngine.Transform",
-                          "value": "0871b614-a1a9-4640-b3a4-b3da21dc6e77"
+                          "value": "2fef3c1c-cb11-408a-b1ca-7b27b4973bce"
                         },
                         "_exitTo": {
                           "propertyName": "_exitTo",
@@ -21549,7 +21549,7 @@
                     },
                     {
                       "componentType": "Highrise.Client.TapHandler",
-                      "referenceId": "ca960439-1303-481b-9710-e9add4664499",
+                      "referenceId": "d5fdd528-f35f-4008-8d80-e9510992c255",
                       "properties": {
                         "_checkDistance": {
                           "propertyName": "_checkDistance",
@@ -21575,7 +21575,7 @@
                     },
                     {
                       "componentType": "UnityEngine.BoxCollider",
-                      "referenceId": "09210b03-a467-406d-b42f-c443679116a5",
+                      "referenceId": "843ee6ea-42c8-44e7-b1e9-f535ee75a1d4",
                       "properties": {
                         "center": {
                           "propertyName": "center",
@@ -21664,7 +21664,7 @@
                   ],
                   "children": [
                     {
-                      "referenceId": "8b4a1b0b-4843-4a94-9cf7-a703798942f5",
+                      "referenceId": "32974625-3d05-46dc-b68d-b9c0e13496d8",
                       "objectProperties": {
                         "name": "Enter From",
                         "activeSelf": true,
@@ -21672,13 +21672,13 @@
                         "layer": 0,
                         "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                         "tag": "Untagged",
-                        "parentGameObject": "c8130e37-9d2e-45a9-89de-58f19fa5d05d",
+                        "parentGameObject": "fff38712-0ee2-478c-b3e7-c69dbfdcbfef",
                         "prefabPath": null
                       },
                       "components": [
                         {
                           "componentType": "UnityEngine.Transform",
-                          "referenceId": "0871b614-a1a9-4640-b3a4-b3da21dc6e77",
+                          "referenceId": "2fef3c1c-cb11-408a-b1ca-7b27b4973bce",
                           "properties": {
                             "position": {
                               "propertyName": "position",
@@ -21775,7 +21775,7 @@
                             "parent": {
                               "propertyName": "parent",
                               "type": "UnityEngine.Transform",
-                              "value": "e5127816-205d-463d-b957-f55a332dd136"
+                              "value": "1df21252-da61-42f3-9218-a921dcbafb38"
                             },
                             "hasChanged": {
                               "propertyName": "hasChanged",
@@ -21810,7 +21810,7 @@
                   ]
                 },
                 {
-                  "referenceId": "faf467b4-6c94-4844-9e1e-15cce642d934",
+                  "referenceId": "5e9271cc-23a9-4c8c-a3a9-27d367436f48",
                   "objectProperties": {
                     "name": "Anchor2",
                     "activeSelf": true,
@@ -21818,13 +21818,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "64caf9e1-5121-444e-9010-1b1d848d137d",
+                    "parentGameObject": "85937cb9-278e-47ac-8cc4-6c6985ccdb26",
                     "prefabPath": null
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "dd966f3a-96e5-4592-ade8-9da2b3b5da23",
+                      "referenceId": "60d4b749-2355-48bc-beb2-6d6c5a2af6c7",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -21921,7 +21921,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "858018be-7f47-4197-b388-bf7d458ebf82"
+                          "value": "c5f1bc81-f555-4311-b103-50ed11aa9966"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -21952,7 +21952,7 @@
                     },
                     {
                       "componentType": "Highrise.Client.Anchor",
-                      "referenceId": "3d190934-34fb-45b1-bd1b-49450215ba65",
+                      "referenceId": "ca671963-fd80-41d6-9aa7-a96716f27b9a",
                       "properties": {
                         "_anchorType": {
                           "propertyName": "_anchorType",
@@ -21977,7 +21977,7 @@
                         "_enterFrom": {
                           "propertyName": "_enterFrom",
                           "type": "UnityEngine.Transform",
-                          "value": "4134d284-596f-4406-8873-bbf34b189179"
+                          "value": "9abe062c-a563-481f-9d48-199df80ee4bd"
                         },
                         "_exitTo": {
                           "propertyName": "_exitTo",
@@ -22003,7 +22003,7 @@
                     },
                     {
                       "componentType": "Highrise.Client.TapHandler",
-                      "referenceId": "6bae588d-6ab6-41f7-9dd5-edbb3391eb04",
+                      "referenceId": "6b044add-50b7-4dcb-b766-f7fbb4a5e1c0",
                       "properties": {
                         "_checkDistance": {
                           "propertyName": "_checkDistance",
@@ -22029,7 +22029,7 @@
                     },
                     {
                       "componentType": "UnityEngine.BoxCollider",
-                      "referenceId": "7b934757-3adc-4e5f-856c-7ba457ade55e",
+                      "referenceId": "893c8d3e-d7f0-49c4-a7a7-9a8792b4086e",
                       "properties": {
                         "center": {
                           "propertyName": "center",
@@ -22118,7 +22118,7 @@
                   ],
                   "children": [
                     {
-                      "referenceId": "1d65112a-30bb-47fb-b75e-78a144e735b3",
+                      "referenceId": "72b5737f-7d31-4cc1-99a8-4277e6abb8b2",
                       "objectProperties": {
                         "name": "Enter From",
                         "activeSelf": true,
@@ -22126,13 +22126,13 @@
                         "layer": 0,
                         "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                         "tag": "Untagged",
-                        "parentGameObject": "faf467b4-6c94-4844-9e1e-15cce642d934",
+                        "parentGameObject": "5e9271cc-23a9-4c8c-a3a9-27d367436f48",
                         "prefabPath": null
                       },
                       "components": [
                         {
                           "componentType": "UnityEngine.Transform",
-                          "referenceId": "4134d284-596f-4406-8873-bbf34b189179",
+                          "referenceId": "9abe062c-a563-481f-9d48-199df80ee4bd",
                           "properties": {
                             "position": {
                               "propertyName": "position",
@@ -22229,7 +22229,7 @@
                             "parent": {
                               "propertyName": "parent",
                               "type": "UnityEngine.Transform",
-                              "value": "dd966f3a-96e5-4592-ade8-9da2b3b5da23"
+                              "value": "60d4b749-2355-48bc-beb2-6d6c5a2af6c7"
                             },
                             "hasChanged": {
                               "propertyName": "hasChanged",
@@ -22264,7 +22264,7 @@
                   ]
                 },
                 {
-                  "referenceId": "7af52c1d-7a23-4cfb-b32f-6ab069230ce5",
+                  "referenceId": "44f452af-b71a-4afd-9571-85adb51761fd",
                   "objectProperties": {
                     "name": "Anchor3",
                     "activeSelf": true,
@@ -22272,13 +22272,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "64caf9e1-5121-444e-9010-1b1d848d137d",
+                    "parentGameObject": "85937cb9-278e-47ac-8cc4-6c6985ccdb26",
                     "prefabPath": null
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "904ad827-c732-4557-a23b-b863cc988a34",
+                      "referenceId": "7df1a33d-7a38-4f93-a54a-a4d1b38e73be",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -22375,7 +22375,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "858018be-7f47-4197-b388-bf7d458ebf82"
+                          "value": "c5f1bc81-f555-4311-b103-50ed11aa9966"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -22406,7 +22406,7 @@
                     },
                     {
                       "componentType": "Highrise.Client.Anchor",
-                      "referenceId": "82484e4c-d6bc-4662-8db4-287fd20ac8c8",
+                      "referenceId": "800dde4d-227c-4f4a-964a-6c2fc196e321",
                       "properties": {
                         "_anchorType": {
                           "propertyName": "_anchorType",
@@ -22431,7 +22431,7 @@
                         "_enterFrom": {
                           "propertyName": "_enterFrom",
                           "type": "UnityEngine.Transform",
-                          "value": "d015dd3a-8823-4756-9bfc-53f6bad5dd2f"
+                          "value": "ce443039-0498-4235-8c56-97238c9aa93a"
                         },
                         "_exitTo": {
                           "propertyName": "_exitTo",
@@ -22457,7 +22457,7 @@
                     },
                     {
                       "componentType": "Highrise.Client.TapHandler",
-                      "referenceId": "3cbd839d-a05c-4353-a744-82c9332333e2",
+                      "referenceId": "8c7f95b8-153c-4692-ad1c-651d9d2bcda3",
                       "properties": {
                         "_checkDistance": {
                           "propertyName": "_checkDistance",
@@ -22483,7 +22483,7 @@
                     },
                     {
                       "componentType": "UnityEngine.BoxCollider",
-                      "referenceId": "9b286ea7-174e-4068-bf3e-67d08ee77b99",
+                      "referenceId": "25eeb261-55ea-4174-a8d3-08f98cf4ce70",
                       "properties": {
                         "center": {
                           "propertyName": "center",
@@ -22572,7 +22572,7 @@
                   ],
                   "children": [
                     {
-                      "referenceId": "ee4939d9-d50c-46eb-a502-4d7243746e6a",
+                      "referenceId": "c239ff42-05b5-4564-9b21-a1ac2c5c6b3c",
                       "objectProperties": {
                         "name": "Enter From",
                         "activeSelf": true,
@@ -22580,13 +22580,13 @@
                         "layer": 0,
                         "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                         "tag": "Untagged",
-                        "parentGameObject": "7af52c1d-7a23-4cfb-b32f-6ab069230ce5",
+                        "parentGameObject": "44f452af-b71a-4afd-9571-85adb51761fd",
                         "prefabPath": null
                       },
                       "components": [
                         {
                           "componentType": "UnityEngine.Transform",
-                          "referenceId": "d015dd3a-8823-4756-9bfc-53f6bad5dd2f",
+                          "referenceId": "ce443039-0498-4235-8c56-97238c9aa93a",
                           "properties": {
                             "position": {
                               "propertyName": "position",
@@ -22683,7 +22683,7 @@
                             "parent": {
                               "propertyName": "parent",
                               "type": "UnityEngine.Transform",
-                              "value": "904ad827-c732-4557-a23b-b863cc988a34"
+                              "value": "7df1a33d-7a38-4f93-a54a-a4d1b38e73be"
                             },
                             "hasChanged": {
                               "propertyName": "hasChanged",
@@ -22720,7 +22720,7 @@
               ]
             },
             {
-              "referenceId": "cc96b48c-89b1-4025-9a07-d9fafe599093",
+              "referenceId": "1afd31fa-fef4-47a9-9816-48b32e18f96c",
               "objectProperties": {
                 "name": "TallPlant",
                 "activeSelf": true,
@@ -22728,13 +22728,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/TallPlant.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "0cb62681-9b45-464d-8b6e-9bd89e7c4f61",
+                  "referenceId": "51424a6c-8e67-4c1d-ae84-57a6c0f4cc4d",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -22831,7 +22831,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -22862,7 +22862,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "f89472af-93b8-45ee-9c94-6faacf322fc1",
+                  "referenceId": "e7b3e84b-b155-4eac-9340-e213b9783982",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -22888,7 +22888,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "1c2779f4-bea7-4ac1-ac38-6d5fc5e58ff7",
+                  "referenceId": "aafc56b9-0349-4b05-9df0-cf5e16e221b8",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -23103,7 +23103,7 @@
                 },
                 {
                   "componentType": "UnityEngine.CapsuleCollider",
-                  "referenceId": "24ea63e7-82c7-4db9-8da7-6aed0273ad41",
+                  "referenceId": "a4613bd5-780a-4075-b9fd-b38ee32af6b0",
                   "properties": {
                     "center": {
                       "propertyName": "center",
@@ -23199,7 +23199,7 @@
               "children": []
             },
             {
-              "referenceId": "659eed02-fea5-4132-9b72-aae9d99b4c99",
+              "referenceId": "9e58e5c5-dd1b-4e32-85de-75d423ba7d55",
               "objectProperties": {
                 "name": "Picture1",
                 "activeSelf": true,
@@ -23207,13 +23207,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Picture1.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "fa8cdae1-dc1d-41af-a0a0-3f1bf2d74525",
+                  "referenceId": "ff23cd1c-313f-4cb6-bd27-61a5e1cb0bb2",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -23310,7 +23310,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -23341,7 +23341,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "5f013dbc-b240-4da7-9db7-0454956c8e47",
+                  "referenceId": "a2558501-e11e-4be7-ab97-3a1af4679935",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -23367,7 +23367,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "3356022a-a085-4721-be25-8871526e37e1",
+                  "referenceId": "b0727316-e2a3-4b17-a821-e99e6ed99cc6",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -23584,7 +23584,7 @@
               "children": []
             },
             {
-              "referenceId": "9cbd79fe-99bb-4fe6-9955-8cf2c906b8b3",
+              "referenceId": "14336212-9541-45ae-afd0-f8f9fff368fa",
               "objectProperties": {
                 "name": "Picture2",
                 "activeSelf": true,
@@ -23592,13 +23592,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Picture2.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "9fdb8c6d-32d1-4a8d-b2b3-fd4819b22a8d",
+                  "referenceId": "eaf12638-c7ae-472b-8b23-bc1df8b5c8da",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -23695,7 +23695,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -23726,7 +23726,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "60cbb6e7-d722-46e2-9370-0307fe8df87a",
+                  "referenceId": "60cf219c-8a31-4ab6-bf1c-5cf330c21762",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -23752,7 +23752,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "56b0b7a6-c99e-4584-a00a-44e293dd51cc",
+                  "referenceId": "acb6e6c1-97df-464f-ab64-6061d85f1d85",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -23969,7 +23969,7 @@
               "children": []
             },
             {
-              "referenceId": "5b2a0696-8507-4fa3-ad52-8dffee7fa0e4",
+              "referenceId": "a863a768-9a43-49f0-a503-b229c08c33da",
               "objectProperties": {
                 "name": "Picture3",
                 "activeSelf": true,
@@ -23977,13 +23977,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Picture3.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "c6211879-99c5-4c19-862d-c1ca5f6ce74d",
+                  "referenceId": "aee274de-65b6-483f-8b51-9403027fe2e2",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -24080,7 +24080,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -24111,7 +24111,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "7613d8d1-43ac-479c-a721-a5edfa25ab9e",
+                  "referenceId": "a7d21496-58f5-4b1b-a738-4f0f1bc5359a",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -24137,7 +24137,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "60c32d1d-7bde-4db9-a4fe-80d6fd8a3c4b",
+                  "referenceId": "4d6a6640-d1af-4a69-ae17-1fd1c3047b98",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -24354,7 +24354,7 @@
               "children": []
             },
             {
-              "referenceId": "d0327ddc-ccb4-4c87-888e-9cf6fbe6de34",
+              "referenceId": "801e50c4-e918-4171-ac1b-69bb7463bdd9",
               "objectProperties": {
                 "name": "Light",
                 "activeSelf": true,
@@ -24362,13 +24362,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Light.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "464f572e-a325-497c-a281-40d6f35a4739",
+                  "referenceId": "170fba27-73fe-4ca4-aa10-871f6cc3a65d",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -24465,7 +24465,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -24496,7 +24496,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "7d2f1bc7-803a-4d8d-bc9f-b089d73fbe35",
+                  "referenceId": "f8fcafb4-f94e-4059-a82c-c59fb994d0ea",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -24522,7 +24522,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "ce956c36-4f59-40a2-8bf4-3b26dfe3fc65",
+                  "referenceId": "6d79ee43-d580-424a-bb96-1bc4d82ce2c5",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -24738,7 +24738,7 @@
               ],
               "children": [
                 {
-                  "referenceId": "82f521ae-6c69-4e71-8b68-8c975f679042",
+                  "referenceId": "7d8782e1-bf2a-489d-952a-c4347ed7dbad",
                   "objectProperties": {
                     "name": "Circle.001",
                     "activeSelf": true,
@@ -24746,13 +24746,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "d0327ddc-ccb4-4c87-888e-9cf6fbe6de34",
+                    "parentGameObject": "801e50c4-e918-4171-ac1b-69bb7463bdd9",
                     "prefabPath": "Assets/Template/Art/Light.fbx"
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "fa238285-2d40-43ea-ae3c-9c545de44d84",
+                      "referenceId": "c7095a4f-9a96-4d65-8236-e2d3906a27ad",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -24849,7 +24849,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "464f572e-a325-497c-a281-40d6f35a4739"
+                          "value": "170fba27-73fe-4ca4-aa10-871f6cc3a65d"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -24880,7 +24880,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshFilter",
-                      "referenceId": "cd27983b-ff4e-4496-a297-4d4e2b880ba2",
+                      "referenceId": "bb292335-ff69-4182-9e8d-342ff641a2ef",
                       "properties": {
                         "sharedMesh": {
                           "propertyName": "sharedMesh",
@@ -24906,7 +24906,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshRenderer",
-                      "referenceId": "339ea840-4ae7-4d94-91e4-4f95bb302443",
+                      "referenceId": "1e2d5a09-5767-49e3-9fc0-552d43c60920",
                       "properties": {
                         "additionalVertexStreams": {
                           "propertyName": "additionalVertexStreams",
@@ -25125,7 +25125,7 @@
               ]
             },
             {
-              "referenceId": "b2685797-8a54-4e78-b899-05b5bbb99152",
+              "referenceId": "4b707ae3-9802-4dbe-9976-ca7574ea0801",
               "objectProperties": {
                 "name": "Light (1)",
                 "activeSelf": true,
@@ -25133,13 +25133,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Light.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "71771634-28e4-4713-945d-84bcc3236d8b",
+                  "referenceId": "ea8c14af-b3e5-455c-8ac0-ede117f7baf8",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -25236,7 +25236,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -25267,7 +25267,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "50745b10-c542-48e2-8348-764a9e6e4edb",
+                  "referenceId": "5ab27035-77b5-4000-bc37-325277085b7c",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -25293,7 +25293,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "967d4ad7-a63f-4586-bcfd-61d6030b2a79",
+                  "referenceId": "5204971b-407a-4a79-a79d-89bf35e2b646",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -25509,7 +25509,7 @@
               ],
               "children": [
                 {
-                  "referenceId": "21a22bea-caa2-4a3d-94f9-e6a0d94779b1",
+                  "referenceId": "6d985d98-3969-4642-9dc8-5fc7a2e4c613",
                   "objectProperties": {
                     "name": "Circle.001",
                     "activeSelf": true,
@@ -25517,13 +25517,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "b2685797-8a54-4e78-b899-05b5bbb99152",
+                    "parentGameObject": "4b707ae3-9802-4dbe-9976-ca7574ea0801",
                     "prefabPath": "Assets/Template/Art/Light.fbx"
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "02d2c09c-a1a1-4233-804b-83974a2ea14c",
+                      "referenceId": "d7a2842a-07b5-48bd-8889-6abd797e0c3f",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -25620,7 +25620,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "71771634-28e4-4713-945d-84bcc3236d8b"
+                          "value": "ea8c14af-b3e5-455c-8ac0-ede117f7baf8"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -25651,7 +25651,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshFilter",
-                      "referenceId": "7919d667-0414-4271-ab5b-44cfff393f35",
+                      "referenceId": "76f9027a-cb92-4d18-b158-d96a3b77e411",
                       "properties": {
                         "sharedMesh": {
                           "propertyName": "sharedMesh",
@@ -25677,7 +25677,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshRenderer",
-                      "referenceId": "df41016e-7984-4c25-91b3-b30d03c972b3",
+                      "referenceId": "9631987c-13bd-41cb-9045-9d7ced4b4079",
                       "properties": {
                         "additionalVertexStreams": {
                           "propertyName": "additionalVertexStreams",
@@ -25896,7 +25896,7 @@
               ]
             },
             {
-              "referenceId": "929dc61c-debb-47bb-9276-2c1e7247efd3",
+              "referenceId": "89c96153-8bc4-460a-8cc2-e723a266c6fd",
               "objectProperties": {
                 "name": "Light (2)",
                 "activeSelf": true,
@@ -25904,13 +25904,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": "Assets/Template/Art/Light.fbx"
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "90cb7b71-3eb1-4354-b439-8c704b348c29",
+                  "referenceId": "db05d9a0-9685-4a08-b596-5bb832c0fead",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -26007,7 +26007,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -26038,7 +26038,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "76434107-8573-4268-98f6-316e126b317b",
+                  "referenceId": "d46c9983-052a-4a62-b740-c8d7978ad2d7",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -26064,7 +26064,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "54d1ae90-6543-4216-a2b9-ce30b1cf966f",
+                  "referenceId": "a8c0c3a0-42e9-4826-b931-db403611c2e6",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -26280,7 +26280,7 @@
               ],
               "children": [
                 {
-                  "referenceId": "ce7e7098-b503-43d7-b08d-8622f81e82c0",
+                  "referenceId": "f781b538-4fe8-4668-b65a-21a9820f1489",
                   "objectProperties": {
                     "name": "Circle.001",
                     "activeSelf": true,
@@ -26288,13 +26288,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "929dc61c-debb-47bb-9276-2c1e7247efd3",
+                    "parentGameObject": "89c96153-8bc4-460a-8cc2-e723a266c6fd",
                     "prefabPath": "Assets/Template/Art/Light.fbx"
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "13f5dc3f-a7aa-464d-bd16-4e958074af4d",
+                      "referenceId": "7f6dd550-b6b8-4ce2-a8db-84fb7de78e85",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -26391,7 +26391,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "90cb7b71-3eb1-4354-b439-8c704b348c29"
+                          "value": "db05d9a0-9685-4a08-b596-5bb832c0fead"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -26422,7 +26422,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshFilter",
-                      "referenceId": "f70a21a4-b41b-4f1d-bbba-ff2acd7a75fb",
+                      "referenceId": "26a48f5e-a5bd-4ea8-8746-c52ab39347f2",
                       "properties": {
                         "sharedMesh": {
                           "propertyName": "sharedMesh",
@@ -26448,7 +26448,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshRenderer",
-                      "referenceId": "3a7dabaa-7b42-437f-bb6c-63ca58ff72a0",
+                      "referenceId": "d7e30f35-d2c8-4e32-b27f-a7383d4a4269",
                       "properties": {
                         "additionalVertexStreams": {
                           "propertyName": "additionalVertexStreams",
@@ -26667,7 +26667,7 @@
               ]
             },
             {
-              "referenceId": "52d64d6f-8053-4439-8fc8-aaea5f62227d",
+              "referenceId": "f61836fe-bc55-4be7-89c6-538f75fbb7ba",
               "objectProperties": {
                 "name": "Phone",
                 "activeSelf": true,
@@ -26675,13 +26675,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "53494464-4079-4ada-bb27-261fc9f53bff",
+                  "referenceId": "18b7e9a8-f899-4f62-ab15-c9b64d30182d",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -26778,7 +26778,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -26810,7 +26810,7 @@
               ],
               "children": [
                 {
-                  "referenceId": "7d949c42-5446-46fb-9adb-6e68ee3258ee",
+                  "referenceId": "ebbdba47-12cb-4b62-ae55-3f89883e3793",
                   "objectProperties": {
                     "name": "Cube",
                     "activeSelf": true,
@@ -26818,13 +26818,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "52d64d6f-8053-4439-8fc8-aaea5f62227d",
+                    "parentGameObject": "f61836fe-bc55-4be7-89c6-538f75fbb7ba",
                     "prefabPath": null
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "444e4049-04c8-487e-9258-16c3e335b6fa",
+                      "referenceId": "8a018022-9af2-4621-87ea-f30d8ab7251f",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -26921,7 +26921,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "53494464-4079-4ada-bb27-261fc9f53bff"
+                          "value": "18b7e9a8-f899-4f62-ab15-c9b64d30182d"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -26952,7 +26952,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshFilter",
-                      "referenceId": "1d1dcceb-e88c-4b19-b912-be5ff637b54e",
+                      "referenceId": "ec7cd349-640a-4ba0-a2ac-d53720e05308",
                       "properties": {
                         "sharedMesh": {
                           "propertyName": "sharedMesh",
@@ -26978,7 +26978,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshRenderer",
-                      "referenceId": "ee0b35b2-213d-4ab2-b16b-e3910f97e37d",
+                      "referenceId": "1e3850f2-7055-4644-8bb8-d7bbffec360f",
                       "properties": {
                         "additionalVertexStreams": {
                           "propertyName": "additionalVertexStreams",
@@ -27193,7 +27193,7 @@
                     },
                     {
                       "componentType": "UnityEngine.BoxCollider",
-                      "referenceId": "905d90eb-c122-4e06-b026-edfe936021ad",
+                      "referenceId": "47f9b542-fbc6-42ff-a283-584ae8c97af3",
                       "properties": {
                         "center": {
                           "propertyName": "center",
@@ -27283,7 +27283,7 @@
                   "children": []
                 },
                 {
-                  "referenceId": "cb4a3492-1fa6-4343-8829-a06e869cbcf8",
+                  "referenceId": "9bbce8ac-1976-4c2d-9db2-71728567fbab",
                   "objectProperties": {
                     "name": "Cube (1)",
                     "activeSelf": true,
@@ -27291,13 +27291,13 @@
                     "layer": 0,
                     "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                     "tag": "Untagged",
-                    "parentGameObject": "52d64d6f-8053-4439-8fc8-aaea5f62227d",
+                    "parentGameObject": "f61836fe-bc55-4be7-89c6-538f75fbb7ba",
                     "prefabPath": null
                   },
                   "components": [
                     {
                       "componentType": "UnityEngine.Transform",
-                      "referenceId": "85c04767-4a80-429a-b63e-8d933d1753bd",
+                      "referenceId": "d2eb0007-14e3-49f4-a80e-f58f70d01261",
                       "properties": {
                         "position": {
                           "propertyName": "position",
@@ -27394,7 +27394,7 @@
                         "parent": {
                           "propertyName": "parent",
                           "type": "UnityEngine.Transform",
-                          "value": "53494464-4079-4ada-bb27-261fc9f53bff"
+                          "value": "18b7e9a8-f899-4f62-ab15-c9b64d30182d"
                         },
                         "hasChanged": {
                           "propertyName": "hasChanged",
@@ -27425,7 +27425,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshFilter",
-                      "referenceId": "dd087c0a-a148-406d-891f-b8760653b57d",
+                      "referenceId": "92f1f3f1-5883-4f68-81b8-4ded6d0bbfb8",
                       "properties": {
                         "sharedMesh": {
                           "propertyName": "sharedMesh",
@@ -27451,7 +27451,7 @@
                     },
                     {
                       "componentType": "UnityEngine.MeshRenderer",
-                      "referenceId": "863f7fb9-5b76-4410-90e6-2fb6cd5d94f1",
+                      "referenceId": "138bbf25-0f64-4e85-8ca6-4ebd0c460403",
                       "properties": {
                         "additionalVertexStreams": {
                           "propertyName": "additionalVertexStreams",
@@ -27666,7 +27666,7 @@
                     },
                     {
                       "componentType": "UnityEngine.BoxCollider",
-                      "referenceId": "9177211b-c664-4549-815c-2332aae3cb90",
+                      "referenceId": "5b238f5c-8126-445a-9a0c-ac1569bae272",
                       "properties": {
                         "center": {
                           "propertyName": "center",
@@ -27758,7 +27758,7 @@
               ]
             },
             {
-              "referenceId": "265e91b6-de61-46a6-825e-fd1dacde3e03",
+              "referenceId": "781e028d-f538-4bb6-bcb8-0b2b341027cf",
               "objectProperties": {
                 "name": "Quad",
                 "activeSelf": true,
@@ -27766,13 +27766,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "15fda1de-4b2f-4159-a3eb-cd98901e9550",
+                "parentGameObject": "cb84a6af-cdee-42d0-a851-362b19721e1c",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "cf756cda-65ee-4351-8cb8-abee0ee73fe3",
+                  "referenceId": "4fde145a-d1cf-474a-ab22-5dc61ca9ed42",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -27869,7 +27869,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "09fb688e-52d2-4225-89bf-390b4abf6730"
+                      "value": "c5703ace-8e6b-469f-b5ec-8913e3b05f35"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -27900,7 +27900,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshFilter",
-                  "referenceId": "12c8f927-fe53-4884-834a-1e82bed37ddb",
+                  "referenceId": "2f7c9c92-3773-47ce-a1a4-f039ad62ca19",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -27926,7 +27926,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshRenderer",
-                  "referenceId": "3fc27c39-9e0d-4071-abcb-4cd21e5536ee",
+                  "referenceId": "187b90d0-dc1f-45db-bbfe-c9102523d6e0",
                   "properties": {
                     "additionalVertexStreams": {
                       "propertyName": "additionalVertexStreams",
@@ -28141,7 +28141,7 @@
                 },
                 {
                   "componentType": "UnityEngine.MeshCollider",
-                  "referenceId": "07d38659-adab-4aab-bab1-5e086f2e9544",
+                  "referenceId": "da49b51a-4b3b-4b39-836d-0c2010af9317",
                   "properties": {
                     "sharedMesh": {
                       "propertyName": "sharedMesh",
@@ -28230,7 +28230,7 @@
           ]
         },
         {
-          "referenceId": "4645f7ec-d983-4533-b9f0-e40ca71bbc37",
+          "referenceId": "772f5fe5-198c-48f3-8bf8-e769f6fa3c54",
           "objectProperties": {
             "name": "Lighting",
             "activeSelf": true,
@@ -28238,13 +28238,13 @@
             "layer": 0,
             "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
             "tag": "Untagged",
-            "parentGameObject": "5eda36b9-3959-4df5-b0a8-65dc9cf8746e",
+            "parentGameObject": "b856613f-2e13-4721-84d2-85bcd828b9a8",
             "prefabPath": null
           },
           "components": [
             {
               "componentType": "UnityEngine.Transform",
-              "referenceId": "577139e8-ec27-4345-bab5-08369457aa2c",
+              "referenceId": "793ee081-8f58-43fb-a10e-94ae659c530c",
               "properties": {
                 "position": {
                   "propertyName": "position",
@@ -28341,7 +28341,7 @@
                 "parent": {
                   "propertyName": "parent",
                   "type": "UnityEngine.Transform",
-                  "value": "1ebffbfc-ea28-4e43-8af5-6f450bd8c65d"
+                  "value": "decde7d5-1bca-4361-ba00-eef57f300648"
                 },
                 "hasChanged": {
                   "propertyName": "hasChanged",
@@ -28373,7 +28373,7 @@
           ],
           "children": [
             {
-              "referenceId": "b9d8f050-b101-4a73-983b-b765e75b3fae",
+              "referenceId": "e8f72a11-ef0c-4a76-a266-b472b75b0684",
               "objectProperties": {
                 "name": "CC",
                 "activeSelf": true,
@@ -28381,13 +28381,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "4645f7ec-d983-4533-b9f0-e40ca71bbc37",
+                "parentGameObject": "772f5fe5-198c-48f3-8bf8-e769f6fa3c54",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "0d083ef6-05a1-44f2-bd64-a00fe4b1862a",
+                  "referenceId": "42f30b1c-927d-4b04-9370-bedb56124167",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -28484,7 +28484,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "577139e8-ec27-4345-bab5-08369457aa2c"
+                      "value": "793ee081-8f58-43fb-a10e-94ae659c530c"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -28515,7 +28515,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Rendering.Volume",
-                  "referenceId": "ea7f56db-744d-493d-911e-9b19f4ae880e",
+                  "referenceId": "b28c6eb8-9cc9-4cd7-9062-c4ce58321727",
                   "properties": {
                     "m_IsGlobal": {
                       "propertyName": "m_IsGlobal",
@@ -28578,7 +28578,7 @@
               "children": []
             },
             {
-              "referenceId": "d3018837-32e7-45e4-a6c2-59167b1c41f6",
+              "referenceId": "91db5e36-8475-45b4-b66a-a04e13661a52",
               "objectProperties": {
                 "name": "Area Light",
                 "activeSelf": true,
@@ -28586,13 +28586,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "4645f7ec-d983-4533-b9f0-e40ca71bbc37",
+                "parentGameObject": "772f5fe5-198c-48f3-8bf8-e769f6fa3c54",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "51d50d20-e9b9-4fda-b8d4-19d8049496fb",
+                  "referenceId": "39719907-70bc-4bb7-9a07-bab8647ab5f6",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -28689,7 +28689,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "577139e8-ec27-4345-bab5-08369457aa2c"
+                      "value": "793ee081-8f58-43fb-a10e-94ae659c530c"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -28720,7 +28720,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Light",
-                  "referenceId": "ef148a9c-ede9-4749-a076-573366b49b8c",
+                  "referenceId": "b2d6fb7a-f549-40d6-9913-635d3cc5d735",
                   "properties": {
                     "type": {
                       "propertyName": "type",
@@ -29005,7 +29005,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Rendering.Universal.UniversalAdditionalLightData",
-                  "referenceId": "362a5ac2-c160-4dc6-8f85-0ccf00626f87",
+                  "referenceId": "a403d433-803d-442d-a928-05b4aa9c7e05",
                   "properties": {
                     "m_Version": {
                       "propertyName": "m_Version",
@@ -29140,7 +29140,7 @@
               "children": []
             },
             {
-              "referenceId": "4f2013dc-3604-4d33-9580-fbd4ca8efde6",
+              "referenceId": "723ebb82-3d16-48ea-80f9-9fc2b963d792",
               "objectProperties": {
                 "name": "Area Light (1)",
                 "activeSelf": true,
@@ -29148,13 +29148,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "4645f7ec-d983-4533-b9f0-e40ca71bbc37",
+                "parentGameObject": "772f5fe5-198c-48f3-8bf8-e769f6fa3c54",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "8bc3fb67-2821-4bce-b24e-33484a6754e0",
+                  "referenceId": "fc209d73-8649-41a1-a5c6-3ccd0d01a3df",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -29251,7 +29251,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "577139e8-ec27-4345-bab5-08369457aa2c"
+                      "value": "793ee081-8f58-43fb-a10e-94ae659c530c"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -29282,7 +29282,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Light",
-                  "referenceId": "fbf5631b-2dd3-48d8-981f-bca95414bfeb",
+                  "referenceId": "c4c9acec-ef65-4a00-8651-63e29f9a212c",
                   "properties": {
                     "type": {
                       "propertyName": "type",
@@ -29567,7 +29567,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Rendering.Universal.UniversalAdditionalLightData",
-                  "referenceId": "bafd7faf-8d65-49ea-addc-5a8259da937c",
+                  "referenceId": "9dd76e5d-4bb8-483f-a845-cfe046e16c9c",
                   "properties": {
                     "m_Version": {
                       "propertyName": "m_Version",
@@ -29702,7 +29702,7 @@
               "children": []
             },
             {
-              "referenceId": "2b96e61b-20b1-4eb6-a112-f3bb7f21d594",
+              "referenceId": "474333e0-2012-40b3-9a84-917264501294",
               "objectProperties": {
                 "name": "Area Light (2)",
                 "activeSelf": true,
@@ -29710,13 +29710,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "4645f7ec-d983-4533-b9f0-e40ca71bbc37",
+                "parentGameObject": "772f5fe5-198c-48f3-8bf8-e769f6fa3c54",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "bd44df0f-480e-43c0-b3fd-86fb426dd1dc",
+                  "referenceId": "1b3f9289-a565-47e0-b6d7-1661a1f2343c",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -29813,7 +29813,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "577139e8-ec27-4345-bab5-08369457aa2c"
+                      "value": "793ee081-8f58-43fb-a10e-94ae659c530c"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -29844,7 +29844,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Light",
-                  "referenceId": "6fd40b26-7d6c-4808-a62d-8b0066a46f5d",
+                  "referenceId": "e555a6a0-e130-44fc-96c0-55af310b4e5a",
                   "properties": {
                     "type": {
                       "propertyName": "type",
@@ -30129,7 +30129,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Rendering.Universal.UniversalAdditionalLightData",
-                  "referenceId": "3e7bc045-467e-468a-8834-7920eaaa9a2a",
+                  "referenceId": "fded7031-39e0-468b-8c3e-78818d5523b4",
                   "properties": {
                     "m_Version": {
                       "propertyName": "m_Version",
@@ -30264,7 +30264,7 @@
               "children": []
             },
             {
-              "referenceId": "f67f7b32-f629-494f-9653-588c4ea3da5b",
+              "referenceId": "1cf00e89-6670-4b6a-8942-169f9db448d1",
               "objectProperties": {
                 "name": "Area Light (3)",
                 "activeSelf": true,
@@ -30272,13 +30272,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "4645f7ec-d983-4533-b9f0-e40ca71bbc37",
+                "parentGameObject": "772f5fe5-198c-48f3-8bf8-e769f6fa3c54",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "39e9051c-3cd0-4b85-b980-dc7c2c21323d",
+                  "referenceId": "c5a2c339-9446-4860-a416-7eb78e74fcb4",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -30375,7 +30375,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "577139e8-ec27-4345-bab5-08369457aa2c"
+                      "value": "793ee081-8f58-43fb-a10e-94ae659c530c"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -30406,7 +30406,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Light",
-                  "referenceId": "6206e577-4b56-410b-bb70-ab4a42a30d05",
+                  "referenceId": "950bfcf6-fdda-424c-bc16-8ba4a7f6f0da",
                   "properties": {
                     "type": {
                       "propertyName": "type",
@@ -30691,7 +30691,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Rendering.Universal.UniversalAdditionalLightData",
-                  "referenceId": "da6d9e90-cdd2-4abc-b3b4-d4f82844abb9",
+                  "referenceId": "fa3aadeb-dc87-4d1e-a0f2-8b774a4b10ee",
                   "properties": {
                     "m_Version": {
                       "propertyName": "m_Version",
@@ -30826,7 +30826,7 @@
               "children": []
             },
             {
-              "referenceId": "1ddef2db-99ac-4ebc-b874-70ca5f16620a",
+              "referenceId": "a4c41b95-dd04-4cf8-9039-31c3d4d8485c",
               "objectProperties": {
                 "name": "Area Light (4)",
                 "activeSelf": true,
@@ -30834,13 +30834,13 @@
                 "layer": 0,
                 "layerName": "Default (Default, TransparentFX, Ignore Raycast, Preview, Water, UI, Character, CharacterTrigger, Tappable)",
                 "tag": "Untagged",
-                "parentGameObject": "4645f7ec-d983-4533-b9f0-e40ca71bbc37",
+                "parentGameObject": "772f5fe5-198c-48f3-8bf8-e769f6fa3c54",
                 "prefabPath": null
               },
               "components": [
                 {
                   "componentType": "UnityEngine.Transform",
-                  "referenceId": "07d1ad5e-b7e1-41c0-9318-1debad52ac72",
+                  "referenceId": "67a07cce-d345-4a1c-a001-d0a42f453d10",
                   "properties": {
                     "position": {
                       "propertyName": "position",
@@ -30937,7 +30937,7 @@
                     "parent": {
                       "propertyName": "parent",
                       "type": "UnityEngine.Transform",
-                      "value": "577139e8-ec27-4345-bab5-08369457aa2c"
+                      "value": "793ee081-8f58-43fb-a10e-94ae659c530c"
                     },
                     "hasChanged": {
                       "propertyName": "hasChanged",
@@ -30968,7 +30968,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Light",
-                  "referenceId": "d61b27e0-af1a-4c26-b3fa-4331a486c8c8",
+                  "referenceId": "5900285d-e2f8-41ca-8d67-8ce2a3a66d61",
                   "properties": {
                     "type": {
                       "propertyName": "type",
@@ -31253,7 +31253,7 @@
                 },
                 {
                   "componentType": "UnityEngine.Rendering.Universal.UniversalAdditionalLightData",
-                  "referenceId": "ceb088bf-c922-4525-a38b-72b53a489e4f",
+                  "referenceId": "12ea602a-da78-4098-9807-680750bb51ca",
                   "properties": {
                     "m_Version": {
                       "propertyName": "m_Version",
@@ -31392,7 +31392,7 @@
       ]
     },
     {
-      "referenceId": "bea15795-2265-408c-917f-4198aa95565d",
+      "referenceId": "67f25336-1859-4e75-aefd-933f011b0114",
       "objectProperties": {
         "name": "RtsCamera",
         "activeSelf": true,
@@ -31406,7 +31406,7 @@
       "components": [
         {
           "componentType": "UnityEngine.Transform",
-          "referenceId": "e3ac4e58-5d2d-4a5a-9043-4a13d593106a",
+          "referenceId": "b03f218b-2c11-4f92-980b-d8555d3ba20e",
           "properties": {
             "position": {
               "propertyName": "position",
@@ -31534,7 +31534,7 @@
         },
         {
           "componentType": "UnityEngine.Camera",
-          "referenceId": "cae0fb74-3f8f-4ded-b781-348eb5137e87",
+          "referenceId": "5ccf74eb-3872-4629-aa98-d2f9fb25ef76",
           "properties": {
             "nearClipPlane": {
               "propertyName": "nearClipPlane",
@@ -31963,7 +31963,7 @@
         },
         {
           "componentType": "UnityEngine.Rendering.Universal.UniversalAdditionalCameraData",
-          "referenceId": "1626f9cd-6979-4afd-afa3-cd3d93a286db",
+          "referenceId": "76a01776-4fed-4a52-b827-beb3e4dfeae6",
           "properties": {
             "m_RenderShadows": {
               "propertyName": "m_RenderShadows",
@@ -32250,7 +32250,7 @@
         },
         {
           "componentType": "Highrise.Lua.Generated.RTSCamera",
-          "referenceId": "247db8c0-053e-4fe8-92f7-1982d03c620e",
+          "referenceId": "0604d9d8-26e3-4fee-b860-3b489d8e4874",
           "properties": {
             "m_zoom": {
               "propertyName": "m_zoom",
@@ -32332,7 +32332,7 @@
       "children": []
     },
     {
-      "referenceId": "a67ffa62-0a2f-43c2-9f1f-ec945f9d6151",
+      "referenceId": "cff78ff8-4b3f-4190-b4e7-7696c038970d",
       "objectProperties": {
         "name": "SpawnPoint",
         "activeSelf": true,
@@ -32346,7 +32346,7 @@
       "components": [
         {
           "componentType": "UnityEngine.Transform",
-          "referenceId": "409f872a-2560-469b-b5be-b795249a318b",
+          "referenceId": "179d8d85-e5ed-44aa-92cb-f5454df67ec9",
           "properties": {
             "position": {
               "propertyName": "position",
@@ -32474,7 +32474,7 @@
         },
         {
           "componentType": "Highrise.Client.SpawnPoint",
-          "referenceId": "3ede49e2-bd8c-4242-ba09-7ae257a46a6d",
+          "referenceId": "7c884fe2-e9a5-40d4-a397-6e5bd268a2b3",
           "properties": {}
         }
       ],
