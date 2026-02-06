@@ -235,11 +235,10 @@ namespace Rosie
             new ColorParser(),
             new Matrix4x4Parser(),
             new RectParser(),
-            new GameObjectParser(),
-            new ComponentParser(),
             new LuaScriptParser(),
             new MaterialParser(),
             new MeshParser(),
+            new UnityObjectParser(),
         };
 
         private static readonly List<Type> unsupportedTypes = new() {
@@ -438,20 +437,6 @@ namespace Rosie
             public object FromSerializable(object serializable) => new Rect(((JObject)serializable)["x"].Value<float>(), ((JObject)serializable)["y"].Value<float>(), ((JObject)serializable)["width"].Value<float>(), ((JObject)serializable)["height"].Value<float>());
         }
 
-        private class GameObjectParser : IValueParser
-        {
-            public Type ParsedType => typeof(GameObject);
-            public object ToSerializable(object value) => SceneWriter.GetId((GameObject)value);
-            public object FromSerializable(object serializable) => SceneWriter.GetObject((string)serializable);
-        }
-
-        private class ComponentParser : IValueParser
-        {
-            public Type ParsedType => typeof(Component);
-            public object ToSerializable(object value) => SceneWriter.GetId((Component)value);
-            public object FromSerializable(object serializable) => SceneWriter.GetObject((string)serializable);
-        }
-
         private class LuaScriptParser : IValueParser
         {
             public Type ParsedType => typeof(Highrise.Lua.LuaScript);
@@ -501,6 +486,13 @@ namespace Rosie
                     return Resources.GetBuiltinResource<Mesh>(resourceName);
                 return Resources.GetBuiltinResource<Mesh>(path);
             }
+        }
+
+        private class UnityObjectParser : IValueParser
+        {
+            public Type ParsedType => typeof(UnityEngine.Object);
+            public object ToSerializable(object value) => SceneWriter.GetId((UnityEngine.Object)value);
+            public object FromSerializable(object serializable) => SceneWriter.GetObject((string)serializable);
         }
     }
 }

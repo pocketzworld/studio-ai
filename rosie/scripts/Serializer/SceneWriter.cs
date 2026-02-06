@@ -145,6 +145,7 @@ namespace Rosie
             foreach (var prefabPath in prefabPaths)
             {
                 var serializedPrefab = PrefabHydrator.SerializePrefab(prefabPath);
+                if (serializedPrefab == null) continue;
                 var serializedPrefabPath = System.IO.Path.Combine(WRITE_DIRECTORY, prefabPath + ".json");
                 var serializedPrefabDirectory = System.IO.Path.GetDirectoryName(serializedPrefabPath);
                 if (!System.IO.Directory.Exists(serializedPrefabDirectory))

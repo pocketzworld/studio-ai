@@ -4,6 +4,13 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2026-02-06
+
+### Fixed
+
+- Fields typed as `UnityEngine.Object` can now be serialized and deserialized via a new catch-all `UnityObjectParser`.
+- Prefab serialization failures no longer crash the entire scene serialization loop.
+
 ## [0.5.0] - 2026-02-05
 
 ### Added
