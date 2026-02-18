@@ -40,7 +40,6 @@ Defined in `hooks/hooks.json`:
 
 ## Notes
 
-- Hook scripts must handle both macOS and Windows (Git Bash)
-- Skill logging uses session ID from `$CLAUDE_CODE_SESSION_ID` env var
-- Serializer C# scripts are symlinked to `Assets/Editor/` in user projects
+- Hook scripts use polyglot `.cmd` wrappers: on macOS/Linux they `exec bash` the `.sh` scripts; on Windows cmd.exe runs the `.ps1` PowerShell equivalents via the batch portion
+- Serializer C# scripts are copied to `Assets/Editor/` in user projects
 - Unity scene/prefab edits go through JSON serialization in `Temp/Highrise/Serializer/`

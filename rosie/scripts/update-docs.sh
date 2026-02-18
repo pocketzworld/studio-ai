@@ -24,8 +24,10 @@ fi
 # Clone or pull only if there are actual changes
 if [ "$SHOULD_UPDATE" = true ]; then
   if [ ! -d "${PLUGIN_ROOT}/creator-docs" ]; then
-    git clone https://github.com/pocketzworld/creator-docs.git "${PLUGIN_ROOT}/creator-docs"
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/pocketzworld/creator-docs.git "${PLUGIN_ROOT}/creator-docs"
+    git -C "${PLUGIN_ROOT}/creator-docs" sparse-checkout set --no-cone '/*' '!*.png'
   else
+    git -C "${PLUGIN_ROOT}/creator-docs" sparse-checkout set --no-cone '/*' '!*.png' 2>/dev/null
     git -C "${PLUGIN_ROOT}/creator-docs" pull
   fi
 fi

@@ -4,6 +4,13 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.3] - 2026-02-18
+
+### Changed
+
+- Rosie hooks now work in Windows PowerShell.
+- Only non-PNG files are cloned from the creator-docs repository.
+
 ## [0.5.2] - 2026-02-18
 
 ### Fixed
