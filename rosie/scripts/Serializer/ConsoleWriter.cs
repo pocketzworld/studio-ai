@@ -111,7 +111,7 @@ namespace Rosie
         private static void OnLogMessageReceivedThreaded(string condition, string stackTrace, LogType type)
         {
             if (!running) return;
-            AddEntry(condition, stackTrace, type.ToString());
+            AddEntry(condition, stackTrace, $"Editor{type.ToString()}");
         }
 
         private static void AddEntry(string condition, string stackTrace, string logType)

@@ -4,6 +4,17 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.2] - 2026-02-18
+
+### Fixed
+
+- Properties like `NavMeshAgent.isStopped` that throw when read outside of runtime are now skipped rather than causing serialization failures.
+
+### Changed
+
+- Rosie is now less aggressive in executing tests itself, and instead waits for user confirmation.
+- Rosie will now prefer to read the entire `console.json` file rather than just querying for specific log types.
+
 ## [0.5.1] - 2026-02-06
 
 ### Fixed

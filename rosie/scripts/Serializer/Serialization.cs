@@ -81,7 +81,17 @@ namespace Rosie
                     .Where(p => propertyInclusionRules.All(rule => rule(scriptType, component, p)));
             foreach (var property in props)
             {
-                propertyList.Add(() => new SerializedProperty(property.Name, property.PropertyType, component != null ? property.GetValue(component) : null));
+                propertyList.Add(() => {
+                    try
+                    {
+                        return new SerializedProperty(property.Name, property.PropertyType, component != null ? property.GetValue(component) : null);
+                    }
+                    catch
+                    {
+                        // Some properties (e.g. NavMeshAgent.isStopped) throw when read outside of runtime.
+                        return null;
+                    }
+                });
             }
             return propertyList;
         }
