@@ -5,11 +5,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-version.sh ${CLAUDE_PLUGIN_ROOT}"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-version.cmd ${CLAUDE_PLUGIN_ROOT}"
           },
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer.sh ${CLAUDE_PLUGIN_ROOT}"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/setup-serializer.cmd ${CLAUDE_PLUGIN_ROOT}"
           }
         ]
       }
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/update-docs.sh ${CLAUDE_PLUGIN_ROOT}"
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/update-docs.cmd ${CLAUDE_PLUGIN_ROOT}"
           }
         ]
       }
