@@ -41,9 +41,13 @@ if [ -d "Packages/com.pz.studio.generated" ]; then
   fi
   # if there is no CLAUDE.md file in .claude, create it
   if [ ! -f .claude/CLAUDE.md ]; then
-    touch .claude/CLAUDE.md
-    echo "# About this Highrise Studio project" > .claude/CLAUDE.md
-    echo "**Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start.**" >> .claude/CLAUDE.md
+    echo "" > .claude/CLAUDE.md
+  fi
+  # Ensure the instructions line exists in CLAUDE.md even if the file already existed
+  if ! grep -qF "Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start." .claude/CLAUDE.md; then
+    sed -i.bak '1 a\
+**Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start.**' .claude/CLAUDE.md
+    rm -f .claude/CLAUDE.md.bak
   fi
   # copy the contents of the claude-docs directory from the plugin root to the current working directory as .claude, overwriting any existing files
   cp -r "${PLUGIN_ROOT}/scripts/claude-docs"/* .claude/

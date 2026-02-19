@@ -4,6 +4,12 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.4] - 2026-02-19
+
+### Changed
+
+- Rosie will add the "read important instructions" line to `CLAUDE.md`, even if the file already exists.
+
 ## [0.5.3] - 2026-02-18
 
 ### Changed
