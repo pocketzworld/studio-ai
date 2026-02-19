@@ -44,7 +44,15 @@ if (Test-Path "Packages/com.pz.studio.generated") {
 
     # Create CLAUDE.md if it doesn't exist
     if (-not (Test-Path ".claude/CLAUDE.md")) {
-        @("# About this Highrise Studio project", "**Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start.**") | Set-Content ".claude/CLAUDE.md"
+        "" | Set-Content ".claude/CLAUDE.md"
+    }
+
+    # Ensure the instructions line exists in CLAUDE.md even if the file already existed
+    if (-not (Select-String -Path ".claude/CLAUDE.md" -Pattern "Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start." -SimpleMatch -Quiet)) {
+        $content = @(Get-Content ".claude/CLAUDE.md")
+        $instructionLine = "**Read the important instructions in @ABOUT_HIGHRISE_STUDIO.md before you start.**"
+        $newContent = @($content[0], $instructionLine) + $content[1..($content.Length - 1)]
+        $newContent | Set-Content ".claude/CLAUDE.md"
     }
 
     # Copy claude-docs to .claude (Get-ChildItem is more reliable than Copy-Item with wildcards)
