@@ -9,3 +9,5 @@
 9. The Lua script follows the entirety of the style instructions in `./.claude/MyUIElement/MyUIElement.lua`, except for any guidance comments that were copied over from the template.
 10. The USS file follows the entirety of the style instructions in `./.claude/MyUIElement/MyUIElement.uss`, except for any guidance comments that were copied over from the template.
 11. The UXML file follows the entirety of the style instructions in `./.claude/MyUIElement/MyUIElement.uxml`, except for any guidance comments that were copied over from the template.
+12. The agent response includes a test plan for confirming that the script is working as intended.
+13. The agent does not attempt to execute any part of the test plan without explicit confirmation from the user.

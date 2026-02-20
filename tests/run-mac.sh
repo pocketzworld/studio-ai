@@ -164,9 +164,9 @@ EOF
     # Clean up temp file
     rm -f "$PROMPT_TEMP_FILE"
     
-    # Wait for OUTPUT_FILE to be written (with 1 minute timeout)
+    # Wait for OUTPUT_FILE to be written (with 10 minute timeout)
     echo "Waiting for claude to write output to $OUTPUT_FILE..." >&2
-    local TIMEOUT=300  # 5 minutes in seconds
+    local TIMEOUT=600  # 10 minutes in seconds
     local ELAPSED=0
     local CHECK_INTERVAL=1  # Check every second
     
@@ -264,10 +264,12 @@ done
 # Clean up result directory
 rm -rf "$RESULT_DIR"
 
+mv "$AGGREGATE_RESULTS_FILE" "$AGGREGATE_RESULTS_FILE".md
+AGGREGATE_RESULTS_FILE="$AGGREGATE_RESULTS_FILE".md
+
 echo "========================================="
 echo "All tests completed. Results aggregated in:"
 echo "$AGGREGATE_RESULTS_FILE"
 echo "========================================="
 
-mv "$AGGREGATE_RESULTS_FILE" "$AGGREGATE_RESULTS_FILE".md
-open "$AGGREGATE_RESULTS_FILE".md
+open "$AGGREGATE_RESULTS_FILE"

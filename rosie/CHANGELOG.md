@@ -4,6 +4,13 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.5] - 2026-02-20
+
+### Changed
+
+- Rosie is now instructed to only trigger editor manipulations (e.g., `.play`, `.stop`, `.rebuild`, `.rebake`) if the user has explicitly asked for them.
+- Rebuilds will not fall back to a full asset refresh if they fail.
+
 ## [0.5.4] - 2026-02-19
 
 ### Changed

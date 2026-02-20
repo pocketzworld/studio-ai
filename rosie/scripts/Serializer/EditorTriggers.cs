@@ -189,18 +189,12 @@ namespace Rosie
             try
             {
                 // Try to invoke the Highrise Lua rebuild menu item
-                bool success = EditorApplication.ExecuteMenuItem("Highrise/Lua/Rebuild All");
-                if (success)
-                    return;
-
-                // Fallback: trigger asset refresh which should recompile Lua
-                AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+                if (!EditorApplication.ExecuteMenuItem("Highrise/Lua/Rebuild All"))
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to trigger Lua rebuild: menu item not found");
             }
             catch (Exception e)
             {
                 UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to trigger Lua rebuild: " + e.Message);
-                // Fallback to asset refresh
-                AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
             }
         }
 

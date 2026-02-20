@@ -270,6 +270,10 @@ UI components are added by attaching a Lua script component to a Game Object in 
 
 ## Manipulating the editor
 
+> **CRITICAL: User consent is required before using ANY editor manipulation trigger.** The trigger files (`.play`, `.stop`, `.rebuild`, `.rebake`) all disrupt the user's Unity editor session. **Do NOT create any of these files unless the user has explicitly asked you to, or has approved a plan that includes them.** Focusing the editor (`.focus`) is the only exception, as it is needed to process scene/prefab edits. Even when a trigger seems like the obvious next step, **always ask first** — the user may be in the middle of something in the editor.
+>
+> **Do NOT get stuck in retry loops.** If a trigger (especially `.rebuild`) does not produce the expected result on the first try, **do not retry it.** Instead, tell the user what happened and ask for guidance.
+
 ### Focusing the Unity editor
 
 To bring the Unity editor window to the foreground:
@@ -286,34 +290,9 @@ powershell -ExecutionPolicy Bypass -File ".claude/focus-unity.ps1"
 
 This is useful when you need Unity to process pending changes (such as after writing to `edit.json`) or when you want to ensure the user's attention is directed to the editor.
 
-### Starting play mode
-
-To start Unity's play mode:
-```bash
-touch .focus (or run the PowerShell script above)
-touch .play
-```
-
-After starting play mode, you should:
-1. Sleep for 15 seconds to allow Unity to import assets and enter play mode.
-2. Read `console.json` to observe the running session output.
-3. Retry up to 3 times (15s intervals) if the console hasn't updated yet.
-
-Notes:
-- Play mode (via `.play`) automatically triggers a Lua rebuild before starting, so you don't need to manually rebuild if you're about to enter play mode.
-- If play mode is already running, the existing play mode will be stopped before starting the new one.
-
-### Stopping play mode
-
-To stop Unity's play mode:
-```bash
-touch .focus (or run the PowerShell script above)
-touch .stop
-```
-
-This is useful when you need to stop play mode to save resources or when you want to ensure the user's attention is directed to the editor. Note that if play mode is not running, the `.stop` file will be silently ignored.
-
 ### Triggering a Lua rebuild
+
+> **Requires user consent.** Do not trigger a rebuild unless the user has explicitly asked you to, or has approved a plan that includes a rebuild (e.g., you were asked to write a new Lua script and add it to a Game Object). Rebuilds interrupt the user's editor session.
 
 Highrise Studio uses Lua scripts for game logic, which must be compiled into C# code before Unity can execute them. When you create or modify Lua scripts, Unity needs to rebuild them to generate the corresponding C# classes. Until this rebuild happens, any new scripts or changes won't be available in the editor (e.g., you won't be able to add a new Lua component to a Game Object).
 
@@ -322,15 +301,14 @@ To trigger a Lua rebuild:
 touch .focus (or run the PowerShell script above)
 touch .rebuild
 ```
-You should trigger a Lua rebuild when:
+You would only trigger a Lua rebuild when:
 - You've created a new Lua script and need to add it as a component to a Game Object
 - You've modified Lua script properties (fields) and need the changes reflected in the editor
-- You're seeing errors about missing Lua-generated types
 
 After triggering a Lua rebuild, you should:
 1. Wait ~5-10 seconds for compilation.
 2. Check `Packages/com.pz.studio.generated/Runtime/Highrise.Lua.Generated/` for the generated wrapper.
-3. If the generated wrapper is not found, check the console for errors before retrying.
+3. If the generated wrapper is not found, **do not retry. Do not trigger another rebuild.** Tell the user what happened and ask for guidance. Repeated rebuilds will not fix the problem and will disrupt the user's editor session.
 
 ### Reading the Unity console
 
@@ -348,9 +326,10 @@ The JSON file is structured as an array of log entries:
 ]
 ```
 
-Read this file to check for errors, warnings, or debug output when troubleshooting issues. Use the "Read" tool whenever possible, rather than `jq` or other search tools, since logs may not have the type that you expect.
+Read this file to check for errors, warnings, or debug output when troubleshooting issues. Use the "Read" tool whenever possible, rather than `jq` or other search tools, since logs may not have the `logType` value that you expect.
 
 ### Capturing a screenshot
+
 To capture a screenshot of the Unity Game view, focus the window (see "Focusing the Unity editor" above) and then create a `.screenshot` file in the project root:
 ```bash
 touch .focus (or run the PowerShell script above)
@@ -362,6 +341,9 @@ When the `.screenshot` file is detected, a screenshot of the Game view is captur
 This is useful for visually inspecting the current state of the game, debugging UI layouts, or verifying that changes appear correctly. The screenshot captures whatever is currently visible in the Game view, so ensure the Game view is showing what you want to capture.
 
 ### Rebaking lightmaps and NavMesh
+
+> **Requires user consent.** Do not trigger a rebake unless the user has explicitly asked you to, or has approved a plan that includes it. Rebakes interrupt the user's editor session.
+
 To rebake the scene's lightmaps and NavMesh, focus the window (see "Focusing the Unity editor" above) and then create a `.rebake` file in the project root:
 ```bash
 touch .focus (or run the PowerShell script above)
@@ -378,16 +360,44 @@ You should trigger a rebake when:
 - You've modified materials that affect light bouncing (albedo, emission, etc.)
 - The user explicitly requests a lightmap or NavMesh update
 
+### Toggling play mode
+
+> **Requires user consent.** Do NOT start or stop play mode unless the user has explicitly asked you to, or has approved a plan that includes it. Starting play mode triggers a full Lua rebuild and asset import, which takes significant time and completely interrupts the user's editor session. **Never start play mode as part of your own testing or verification process without asking first.**
+
+To start Unity's play mode:
+```bash
+touch .focus (or run the PowerShell script above)
+touch .rebuild
+touch .play
+```
+
+To stop Unity's play mode:
+```bash
+touch .focus (or run the PowerShell script above)
+touch .stop
+```
+
+After starting play mode, you should:
+1. Sleep for 15 seconds to allow Unity to import assets and enter play mode.
+2. Read `console.json` to observe the running session output.
+3. Retry up to 3 times (15s intervals) if the console hasn't updated yet.
+
+Notes:
+- If play mode is already running when you create the `.play` file, the existing play mode will be stopped before starting the new one.
+- If play mode is not running when you create the `.stop` file, the file will be silently ignored.
+
 # How you should behave
 
 Your goal is to execute the user's request and make it as easy as possible for the user to confirm that your changes are working as intended. To do this, you will need to follow _all_ of these steps:
 1. **Gather the information needed to solve the user's request.** Look at documentation, read existing code, and ask the user for necessary information so that you feel prepared to solve the request.
 2. **Execute a solution to the user's request.** This may involve writing code and editing the scene or prefabs.
-3. **Propose a test plan for your solution.** This may involve reading the console, reading the scene contents, starting play mode, taking screenshots of the game, etc. Explain the steps to confirm that your solution is working, but _do not actually test it without confirmation from the user._ Your plan should first describe the test steps, then describe how you, the agent, can use your capabilities (including those described above) to execute them. For example:
+3. **Propose a test plan for your solution, but do NOT execute it.** This may involve reading the console, reading the scene contents, starting play mode, taking screenshots of the game, etc. Explain the steps to confirm that your solution is working, but **do NOT actually test it without explicit confirmation from the user.** Specifically, your plan should first describe the test steps, then describe how you, the agent, could use your capabilities (including those described above) to execute them _if the user were to ask you to_. For example:
   ```text
   To confirm that the player can sit on the new chair that I added, you will need to:
     1. Rebake the NavMesh for the scene.
     2. Start play mode.
     3. Tap on the chair to sit on it.
-  If you want, I can rebake the NavMesh and start play mode for you now. Then you can manually move the player to the chair.
+  If you want, I can rebake the NavMesh and start play mode for you. Then you can manually move the player to the chair.
   ```
+
+**IMPORTANT: do not get stuck in a loop.** If you find yourself repeating the same steps multiple times (especially triggering rebuilds, re-reading the same files, or retrying the same editor operation), **stop immediately** and ask the user for clarification or a different approach. Retrying the same action will not produce a different result.
