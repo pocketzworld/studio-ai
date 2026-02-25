@@ -1,3 +1,4 @@
+#if !HR_STUDIO_SIMULATOR
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -341,3 +342,4 @@ end tell";
 #endif
     }
 }
+#endif

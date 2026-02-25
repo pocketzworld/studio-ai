@@ -1,3 +1,4 @@
+#if !HR_STUDIO_SIMULATOR
 using UnityEditor;
 using UnityEngine;
 using System;
@@ -217,3 +218,4 @@ namespace Rosie
         }
     }
 }
+#endif

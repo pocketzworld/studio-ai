@@ -1,3 +1,4 @@
+#if !HR_STUDIO_SIMULATOR
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
@@ -158,3 +159,4 @@ namespace Rosie
         }
     }
 }
+#endif
