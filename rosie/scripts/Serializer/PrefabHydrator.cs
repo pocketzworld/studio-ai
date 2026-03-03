@@ -111,14 +111,16 @@ namespace Rosie
             return false;
         }
 
-        public static void EndEdits()
+        public static List<string> EndEdits()
         {
-            foreach (var prefabPath in prefabRootsBeingEdited.Keys)
+            var modifiedPrefabPaths = new List<string>(prefabRootsBeingEdited.Keys);
+            foreach (var prefabPath in modifiedPrefabPaths)
             {
                 PrefabUtility.SaveAsPrefabAsset(prefabRootsBeingEdited[prefabPath], prefabPath);
                 PrefabUtility.UnloadPrefabContents(prefabRootsBeingEdited[prefabPath]);
             }
             prefabRootsBeingEdited.Clear();
+            return modifiedPrefabPaths;
         }
     }
 }

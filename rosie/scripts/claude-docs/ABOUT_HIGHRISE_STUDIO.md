@@ -206,7 +206,19 @@ Here are some important property value formats:
 
 ### Reading prefabs
 
-Highrise Studio serializes all prefabs in the Assets directory to JSON files for easier understanding. You can find the JSON files in `Temp/Highrise/Serializer/`, under the name of the prefab file (e.g., `Assets/Prefabs/MyPrefab.prefab.json`). Each JSON file is structured the same as the active scene file, and the prefabs can be edited using the same editing instructions as the scene. You should make edits to the prefabs using the reference IDs in this file; only use the `prefab:PATH` format as the value of a property that refers to a prefab asset.
+Prefab serialization is **on-demand**. Prefab JSON files are NOT generated automatically -- you must request them. To request serialization of one or more prefabs, create a file called `Temp/Highrise/Serializer/prefab_request.json` containing a JSON array of prefab asset paths:
+
+```json
+["Assets/Prefabs/MyPrefab.prefab", "Assets/Prefabs/AnotherPrefab.prefab"]
+```
+
+After creating this file, focus the Unity editor window and wait for the serializer to process it (the file will be deleted once processed). The serialized prefab JSON files will appear in `Temp/Highrise/Serializer/` under the name of the prefab file (e.g., `Assets/Prefabs/MyPrefab.prefab.json`).
+
+You can find prefab paths from:
+- `Temp/Highrise/Serializer/all_prefabs.json` — a JSON array of all prefab asset paths in the project, updated on every scene serialization
+- The `prefabPath` property on GameObjects in `active_scene.json` that are prefab instances
+
+Each prefab JSON file is structured the same as the active scene file, and prefabs can be edited using the same editing instructions as the scene. When you edit a prefab via `edit.json`, the modified prefab JSON is automatically re-serialized. You should make edits to the prefabs using the reference IDs in this file; only use the `prefab:PATH` format as the value of a property that refers to a prefab asset.
 
 ### Editing the scene or a prefab
 

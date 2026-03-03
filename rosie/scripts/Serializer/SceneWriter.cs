@@ -91,6 +91,7 @@ namespace Rosie
             {
                 nextReadEditTime = Time.realtimeSinceStartup + 0.5f;
                 ReadEdits();
+                ReadPrefabRequests();
             }
         }
 
@@ -107,9 +108,13 @@ namespace Rosie
             {
                 ObjectEditor.ReadEdit(edit);
             }
-            PrefabHydrator.EndEdits();
+            var modifiedPrefabPaths = PrefabHydrator.EndEdits();
             EditorSceneManager.SaveOpenScenes();
             shouldSerializeInNFrames = 2;
+            if (modifiedPrefabPaths.Count > 0)
+            {
+                SerializePrefabs(modifiedPrefabPaths);
+            }
         }
 
         private static void MarkShouldSerialize(UnityEngine.SceneManagement.Scene scene)
@@ -141,8 +146,32 @@ namespace Rosie
             var allComponentTypesFilePath = System.IO.Path.Combine(WRITE_DIRECTORY, "all_component_types.json");
             System.IO.File.WriteAllText(allComponentTypesFilePath, JsonConvert.SerializeObject(allComponentTypes, Formatting.Indented));
 
-            // write all of the prefabs in the Assets directory to their own files
-            string[] prefabPaths = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets" }).Select(AssetDatabase.GUIDToAssetPath).ToArray();
+            // write a listing of all available prefab asset paths
+            string[] prefabPaths = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets" })
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .OrderBy(p => p)
+                .ToArray();
+            var prefabListFilePath = System.IO.Path.Combine(WRITE_DIRECTORY, "all_prefabs.json");
+            System.IO.File.WriteAllText(prefabListFilePath, JsonConvert.SerializeObject(prefabPaths, Formatting.Indented));
+        }
+
+        private static void ReadPrefabRequests()
+        {
+            string filePath = System.IO.Path.Combine(WRITE_DIRECTORY, "prefab_request.json");
+            if (!System.IO.File.Exists(filePath))
+                return;
+
+            var requestData = System.IO.File.ReadAllText(filePath);
+            var prefabPaths = JsonConvert.DeserializeObject<List<string>>(requestData);
+            System.IO.File.Delete(filePath);
+            if (prefabPaths != null && prefabPaths.Count > 0)
+            {
+                SerializePrefabs(prefabPaths);
+            }
+        }
+
+        private static void SerializePrefabs(List<string> prefabPaths)
+        {
             foreach (var prefabPath in prefabPaths)
             {
                 var serializedPrefab = PrefabHydrator.SerializePrefab(prefabPath);

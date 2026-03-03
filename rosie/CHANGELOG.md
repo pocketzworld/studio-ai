@@ -4,6 +4,16 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.7] - 2026-03-03
+
+### Fixed
+
+- Some components' properties that write warnings and errors when read outside of runtime are now skipped.
+
+### Changed
+
+- Prefab serialization is now on-demand instead of running on every scene save. Rosie requests specific prefabs by writing `prefab_request.json`, and only those are serialized. Prefabs modified via `edit.json` are automatically re-serialized.
+
 ## [0.5.6] - 2026-02-25
 
 ### Fixed

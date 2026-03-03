@@ -83,14 +83,22 @@ namespace Rosie
             foreach (var property in props)
             {
                 propertyList.Add(() => {
+                    // Temporarily suppress Unity's logger to avoid console spam from properties
+                    // that log errors when read outside their expected context (e.g. Animator IK
+                    // properties, NavMeshAgent.isStopped, playback-only properties).
+                    var previousLogEnabled = Debug.unityLogger.logEnabled;
+                    Debug.unityLogger.logEnabled = false;
                     try
                     {
                         return new SerializedProperty(property.Name, property.PropertyType, component != null ? property.GetValue(component) : null);
                     }
                     catch
                     {
-                        // Some properties (e.g. NavMeshAgent.isStopped) throw when read outside of runtime.
                         return null;
+                    }
+                    finally
+                    {
+                        Debug.unityLogger.logEnabled = previousLogEnabled;
                     }
                 });
             }
@@ -130,6 +138,32 @@ namespace Rosie
             // Exclude material property on Colliders - it creates instances in edit mode.
             // Use sharedMaterial instead.
             (t, c, p) => !(typeof(Collider).IsAssignableFrom(t) && p.Name == "material"),
+            // Exclude properties that emit native Unity errors/warnings when read in editor.
+            // These bypass the managed logger and cannot be suppressed at runtime.
+            (t, c, p) => !nativeErrorProperties.Contains((t.FullName, p.Name)) &&
+                !nativeErrorProperties.Contains((nativeErrorBaseType(t), p.Name)),
+        };
+
+        private static string nativeErrorBaseType(Type t)
+        {
+            if (typeof(UnityEngine.AI.NavMeshAgent).IsAssignableFrom(t)) return "UnityEngine.AI.NavMeshAgent";
+            if (typeof(Animator).IsAssignableFrom(t)) return "UnityEngine.Animator";
+            if (typeof(AudioSource).IsAssignableFrom(t)) return "UnityEngine.AudioSource";
+            return t.FullName;
+        }
+
+        private static readonly HashSet<(string componentType, string propertyName)> nativeErrorProperties = new() {
+            // NavMeshAgent: requires active agent placed on a NavMesh
+            ("UnityEngine.AI.NavMeshAgent", "isStopped"),
+            // AudioSource: requires an active clip resource
+            ("UnityEngine.AudioSource", "time"),
+            ("UnityEngine.AudioSource", "timeSamples"),
+            // Animator: requires specific runtime states (playback mode, OnAnimatorIK, etc.)
+            ("UnityEngine.Animator", "playbackTime"),
+            ("UnityEngine.Animator", "recorderStartTime"),
+            ("UnityEngine.Animator", "recorderStopTime"),
+            ("UnityEngine.Animator", "bodyPosition"),
+            ("UnityEngine.Animator", "bodyRotation"),
         };
     }
 
