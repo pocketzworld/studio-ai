@@ -4,6 +4,12 @@ using UnityEditor;
 using System.IO;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Highrise;
+using Highrise.Studio;
+using Highrise.Create;
+using Highrise.Studio.Tools;
 
 namespace Rosie
 {
@@ -15,6 +21,7 @@ namespace Rosie
     /// - .rebuild: Triggers a Lua rebuild
     /// - .screenshot: Captures a screenshot of the Game view
     /// - .rebake: Rebakes lightmaps and NavMesh for the scene
+    /// - .upload: Uploads the world to Highrise
     /// Works on both Windows and macOS.
     ///
     /// This file is automatically symlinked to Assets/Editor/Serializer/
@@ -32,6 +39,9 @@ namespace Rosie
         private static readonly string ScreenshotTriggerPath;
         private static readonly string ScreenshotOutputPath;
         private static readonly string RebakeTriggerPath;
+        private static readonly string UploadTriggerPath;
+        private static readonly string UploadResultPath;
+        private static bool _uploadInProgress;
         private const double CHECK_INTERVAL = 1.0; // Check every 1 second
         private const double COOLDOWN_AFTER_PLAY_TRIGGER = 10.0; // 10 second cooldown between successful play triggers
         private const string RESTART_PLAY_PREF_KEY = "EditorTriggers_RestartPlay";
@@ -46,6 +56,8 @@ namespace Rosie
             ScreenshotTriggerPath = Path.Combine(projectRoot, ".screenshot");
             ScreenshotOutputPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "screenshot.png");
             RebakeTriggerPath = Path.Combine(projectRoot, ".rebake");
+            UploadTriggerPath = Path.Combine(projectRoot, ".upload");
+            UploadResultPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "upload_result.json");
             EditorApplication.update += CheckTriggers;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
@@ -130,6 +142,21 @@ namespace Rosie
                 }
             }
 
+            // Check for .upload file
+            if (!_uploadInProgress && File.Exists(UploadTriggerPath))
+            {
+                try
+                {
+                    var json = File.ReadAllText(UploadTriggerPath);
+                    File.Delete(UploadTriggerPath);
+                    HandleUploadTrigger(json);
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to process .upload file: " + e.Message);
+                }
+            }
+
             // Check for .stop file
             if (File.Exists(StopTriggerPath))
             {
@@ -182,6 +209,133 @@ namespace Rosie
                     TriggerLuaRebuild();
                     EditorApplication.delayCall += () => EditorApplication.isPlaying = true;
                 }
+            }
+        }
+
+        private class UploadRequest
+        {
+            public string sessionToken;
+            public string username;
+            public string password;
+            public string worldId;
+            public string tag;
+            public string packageVersionOverride;
+        }
+
+        static void HandleUploadTrigger(string json)
+        {
+            try
+            {
+                _uploadInProgress = true;
+                var request = JsonConvert.DeserializeObject<UploadRequest>(json);
+
+                // Save assets and scenes before building the archive (mirrors the UI upload flow)
+                AssetDatabase.SaveAssets();
+                UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
+                AssetDatabase.Refresh();
+
+                if (File.Exists(UploadResultPath))
+                    File.Delete(UploadResultPath);
+                bool uploadSucceeded = false;
+                Action onSuccess = () => uploadSucceeded = true;
+
+                // Use Async.Run to set up the AsyncContext that UploadWorld internally depends on
+                Async.Run(async () =>
+                {
+                    PublishWorld.UploadWorldSucceeded += onSuccess;
+                    try
+                    {
+                        // Authenticate: prefer username/password login, fall back to session token
+                        if (!string.IsNullOrEmpty(request.username) && !string.IsNullOrEmpty(request.password))
+                        {
+                            await StudioCreatePortal.LoginAsync(new CreatePortalCredentials
+                            {
+                                Username = request.username,
+                                Password = request.password
+                            });
+                        }
+                        else if (!string.IsNullOrEmpty(request.sessionToken))
+                        {
+                            StudioSettings.SessionToken = request.sessionToken;
+                        }
+
+                        var worldId = !string.IsNullOrEmpty(request.worldId)
+                            ? request.worldId
+                            : WorldSettings.instance.PublishedId;
+
+                        if (string.IsNullOrEmpty(worldId))
+                        {
+                            WriteUploadResult(false, error: "No world ID found");
+                            _uploadInProgress = false;
+                            return;
+                        }
+
+                        await InvokeUploadWorld(worldId, request.tag, request.packageVersionOverride);
+
+                        if (uploadSucceeded)
+                        {
+                            WriteUploadResult(true, worldId: worldId, buildNumber: StudioSettings.LastBuildNumber);
+                        }
+                        else
+                        {
+                            WriteUploadResult(false, error: "Upload did not succeed");
+                            _uploadInProgress = false;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        UnityEngine.Debug.LogWarning("[EditorTriggers] Upload failed: " + e.Message);
+                        WriteUploadResult(false, error: e.Message);
+                        _uploadInProgress = false;
+                    }
+                    finally
+                    {
+                        PublishWorld.UploadWorldSucceeded -= onSuccess;
+                        _uploadInProgress = false;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Upload failed: " + e.Message);
+                WriteUploadResult(false, error: e.Message);
+                _uploadInProgress = false;
+            }
+        }
+
+        static async System.Threading.Tasks.Task InvokeUploadWorld(string worldId, string tag, string packageVersionOverride)
+        {
+            // Use reflection to support both 4-param and 5-param versions of UploadWorld
+            var method = typeof(PublishWorld).GetMethod("UploadWorld",
+                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+            var paramCount = method.GetParameters().Length;
+            object[] args = paramCount == 5
+                ? new object[] { worldId, null, tag, packageVersionOverride, null }
+                : new object[] { worldId, null, tag, packageVersionOverride };
+            await (System.Threading.Tasks.Task)method.Invoke(null, args);
+        }
+
+        static void WriteUploadResult(bool success, string worldId = null, int buildNumber = 0, string error = null)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(UploadResultPath));
+
+                string resultJson;
+                if (success)
+                {
+                    resultJson = JsonConvert.SerializeObject(new { success = true, worldId, buildNumber });
+                }
+                else
+                {
+                    resultJson = JsonConvert.SerializeObject(new { success = false, error });
+                }
+
+                File.WriteAllText(UploadResultPath, resultJson);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to write upload result: " + e.Message);
             }
         }
 
