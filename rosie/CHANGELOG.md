@@ -5,6 +5,12 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.5.9] - 2026-03-13
+
+### Fixed
+
+- Rosie's instructions now correctly describe how component and object properties are serialized.
+
 ## [0.5.8] - 2026-03-10
 
 ### Added

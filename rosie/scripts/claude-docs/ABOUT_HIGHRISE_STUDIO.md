@@ -167,7 +167,7 @@ The JSON file contains the scene's entire Game Object hierarchy. There will be a
     {
       "componentType": "the type of the component (e.g., UnityEngine.Transform)",
       "referenceId": "a GUID that uniquely identifies this component within the scene. Not persistent across editor reloads.",
-      "componentProperties": {
+      "properties": {
         "PROPERTY_NAME (e.g., position)": {
           "propertyName": "the name of the property (e.g., position, rotation, scale, etc.), matching the PROPERTY_NAME key.",
           "type": "the type of the property (e.g., UnityEngine.Vector3, String, etc. If the type is an enum, the full name of the enum will be used, followed by a list of the possible values in parentheses.)",
@@ -203,6 +203,8 @@ Here are some important property value formats:
   "value": "the GUID of the referenced Game Object or Component OR if the field refers to a prefab asset, a path to the prefab asset with the prefix 'prefab:' (e.g., 'prefab:Assets/Prefabs/MyPrefab.prefab')."
 }
 ```
+
+Note that only component properties are serialized as objects with a `value` key; object properties are serialized as direct values.
 
 ### Reading prefabs
 
