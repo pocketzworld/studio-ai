@@ -54,6 +54,7 @@ globalState = {}
 --------------------------------
 -- Always initialize state to a default value at the time of declaration
 -- Always annotate the type of local state
+-- Limited to ~200 local state variables per script; break into multiple scripts if necessary
 local localState: {number} = {0}
 local localTimer: Timer = nil
 

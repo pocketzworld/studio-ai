@@ -1,8 +1,19 @@
 #!/bin/bash
 
+# Parse CLI flags for backend selection
+AGENT_BACKEND="claude"
+EVALUATOR_BACKEND="claude"
+while [[ "${1:-}" == --* ]]; do
+  case "$1" in
+    --agent) AGENT_BACKEND="$2"; shift 2 ;;
+    --evaluator) EVALUATOR_BACKEND="$2"; shift 2 ;;
+    *) echo "Unknown option: $1"; exit 1 ;;
+  esac
+done
+
 # Check if arguments are provided
 if [ -z "$1" ]; then
-    echo "Usage: $0 <test-directory-name> [<test-directory-name> ...]"
+    echo "Usage: $0 [--agent claude|codex] [--evaluator claude|codex] <test-directory-name> [<test-directory-name> ...]"
     exit 1
 fi
 
@@ -39,9 +50,10 @@ cleanup() {
         done
     fi
     
-    # Kill all claude processes
-    echo "Killing all claude processes..." >&2
+    # Kill all agent processes
+    echo "Killing all agent processes..." >&2
     pkill -f claude || true
+    pkill -f codex || true
     
     # Clean up result directory if it exists
     if [ -n "$RESULT_DIR" ] && [ -d "$RESULT_DIR" ]; then
@@ -55,97 +67,39 @@ cleanup() {
 # Set up trap to catch termination signals
 trap cleanup SIGINT SIGTERM EXIT
 
-# Function to process a single test
-process_test() {
-    local TEST_DIR="$1"
-    local RESULT_FILE="$2"
+# Backend-specific: set up the test environment
+setup_test_env() {
+    local BACKEND="$1"
+    local TEMP_DIR="$2"
+    if [ "$BACKEND" = "claude" ]; then
+        claude -p "/exit"  # start and end a session to trigger any setup hooks
+        echo '{"sandbox": {"enabled": true, "autoAllowBashIfSandboxed": true}}' > .claude/settings.local.json
+    elif [ "$BACKEND" = "codex" ]; then
+        git init
+        mkdir -p Assets
+        bash "$SCRIPT_DIR/../backends/to-codex.sh"
+    else
+        echo "Error: Unknown agent backend '$BACKEND'" >&2
+        return 1
+    fi
+}
 
-    START_DIR="$(pwd)"
-    
-    # Convert TEST_DIR to absolute path
-    if [[ "$TEST_DIR" != /* ]]; then
-        if [ -d "$TEST_DIR" ]; then
-            TEST_DIR="$(cd "$TEST_DIR" && pwd)"
-        fi
-    fi
-    
-    echo "=========================================" >&2
-    echo "Processing test: $TEST_DIR" >&2
-    echo "=========================================" >&2
-    
-    local PROMPT_FILE="${TEST_DIR}/prompt.txt"
-    local PREP_SCRIPT="${TEST_DIR}/prep.sh"
-    local CRITERIA_FILE="${TEST_DIR}/criteria.md"
-    local POST_SCRIPT="${TEST_DIR}/post.sh"
-    
-    # Validate test directory exists
-    if [ ! -d "$TEST_DIR" ]; then
-        echo "Error: Test directory '$TEST_DIR' does not exist" >&2
-        echo "" > "$RESULT_FILE"
-        echo "## $TEST_DIR" >> "$RESULT_FILE"
-        echo "" >> "$RESULT_FILE"
-        echo "❌ Error: Test directory does not exist" >> "$RESULT_FILE"
-        echo "" >> "$RESULT_FILE"
-        return
-    fi
-    
-    # Validate prompt.txt exists
-    if [ ! -f "$PROMPT_FILE" ]; then
-        echo "Error: prompt.txt not found in '$TEST_DIR'" >&2
-        echo "" > "$RESULT_FILE"
-        echo "## $TEST_DIR" >> "$RESULT_FILE"
-        echo "" >> "$RESULT_FILE"
-        echo "❌ Error: prompt.txt not found" >> "$RESULT_FILE"
-        echo "" >> "$RESULT_FILE"
-        return
-    fi
-    
-    # Validate criteria.md exists
-    if [ ! -f "$CRITERIA_FILE" ]; then
-        echo "Error: criteria.md not found in '$TEST_DIR'" >&2
-        echo "" > "$RESULT_FILE"
-        echo "## $TEST_DIR" >> "$RESULT_FILE"
-        echo "" >> "$RESULT_FILE"
-        echo "❌ Error: criteria.md not found" >> "$RESULT_FILE"
-        echo "" >> "$RESULT_FILE"
-        return
-    fi
-    
-    # Create separate temp directory for this test
-    local TEMP_DIR="$(mktemp -d)"
-    echo "Created temp directory: $TEMP_DIR" >&2
-    cd "$TEMP_DIR"
-    mkdir -p "Packages/com.pz.studio.generated"
+# Backend-specific: launch the agent in Terminal via osascript and poll for output
+run_agent() {
+    local BACKEND="$1"
+    local TEMP_DIR="$2"
+    local PROMPT_TEMP_FILE="$3"
+    local OUTPUT_FILE="$4"
 
-    claude -p "/exit"  # start and end a session to trigger any setup hooks
-    # Run the tests in a sandbox to avoid permission requests
-    echo '{"sandbox": {"enabled": true, "autoAllowBashIfSandboxed": true}}' > .claude/settings.local.json
-    
-    # Run prep.sh if it exists
-    if [ -f "$PREP_SCRIPT" ]; then
-        echo "Running prep.sh from $TEST_DIR..." >&2
-        cd "$TEST_DIR"
-        bash "$PREP_SCRIPT" "$TEMP_DIR"
-        cd "$TEMP_DIR"
+    local AGENT_CMD="claude"
+    if [ "$BACKEND" = "codex" ]; then
+        AGENT_CMD="codex --full-auto"
     fi
-    
-    local OUTPUT_FILE="${TEMP_DIR}/answer.txt"
-    echo "Writing output to $OUTPUT_FILE" >&2
-    local CLAUDE_PROMPT="$(cat $PROMPT_FILE)"
-    
-    # Generate a UUID for the session
-    local SESSION_ID="$(uuidgen)"
-    
-    # Create a temporary file with the prompt text for easier handling
-    local PROMPT_TEMP_FILE="$(mktemp)"
-    echo "$CLAUDE_PROMPT. Don't ask me for any clarifications. Write your final response to this prompt to $OUTPUT_FILE." > "$PROMPT_TEMP_FILE"
-    
-    # Run claude in interactive mode in a separate terminal window
-    # Wait 2 seconds, then type the prompt and press Enter
+
     osascript <<EOF
 tell application "Terminal"
     activate
-    set newWindow to do script "cd '$TEMP_DIR' && claude"
+    set newWindow to do script "cd '$TEMP_DIR' && $AGENT_CMD"
     delay 1.5
     tell application "System Events"
         tell process "Terminal"
@@ -160,16 +114,13 @@ tell application "Terminal"
     end tell
 end tell
 EOF
-    
-    # Clean up temp file
-    rm -f "$PROMPT_TEMP_FILE"
-    
+
     # Wait for OUTPUT_FILE to be written (with 10 minute timeout)
-    echo "Waiting for claude to write output to $OUTPUT_FILE..." >&2
+    echo "Waiting for $BACKEND to write output to $OUTPUT_FILE..." >&2
     local TIMEOUT=600  # 10 minutes in seconds
     local ELAPSED=0
     local CHECK_INTERVAL=1  # Check every second
-    
+
     while [ $ELAPSED -lt $TIMEOUT ]; do
         if [ -f "$OUTPUT_FILE" ] && [ -s "$OUTPUT_FILE" ]; then
             echo "Output file written successfully after ${ELAPSED} seconds" >&2
@@ -178,7 +129,7 @@ EOF
         sleep $CHECK_INTERVAL
         ELAPSED=$((ELAPSED + CHECK_INTERVAL))
     done
-    
+
     if [ $ELAPSED -ge $TIMEOUT ]; then
         echo "Warning: Timeout reached (${TIMEOUT}s) waiting for output file" >&2
         if [ ! -f "$OUTPUT_FILE" ]; then
@@ -188,34 +139,143 @@ EOF
             echo "Output file exists but is empty" >&2
         fi
     fi
-    
+}
+
+# Backend-specific: evaluate the agent's output
+run_evaluator() {
+    local BACKEND="$1"
+    local EVAL_INPUT="$2"
+    local SYSTEM_PROMPT="$3"
+    local EVAL_OUTPUT_FILE="$4"
+    if [ "$BACKEND" = "claude" ]; then
+        claude --append-system-prompt "$SYSTEM_PROMPT" --print "$EVAL_INPUT" > "$EVAL_OUTPUT_FILE"
+    elif [ "$BACKEND" = "codex" ]; then
+        codex exec --full-auto "$SYSTEM_PROMPT
+
+$EVAL_INPUT" -o "$EVAL_OUTPUT_FILE"
+    else
+        echo "Error: Unknown evaluator backend '$BACKEND'" >&2
+        return 1
+    fi
+}
+
+# Function to process a single test
+process_test() {
+    local TEST_DIR="$1"
+    local RESULT_FILE="$2"
+
+    START_DIR="$(pwd)"
+
+    # Convert TEST_DIR to absolute path
+    if [[ "$TEST_DIR" != /* ]]; then
+        if [ -d "$TEST_DIR" ]; then
+            TEST_DIR="$(cd "$TEST_DIR" && pwd)"
+        fi
+    fi
+
+    echo "=========================================" >&2
+    echo "Processing test: $TEST_DIR (agent=$AGENT_BACKEND, evaluator=$EVALUATOR_BACKEND)" >&2
+    echo "=========================================" >&2
+
+    local PROMPT_FILE="${TEST_DIR}/prompt.txt"
+    local PREP_SCRIPT="${TEST_DIR}/prep.sh"
+    local CRITERIA_FILE="${TEST_DIR}/criteria.md"
+    local POST_SCRIPT="${TEST_DIR}/post.sh"
+
+    # Validate test directory exists
+    if [ ! -d "$TEST_DIR" ]; then
+        echo "Error: Test directory '$TEST_DIR' does not exist" >&2
+        echo "" > "$RESULT_FILE"
+        echo "## $TEST_DIR" >> "$RESULT_FILE"
+        echo "" >> "$RESULT_FILE"
+        echo "❌ Error: Test directory does not exist" >> "$RESULT_FILE"
+        echo "" >> "$RESULT_FILE"
+        return
+    fi
+
+    # Validate prompt.txt exists
+    if [ ! -f "$PROMPT_FILE" ]; then
+        echo "Error: prompt.txt not found in '$TEST_DIR'" >&2
+        echo "" > "$RESULT_FILE"
+        echo "## $TEST_DIR" >> "$RESULT_FILE"
+        echo "" >> "$RESULT_FILE"
+        echo "❌ Error: prompt.txt not found" >> "$RESULT_FILE"
+        echo "" >> "$RESULT_FILE"
+        return
+    fi
+
+    # Validate criteria.md exists
+    if [ ! -f "$CRITERIA_FILE" ]; then
+        echo "Error: criteria.md not found in '$TEST_DIR'" >&2
+        echo "" > "$RESULT_FILE"
+        echo "## $TEST_DIR" >> "$RESULT_FILE"
+        echo "" >> "$RESULT_FILE"
+        echo "❌ Error: criteria.md not found" >> "$RESULT_FILE"
+        echo "" >> "$RESULT_FILE"
+        return
+    fi
+
+    # Create separate temp directory for this test
+    local TEMP_DIR="$(mktemp -d)"
+    echo "Created temp directory: $TEMP_DIR" >&2
+    cd "$TEMP_DIR"
+    mkdir -p "Packages/com.pz.studio.generated"
+
+    # Run prep.sh if it exists
+    if [ -f "$PREP_SCRIPT" ]; then
+        echo "Running prep.sh from $TEST_DIR..." >&2
+        cd "$TEST_DIR"
+        bash "$PREP_SCRIPT" "$TEMP_DIR"
+        cd "$TEMP_DIR"
+    fi
+
+    setup_test_env "$AGENT_BACKEND" "$TEMP_DIR"
+
+    local OUTPUT_FILE="${TEMP_DIR}/answer.txt"
+    echo "Writing output to $OUTPUT_FILE" >&2
+    local CLAUDE_PROMPT="$(cat $PROMPT_FILE)"
+
+    # Create a temporary file with the prompt text for easier handling
+    local PROMPT_TEMP_FILE="$(mktemp)"
+    echo "$CLAUDE_PROMPT. Don't ask me for any clarifications. Write your final response to this prompt to $OUTPUT_FILE." > "$PROMPT_TEMP_FILE"
+
+    run_agent "$AGENT_BACKEND" "$TEMP_DIR" "$PROMPT_TEMP_FILE" "$OUTPUT_FILE"
+
+    # Clean up temp file
+    rm -f "$PROMPT_TEMP_FILE"
+
     if [ -f "$POST_SCRIPT" ]; then
         echo "Running post.sh from $TEST_DIR..." >&2
         cd "$TEST_DIR"
         bash "$POST_SCRIPT" "$TEMP_DIR"
         cd "$TEMP_DIR"
     fi
-    
+
     local CLAUDE_OUTPUT="$(cat $OUTPUT_FILE)"
-    
+
     local CRITERIA="$(cat $CRITERIA_FILE)"
-    
+
     # Capture evaluation results
     local EVAL_OUTPUT_FILE="$(mktemp)"
-    echo "Evaluating..." >&2
-    claude --append-system-prompt "$(cat $SCRIPT_DIR/evaluator-prompt.txt)" --print "# Prompt
+    echo "Evaluating with $EVALUATOR_BACKEND..." >&2
+
+    local EVAL_INPUT="# Prompt
 $CLAUDE_PROMPT
 
 ---
 
-# Claude Code output
+# Agent output
 $CLAUDE_OUTPUT
 
 ---
 
 # Evaluation criteria
-$CRITERIA" > "$EVAL_OUTPUT_FILE"
-    
+$CRITERIA"
+
+    local SYSTEM_PROMPT="$(cat $SCRIPT_DIR/evaluator-prompt.txt)"
+
+    run_evaluator "$EVALUATOR_BACKEND" "$EVAL_INPUT" "$SYSTEM_PROMPT" "$EVAL_OUTPUT_FILE"
+
     # Write results to result file
     echo "" > "$RESULT_FILE"
     echo "## $TEST_DIR" >> "$RESULT_FILE"
@@ -224,10 +284,10 @@ $CRITERIA" > "$EVAL_OUTPUT_FILE"
     echo "" >> "$RESULT_FILE"
     echo "---" >> "$RESULT_FILE"
     echo "" >> "$RESULT_FILE"
-    
+
     # Clean up temp directory
     rm -f "$EVAL_OUTPUT_FILE"
-    
+
     echo "Completed test: $TEST_DIR" >&2
     echo "" >&2
 

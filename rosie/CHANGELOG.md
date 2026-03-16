@@ -5,6 +5,16 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.5.10] - 2026-03-16
+
+### Added
+
+- Lua scripting style guide now notes the max number of local state variables per script.
+
+### Changed
+
+- Codex backend: `AGENTS.md` is now the concatenation of `CLAUDE.md` and `ABOUT_HIGHRISE_STUDIO.md`, not just a pointer to `ABOUT_HIGHRISE_STUDIO.md`.
+
 ## [0.5.9] - 2026-03-13
 
 ### Fixed

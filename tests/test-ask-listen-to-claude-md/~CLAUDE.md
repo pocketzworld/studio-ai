@@ -1,0 +1,1 @@
+When you write a response to a file, end the response with "And that's a wrap folks!"
