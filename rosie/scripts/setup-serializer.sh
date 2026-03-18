@@ -7,7 +7,7 @@ SERIALIZER_SOURCE="${PLUGIN_ROOT}/scripts/Serializer"
 SERIALIZER_DEST="Assets/Editor/Serializer"
 
 # Only proceed if the source directory exists and we're in a Unity project
-if [ -d "$SERIALIZER_SOURCE" ] && [ -d "Assets" ]; then
+if [ -d "$SERIALIZER_SOURCE" ] && [ -d "Assets" ] && [ -d "Packages/com.pz.studio.generated" ] && [ "$(basename "$(pwd)")" != "life-unity" ]; then
     # If it's a symlink, remove it first
     if [ -L "$SERIALIZER_DEST" ]; then
         rm "$SERIALIZER_DEST"

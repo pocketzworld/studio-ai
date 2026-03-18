@@ -34,7 +34,7 @@ if ($shouldUpdate) {
 }
 
 # Only copy to .claude if we're in a Highrise Studio project
-if (Test-Path "Packages/com.pz.studio.generated") {
+if ((Test-Path "Packages/com.pz.studio.generated") -and ((Split-Path -Leaf (Get-Location)) -ne "life-unity")) {
     New-Item -ItemType Directory -Force -Path ".claude" | Out-Null
 
     # Version migration: delete old CLAUDE.md if version < 0.3.0

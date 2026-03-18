@@ -33,7 +33,7 @@ if [ "$SHOULD_UPDATE" = true ]; then
 fi
 
 # Only copy to .claude if we're in a Highrise Studio project
-if [ -d "Packages/com.pz.studio.generated" ]; then
+if [ -d "Packages/com.pz.studio.generated" ] && [ "$(basename "$(pwd)")" != "life-unity" ]; then
   mkdir -p .claude
   # if there is a version.txt file that contains anything less than 0.3.0, delete .claude/CLAUDE.md if it exists
   if [ -f .claude/version.txt ] && [[ "$(cat .claude/version.txt)" < "0.3.0" ]]; then

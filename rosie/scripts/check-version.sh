@@ -3,7 +3,7 @@
 # Accept a plugin root directory as an argument
 PLUGIN_ROOT="$1"
 
-if [ -d "Packages/com.pz.studio.generated" ]; then
+if [ -d "Packages/com.pz.studio.generated" ] && [ "$(basename "$(pwd)")" != "life-unity" ]; then
     # If there is no .claude folder or the .claude folder does not contain a version.txt file, ask the user to restart
     if [ ! -d ".claude" ] || [ ! -f ".claude/version.txt" ]; then
         echo "{\"systemMessage\": \"\nPlease /exit and restart Claude Code to initialize the project's .claude folder.\"}"

@@ -1,6 +1,6 @@
 param([string]$PluginRoot)
 
-if (Test-Path "Packages/com.pz.studio.generated") {
+if ((Test-Path "Packages/com.pz.studio.generated") -and ((Split-Path -Leaf (Get-Location)) -ne "life-unity")) {
     if (-not (Test-Path ".claude") -or -not (Test-Path ".claude/version.txt")) {
         Write-Output '{"systemMessage": "\nPlease /exit and restart Claude Code to initialize the project''s .claude folder."}'
         exit 1

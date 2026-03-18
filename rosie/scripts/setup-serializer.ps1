@@ -3,7 +3,7 @@ param([string]$PluginRoot)
 $serializerSource = "$PluginRoot/scripts/Serializer"
 $serializerDest = "Assets/Editor/Serializer"
 
-if ((Test-Path $serializerSource) -and (Test-Path "Assets")) {
+if ((Test-Path $serializerSource) -and (Test-Path "Assets") -and (Test-Path "Packages/com.pz.studio.generated") -and ((Split-Path -Leaf (Get-Location)) -ne "life-unity")) {
     # Remove symlink/junction if present
     $item = Get-Item $serializerDest -ErrorAction SilentlyContinue
     if ($item -and ($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint)) {
