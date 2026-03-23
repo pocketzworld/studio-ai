@@ -224,7 +224,6 @@ namespace Rosie
 
         static void HandleUploadTrigger(string json)
         {
-#if HR_STUDIO
             try
             {
                 _uploadInProgress = true;
@@ -302,14 +301,8 @@ namespace Rosie
                 WriteUploadResult(false, error: e.Message);
                 _uploadInProgress = false;
             }
-#else
-            UnityEngine.Debug.LogWarning("[EditorTriggers] Upload is not supported without HR_STUDIO");
-            WriteUploadResult(false, error: "Upload is not supported on this platform");
-            _uploadInProgress = false;
-#endif
         }
 
-#if HR_STUDIO
         static async System.Threading.Tasks.Task InvokeUploadWorld(string worldId, string tag, string packageVersionOverride)
         {
             // Use reflection to support both 4-param and 5-param versions of UploadWorld
@@ -321,7 +314,6 @@ namespace Rosie
                 : new object[] { worldId, null, tag, packageVersionOverride };
             await (System.Threading.Tasks.Task)method.Invoke(null, args);
         }
-#endif
 
         static void WriteUploadResult(bool success, string worldId = null, int buildNumber = 0, string error = null)
         {
