@@ -4,6 +4,14 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.13] - 2026-03-27
+
+### Added
+
+- New skill: `rosie-search-asset-catalog`, which searches the Highrise Studio Asset Catalog to find and acquire assets.
+- New agent: `rosie-layout-mode`, which lays out scenes.
+- New agent: `rosie-bugfix-mode`, which fixes a specific bug in the project.
+
 ## [0.5.12] - 2026-03-23
 
 ### Fixed

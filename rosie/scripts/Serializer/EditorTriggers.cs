@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Highrise;
 using Highrise.Studio;
 using Highrise.Create;
+using Highrise.Create.Models;
 using Highrise.Studio.Tools;
 
 namespace Rosie
@@ -22,6 +23,8 @@ namespace Rosie
     /// - .screenshot: Captures a screenshot of the Game view
     /// - .rebake: Rebakes lightmaps and NavMesh for the scene
     /// - .upload: Uploads the world to Highrise
+    /// - .catalog: Exports auth credentials for the asset catalog CLI
+    /// - .install: Downloads and installs an asset from the catalog
     /// Works on both Windows and macOS.
     ///
     /// This file is automatically symlinked to Assets/Editor/Serializer/
@@ -41,7 +44,12 @@ namespace Rosie
         private static readonly string RebakeTriggerPath;
         private static readonly string UploadTriggerPath;
         private static readonly string UploadResultPath;
+        private static readonly string CatalogTriggerPath;
+        private static readonly string CatalogResultPath;
+        private static readonly string InstallTriggerPath;
+        private static readonly string InstallResultPath;
         private static bool _uploadInProgress;
+        private static bool _installInProgress;
         private const double CHECK_INTERVAL = 1.0; // Check every 1 second
         private const double COOLDOWN_AFTER_PLAY_TRIGGER = 10.0; // 10 second cooldown between successful play triggers
         private const string RESTART_PLAY_PREF_KEY = "EditorTriggers_RestartPlay";
@@ -58,6 +66,10 @@ namespace Rosie
             RebakeTriggerPath = Path.Combine(projectRoot, ".rebake");
             UploadTriggerPath = Path.Combine(projectRoot, ".upload");
             UploadResultPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "upload_result.json");
+            CatalogTriggerPath = Path.Combine(projectRoot, ".catalog");
+            CatalogResultPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "catalog_result.json");
+            InstallTriggerPath = Path.Combine(projectRoot, ".install");
+            InstallResultPath = Path.Combine(projectRoot, "Temp", "Highrise", "Serializer", "install_result.json");
             EditorApplication.update += CheckTriggers;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
@@ -119,6 +131,7 @@ namespace Rosie
                 {
                     File.Delete(ScreenshotTriggerPath);
                     FocusUnityWindow();
+                    FocusPlayModeWindow();
                     ScreenCapture.CaptureScreenshot(ScreenshotOutputPath);
                 }
                 catch (Exception e)
@@ -154,6 +167,35 @@ namespace Rosie
                 catch (Exception e)
                 {
                     UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to process .upload file: " + e.Message);
+                }
+            }
+
+            // Check for .catalog file
+            if (File.Exists(CatalogTriggerPath))
+            {
+                try
+                {
+                    File.Delete(CatalogTriggerPath);
+                    HandleCatalogTrigger();
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to process .catalog file: " + e.Message);
+                }
+            }
+
+            // Check for .install file
+            if (!_installInProgress && File.Exists(InstallTriggerPath))
+            {
+                try
+                {
+                    var json = File.ReadAllText(InstallTriggerPath);
+                    File.Delete(InstallTriggerPath);
+                    HandleInstallTrigger(json);
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to process .install file: " + e.Message);
                 }
             }
 
@@ -336,6 +378,177 @@ namespace Rosie
             catch (Exception e)
             {
                 UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to write upload result: " + e.Message);
+            }
+        }
+
+        static void HandleCatalogTrigger()
+        {
+            try
+            {
+                var sessionToken = StudioSettings.SessionToken;
+                var environment = StudioSettings.CurrentEnvironment;
+
+                if (string.IsNullOrEmpty(sessionToken))
+                {
+                    WriteCatalogResult(false, error: "Not logged in. Please log in to Highrise Studio first.");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(environment))
+                    environment = CreatePortal.EnvironmentProd;
+
+                var baseUrl = string.Format("https://{0}-create.highrise.game/api", environment);
+
+                WriteCatalogResult(true, sessionToken: sessionToken, environment: environment, baseUrl: baseUrl);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Catalog trigger failed: " + e.Message);
+                WriteCatalogResult(false, error: e.Message);
+            }
+        }
+
+        static void WriteCatalogResult(bool success, string sessionToken = null, string environment = null, string baseUrl = null, string error = null)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(CatalogResultPath));
+
+                string resultJson;
+                if (success)
+                {
+                    resultJson = JsonConvert.SerializeObject(new
+                    {
+                        success = true,
+                        session_token = sessionToken,
+                        environment,
+                        base_url = baseUrl,
+                        timestamp = DateTime.UtcNow.ToString("o")
+                    });
+                }
+                else
+                {
+                    resultJson = JsonConvert.SerializeObject(new { success = false, error });
+                }
+
+                File.WriteAllText(CatalogResultPath, resultJson);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to write catalog result: " + e.Message);
+            }
+        }
+
+        private class InstallRequest
+        {
+            public string assetId;
+        }
+
+        static void HandleInstallTrigger(string json)
+        {
+            try
+            {
+                _installInProgress = true;
+                var request = JsonConvert.DeserializeObject<InstallRequest>(json);
+
+                if (string.IsNullOrEmpty(request?.assetId))
+                {
+                    WriteInstallResult(false, error: "Missing assetId in .install request");
+                    _installInProgress = false;
+                    return;
+                }
+
+                if (File.Exists(InstallResultPath))
+                    File.Delete(InstallResultPath);
+
+                Async.Run(async () =>
+                {
+                    try
+                    {
+                        // Fetch asset details from the API
+                        var response = await CreatePortal.GetAssetAsync(request.assetId);
+                        var storeAsset = response.Asset;
+
+                        if (storeAsset == null)
+                        {
+                            WriteInstallResult(false, error: $"Asset '{request.assetId}' not found");
+                            _installInProgress = false;
+                            return;
+                        }
+
+                        // Check if already installed
+                        if (AssetStore.instance.IsInstalled(storeAsset.Id))
+                        {
+                            var existingPath = AssetStore.instance.StoreIdToAssetPath(storeAsset.Id);
+                            WriteInstallResult(true, assetId: storeAsset.Id, assetName: storeAsset.Name, installedPath: existingPath, alreadyInstalled: true);
+                            _installInProgress = false;
+                            return;
+                        }
+
+                        // Check if purchase is needed
+                        if (storeAsset.DoesAssetNeedPurchasing(StudioSettings.User))
+                        {
+                            WriteInstallResult(false, error: $"Asset '{storeAsset.Name}' requires purchase ({storeAsset.Price} gold). Purchase it first.");
+                            _installInProgress = false;
+                            return;
+                        }
+
+                        // Call the private InstallAssetAsync method via reflection
+                        var method = typeof(AssetStore).GetMethod("InstallAssetAsync",
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+
+                        if (method == null)
+                        {
+                            WriteInstallResult(false, error: "Could not find InstallAssetAsync method — AssetStore API may have changed");
+                            _installInProgress = false;
+                            return;
+                        }
+
+                        await (Task)method.Invoke(AssetStore.instance, new object[] { storeAsset });
+
+                        var assetPath = AssetStore.instance.StoreIdToAssetPath(storeAsset.Id);
+                        WriteInstallResult(true, assetId: storeAsset.Id, assetName: storeAsset.Name, installedPath: assetPath);
+                    }
+                    catch (Exception e)
+                    {
+                        UnityEngine.Debug.LogWarning("[EditorTriggers] Install failed: " + e.Message);
+                        WriteInstallResult(false, error: e.Message);
+                    }
+                    finally
+                    {
+                        _installInProgress = false;
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Install failed: " + e.Message);
+                WriteInstallResult(false, error: e.Message);
+                _installInProgress = false;
+            }
+        }
+
+        static void WriteInstallResult(bool success, string assetId = null, string assetName = null, string installedPath = null, bool alreadyInstalled = false, string error = null)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(InstallResultPath));
+
+                string resultJson;
+                if (success)
+                {
+                    resultJson = JsonConvert.SerializeObject(new { success = true, asset_id = assetId, asset_name = assetName, installed_path = installedPath, already_installed = alreadyInstalled });
+                }
+                else
+                {
+                    resultJson = JsonConvert.SerializeObject(new { success = false, error });
+                }
+
+                File.WriteAllText(InstallResultPath, resultJson);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning("[EditorTriggers] Failed to write install result: " + e.Message);
             }
         }
 
