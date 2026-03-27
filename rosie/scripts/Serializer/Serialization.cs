@@ -29,7 +29,7 @@ namespace Rosie
                 { "parentGameObject", go.transform.parent != null ? SceneWriter.GetId(go.transform.parent.gameObject) : null },
                 { "prefabPath", PrefabUtility.IsPartOfPrefabInstance(go) ? AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go)) : null }
             };
-            components = go.GetComponents<Component>().Select(c => new SerializedComponent(c)).ToArray();
+            components = go.GetComponents<Component>().Where(c => c != null).Select(c => new SerializedComponent(c)).ToArray();
             children = go.transform.Cast<Transform>().Select(child => new SerializedGameObject(child.gameObject)).ToArray();
         }
 

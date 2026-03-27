@@ -4,6 +4,16 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.14] - 2026-03-27
+
+### Fixed
+
+- Null components are now skipped during serialization to avoid serialization failures.
+
+### Changed
+
+- The `rosie-search-asset-catalog` skill now uses the `sonnet` model.
+
 ## [0.5.13] - 2026-03-27
 
 ### Added

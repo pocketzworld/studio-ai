@@ -1,6 +1,7 @@
 ---
 description: Search the Highrise Studio Asset Catalog to find and acquire assets. The Asset Catalog is a database where users can upload assets (scripts, models, textures, etc.) for others to use in their projects. Assets can either be free or purchased with Highrise Gold, an in-game premium currency. This skill will not actually execute purchases; it can only search the catalog and download free or already-purchased assets.
 context: fork
+model: sonnet
 ---
 
 # Search the Asset Catalog
