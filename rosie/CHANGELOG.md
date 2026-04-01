@@ -4,6 +4,12 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.15] - 2026-04-01
+
+### Added
+
+- Scene object `@` mentions: type `@ObjectName` in your prompt to automatically resolve it to the matching scene object's reference ID and location in the scene JSON. Supports `@"Quoted Names"` for multi-word object names. Requires `jq`.
+
 ## [0.5.14] - 2026-03-27
 
 ### Fixed
