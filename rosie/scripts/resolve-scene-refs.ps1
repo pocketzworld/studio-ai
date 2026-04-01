@@ -8,8 +8,8 @@ if (-not (Test-Path $sceneFile)) {
 }
 
 # Read the prompt from stdin JSON
-$input = [Console]::In.ReadToEnd()
-$inputObj = $input | ConvertFrom-Json
+$rawInput = [Console]::In.ReadToEnd()
+$inputObj = $rawInput | ConvertFrom-Json
 $prompt = $inputObj.prompt
 
 if ([string]::IsNullOrEmpty($prompt)) {
@@ -35,31 +35,30 @@ if ($names.Count -eq 0) {
     exit 0
 }
 
-# Build JSON array of names for jq
-$namesJson = ($names | ForEach-Object { "`"$_`"" }) -join ","
-$namesJson = "[$namesJson]"
+# Write names as individual JSON strings to a temp file (one per line).
+# jq --slurpfile reads them into an array, avoiding PowerShell's broken
+# native command argument passing for embedded quotes/spaces.
+$namesTmpFile = [System.IO.Path]::GetTempFileName()
+$namesJsonLines = ($names | ForEach-Object { ConvertTo-Json $_ }) -join "`n"
+Set-Content -Path $namesTmpFile -Value $namesJsonLines -NoNewline -Encoding UTF8
+
+# Resolve script directory for jq filter files
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$queryFilter = Join-Path $scriptDir "resolve-scene-refs-query.jq"
+$formatFilter = Join-Path $scriptDir "resolve-scene-refs-format.jq"
 
 # Use jq to find matching objects
-$jqQuery = @'
-[path(.. | objects | select(.objectProperties?.name? as $n | $names | index($n) != null)) as $p |
- getpath($p) as $obj |
- {
-   referenceId: $obj.referenceId,
-   name: $obj.objectProperties.name,
-   jqPath: ($p | map(if type == "number" then "[\(.)]\("")" else ".\(.)" end) | join(""))
- }]
-'@
-
-$results = $namesJson | jq --argjson names "$namesJson" $jqQuery $sceneFile 2>$null
+$results = jq --slurpfile names $namesTmpFile -f $queryFilter $sceneFile 2>$null
+Remove-Item -Path $namesTmpFile -ErrorAction SilentlyContinue
 
 if ([string]::IsNullOrEmpty($results) -or $results -eq "[]") {
     exit 0
 }
 
-Write-Output "The user referenced scene objects with @. Here are their locations in ${sceneFile}:"
+Write-Output "The user referenced scene objects with @. Here are their locations in $sceneFile`:"
 Write-Output ""
 
-$resultLines = $results | jq -r '.[] | "@\(.name): referenceId=""\(.referenceId)"", jqPath=""\(.jqPath)"""'
+$resultLines = $results | jq -r -f $formatFilter
 Write-Output $resultLines
 
 exit 0
