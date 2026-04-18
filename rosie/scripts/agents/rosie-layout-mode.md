@@ -1,6 +1,6 @@
 ---
 name: rosie-layout-mode
-description: DO NOT INVOKE THIS AGENT AUTOMATICALLY. DO NOT DELEGATE TO THIS AGENT. This agent will only be invoked directly by the user.
+description: DO NOT INVOKE THIS AGENT AUTOMATICALLY. Only delegate to this agent when executing a plan that the user has explicitly approved (e.g. one produced by `rosie-plan-mode`); otherwise this agent should only be invoked directly by the user.
 model: opus
 color: blue
 blurb: add and arrange objects to build the scene

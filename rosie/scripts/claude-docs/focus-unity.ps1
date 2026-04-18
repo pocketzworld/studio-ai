@@ -21,7 +21,23 @@ public class Win32 {
 }
 "@
 
-$unity = Get-Process -Name Unity -ErrorAction SilentlyContinue | Select-Object -First 1
+# Derive project name from the script's directory path
+$projectName = Split-Path (Split-Path $PSScriptRoot -Parent) -Leaf
+
+# Try to find the Unity editor window for this specific project
+$allUnity = Get-Process -Name Unity -ErrorAction SilentlyContinue
+$unity = $allUnity | Where-Object { $_.MainWindowHandle -ne 0 -and $_.MainWindowTitle -like "*$projectName*" } | Select-Object -First 1
+
+# Fall back to any Unity process with a valid window handle and title
+if (-not $unity) {
+    $unity = $allUnity | Where-Object { $_.MainWindowHandle -ne 0 -and $_.MainWindowTitle -ne "" } | Select-Object -First 1
+}
+
+# Final fallback: any Unity process (original behavior)
+if (-not $unity) {
+    $unity = $allUnity | Select-Object -First 1
+}
+
 if ($unity) {
     $hwnd = $unity.MainWindowHandle
     $foregroundHwnd = [Win32]::GetForegroundWindow()
