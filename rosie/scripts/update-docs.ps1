@@ -82,6 +82,13 @@ if ((Test-Path "Packages/com.pz.studio.generated") -and ((Split-Path -Leaf (Get-
         Copy-Item $_.FullName (Join-Path ".claude/skills" $_.Name) -Recurse -Force
     }
 
+    # Copy agents, deleting only rosie-* agents first
+    Get-ChildItem ".claude/agents" -Directory -Filter "rosie-*" -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force
+    New-Item -ItemType Directory -Force -Path ".claude/agents" | Out-Null
+    Get-ChildItem "$PluginRoot/scripts/agents" -Force | ForEach-Object {
+        Copy-Item $_.FullName (Join-Path ".claude/agents" $_.Name) -Recurse -Force
+    }
+
     # Update .gitignore to exclude .claude/* except CLAUDE.md
     if (Test-Path ".gitignore") {
         if (-not (Select-String -Path ".gitignore" -Pattern '^\.claude/\*$' -Quiet)) {

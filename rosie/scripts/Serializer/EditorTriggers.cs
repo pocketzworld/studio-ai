@@ -673,12 +673,12 @@ namespace Rosie
         {
             try
             {
-                // Use System Events to focus Unity (more reliable than "tell application")
-                var script = @"tell application ""System Events""
-set unityProcesses to every process whose name contains ""Unity"" and name does not contain ""Hub""
-if (count of unityProcesses) > 0 then
-set frontmost of item 1 of unityProcesses to true
-end if
+                // Target THIS Unity process by PID so the correct project is focused
+                // when the user has multiple Unity instances open.
+                var pid = Process.GetCurrentProcess().Id;
+                var script = $@"tell application ""System Events""
+set targetProcess to first process whose unix id is {pid}
+set frontmost of targetProcess to true
 end tell";
 
                 var startInfo = new ProcessStartInfo

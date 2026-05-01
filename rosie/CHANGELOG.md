@@ -4,6 +4,13 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.18] - 2026-05-01
+
+### Fixed
+
+- On Windows, the docs sync hook now also copies the `agents/` directory (added in v0.5.13) into `.claude/agents`. Previously only the macOS/Linux script did, so Windows users were missing `rosie-bugfix-mode`, `rosie-layout-mode`, and `rosie-plan-mode`.
+- On macOS, focusing the Unity editor now targets the current project's Unity process by PID rather than the first Unity process found, matching the v0.5.17 Windows fix.
+
 ## [0.5.17] - 2026-04-17
 
 ### Added
