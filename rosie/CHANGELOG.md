@@ -4,6 +4,12 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.19] - 2026-05-04
+
+### Fixed
+
+- On Windows, the docs sync hook no longer gets stuck in a crash loop when `.claude/version.txt` is empty. The version comparison previously called `.Trim()` on a null value and threw before reaching the line that overwrites the file, so once it became empty (e.g. if `plugin.json` was mid-swap during a plugin auto-update) every subsequent run failed in the same spot. The hook now handles a missing/empty version safely and skips writing `version.txt` if `plugin.json` cannot be parsed or has no version. The macOS/Linux script was hardened the same way.
+
 ## [0.5.18] - 2026-05-01
 
 ### Fixed

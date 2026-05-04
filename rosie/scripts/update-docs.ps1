@@ -38,8 +38,12 @@ if ((Test-Path "Packages/com.pz.studio.generated") -and ((Split-Path -Leaf (Get-
     New-Item -ItemType Directory -Force -Path ".claude" | Out-Null
 
     # Version migration: delete old CLAUDE.md if version < 0.3.0
-    if ((Test-Path ".claude/version.txt") -and ((Get-Content ".claude/version.txt" -Raw).Trim() -lt "0.3.0")) {
-        Remove-Item ".claude/CLAUDE.md" -Force -ErrorAction SilentlyContinue
+    if (Test-Path ".claude/version.txt") {
+        $versionRaw = Get-Content ".claude/version.txt" -Raw
+        $existingVersion = if ($versionRaw) { $versionRaw.Trim() } else { "" }
+        if ($existingVersion -and ($existingVersion -lt "0.3.0")) {
+            Remove-Item ".claude/CLAUDE.md" -Force -ErrorAction SilentlyContinue
+        }
     }
 
     # Create CLAUDE.md if it doesn't exist
@@ -60,9 +64,14 @@ if ((Test-Path "Packages/com.pz.studio.generated") -and ((Split-Path -Leaf (Get-
         Copy-Item $_.FullName (Join-Path ".claude" $_.Name) -Recurse -Force
     }
 
-    # Write plugin version
-    $pluginJson = Get-Content "$PluginRoot/.claude-plugin/plugin.json" -Raw | ConvertFrom-Json
-    $pluginJson.version | Set-Content ".claude/version.txt" -NoNewline
+    # Write plugin version (skip if plugin.json is mid-swap to avoid corrupting version.txt)
+    $pluginJsonRaw = Get-Content "$PluginRoot/.claude-plugin/plugin.json" -Raw -ErrorAction SilentlyContinue
+    if ($pluginJsonRaw) {
+        $pluginJson = $pluginJsonRaw | ConvertFrom-Json -ErrorAction SilentlyContinue
+        if ($pluginJson -and $pluginJson.version) {
+            $pluginJson.version | Set-Content ".claude/version.txt" -NoNewline
+        }
+    }
 
     # Copy creator-docs only if changed
     $currentHash = & git -C "$PluginRoot/creator-docs" rev-parse HEAD 2>$null

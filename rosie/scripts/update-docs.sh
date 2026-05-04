@@ -52,8 +52,11 @@ if [ -d "Packages/com.pz.studio.generated" ] && [ "$(basename "$(pwd)")" != "lif
   # copy the contents of the claude-docs directory from the plugin root to the current working directory as .claude, overwriting any existing files
   cp -r "${PLUGIN_ROOT}/scripts/claude-docs"/* .claude/
   # create a version.txt file in the .claude folder with the plugin version
-  PLUGIN_VERSION=$(cat "${PLUGIN_ROOT}/.claude-plugin/plugin.json" | jq -r '.version')
-  echo "$PLUGIN_VERSION" > .claude/version.txt
+  # (skip if plugin.json is mid-swap to avoid writing an empty/null version)
+  PLUGIN_VERSION=$(jq -r '.version // empty' "${PLUGIN_ROOT}/.claude-plugin/plugin.json" 2>/dev/null || echo "")
+  if [ -n "$PLUGIN_VERSION" ]; then
+    echo "$PLUGIN_VERSION" > .claude/version.txt
+  fi
   # copy over the creator-docs directory only if it's changed
   CURRENT_HASH=$(git -C "${PLUGIN_ROOT}/creator-docs" rev-parse HEAD 2>/dev/null || echo "")
   DEPLOYED_HASH=$(git -C ".claude/creator-docs" rev-parse HEAD 2>/dev/null || echo "")
