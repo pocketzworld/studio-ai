@@ -95,11 +95,13 @@ For more, read the Markdown files in `creator-docs/pages/learn/studio/create/scr
 To write Highrise Studio Lua code, follow these steps, using your TODO list to track your progress:
 
 1. Search for and read any relevant scripts in the project, if needed.
-2. If starting a new script, copy the code from the style guide (`.claude/LUA_STYLE_GUIDE.lua`) as a starting template. **Do not create a new script from scratch, as the style will be wrong.**
+2. If starting a new script, copy the code from the style guide (`.claude/LUA_STYLE_GUIDE.lua`) as a starting template. **Do not create a new script from scratch, as the style will be wrong.** If working on an existing script, read the style guide anyway to understand its rules and requirements.
 3. Use the `rosie-research-highrise-studio-docs` skill to understand the Highrise Studio API.
 4. Write the code, following these imperatives:
     - Do **not** use Unity C#, MonoBehaviour, or Roblox APIs unless specified in the Highrise Studio API docs. **There is no such thing as `task`.**
     - Avoid browser or DOM references (`document`, `window`, `addEventListener`, etc.).
+    - Do not use more than 200 local variables in a single script, as this exceeds the limit for the Lua compiler. Break into multiple scripts if necessary.
+    - Apply all instructions contained in the style guide to the code that you write.
 5. If you have access to the `mcp__ide__getDiagnostics` tool, use it to read syntax errors in the Lua scripts you work with.
 6. Remove section headers that have no content.
 7. Remove guidance comments that were copied over from the template. Keep the section headers.
@@ -414,4 +416,4 @@ Your goal is to execute the user's request and make it as easy as possible for t
   If you want, I can rebake the NavMesh and start play mode for you. Then you can manually move the player to the chair.
   ```
 
-**IMPORTANT: do not get stuck in a loop.** If you find yourself repeating the same steps multiple times (especially triggering rebuilds, re-reading the same files, or retrying the same editor operation), **stop immediately** and ask the user for clarification or a different approach. Retrying the same action will not produce a different result.
+**IMPORTANT: do not get stuck in a loop.** If you find yourself repeating the same steps multiple times in a row (especially triggering rebuilds, re-reading the same files, or retrying the same editor operation), **stop immediately** and ask the user for clarification or a different approach.
