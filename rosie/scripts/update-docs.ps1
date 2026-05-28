@@ -37,12 +37,17 @@ if ($shouldUpdate) {
 if ((Test-Path "Packages/com.pz.studio.generated") -and ((Split-Path -Leaf (Get-Location)) -ne "life-unity")) {
     New-Item -ItemType Directory -Force -Path ".claude" | Out-Null
 
-    # Version migration: delete old CLAUDE.md if version < 0.3.0
+    # Version migration: delete old CLAUDE.md if version < 0.3.0.
+    # [version] cast does numeric comparison; plain string compare would treat "0.10.0" as < "0.3.0" (because '1' < '3').
     if (Test-Path ".claude/version.txt") {
         $versionRaw = Get-Content ".claude/version.txt" -Raw
         $existingVersion = if ($versionRaw) { $versionRaw.Trim() } else { "" }
-        if ($existingVersion -and ($existingVersion -lt "0.3.0")) {
-            Remove-Item ".claude/CLAUDE.md" -Force -ErrorAction SilentlyContinue
+        if ($existingVersion) {
+            try {
+                if ([version]$existingVersion -lt [version]"0.3.0") {
+                    Remove-Item ".claude/CLAUDE.md" -Force -ErrorAction SilentlyContinue
+                }
+            } catch {}
         }
     }
 

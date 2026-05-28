@@ -5,6 +5,14 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.5.21] - 2026-05-28
+
+### Fixed
+
+- First-time setup no longer depends on the SessionEnd hook firing. `check-version` now runs `update-docs` synchronously before emitting the "please restart" message, so closing the terminal, killing the process, or a crash can no longer trap the user in a permanent restart loop with an empty `.claude/` folder. The restart gate is preserved — the session still cannot continue without the correct `CLAUDE.md` loaded — but by the time the user relaunches, the docs are already in place. SessionEnd's `update-docs` invocation remains as a best-effort refresh for the next session.
+- The pre-0.3.0 CLAUDE.md migration check now uses version-aware comparison (`sort -V` on macOS/Linux, `[version]` cast on Windows) instead of lexicographic string compare. The old check would have re-triggered the migration on every launch once the plugin crossed `0.10.x`, since `"0.10.0" < "0.3.0"` is true as a string.
+
+
 ## [0.5.20] - 2026-05-10
 
 ### Changed

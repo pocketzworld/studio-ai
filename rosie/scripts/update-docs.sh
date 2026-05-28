@@ -35,9 +35,14 @@ fi
 # Only copy to .claude if we're in a Highrise Studio project
 if [ -d "Packages/com.pz.studio.generated" ] && [ "$(basename "$(pwd)")" != "life-unity" ]; then
   mkdir -p .claude
-  # if there is a version.txt file that contains anything less than 0.3.0, delete .claude/CLAUDE.md if it exists
-  if [ -f .claude/version.txt ] && [[ "$(cat .claude/version.txt)" < "0.3.0" ]]; then
-    rm -f .claude/CLAUDE.md
+  # if there is a version.txt file that contains anything less than 0.3.0, delete .claude/CLAUDE.md if it exists.
+  # sort -V does version-aware comparison; plain string compare would treat "0.10.0" as < "0.3.0" (because '1' < '3').
+  if [ -f .claude/version.txt ]; then
+    EXISTING_VERSION="$(cat .claude/version.txt)"
+    if [ -n "$EXISTING_VERSION" ] && [ "$EXISTING_VERSION" != "0.3.0" ] && \
+       [ "$(printf '%s\n%s\n' "$EXISTING_VERSION" "0.3.0" | sort -V | head -n1)" = "$EXISTING_VERSION" ]; then
+      rm -f .claude/CLAUDE.md
+    fi
   fi
   # if there is no CLAUDE.md file in .claude, create it
   if [ ! -f .claude/CLAUDE.md ]; then
