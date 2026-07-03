@@ -5,6 +5,12 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this plugin adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.5.22] - 2026-07-03
+
+### Changed
+
+- The `settings.json` synced into user projects now sets `permissions.defaultMode` to `auto` (auto-approves tool calls with background safety checks) instead of `acceptEdits`.
+
 ## [0.5.21] - 2026-05-28
 
 ### Fixed

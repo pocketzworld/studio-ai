@@ -9,7 +9,7 @@
     ],
     "deny": [],
     "ask": [],
-    "defaultMode": "acceptEdits",
+    "defaultMode": "auto",
     "additionalDirectories": [
       "./.claude",
       "~/.claude/plugins/cache/studio-ai/rosie/"
