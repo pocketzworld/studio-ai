@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ROSIE REFERENCE: SettingsPanel.uxml
+
+    PURPOSE: UXML layout for settings panel with toggles and sliders.
+
+    KEY PATTERNS:
+    - hr:UILuaView wraps all UI content
+    - hr:UISwitchToggle for boolean toggles
+    - hr:UISlider for numeric sliders
+    - name attributes must match --!Bind variable names in Lua
+    - class attributes for USS styling
+-->
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+>
+
+  <!-- Main container with UILuaView -->
+  <hr:UILuaView class="settings-panel">
+
+    <!-- Content panel (for animations) -->
+    <VisualElement name="_content" class="content-panel">
+
+      <!-- Header -->
+      <VisualElement class="header">
+        <Label class="header-title" text="Settings" />
+      </VisualElement>
+
+      <!-- Close button -->
+      <VisualElement name="_closeButton" class="close-button">
+        <Image class="close-icon" />
+      </VisualElement>
+
+      <!-- Settings sections -->
+      <VisualElement class="settings-container">
+
+        <!-- Audio Section -->
+        <Label class="section-title" text="Audio" />
+
+        <!-- Music Toggle Row -->
+        <VisualElement class="setting-row">
+          <Label class="setting-label" text="Music" />
+          <hr:UISwitchToggle name="_musicToggle" class="setting-toggle" />
+        </VisualElement>
+
+        <!-- SFX Toggle Row -->
+        <VisualElement class="setting-row">
+          <Label class="setting-label" text="Sound Effects" />
+          <hr:UISwitchToggle name="_sfxToggle" class="setting-toggle" />
+        </VisualElement>
+
+        <!-- Volume Slider Row -->
+        <VisualElement class="setting-row slider-row">
+          <Label class="setting-label" text="Volume" />
+          <VisualElement class="slider-container">
+            <hr:UISlider name="_volumeSlider" class="setting-slider" />
+            <Label name="_volumeLabel" class="slider-value" text="50%" />
+          </VisualElement>
+        </VisualElement>
+
+        <!-- Controls Section -->
+        <Label class="section-title" text="Controls" />
+
+        <!-- Sensitivity Slider Row -->
+        <VisualElement class="setting-row slider-row">
+          <Label class="setting-label" text="Sensitivity" />
+          <VisualElement class="slider-container">
+            <hr:UISlider name="_sensitivitySlider" class="setting-slider" />
+            <Label name="_sensitivityLabel" class="slider-value" text="5" />
+          </VisualElement>
+        </VisualElement>
+
+      </VisualElement>
+
+    </VisualElement>
+
+  </hr:UILuaView>
+
+</UXML>
+
+<!--
+    UXML REFERENCE:
+
+    Common Highrise UI Elements (hr: namespace):
+    - hr:UILuaView         : Root container for Lua-driven UI
+    - hr:UISlider          : Draggable slider control
+    - hr:UISwitchToggle    : On/off toggle switch
+    - hr:UITextField       : Text input field
+    - hr:UIButton          : Styled button
+    - hr:UIScrollView      : Scrollable container
+    - hr:UIUserThumbnail   : Player avatar display
+    - hr:UILocalizedLabel  : Localized text label
+
+    Standard Unity Elements:
+    - VisualElement        : Generic container
+    - Label                : Text display
+    - Image                : Image display
+    - Button               : Basic button
+
+    Naming Conventions:
+    - name="_variableName" : Must match Lua --!Bind variable
+    - class="style-name"   : References USS class
+
+    Hierarchy:
+    - UILuaView should be root
+    - All interactive elements need unique names
+    - Group related elements in VisualElement containers
+-->

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ROSIE REFERENCE: ColorPickerPanel.uxml
+
+    PURPOSE: UXML layout for RGB color picker with sliders.
+
+    KEY PATTERNS:
+    - Multiple sliders with value labels
+    - Color preview element
+    - Reset/Apply button pattern
+-->
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="color-picker-panel">
+
+    <VisualElement name="_content" class="content-panel">
+
+      <!-- Header -->
+      <VisualElement class="header">
+        <Label class="header-title" text="Color Picker" />
+      </VisualElement>
+
+      <!-- Close Button -->
+      <VisualElement name="_closeButton" class="close-button">
+        <Image class="close-icon" />
+      </VisualElement>
+
+      <!-- RGB Sliders -->
+      <VisualElement class="sliders-container">
+
+        <!-- Red Slider -->
+        <VisualElement class="slider-row red-row">
+          <Label class="slider-label red-label" text="R" />
+          <hr:UISlider name="_rSlider" class="color-slider red-slider" />
+          <VisualElement class="value-container">
+            <Label name="_rValue" class="slider-value" text="255" />
+          </VisualElement>
+        </VisualElement>
+
+        <!-- Green Slider -->
+        <VisualElement class="slider-row green-row">
+          <Label class="slider-label green-label" text="G" />
+          <hr:UISlider name="_gSlider" class="color-slider green-slider" />
+          <VisualElement class="value-container">
+            <Label name="_gValue" class="slider-value" text="255" />
+          </VisualElement>
+        </VisualElement>
+
+        <!-- Blue Slider -->
+        <VisualElement class="slider-row blue-row">
+          <Label class="slider-label blue-label" text="B" />
+          <hr:UISlider name="_bSlider" class="color-slider blue-slider" />
+          <VisualElement class="value-container">
+            <Label name="_bValue" class="slider-value" text="255" />
+          </VisualElement>
+        </VisualElement>
+
+      </VisualElement>
+
+      <!-- Color Preview -->
+      <VisualElement class="preview-section">
+        <VisualElement name="_colorPreview" class="color-preview" />
+        <Label name="_rgbLabel" class="rgb-label" text="RGB: 255, 255, 255" />
+      </VisualElement>
+
+      <!-- Action Buttons -->
+      <VisualElement class="action-buttons">
+        <VisualElement name="_resetButton" class="action-button reset-button">
+          <Label class="button-label" text="Reset" />
+        </VisualElement>
+        <VisualElement name="_applyButton" class="action-button apply-button">
+          <Label class="button-label" text="Apply" />
+        </VisualElement>
+      </VisualElement>
+
+    </VisualElement>
+
+  </hr:UILuaView>
+
+</UXML>
+
+<!--
+    SLIDER ROW PATTERN:
+    - Label (channel name: R/G/B)
+    - Slider (UISlider)
+    - Value display (Label in container)
+
+    This pattern works well for:
+    - Color pickers (RGB, HSV)
+    - Audio controls (volume, EQ)
+    - Game settings (sensitivity, speed)
+    - Any multi-parameter adjustment UI
+-->

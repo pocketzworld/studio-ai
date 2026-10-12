@@ -1,0 +1,329 @@
+/*
+    ROSIE REFERENCE: ColorPickerPanel.uss
+
+    PURPOSE: USS styling for RGB color picker.
+
+    KEY PATTERNS:
+    - Color-coded slider tracks
+    - Dynamic preview element (backgroundColor set in Lua)
+    - CSS variables for channel colors
+*/
+
+/* =============================================================================
+   CSS Variables
+   ============================================================================= */
+
+:root {
+    --color-red: #E53935;
+    --color-green: #43A047;
+    --color-blue: #1E88E5;
+
+    --bg-dark: #141317;
+    --bg-medium: #36353b;
+    --bg-light: #4c4c4c;
+}
+
+/* =============================================================================
+   Main Container
+   ============================================================================= */
+
+.color-picker-panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    -unity-font-definition: var(--font-bold);
+}
+
+.content-panel {
+    width: 95%;
+    max-width: 400px;
+    min-height: 380px;
+
+    background-color: var(--bg-dark);
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    overflow: hidden;
+}
+
+/* =============================================================================
+   Header
+   ============================================================================= */
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.header-title {
+    font-size: 24px;
+    -unity-text-align: middle-center;
+}
+
+/* =============================================================================
+   Close Button
+   ============================================================================= */
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+    --unity-image: var(--image-icon-close);
+}
+
+/* =============================================================================
+   Sliders Container
+   ============================================================================= */
+
+.sliders-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* =============================================================================
+   Slider Row
+   ============================================================================= */
+
+.slider-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    height: 50px;
+
+    padding: 10px;
+    margin-bottom: 8px;
+
+    background-color: var(--bg-medium);
+    border-radius: 8px;
+}
+
+/* Channel Labels (R, G, B) */
+.slider-label {
+    width: 30px;
+    font-size: 20px;
+    -unity-font-definition: var(--font-bold);
+    -unity-text-align: middle-center;
+}
+
+.red-label {
+    color: var(--color-red);
+}
+
+.green-label {
+    color: var(--color-green);
+}
+
+.blue-label {
+    color: var(--color-blue);
+}
+
+/* =============================================================================
+   Color Sliders
+   ============================================================================= */
+
+.color-slider {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+/* Red Slider Track */
+.red-slider .slider__foreground {
+    background-color: var(--color-red);
+}
+
+.red-slider .slider__knob {
+    border-color: var(--color-red);
+}
+
+/* Green Slider Track */
+.green-slider .slider__foreground {
+    background-color: var(--color-green);
+}
+
+.green-slider .slider__knob {
+    border-color: var(--color-green);
+}
+
+/* Blue Slider Track */
+.blue-slider .slider__foreground {
+    background-color: var(--color-blue);
+}
+
+.blue-slider .slider__knob {
+    border-color: var(--color-blue);
+}
+
+/* Slider Background (unfilled portion) */
+.color-slider .slider__background {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+/* Slider Knob */
+.color-slider .slider__knob {
+    background-color: white;
+    border-width: 2px;
+}
+
+/* =============================================================================
+   Value Display
+   ============================================================================= */
+
+.value-container {
+    width: 45px;
+    height: 30px;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-value {
+    font-size: 14px;
+    -unity-font-definition: var(--font-regular);
+    -unity-text-align: middle-center;
+}
+
+/* =============================================================================
+   Preview Section
+   ============================================================================= */
+
+.preview-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.color-preview {
+    width: 100%;
+    height: 80px;
+
+    border-radius: 8px;
+    margin-bottom: 10px;
+
+    /* Default color - will be overridden by Lua */
+    background-color: white;
+
+    /* Smooth color transitions */
+    transition-property: background-color;
+    transition-duration: 0.1s;
+}
+
+.rgb-label {
+    font-size: 14px;
+    color: #8A8A8A;
+    -unity-font-definition: var(--font-regular);
+    -unity-text-align: middle-center;
+}
+
+/* =============================================================================
+   Action Buttons
+   ============================================================================= */
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 50px;
+}
+
+.action-button {
+    flex-grow: 1;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    transition-property: all;
+    transition-duration: 0.2s;
+}
+
+.reset-button {
+    background-color: #B20000;
+    margin-right: 5px;
+}
+
+.reset-button:hover {
+    background-color: #8B0000;
+}
+
+.apply-button {
+    background-color: #008000;
+    margin-left: 5px;
+}
+
+.apply-button:hover {
+    background-color: #006400;
+}
+
+.button-label {
+    font-size: 18px;
+    -unity-font-definition: var(--font-bold);
+    -unity-text-align: middle-center;
+}
+
+/*
+    COLOR PICKER USS PATTERNS:
+
+    1. Color-coded sliders:
+       - Use CSS variables for channel colors
+       - Apply to .slider__foreground for fill
+       - Apply to .slider__knob border
+
+    2. Dynamic preview:
+       - background-color set via Lua
+       - Use transition for smooth changes
+       - StyleColor.new(color) in Lua
+
+    3. Value displays:
+       - Fixed width for consistent layout
+       - Dark background for contrast
+
+    4. Action buttons:
+       - Standard red/green for reset/apply
+       - Equal flex-grow for even sizing
+       - Margin between buttons
+*/

@@ -1,0 +1,26 @@
+/*
+Styles for the classes in the UXML file. This is Unity UI Toolkit USS, not CSS: many CSS properties and units don't exist.
+You can remove this comment from your final version.
+*/
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;  /* use only px, %, or pt units, NOT rem, em, vh, vw, or calc() */
+  width: 100%;
+  height: 100%;
+}
+
+.leaderboard-container {
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.leaderboard-title {
+  font-size: 16px;
+  -unity-font-definition: var(--font-black);
+  color: white;
+}

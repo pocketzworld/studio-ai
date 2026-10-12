@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ROSIE REFERENCE: TextInputPanel.uxml
+
+    PURPOSE: UXML layout for text input panel with various field types.
+
+    KEY PATTERNS:
+    - hr:UITextField for text input
+    - Different field configurations (search, numeric, multiline)
+    - Form layout with labels
+-->
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:hr="Highrise.UI"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+>
+
+  <hr:UILuaView class="text-input-panel">
+
+    <VisualElement name="_content" class="content-panel">
+
+      <!-- Header -->
+      <VisualElement class="header">
+        <Label class="header-title" text="Text Input Example" />
+      </VisualElement>
+
+      <!-- Close Button -->
+      <VisualElement name="_closeButton" class="close-button">
+        <Image class="close-icon" />
+      </VisualElement>
+
+      <!-- Search Field (with icon) -->
+      <VisualElement class="form-section">
+        <Label class="section-label" text="Search" />
+        <VisualElement class="search-container">
+          <hr:UITextField name="_searchField" class="search-field" />
+          <VisualElement class="search-icon-container">
+            <Image class="search-icon" />
+          </VisualElement>
+        </VisualElement>
+      </VisualElement>
+
+      <!-- Results container for search -->
+      <VisualElement name="_resultsContainer" class="results-container" />
+
+      <!-- Name Field (text only) -->
+      <VisualElement class="form-section">
+        <Label class="section-label" text="Name" />
+        <hr:UITextField name="_nameField" class="text-field" />
+      </VisualElement>
+
+      <!-- Amount Field (numbers only) -->
+      <VisualElement class="form-section">
+        <Label class="section-label" text="Amount" />
+        <hr:UITextField name="_amountField" class="text-field number-field" />
+      </VisualElement>
+
+      <!-- Message Field (multiline) -->
+      <VisualElement class="form-section">
+        <Label class="section-label" text="Message" />
+        <hr:UITextField name="_messageField" class="text-field multiline-field" />
+      </VisualElement>
+
+      <!-- Submit Button -->
+      <VisualElement name="_submitButton" class="submit-button">
+        <Label class="submit-label" text="Submit" />
+      </VisualElement>
+
+    </VisualElement>
+
+  </hr:UILuaView>
+
+</UXML>
+
+<!--
+    UITextField UXML Attributes:
+    - name: Binding name for Lua (required for --!Bind)
+    - class: CSS classes for styling
+
+    Note: Most UITextField configuration (placeholder, maxLength,
+    multiline, etc.) is done in Lua, not UXML attributes.
+
+    Common Layout Patterns:
+    - Search with icon: TextField + adjacent icon container
+    - Form field: Label above TextField
+    - Inline label: Label and TextField in row
+-->
