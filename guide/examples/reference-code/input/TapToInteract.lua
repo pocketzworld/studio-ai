@@ -83,7 +83,7 @@ function GetTappedObject(screenPosition: Vector2): GameObject?
     return nil
 end
 
--- componentType is a component type: a Unity one such as Collider, or a Lua script such as TapHandler
+-- componentType is a component type: a Unity one such as Collider, or a Lua script such as TapToInteract
 function GetTappedComponent(screenPosition: Vector2, componentType: ComponentType): Component?
     if not screenPosition or not componentType then
         print("ERROR: No screen position or component type provided to GetTappedComponent")

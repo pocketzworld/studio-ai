@@ -75,7 +75,7 @@
 
 <!--
     UITextField UXML Attributes:
-    - name: Binding name for Lua (required for --!Bind)
+    - name: Binding name for Lua (required for Bind)
     - class: CSS classes for styling
 
     Note: Most UITextField configuration (placeholder, maxLength,

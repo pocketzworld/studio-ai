@@ -37,12 +37,7 @@ local allPlayers: { CharacterModel } = {}
 --------------------------------
 
 local function showWelcomePopup()
-    local _ui: UIWelcomePopup = UIManager.OpenWelcomePopupUI()
-    if not _ui then
-        UIManager.OpenGameHUDUI()
-        return
-    end
-    _ui.Init(function()
+    UIManager.OpenGenericPopupUI("Welcome!", function()
         UIManager.OpenGameHUDUI()
     end)
 end

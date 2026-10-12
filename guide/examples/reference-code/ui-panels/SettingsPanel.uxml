@@ -8,7 +8,7 @@
     - hr:UILuaView wraps all UI content
     - hr:UISwitchToggle for boolean toggles
     - hr:UISlider for numeric sliders
-    - name attributes must match --!Bind variable names in Lua
+    - name attributes must match Bind variable names in Lua
     - class attributes for USS styling
 -->
 <UXML
@@ -101,7 +101,7 @@
     - Button               : Basic button
 
     Naming Conventions:
-    - name="_variableName" : Must match Lua --!Bind variable
+    - name="_variableName" : Must match Lua Bind variable
     - class="style-name"   : References USS class
 
     Hierarchy:

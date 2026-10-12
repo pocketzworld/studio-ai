@@ -18,9 +18,10 @@ Studio's `Highrise.Studio.Agent.AgentGuide` depends on this layout. Renaming or 
 - `{{RUN}}` in a topic: Studio replaces it with what an agent types to run a Studio command (`unity command`), so write a command as `{{RUN}} hr_status`.
 - `templates/Script.lua`: the Lua script template. `{{TYPE}}` is replaced with the script type (`Client`, `Server`, `ClientAndServer`, or `Module`), and `{{NAME}}` with the script name.
 - `templates/UI/UI.lua`, `templates/UI/UI.uxml`, `templates/UI/UI.uss`: the UI component templates. `{{NAME}}` is replaced with the component name.
+- The sentence "Only include sections that have something in them." in the Lua templates: Studio warns about scripts that still contain it, to make agents replace the templates' guidance.
 - `examples/`: any files. They are searched as plain text.
 
-Studio imports a new script or UI component as soon as it creates it, so the templates must compile and pass Studio's Lua checks (lints and validation) unedited, for every script type. Keep `require` examples commented out, since the modules they name don't exist in a new project. Agents copy the examples too, so keep their scripts passing the same checks (a reference to a script that isn't in `examples/` is fine).
+Studio imports a new script or UI component as soon as it creates it, so the templates must compile and pass Studio's Lua checks (lints and validation) unedited, for every script type. Studio's `AgentGuideTests` check this, and that every example imports without errors. Keep `require` examples commented out, since the modules they name don't exist in a new project. Agents copy the examples too, so keep their scripts passing the same checks (a reference to a script that isn't in `examples/` is fine).
 
 ## Writing topics
 

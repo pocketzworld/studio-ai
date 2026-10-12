@@ -27,18 +27,19 @@ local SPEED = 5
 --------------------------------
 ------     NETWORKING     ------
 --------------------------------
--- Declare all networked values and events here, at the top level, so the client and server copies of the script share them
+-- Only ClientAndServer and Module scripts run on both sides, so only they can have networked values and events.
+-- Declare them here, at the top level, so the client and server copies of the script share them; each needs its own name.
 -- Events used only in this script should be declared with `local`, use camelCase, and end in `Request`, `Event`, or `Response`
-local myEvent = Event.new("MyEvent")
+-- local myEvent = Event.new("MyEvent")
 
 -- Events exposed globally should use PascalCase, and end in `Request`, `Event`, or `Response`
-MyPublicEvent = Event.new("MyPublicEvent")
+-- MyPublicEvent = Event.new("MyPublicEvent")
 
 -- Networked values used only in this script should be declared with `local`, use camelCase, and end in `Value`
-local myNetworkedValue = IntValue.new("MyNetworkedValue")
+-- local myNetworkedValue = IntValue.new("MyNetworkedValue")
 
--- Networked values exposed globally should use PascalCase, and end in `Value`
-MyPublicNetworkedValue = IntValue.new("MyPublicNetworkedValue")
+-- Networked values exposed globally should use PascalCase, and end in `Value`. Set them on the server; clients only read them.
+-- MyPublicNetworkedValue = IntValue.new("MyPublicNetworkedValue")
 
 -- Client asks, server decides:
 --   client: myEvent:FireServer(points)

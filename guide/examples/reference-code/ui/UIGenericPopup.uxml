@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     UIGenericPopup.uxml: a message popup with OK and optional Cancel buttons, over a dimmed overlay that closes it when tapped.
-    Each name matches a --!Bind property in UIGenericPopup.lua.
+    Each name matches a Bind property in UIGenericPopup.lua.
 -->
 <UXML
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
