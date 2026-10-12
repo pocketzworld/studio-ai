@@ -15,7 +15,7 @@ The Lua API reference is not here. It ships with Studio, generated from the C# s
 Studio's `Highrise.Studio.Agent.AgentGuide` depends on this layout. Renaming or removing any of these paths breaks the Studio versions users already have. Add files freely, but keep the following in place:
 
 - `topics/index.md`: the entry point. Topic names are lowercase words joined by hyphens (`[a-z0-9-]+`).
-- `{{RUN}}` in a topic: Studio replaces it with what an agent types to run a Studio command (`unity command`), so write a command as `{{RUN}} hr_status`.
+- `{{RUN}}` in a topic: Studio replaces it with what an agent types to run a Studio command (`unity command --format human`), so write a command as `{{RUN}} hr_status`.
 - `templates/Script.lua`: the Lua script template. `{{TYPE}}` is replaced with the script type (`Client`, `Server`, `ClientAndServer`, or `Module`), and `{{NAME}}` with the script name.
 - `templates/UI/UI.lua`, `templates/UI/UI.uxml`, `templates/UI/UI.uss`: the UI component templates. `{{NAME}}` is replaced with the component name.
 - The sentence "Only include sections that have something in them." in the Lua templates: Studio warns about scripts that still contain it, to make agents replace the templates' guidance.
