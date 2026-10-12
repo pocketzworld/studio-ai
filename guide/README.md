@@ -1,12 +1,12 @@
 # Highrise Studio agent guide
 
-This folder is the knowledge an AI agent needs to build Highrise worlds. Highrise Studio serves it to agents through the Unity CLI. The agent never reads this repository directly. Studio downloads this folder from `main` and caches it in the project's `Library/`, refreshing it at most hourly. So a change merged here reaches every Studio user within the hour, with no Studio release.
+This folder is the knowledge an AI agent needs to build Highrise worlds. Highrise Studio serves it to agents through its command line. The agent never reads this repository directly. Studio downloads this folder from `main` and caches it in the project's `Library/`, refreshing it at most hourly. So a change merged here reaches every Studio user within the hour, with no Studio release.
 
 | Command | Serves |
 |---------|--------|
-| `unity command hr_guide [--topic <name>]` | `topics/<name>.md`. With no topic, `topics/index.md`. |
-| `unity command hr_examples_search --query <words>`, `hr_examples_show --path <path>` | Files under `examples/`. |
-| `unity command hr_new_script`, `hr_new_ui` | `templates/`. |
+| `hr_guide [--topic <name>]` | `topics/<name>.md`. With no topic, `topics/index.md`. |
+| `hr_examples_search --query <words>`, `hr_examples_show --path <path>` | Files under `examples/`. |
+| `hr_new_script`, `hr_new_ui` | `templates/`. |
 
 The Lua API reference is not here. It ships with Studio, generated from the C# sources, and is served by `hr_docs_search` and `hr_docs_show`.
 
@@ -15,6 +15,7 @@ The Lua API reference is not here. It ships with Studio, generated from the C# s
 Studio's `Highrise.Studio.Agent.AgentGuide` depends on this layout. Renaming or removing any of these paths breaks the Studio versions users already have. Add files freely, but keep the following in place:
 
 - `topics/index.md`: the entry point. Topic names are lowercase words joined by hyphens (`[a-z0-9-]+`).
+- `{{RUN}}` in a topic: Studio replaces it with what an agent types to run a Studio command (`unity command`), so write a command as `{{RUN}} hr_status`.
 - `templates/Script.lua`: the Lua script template. `{{TYPE}}` is replaced with the script type (`Client`, `Server`, `ClientAndServer`, or `Module`), and `{{NAME}}` with the script name.
 - `templates/UI/UI.lua`, `templates/UI/UI.uxml`, `templates/UI/UI.uss`: the UI component templates. `{{NAME}}` is replaced with the component name.
 - `examples/`: any files. They are searched as plain text.
@@ -31,7 +32,7 @@ Agents read guides unreliably, so keep them as rare as possible. Before writing 
 4. The context where the agent needs it: command help and results, templates, or the Lua API docs (XML comments in Studio's C# sources).
 5. A topic, only for knowledge that fits none of the above.
 
-When you do write a topic, write for an agent that knows the Unity CLI but nothing about Highrise, and say which command to run. A command it names must exist in every Studio version that could fetch it; when it depends on a newer command, say which Studio version introduced it.
+When you do write a topic, write for an agent that knows nothing about Highrise, and say which command to run, as `{{RUN}} <name>`. A command it names must exist in every Studio version that could fetch it; when it depends on a newer command, say which Studio version introduced it.
 
 ## Previewing changes
 
