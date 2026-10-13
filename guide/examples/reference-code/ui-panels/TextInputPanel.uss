@@ -1,0 +1,302 @@
+/*
+    ROSIE REFERENCE: TextInputPanel.uss
+
+    PURPOSE: USS styling for text input panel.
+
+    KEY PATTERNS:
+    - Text field styling
+    - Placeholder text styling
+    - Search field with icon
+    - Multiline field styling
+    - Submit button styling
+*/
+
+/* =============================================================================
+   Main Container
+   ============================================================================= */
+
+.text-input-panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    -unity-font-definition: var(--font-bold);
+}
+
+.content-panel {
+    width: 95%;
+    max-width: 400px;
+    min-height: 450px;
+
+    background-color: #141317;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    overflow: hidden;
+}
+
+/* =============================================================================
+   Header
+   ============================================================================= */
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.header-title {
+    font-size: 24px;
+    -unity-text-align: middle-center;
+}
+
+/* =============================================================================
+   Close Button
+   ============================================================================= */
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition-property: all;
+    transition-duration: 0.2s;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+    --unity-image: var(--image-icon-close);
+}
+
+/* =============================================================================
+   Form Sections
+   ============================================================================= */
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.section-label {
+    font-size: 14px;
+    color: #8A8A8A;
+    -unity-font-definition: var(--font-regular);
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+
+/* =============================================================================
+   Text Field Base Styling
+   ============================================================================= */
+
+.text-field {
+    height: 45px;
+
+    background-color: #36353b;
+    border-radius: 8px;
+
+    padding: 10px 15px;
+
+    color: white;
+    font-size: 16px;
+    -unity-font-definition: var(--font-regular);
+}
+
+/* Inner input element */
+.text-field .text-field__input {
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 8px;
+
+    -unity-text-align: middle-left;
+}
+
+/* Placeholder text */
+.text-field .text-field__placeholder {
+    color: #666666;
+    font-size: 16px;
+    -unity-font-definition: var(--font-regular);
+}
+
+/* Focus state */
+.text-field:focus {
+    border-color: #8561FF;
+    border-width: 2px;
+}
+
+/* =============================================================================
+   Search Field
+   ============================================================================= */
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-field {
+    flex-grow: 1;
+    height: 45px;
+
+    background-color: #36353b;
+    border-radius: 8px;
+
+    padding: 10px 15px;
+    padding-left: 40px; /* Space for icon */
+
+    color: white;
+    font-size: 16px;
+}
+
+.search-icon-container {
+    position: absolute;
+    left: 10px;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    --unity-image: var(--image-icon-search);
+    --unity-image-tint-color: #666666;
+}
+
+/* =============================================================================
+   Number Field
+   ============================================================================= */
+
+.number-field {
+    width: 120px;
+    -unity-text-align: middle-center;
+}
+
+/* =============================================================================
+   Multiline Field
+   ============================================================================= */
+
+.multiline-field {
+    height: 100px;
+    min-height: 80px;
+
+    -unity-text-align: upper-left;
+    white-space: normal;
+}
+
+.multiline-field .text-field__input {
+    -unity-text-align: upper-left;
+}
+
+/* =============================================================================
+   Results Container (for search)
+   ============================================================================= */
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+
+    max-height: 150px;
+    overflow: hidden;
+
+    margin-bottom: 10px;
+}
+
+/* =============================================================================
+   Submit Button
+   ============================================================================= */
+
+.submit-button {
+    height: 50px;
+    margin-top: 10px;
+
+    background-color: #8561FF;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition-property: all;
+    transition-duration: 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #6B4FCC;
+    scale: 0.98;
+}
+
+.submit-label {
+    font-size: 18px;
+    -unity-font-definition: var(--font-bold);
+    -unity-text-align: middle-center;
+}
+
+/* =============================================================================
+   State Classes
+   ============================================================================= */
+
+.error {
+    border-color: #B20000;
+    border-width: 2px;
+}
+
+.success {
+    border-color: #008000;
+    border-width: 2px;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+/*
+    TEXT FIELD USS REFERENCE:
+
+    Sub-elements:
+    - .text-field__input: Inner input container
+    - .text-field__placeholder: Placeholder text
+
+    Text Alignment:
+    - -unity-text-align: upper-left (multiline)
+    - -unity-text-align: middle-left (single line)
+    - -unity-text-align: middle-center (centered input)
+
+    Pseudo-classes:
+    - :focus: Field has keyboard focus
+    - :hover: Mouse over field
+
+    Multiline support:
+    - white-space: normal; (allows wrapping)
+    - Set height > single line height
+*/

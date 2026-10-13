@@ -1,0 +1,294 @@
+/*
+    ROSIE REFERENCE: SettingsPanel.uss
+
+    PURPOSE: USS styling for settings panel with toggles and sliders.
+
+    KEY PATTERNS:
+    - :root for CSS variables
+    - Flexbox layout (display: flex)
+    - var(--font-*) for Highrise font variables
+    - var(--image-*) for Highrise image variables
+    - .class:hover for hover states
+    - transition-* for animations
+*/
+
+/* =============================================================================
+   CSS Variables
+   ============================================================================= */
+
+:root {
+    --panel-bg: #141317;
+    --section-bg: #36353b;
+    --accent-color: #8561FF;
+    --text-primary: white;
+    --text-secondary: #8A8A8A;
+}
+
+/* =============================================================================
+   Main Container
+   ============================================================================= */
+
+.settings-panel {
+    /* Full screen overlay */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    /* Center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Typography defaults */
+    color: var(--text-primary);
+    -unity-font-definition: var(--font-bold);
+}
+
+/* =============================================================================
+   Content Panel (animatable container)
+   ============================================================================= */
+
+.content-panel {
+    /* Size constraints */
+    width: 95%;
+    max-width: 400px;
+    min-height: 350px;
+
+    /* Appearance */
+    background-color: var(--panel-bg);
+    border-radius: 12px;
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    /* Overflow handling */
+    overflow: hidden;
+}
+
+/* =============================================================================
+   Header
+   ============================================================================= */
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    font-size: 28px;
+    -unity-text-align: middle-center;
+    -unity-font-definition: var(--font-bold);
+}
+
+/* =============================================================================
+   Close Button
+   ============================================================================= */
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+
+    /* Center icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Hover transition */
+    transition-property: all;
+    transition-duration: 0.2s;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    scale: 0.95;
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+
+    /* Use Highrise icon variable */
+    --unity-image: var(--image-icon-close);
+}
+
+/* =============================================================================
+   Settings Container
+   ============================================================================= */
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.section-title {
+    font-size: 18px;
+    color: var(--accent-color);
+    -unity-font-definition: var(--font-bold);
+
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+/* =============================================================================
+   Setting Rows (Toggle and Slider)
+   ============================================================================= */
+
+.setting-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 50px;
+
+    padding: 10px 15px;
+    margin-bottom: 8px;
+
+    background-color: var(--section-bg);
+    border-radius: 8px;
+}
+
+.setting-label {
+    font-size: 16px;
+    -unity-font-definition: var(--font-regular);
+    -unity-text-align: middle-left;
+
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+/* =============================================================================
+   Toggle Styling
+   ============================================================================= */
+
+.setting-toggle {
+    /* Toggle size is controlled by Highrise */
+    flex-shrink: 0;
+}
+
+/* =============================================================================
+   Slider Styling
+   ============================================================================= */
+
+.slider-row {
+    /* Taller row for slider */
+    height: 60px;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.setting-slider {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+/* Slider track background */
+.setting-slider .slider__background {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+/* Slider filled portion */
+.setting-slider .slider__foreground {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+}
+
+/* Slider draggable knob */
+.setting-slider .slider__knob {
+    background-color: white;
+    border-color: var(--accent-color);
+    border-width: 2px;
+}
+
+.slider-value {
+    font-size: 14px;
+    -unity-font-definition: var(--font-regular);
+    -unity-text-align: middle-right;
+
+    min-width: 45px;
+    color: var(--text-secondary);
+}
+
+/* =============================================================================
+   Utility Classes
+   ============================================================================= */
+
+/* Hide element */
+.hidden {
+    display: none;
+}
+
+/* Disabled state */
+.disabled {
+    opacity: 0.5;
+}
+
+/*
+    USS REFERENCE:
+
+    Highrise Font Variables:
+    - var(--font-default)     : Default font
+    - var(--font-regular)     : Regular weight
+    - var(--font-bold)        : Bold weight
+    - var(--font-black)       : Extra bold
+
+    Highrise Image Variables:
+    - var(--image-icon-close) : X close icon
+    - var(--image-icon-add)   : Plus icon
+    - var(--image-icon-search): Magnifying glass
+    - var(--image-icon-tip)   : Tip/gift icon
+
+    Common Properties:
+    - display: flex           : Enable flexbox
+    - flex-direction: row/column
+    - justify-content: center/space-between/flex-start/flex-end
+    - align-items: center/flex-start/flex-end
+    - position: absolute/relative
+    - background-color: #hex or rgba()
+    - border-radius: px
+    - padding/margin: px
+    - width/height: px or %
+    - min-width/max-width: px
+    - font-size: px
+    - color: #hex
+    - -unity-text-align: upper-left/middle-center/lower-right
+    - -unity-font-definition: var(--font-*)
+    - --unity-image: var(--image-*) or url("path")
+    - transition-property: all
+    - transition-duration: 0.2s
+    - overflow: hidden/visible
+
+    Pseudo-classes:
+    - :hover  : Mouse over state
+    - :active : Being pressed
+    - :focus  : Has keyboard focus
+
+    Slider Sub-elements:
+    - .slider__background  : Track background
+    - .slider__foreground  : Filled portion
+    - .slider__knob        : Draggable handle
+*/
