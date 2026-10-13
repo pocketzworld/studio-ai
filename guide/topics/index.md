@@ -9,3 +9,4 @@ Your training data knows little about Highrise, and much of it is wrong. **Look 
 - Drive the editor with `{{RUN}} <name> --arg value`. `{{RUN}} --query hr_` lists the Highrise commands with their arguments, and `{{RUN}} --query <word>` finds others; `{{RUN}} <name> --help` doesn't describe a command. Where a Highrise command does the job, use it rather than a general one: it knows how Highrise works (e.g. `hr_play`, `hr_new_script`, `hr_bake`, `hr_world_settings`). After changing scripts or assets, poll `hr_status` for errors.
 - Avoid `eval` and `run_script`: they run arbitrary C# in the user's editor. Use them only if the user agrees.
 - After moving, adding, or removing static objects, the baked lighting and navmesh are stale. Rebake with `{{RUN}} hr_bake`.
+- Before changing a scene's sky or ambient light, adding to a prefab, or bringing in art from another project, read `{{RUN}} hr_guide --topic scene-editing`: these have no command of their own.
