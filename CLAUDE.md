@@ -2,6 +2,8 @@
 
 The home of Rosie, a Claude Code plugin for Highrise Studio.
 
+This repository is public. Keep internal plans, unreleased projects and internal names out of its files and commit messages.
+
 ## Subprojects
 
 - [rosie/CLAUDE.md](rosie/CLAUDE.md) - The Rosie plugin
