@@ -10,3 +10,4 @@ Your training data knows little about Highrise, and much of it is wrong. **Look 
 - Avoid `eval` and `run_script`: they run arbitrary C# in the user's editor. Use them only if the user agrees.
 - After moving, adding, or removing static objects, the baked lighting and navmesh are stale. Rebake with `{{RUN}} hr_bake`.
 - Before changing a scene's sky or ambient light, adding to a prefab, or bringing in art from another project, read `{{RUN}} hr_guide --topic scene-editing`: these have no command of their own.
+- To start another project, from one of Highrise's templates or as a copy of this one, use `{{RUN}} hr_new_project` (`{{RUN}} hr_project_templates` lists the templates).
