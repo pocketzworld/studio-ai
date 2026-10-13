@@ -12,7 +12,11 @@ A scene's skybox material, ambient light, and fog are its RenderSettings, which 
 {{RUN}} set_serialized_field --target '{"globalId":"GlobalObjectId_V1-2-<scene GUID>-2-0"}' --field m_AmbientSkyColor --value '{"r":0.36,"g":0.48,"b":0.53,"a":1}'
 ```
 
-`get_serialized_fields` has a `format` argument that the command line can't pass, because `--format` is the CLI's own option. Leave it out.
+`get_serialized_fields` has a `format` argument (`value` returns just the values), which the command line can't pass, because `--format` is the CLI's own option. Pass it inside a `batch` operation's `params` instead:
+
+```
+{{RUN}} batch --operations '[{"command":"get_serialized_fields","params":{"target":{"globalId":"GlobalObjectId_V1-2-<scene GUID>-2-0"},"field":"m_AmbientSkyColor","format":"value"}}]'
+```
 
 ## Prefabs
 
@@ -20,7 +24,7 @@ A scene's skybox material, ambient light, and fog are its RenderSettings, which 
 
 ## Art from another project
 
-`import_asset` gives the copy a new GUID, which breaks every reference to it: a prefab copied that way loses its sprites and materials. To bring assets over from another Unity project (another world, say), copy the files together with their `.meta` files into this project's `Assets/` folder, and include what they depend on. A dependency is any `guid:` in a prefab, material, or scene that isn't already in this project. Then poll `{{RUN}} hr_status` until `busy` is empty so the editor imports them, and check that they arrived with `find_assets`.
+`import_asset` gives the copy a new GUID, which breaks every reference to it: a prefab copied that way loses its sprites and materials. To bring assets over from another Unity project (another world, say), copy the files together with their `.meta` files into this project's `Assets/` folder, and include what they depend on. A dependency is any `guid:` in a prefab, material, or scene that isn't already in this project. Then run `{{RUN}} --wait hr_status`, which waits until the editor has imported them, and check that they arrived with `find_assets`.
 
 ## Several edits at once
 

@@ -8,14 +8,14 @@ This folder is the knowledge an AI agent needs to build Highrise worlds. Highris
 | `hr_examples_search --query <words>`, `hr_examples_show --path <path>` | Files under `examples/`. |
 | `hr_new_script`, `hr_new_ui` | `templates/`. |
 
-The Lua API reference is not here. It ships with Studio, generated from the C# sources, and is served by `hr_docs_search` and `hr_docs_show`.
+The Lua API reference is not here. It ships with Studio, generated from the C# sources, and is served by `hr_docs_search` and `hr_docs_show`. They also serve the Studio tutorials of the creator-docs site, which Studio downloads from pocketzworld/creator-docs (`pages/learn/studio`) as it does this folder.
 
 ## Layout contract
 
 Studio's `Highrise.Studio.Agent.AgentGuide` depends on this layout. Renaming or removing any of these paths breaks the Studio versions users already have. Add files freely, but keep the following in place:
 
 - `topics/index.md`: the entry point. Topic names are lowercase words joined by hyphens (`[a-z0-9-]+`).
-- `{{RUN}}` in a topic: Studio replaces it with what an agent types to run a Studio command (`unity command --format human`), so write a command as `{{RUN}} hr_status`, and a listing of the commands matching a word as `{{RUN}} --query <word>`.
+- `{{RUN}}` in a topic: Studio replaces it with what an agent types to run a Studio command: `Library/Highrise/hr`, the launcher Studio writes into the project, which runs the Unity CLI's `unity command` there. So write a command as `{{RUN}} hr_status`, its arguments as `{{RUN}} hr_status --help`, and a listing of the commands matching a word as `{{RUN}} --query <word>`.
 - `templates/Script.lua`: the Lua script template. `{{TYPE}}` is replaced with the script type (`Client`, `Server`, `ClientAndServer`, or `Module`), and `{{NAME}}` with the script name.
 - `templates/UI/UI.lua`, `templates/UI/UI.uxml`, `templates/UI/UI.uss`: the UI component templates. `{{NAME}}` is replaced with the component name.
 - The sentence "Only include sections that have something in them." in the Lua templates: Studio warns about scripts that still contain it, to make agents replace the templates' guidance.
