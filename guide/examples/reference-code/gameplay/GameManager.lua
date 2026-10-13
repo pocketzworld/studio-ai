@@ -71,7 +71,7 @@ function IsSaveDataLoaded(): boolean
 end
 
 function SetMusicRotatorEnabled(enabled: boolean)
-    if not enabled then
+    if enabled == nil then
         print("ERROR: No enabled value provided to SetMusicRotatorEnabled")
         return
     end
@@ -114,7 +114,7 @@ function GetCharacterModelForPlayer(player: Player): CharacterModel | nil
         end
         local _modelPlayer = characterModel.GetPlayer()
         if Utils.IsPlayerNull(_modelPlayer) then
-            return nil
+            continue
         end
         if _modelPlayer.user.id == player.user.id then
             return characterModel

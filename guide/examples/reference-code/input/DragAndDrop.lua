@@ -179,7 +179,7 @@ local function onDragEnded(evt)
     local _dropPlayerStart = draggableObject.transform.position
     local _dropPlayerEnd = _dropPlayerStart - hoverOffset
 
-    local _dropTween = Tween:new(
+    local _dropTween = Tween.new(
         0, 1, 0.5,
         false, false,
         TweenModule.Easing.bounce,

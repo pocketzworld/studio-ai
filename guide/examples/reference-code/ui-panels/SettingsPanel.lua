@@ -108,6 +108,7 @@ function Cleanup()
     -- Save settings to storage if needed
 end
 
+-- One-time setup; OnEnable runs every time the panel reopens, and would add the overlay and callbacks again
 function Init()
     UIUtils.CreateModalOverlay(view, onCloseButton, true, true)
 
@@ -118,14 +119,16 @@ function Init()
 
     _volumeSlider:RegisterCallback(IntChangeEvent, onVolumeSliderChanged)
     _sensitivitySlider:RegisterCallback(IntChangeEvent, onSensitivitySliderChanged)
-
-    loadSettings()
 end
 
 --------------------------------
 ------  LIFECYCLE HOOKS   ------
 --------------------------------
 
-function self:OnEnable()
+function self:Awake()
     Init()
+end
+
+function self:OnEnable()
+    loadSettings()
 end

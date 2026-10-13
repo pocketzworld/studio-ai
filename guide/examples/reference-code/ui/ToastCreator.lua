@@ -48,12 +48,6 @@ local toastEntries: { VisualElement } = {}
 ------  LOCAL FUNCTIONS   ------
 --------------------------------
 
-local function onToastClicked()
-    if initData.OnClickedCallback then
-        initData.OnClickedCallback()
-    end
-end
-
 local function createEntry(): VisualElement
     local _toastEntry = UIUtils.NewVisualElement(parentContainer, { "toast-entry", "horizontal-layout" }, false)
     _toastEntry.pickingMode = PickingMode.Position
@@ -66,8 +60,12 @@ local function createEntry(): VisualElement
         local _questImage: Image = UIUtils.NewImage(_toastEntry, initData.Image, { "toast-image" })
     end
 
+    -- Capture this toast's callback: initData changes with every new toast
+    local _onClicked = initData.OnClickedCallback
     _toastEntry:RegisterPressCallback(function()
-        onToastClicked()
+        if _onClicked then
+            _onClicked()
+        end
     end)
 
     table.insert(toastEntries, _toastEntry)
@@ -107,7 +105,7 @@ function PlaySlideInAnim(content: VisualElement, onComplete: () -> () | nil)
     local _startTop = -content.layout.height + extraSlidePadding
     content.style.top = StyleLength.new(Length.new(_startTop))
 
-    local _myTween = Tween:new(function(value)
+    local _myTween = Tween.new(function(value)
         local _top = Utils.LerpNoClamp(_startTop, extraSlidePadding, value)
         content.style.top = StyleLength.new(Length.new(_top))
     end)
@@ -128,8 +126,8 @@ function PlaySlideOutAnim(content: VisualElement, onComplete: () -> () | nil)
     local _startTop = extraSlidePadding
     content.style.top = StyleLength.new(Length.new(_startTop))
 
-    local _myTween = Tween:new(function(value)
-        local _top = Utils.LerpNoClamp(_startTop, -content.layout.width, value)
+    local _myTween = Tween.new(function(value)
+        local _top = Utils.LerpNoClamp(_startTop, -content.layout.height, value)
         content.style.top = StyleLength.new(Length.new(_top))
     end)
         :FromTo(0, 1)
@@ -146,7 +144,7 @@ function PlayFadeOutAnim(content: VisualElement, onComplete: () -> () | nil)
         return
     end
 
-    local _myTween = Tween:new(function(value)
+    local _myTween = Tween.new(function(value)
         content.style.opacity = StyleFloat.new(1 - value)
     end)
         :FromTo(0, 1)

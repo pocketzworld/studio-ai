@@ -22,7 +22,7 @@ local openCloseDuration: number = 0.5
 local function playSlideUpWithHeight(root: VisualElement, onComplete: () -> () | nil, savedTop: number, height: number)
     root.style.top = StyleLength.new(height)
 
-    local _myTween = Tween:new(function(value)
+    local _myTween = Tween.new(function(value)
         root.style.top = StyleLength.new(value)
     end)
         :FromTo(height, savedTop)
@@ -58,7 +58,7 @@ function PlayOpenAnim(ui, onComplete: () -> () | nil, reverse: boolean | nil)
         _easing = Easing.easeInBack
     end
 
-    local _myTween = Tween:new(function(value)
+    local _myTween = Tween.new(function(value)
         _root.style.scale = StyleScale.new(Vector2.one * value)
     end)
         :FromTo(_startVal, _endVal)

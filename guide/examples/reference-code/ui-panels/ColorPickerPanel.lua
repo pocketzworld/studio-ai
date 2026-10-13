@@ -111,10 +111,6 @@ local function initializeSliders()
     _rSlider.value = _r
     _gSlider.value = _g
     _bSlider.value = _b
-
-    _rSlider:RegisterCallback(IntChangeEvent, onSliderChanged)
-    _gSlider:RegisterCallback(IntChangeEvent, onSliderChanged)
-    _bSlider:RegisterCallback(IntChangeEvent, onSliderChanged)
 end
 
 --------------------------------
@@ -142,23 +138,27 @@ function GetColor(): Color
     return currentColor
 end
 
+-- Reset the sliders to the applied color
 function Init()
     initializeSliders()
     updateColorPreview()
-
-    _closeButton:RegisterPressCallback(onClose)
-    _resetButton:RegisterPressCallback(onReset)
-    _applyButton:RegisterPressCallback(onApply)
 end
 
 --------------------------------
 ------  LIFECYCLE HOOKS   ------
 --------------------------------
 
-function self:OnEnable()
-    Init()
+-- Register callbacks once, in Awake: OnEnable runs every time the panel reopens, and would add them again
+function self:Awake()
+    _rSlider:RegisterCallback(IntChangeEvent, onSliderChanged)
+    _gSlider:RegisterCallback(IntChangeEvent, onSliderChanged)
+    _bSlider:RegisterCallback(IntChangeEvent, onSliderChanged)
+
+    _closeButton:RegisterPressCallback(onClose)
+    _resetButton:RegisterPressCallback(onReset)
+    _applyButton:RegisterPressCallback(onApply)
 end
 
-function self:Awake()
-    -- Callbacks can also be registered in Awake
+function self:OnEnable()
+    Init()
 end

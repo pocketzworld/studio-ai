@@ -48,7 +48,9 @@ function self:ServerAwake()
         end)
     end)
 
+    -- Never store what a client sends unchecked: any player could write any value. In a game, compute the value on the server.
     SetPlayerDataRequest:Connect(function(player, key, value)
+        if not validatePlayer(player) then return end
         Storage.SetPlayerValue(player, key, value)
     end)
 end

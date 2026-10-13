@@ -67,7 +67,8 @@ function Init(message: string, onOkCallback: () -> ())
 
     _okButton:RegisterPressCallback(onOkButton)
     _cancelButton:SetDisplay(false)
-    _closeOverlay:RegisterCallback(PointerDownEvent, closeUI)
+    -- Dismissing a message acknowledges it, so the caller's callback still runs
+    _closeOverlay:RegisterCallback(PointerDownEvent, onOkButton)
 end
 
 function InitPurchase(message: string, ok: string, onOkCallback: () -> (), onCancelCallback: () -> ())
@@ -84,5 +85,5 @@ function InitPurchase(message: string, ok: string, onOkCallback: () -> (), onCan
 
     _okButton:RegisterPressCallback(onOkButton)
     _cancelButton:RegisterPressCallback(onCancel)
-    _closeOverlay:RegisterCallback(PointerDownEvent, closeUI)
+    _closeOverlay:RegisterCallback(PointerDownEvent, onCancel)
 end

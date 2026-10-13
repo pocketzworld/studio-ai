@@ -165,7 +165,7 @@ function OpenGenericPopupUI(message: string, callback): UIGenericPopup
     return _popup
 end
 
-function OpenGenericPopupWithCancelUI(message: string, callback, cancelCallback): UIGenericPopup
+function OpenGenericPopupWithCancelUI(message: string, okText: string, callback, cancelCallback): UIGenericPopup
     if not message then
         print("ERROR: No message provided to OpenGenericPopupWithCancelUI")
         return nil
@@ -174,7 +174,7 @@ function OpenGenericPopupWithCancelUI(message: string, callback, cancelCallback)
     local _ui = OpenPopup(genericPopupPrefab, UINames.GenericPopup)
     local _popup = _ui:GetComponent(UIGenericPopup)
     SetUIData(uiData[UINames.GenericPopup], _popup, AnimType.ScaleUp)
-    _popup.InitPurchase(message, callback, cancelCallback)
+    _popup.InitPurchase(message, okText, callback, cancelCallback)
     return _popup
 end
 
@@ -244,8 +244,10 @@ function CloseUI(id: string, forceClose: boolean | nil, callback: () -> () | nil
 
     local _data = uiData[id]
     if not _data then return end
+    -- A popup already animating closed finishes on its own, unless forced
+    if _data.State == UIState.Closing and not forceClose then return end
 
-    if _data and _data.State ~= UIState.Closed then
+    if _data.State ~= UIState.Closed then
         if not forceClose and _data.AnimType > AnimType.None and _data.State == UIState.Open then
             if _data.Component.GetRoot == nil then
                 print("ERROR: Component does not have GetRoot function")
@@ -258,7 +260,8 @@ function CloseUI(id: string, forceClose: boolean | nil, callback: () -> () | nil
             local _clickBlocker = UIUtils.CreateClickBlocker(_data.Component.GetRoot())
 
             DoAnimation(_data.Component, _data.AnimType, function()
-                if _data and _data.Component then
+                -- Skip it if a forced close already shut the popup down
+                if _data.State == UIState.Closing then
                     shutdownUI(_data, id)
                     if callback then callback() end
                 end

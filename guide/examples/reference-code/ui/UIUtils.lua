@@ -233,7 +233,7 @@ function ShowElementByOpacity(element: VisualElement, show: boolean, ignoreClick
     if not show then
         SetPickingMode(element, true)
     else
-        SetPickingMode(element, ignoreClick or true)
+        SetPickingMode(element, ignoreClick ~= false)
     end
 end
 
@@ -309,7 +309,7 @@ function PlaySpin(element: VisualElement): Tween
     end
 
     spinAngle = 0
-    local _myTween = Tween:new(function(value)
+    local _myTween = Tween.new(function(value)
         spinAngle = spinAngle + value * 5 * Time.deltaTime
         element.style.rotate = StyleRotate.new(Rotate.new(Angle.new(spinAngle)))
     end)

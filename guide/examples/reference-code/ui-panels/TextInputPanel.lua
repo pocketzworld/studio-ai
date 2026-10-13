@@ -160,6 +160,7 @@ end
 ------  PUBLIC FUNCTIONS  ------
 --------------------------------
 
+-- One-time setup; OnEnable would run it, and add the callbacks again, every time the panel reopens
 function Init()
     configureSearchField()
     configureNameField()
@@ -182,6 +183,6 @@ end
 ------  LIFECYCLE HOOKS   ------
 --------------------------------
 
-function self:OnEnable()
+function self:Awake()
     Init()
 end
