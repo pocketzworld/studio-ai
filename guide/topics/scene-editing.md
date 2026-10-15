@@ -11,9 +11,21 @@ Unity's general commands cover most scene editing. A few jobs have no command, o
 {{RUN}} hr_scene_lighting --name ambient_sky_color --value '#5C7A87'
 ```
 
+## Lua scripts on objects
+
+`{{RUN}} hr_attach` attaches a Lua script to an object, in the scene or in a prefab (which it saves), and sets the script's fields. Don't write a script's component into prefab YAML by hand: it refers to Studio's generated component and to the script by GUIDs. A new script's component exists once `{{RUN}} --wait hr_status` has built it.
+
+```
+{{RUN}} hr_attach --script GameManager --target Assets/Board.prefab/Manager
+{{RUN}} hr_attach --script ScoreUI --target /Board/ScoreUI --ui_output Hud
+{{RUN}} hr_attach --script Launcher --target /Board/Launcher --properties '{"power": 12, "ball": "/Board/Ball"}'
+```
+
+If only the last object in the path is missing, `hr_attach` makes it, as `Manager` above. `--properties` names fields as the script declares them, and gives objects and assets as paths: `/Board/Ball` in the scene, `Assets/Board.prefab/Ball` in the prefab being edited, `Assets/Sounds/Coin.asset`. Run it again to change the fields of a script already attached. A UI script needs `--ui_output` to show: `Hud`, `AboveChat`, or `World`.
+
 ## Prefabs
 
-`save_prefab_contents` only renames a prefab's child or turns it on or off. To add or change a prefab's children or components, edit an instance of it in a scene, then push the edits to the prefab with `apply_prefab_overrides --instance <the instance's hierarchy path>`. Every other instance updates. Undo any edits you made to the instance that shouldn't reach the prefab, such as a child you turned on to look at it, before you apply.
+`save_prefab_contents` only renames a prefab's child or turns it on or off. To attach a Lua script inside a prefab, use `hr_attach`, above. To add or change a prefab's other children or components, edit an instance of it in a scene, then push the edits to the prefab with `apply_prefab_overrides --instance <the instance's hierarchy path>`. Every other instance updates. Undo any edits you made to the instance that shouldn't reach the prefab, such as a child you turned on to look at it, before you apply.
 
 ## Art from another project
 
