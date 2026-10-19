@@ -23,7 +23,7 @@ Unity's general commands cover most scene editing. A few jobs have no command, o
 
 If only the last object in the path is missing, `hr_attach` makes it, as `Manager` above. `--properties` names fields as the script declares them, and gives objects and assets as paths: `/Board/Ball` in the scene, `Assets/Board.prefab/Ball` in the prefab being edited, `Assets/Sounds/Coin.asset`. Run it again to change the fields of a script already attached. A UI script needs `--ui_output` to show: `Hud`, `AboveChat`, or `World`.
 
-A ScriptableObject script's data goes in assets. Give `hr_attach` the asset's path: it makes the asset if it's missing (its folder must exist), sets its fields, and saves it. Run it again to change them.
+A ScriptableObject script's data goes in assets. Give `hr_attach` the asset's path: it makes the asset if it's missing (its folder must exist), sets its fields, and saves it. Run it again to change them. A Studio without `hr_save` (below) is too old for this: there, make the asset with `create_asset` and set its fields with `set_serialized_field`.
 
 ```
 {{RUN}} hr_attach --script LevelConfig --target Assets/Data/Level1.asset --properties '{"title": "Forest", "icons": ["Assets/Icons/Tree.png"]}'
@@ -33,7 +33,7 @@ A ScriptableObject script's data goes in assets. Give `hr_attach` the asset's pa
 
 `set_serialized_field` sets the fields of Unity's own components and assets. On the command line, give text bare, `--value Forest`: quotes stay part of the text. Numbers, `true` and `false`, and JSON objects and arrays are read as JSON.
 
-Unity's commands leave what they change unsaved in the editor. `save_scene` and `save_all` save scenes but not assets, so an asset changed with `set_serialized_field` or another Unity command isn't on disk until you run `{{RUN}} hr_save`, which saves every changed asset and open scene.
+Unity's commands leave what they change unsaved in the editor. `save_scene` and `save_all` save scenes but not assets, so an asset changed with `set_serialized_field` or another Unity command isn't on disk until you run `{{RUN}} hr_save`, which saves every changed asset and open scene. Older Studios don't have `hr_save` (it says there's no command by that name): there, `{{RUN}} open --restart --save` saves them, restarting Unity.
 
 ## Prefabs
 

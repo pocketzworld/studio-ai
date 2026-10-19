@@ -33,7 +33,9 @@ Agents read guides unreliably, so keep them as rare as possible. Before writing 
 4. The context where the agent needs it: command help and results, templates, or the Lua API docs (XML comments in Studio's C# sources).
 5. A topic, only for knowledge that fits none of the above.
 
-When you do write a topic, write for an agent that knows nothing about Highrise, and say which command to run, as `{{RUN}} <name>`. A command it names must exist in every Studio version that could fetch it; when it depends on a newer command, say which Studio version introduced it.
+When you do write a topic, write for an agent that knows nothing about Highrise, and say which command to run, as `{{RUN}} <name>`.
+
+Every Studio version reads the same topics, including versions released before the commands a topic names. So when a topic names a new command, or a new use of one, it also says what to do in a Studio without it, as `scene-editing` does for `hr_save`. Merge it once a Studio that has the command is published, not with the Studio change. Newer Studios start a topic with a note naming the `hr_*` commands it mentions that they don't have, but older ones show the topic as it is.
 
 ## Previewing changes
 
